@@ -64,6 +64,7 @@ button {
     border-radius: 4px;
     background: rgba(29, 161, 242, 0.8);
     font-size: 19px;
+    cursor: pointer;
 }
 
 @media screen and ( max-width:768px){
