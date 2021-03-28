@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='shortcut icon' href='../img/logo.ico' type='image/x-icon'>
+    <link rel='stylesheet' href='../css/docente.css'> 
+    <title>Registro Docente</title>
+</head>
+<body>
+    <header class='header'>
+        <img src='../img/colegioLogo.png' class='header_img' alt='logo de la institucion'>
+        <p class='header_title'>Colegio Rep&uacute;blica de Venezuela</p>
+      </header>
+
+    <form action="3" method="#" class="form">
+
+        <h1 class="title">Registro Docente</h1>
+
+        <div class="content_inputs">
+
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+
+            <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+
+            <input type="text" name="cedula" id="cedula" placeholder="C&eacute;dula" required>
+
+            <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
+
+            <input type="text" name="direccion" id="direccion" placeholder="Direcci&oacute;n" required>
+
+            <select name="nivelEducacion" id="nivelEducacion" required>
+                <option value="default">Nivel de Educacion</option>
+                <option value="Incial">Educacion Inicial</option>
+                <option value="Primaria">Primaria</option>
+            </select>
+
+            <select name="seccion" id="seccion" required> 
+                <option value="default">Secci&oacute;n</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+
+            <select name="Grado" id="Grado" required>
+                <option value="default">¿Grado?</option>
+                <option value="preescolar">Preescolar</option>
+                <optgroup label="Primaria">
+                    <option value="PrimerG">Primer Grado</option>
+                    <option value="SegundoG">Segundo Grado</option>
+                    <option value="TercerG">Tercer Grado</option>
+                    <option value="CuartoG">Cuarto Grado</option>
+                    <option value="QuintoG">Quinto Grado</option>
+                    <option value="SextoG">Sexto Grado</option>
+                </optgroup>
+            </select>
+
+            <input type="text" name="telefono" id="telefono" placeholder="Tel&eacute;fono" required autocomplete="off">
+
+            <input type="text" name="rif" id="rif" placeholder="Rif" required autocomplete="off">
+        </div>
+
+        <div class='buttons'>
+            <a href="index.html" class="regresar">Volver</a>
+            <button type="reset">Limpiar</button>
+            <button type="submit">Registarse</button>
+        </div>
+    </form>
+</body>
+</html>
