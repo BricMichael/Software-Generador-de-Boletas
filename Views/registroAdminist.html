@@ -16,5 +16,36 @@
 
     <form action="3" method="#" class="form">
 
+        <h1 class="title">Registro Administrativo</h1>
+
+        <div class="content_inputs">
+
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required autocomplete="off">
+
+            <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+
+            <input type="text" name="cedula" id="cedula" placeholder="C&eacute;dula" required>
+
+            <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
+
+            <input type="text" name="direccion" id="direccion" placeholder="Direcci&oacute;n" required>
+
+            <select name="administracion" id="administracion" required>
+                <option value="default">Nivel de Administraci&oacute;n</option>
+                <option value="Incial">Educacion Inicial</option>
+                <option value="Primaria">Primaria</option>
+            </select>
+
+            <input type="text" name="telefono" id="telefono" placeholder="Tel&eacute;fono" required autocomplete="off">
+
+            <input type="text" name="rif" id="rif" placeholder="Rif" required autocomplete="off">
+        </div>
+
+        <div class='buttons depEvaluacion'>
+            <a href="index.html" class="regresar">Volver</a>
+            <button type="reset">Limpiar</button>
+            <button type="submit">Registarse</button>
+        </div>
+    </form>
 </body>
 </html>
