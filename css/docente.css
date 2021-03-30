@@ -58,7 +58,7 @@ body::before {
 .content_inputs {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat( 2, minmax(200px, 280px) );
+    grid-template-columns: repeat( 2, minmax(50px, 280px) );
     grid-template-rows: repeat(5, 1fr);
     justify-content: space-around;
     gap: 15px;
@@ -112,4 +112,44 @@ button {
 
 a, button:hover {
     background: rgba(28, 135, 202, 0.8);
+}
+
+@media screen and ( max-width: 850px) {
+    
+    input, select {
+        padding: 10px; 
+        font-size: 15px;
+    }
+    
+    .header_title {
+        font-size: 1.6em;
+        font-weight: 700;
+    }
+}
+
+@media screen and ( max-width: 690px) {
+    .buttons {
+        display: block;
+        margin: 4px auto;
+        padding: 4px;
+    }
+
+    a, button{    
+        padding: 0.4em 0;
+        font-size: 15px;
+        margin: 6px auto;
+        width: 100px;
+        display: block;
+    }
+
+    .depEvaluacion {
+        margin-top: -55px;
+    }
+
+}
+
+@media screen and (min-width: 690px) {
+    .depEvaluacion {
+        margin-top: -60px;
+    }
 }
