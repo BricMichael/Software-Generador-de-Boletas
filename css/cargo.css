@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    font-family: sans-serif, Arial, Helvetica;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: url(../img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5em;
+    
+}
+
+.header_img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header_title {
+    font-size: 2.3em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.contenedor-blue {
+    background: #02306d;
+    color: #ffF;
+    width: 40%;
+    margin: 8px auto;
+    height: auto;
+    border-radius: 6px;
+}
+
+.title {
+    padding-top: 0.5em;
+}
+
+.content_links {
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    gap: 10px;
+}
+
+.button, .regresar {
+    background: rgba(29, 161, 242, 0.8);
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.boton_volver {
+    padding: 22px 0px;
+}
+
+.button:hover, .regresar:hover {
+    background: rgba(21, 136, 207, 0.8);
+}
+
+@media screen and ( max-width: 540px) {
+
+    .contenedor-blue {
+        width: 50%;
+    }
+
+    .header_title {
+        font-size: 1.6em;
+        font-weight: 700;
+    }
+
+    .button, .regresar {
+        padding: 5px;
+    }
+
+}
+

@@ -65,6 +65,7 @@ button {
     background: rgba(29, 161, 242, 0.8);
     font-size: 19px;
     cursor: pointer;
+    color: #fff;
 }
 
 @media screen and ( max-width:768px){
