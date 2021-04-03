@@ -5,8 +5,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='shortcut icon' href='../img/logo.ico' type='image/x-icon'>
-    <link rel='stylesheet' href='../css/director.css'> 
-    <title>Registro Directora</title>
+    <link rel='stylesheet' href='../css/especialista.css'> 
+    <title>Registro Especialistas</title>
 </head>
 <body>
     <header class='header'>
@@ -16,7 +16,7 @@
 
     <form action="3" method="#" class="form">
 
-        <h1 class="title">Registro Directora</h1>
+        <h1 class="title">Registro Especialistas</h1>
 
         <div class="content_inputs">
 
@@ -27,6 +27,15 @@
             <input type="text" name="cedula" id="cedula" placeholder="C&eacute;dula" required>
 
             <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
+
+            <select name="especialidad" id="especialidad" required>
+                <option value="default">Seleccione Especialidad</option>
+                <option value="Incial">M&uacute;sica</option>
+                <option value="Primaria">Ingl&eacute;s</option>
+                <option value="Primaria">Franc&eacute;s</option>
+                <option value="Primaria">Educaci&oacute;n F&iacute;sica</option>
+                <option value="Primaria">Computaci&oacute;n</option>
+            </select>
 
             <input type="text" name="telefono" id="telefono" placeholder="Tel&eacute;fono" required autocomplete="off">
 

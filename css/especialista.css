@@ -45,8 +45,8 @@ body::before {
 .form {
     background: #02306df0;
     color: #ffF;
-    width: 55%;
-    margin: 8px auto;
+    width: 35%;
+    margin: 0 auto;
     height: auto;
     border-radius: 6px;
 }
@@ -55,17 +55,16 @@ body::before {
     padding-top: 0.5em;
 }
 
-.content_inputs {
+.content_inputs, select {
     padding: 10px;
     display: grid;
     grid-template-columns: minmax(50px, 280px);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     column-gap: 15px;
-    margin-top: 0.7em;
     justify-content: center;
 }
 
-input{
+input, select{
     background: #02306d;
     border: none;
     padding: 10px;
@@ -89,7 +88,7 @@ input:focus {
     display: flex;
     justify-content: center;
     width: 70%;
-    margin: auto;
+    margin: -15px auto;
 }
 
 a, button{    
@@ -99,7 +98,7 @@ a, button{
     background: rgba(29, 161, 242, 0.8);
     font-size: 19px;
     cursor: pointer;
-    margin: 1em;
+    margin: 0.5em 1em;
     color: #fff;
 }
 
@@ -111,13 +110,16 @@ a:hover, button:hover {
     background: rgba(28, 135, 202, 0.8);
 }
 
-@media screen and ( max-width: 462px) {
+@media screen and ( max-width: 860px) {
     .buttons {
         display: block;
         margin: -10px auto;
         padding: 4px;
     }
 
+    .form {
+        width: 50%;
+    }
     a, button{    
         padding: 0.4em 0;
         font-size: 15px;
@@ -129,5 +131,11 @@ a:hover, button:hover {
     .header_title {
         font-size: 1.6em;
         font-weight: 700;
+    }
+}
+
+@media screen and ( max-width: 475px) {
+    .title {
+        font-size: 1.2em;
     }
 }
