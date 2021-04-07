@@ -25,6 +25,7 @@ else if( $hidden == 'COORDINADOR' ){
 }
 else if( $hidden == 'ESPECIALISTA' ){
      //codigo de envio de los datos a la BBDD;
+     echo 'hola especialista: '. $name;
 }
 else if( $hidden == 'DepEVALUACION' ){
      //codigo de envio de los datos a la BBDD;
@@ -40,10 +41,22 @@ else if( $hidden == 'DepEVALUACION' ){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='shortcut icon' href='../img/logo.ico' type='image/x-icon'>
+    <link rel='stylesheet' href='../css/regExitoso.css'> 
     <title>Registro Exitoso</title>
 </head>
 <body>
-    <h2>CONTENIDO A MOSTRAR...</h2>
+    
+    <div class='contenido'>
+         <div id="h2">
+               <h2 >FELICIDADES TE HAS REGISTRADO EXITOSAMENTE</h2>
+         </div>
+          <div id='enlace'>
+               <a href="../Views/index.html">Continuar</a>
+          </div>
+          
+    </div>
+
 </body>
 </html>
 
