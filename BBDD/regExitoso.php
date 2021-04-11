@@ -16,6 +16,7 @@ $nAdmin = $_POST['nivelAdmin'];
 $hidden = $_POST['ocultar'];
 $coordinador = $_POST['coordinador'];
 $especialidad = $_POST['especialidad'];
+$clave = $_POST['clave'];
 
 if ( $hidden == 'DOCENTE' ){
     //codigo de envio de los datos a la BBDD;
