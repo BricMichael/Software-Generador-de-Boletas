@@ -177,6 +177,59 @@ a{
     border-radius: 3px;
     color: #ffffffb3;
 }
+/* Estilos del menu 'Indicadores' */
+
+.content-cards {
+    margin-top: 12%;
+    margin-left: 200px; 
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 300px;
+    margin: 2rem;
+    background-color: royalblue;
+
+}
+
+.image {
+    width: 50%;
+}
+
+.desc_card {
+    padding: 1.5rem;
+    width: 50%;
+    background-color: #fff;
+    text-align: center;
+}
+.title_card{
+    margin: 1rem;
+}
+
+.desc {
+    padding-left: 15px;
+    text-align: left;
+}
+
+.buttonOK {
+    margin: 1.5rem;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    /* object-position: ; */
+    object-fit: cover;
+}
+
+
+
+
+/* Fin de los estilos indicadores */
+
 
 @media screen and ( max-width:1150px) {
     #header {
