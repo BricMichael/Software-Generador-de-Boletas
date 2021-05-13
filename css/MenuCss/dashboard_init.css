@@ -177,56 +177,75 @@ a{
     border-radius: 3px;
     color: #ffffffb3;
 }
+
 /* Estilos del menu 'Indicadores' */
 
 .content-cards {
-    margin-top: 12%;
+    margin-top: 5%;
     margin-left: 200px; 
     display: flex;
-    justify-content: space-around;
+    background: rgb(241, 230, 230);
 }
 
 .cards {
     display: flex;
-    flex-wrap: nowrap;
-    height: 300px;
-    margin: 2rem;
-    background-color: royalblue;
+    height: 250px;
+    margin: 0 2rem;
+    /* padding: 0.1rem; */
+    box-shadow: 0 0 5px rgba(9, 5, 221, 0.979);
+}
 
+.cards:hover {
+    box-shadow: 0 0 9px rgba(9, 5, 221, 0.979);
 }
 
 .image {
-    width: 50%;
+    width: 55%;
 }
 
 .desc_card {
-    padding: 1.5rem;
-    width: 50%;
+    padding: 0.3rem;
+    width: 60%;
     background-color: #fff;
     text-align: center;
+    border-radius: 6px;
 }
+
 .title_card{
-    margin: 1rem;
+    margin: 0.5rem;
+    font-size: 20px;
+    background: #2255a411;
 }
 
 .desc {
-    padding-left: 15px;
-    text-align: left;
+    margin: 0 1rem;
+    font-size: 0.9rem;
+    padding: 5px;
 }
 
 .buttonOK {
-    margin: 1.5rem;
+    margin-top: 0.8rem;
+    background: #2255a4;;
+    padding: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 2rem 0.5rem 0 0.5rem;
 }
 
-img {
+.buttonOK a{
+    color: #fff;
+}
+
+.indicadoresImg {
     width: 100%;
     height: 100%;
     /* object-position: ; */
     object-fit: cover;
 }
 
-
-
+#docente {
+    object-position: right;
+}
 
 /* Fin de los estilos indicadores */
 

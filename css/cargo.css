@@ -7,9 +7,10 @@
 body {
     text-align: center;
     font-family: sans-serif, Arial, Helvetica;
+    background: #012c66;
 }
 
-body::before {
+/* body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -21,7 +22,7 @@ body::before {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
+} */
 
 a {
     text-decoration: none;
@@ -47,7 +48,7 @@ a {
 }
 
 .contenedor-blue {
-    background: #02306d;
+    background: #fff;
     color: #ffF;
     width: 40%;
     margin: 8px auto;

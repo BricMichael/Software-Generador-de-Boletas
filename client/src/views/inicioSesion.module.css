@@ -1,0 +1,71 @@
+.formSesion {
+    background: #fff;
+    color: #000;
+    width: 43%;
+    margin: auto;
+    margin-bottom: 1rem;
+    height: 23em;
+    border-radius: 6px;
+}
+
+.formSesion_h1 {
+    padding: 1em 0px 0.5em 0px;
+    font-size: 2.7em;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    margin: auto;
+    padding: 7px;
+}
+
+.sesionInputs {
+    padding: 0.8em 8px;
+    margin: 0.9em 0px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    background-color:#012c66;
+    color: #fff;
+}
+
+.sesionInputs:focus { 
+    background:  rgba(134, 190, 224, .8);
+}
+
+.LoginButton {
+    width: 180px;
+    padding: 0.6em 0.7em;
+    border: none;
+    border-radius: 4px;
+    background: rgba(29, 161, 242, 0.8);
+    font-size: 19px;
+    cursor: pointer;
+    color: #fff;
+}
+
+@media screen and ( max-width:768px){
+    .formSesion {
+        width: 60%;
+    }
+}
+
+@media screen and ( max-width:550px){
+    .formSesion {
+        width: 85%;
+    }
+
+    .inputs {
+        width: 175px;
+    }
+
+    .formSesion_h1 {
+        padding: 1em 0px 0.5em 0px;
+        font-size: 2.1em;
+    }
+    .LoginButton {
+        width: 140px;
+    }
+}

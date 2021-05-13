@@ -1,0 +1,70 @@
+.welcome_title{
+    font-size: 3.6em;
+    padding-bottom: 5px;
+}
+
+.welcomeHome_img {
+    max-width: 100%;
+    height: 250px; 
+    border-radius: 10px;
+    object-fit: cover;
+ }
+
+.Homebuttons {
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+}
+
+.Home_primaryLinks{
+    background: #1da1f2cc;
+    color:#fff;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px 2em;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+
+.Home_primaryLinks:hover {
+    background:rgba(43, 171, 226, .8);
+}
+
+@media screen and (max-width: 700px) {
+    .Home_primaryLinks {
+        font-size: 1.1em;
+        align-self: center;
+    }
+    
+}
+
+
+@media screen and (max-width: 681px) {
+    
+    .welcomeHome_img {
+        height: 150px;    
+    }
+
+    .welcome_title {
+        font-size: 2.4em;
+        margin-top: 4em; 
+    }
+    .Homebuttons {
+        margin-top: 6em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .welcome_title {
+        font-size: 1.8em;
+    }
+
+    .welcomeHome_img {
+        height: 110px;     
+    }
+
+    a {
+        margin: 0px 0.3em;
+    }
+}

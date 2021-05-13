@@ -29,7 +29,7 @@
 
  Proyecto para una Institución privada. Generador de Boletas Colegio República de Venezuela. 
  Software automatizado. 
- PHP | JavaScript | NodeJs | HTML | CSS | Express | BBDD.
+ JavaScript | React | NodeJs | Postgres | CSS | Express | BBDD.
 
 Alberto Graterol: Programador en PHP y Javascript, a cargo de la creación del Backend, encargado de los permisos que tendrá cada usuario y creador de la base de datos.  
 

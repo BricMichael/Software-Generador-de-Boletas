@@ -1,0 +1,54 @@
+.CoorForm {
+    background: #ebebeb;
+    color: #000;
+    width: 55%;
+    margin: 8px auto;
+    height: auto;
+    border-radius: 6px;
+    margin-top: -0.8rem;
+}
+
+.titleCoord {
+    padding-top: 0.5em;
+}
+
+.content_inputs{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(50px, 280px) );
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: space-around;
+    gap: 15px;
+    margin-top: 1em;
+}
+
+.coordInputs, .coordOption {
+    background: #02306d;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 17px;
+}
+
+.coordInputs::placeholder {
+    color: #fff;  
+}
+
+.coordInputs:focus {
+    background: rgba(182, 197, 216, 0.3);
+}
+
+
+@media screen and ( max-width: 850px) {
+    
+    .coordInputs, .coordOption {
+        padding: 10px; 
+        font-size: 15px;
+    }
+    .CoorForm {
+        margin-top: 0rem;
+    }
+    
+}

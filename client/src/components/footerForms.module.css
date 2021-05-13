@@ -1,0 +1,45 @@
+.buttonsFinales {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: auto;
+}
+
+.docente_buttons{    
+    padding: 0.6em 0.7em;
+    border: none;
+    border-radius: 4px;
+    background: rgba(15, 98, 150, 0.8);
+    background: rgba(29, 161, 242, 0.8);
+    font-size: 19px;
+    cursor: pointer;
+    margin: 1em;
+    color: #fff;
+    width: 30%;
+}
+
+.docente_buttons:hover {
+    background: rgba(28, 135, 202, 0.8);
+}
+
+
+@media screen and ( max-width: 690px) {
+    .buttonsFinales {
+        display: block;
+        margin: 4px auto;
+        padding: 4px;
+    }
+
+    .docente_buttons{    
+        padding: 0.4em 0;
+        font-size: 15px;
+        margin: 6px auto;
+        width: 100px;
+        display: block;
+    }
+
+    /* .depEvaluacion {
+        margin-top: -55px;
+    } */
+
+}
