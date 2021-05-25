@@ -1,12 +1,9 @@
-import './App.css';
-import CuerpoHome from './components/CuerpoHome';
-import Header from './components/Header';
+import Routes from "./routes/Routes";
 
 const App = () => {
   return (
     <>
-      <Header />
-      <CuerpoHome />
+      <Routes />
     </> 
   );
 }
