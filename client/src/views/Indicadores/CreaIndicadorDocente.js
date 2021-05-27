@@ -16,6 +16,13 @@ const CreaIndicadorDocente = () => {
                         <option value="Leng&Liter">Si</option>
                         <option value="Matematica">No</option>
                     </select>
+                    <select className={`${style.select}`}>
+                        <option value="default">Literal</option>
+                        <option value="Leng&Liter">E</option>
+                        <option value="Matematica">MB</option>
+                        <option value="Leng&Liter">B</option>
+                        <option value="Matematica">RN</option>
+                    </select>
                 
                     <button type="submit" className={`${style.button}`}>Guardar</button> 
                 </div>  

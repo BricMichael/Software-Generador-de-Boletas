@@ -29,6 +29,7 @@
 
 .Home_primaryLinks:hover {
     background:rgba(43, 171, 226, .8);
+    color: #fff;
 }
 
 @media screen and (max-width: 700px) {

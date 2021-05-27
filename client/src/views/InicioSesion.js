@@ -5,13 +5,19 @@ const InicioSesion = () => {
     return (
         <>
             <Header />
-            <form className={ style.formSesion }>
-                <h1 className={ style.formSesion_h1 }>Iniciar Sesi&oacute;n</h1>
-                <div className={ style.inputs }>
-                    <input type='text' placeholder='Usuario' className={ style.sesionInputs } name='user' id='user' required />
-                    <input type='password' placeholder='Clave' className={ style.sesionInputs } name='clave' id='clave' required />
-                </div>
-                <button className={ style.LoginButton } type='submit' id='submit'>Iniciar Sesi&oacute;n</button>
+            <form className={style.form}>
+                <h3 className={style.auth__title}>Login</h3>
+ 
+                {/* <div className={style.auth__alert_error}>
+                    <p>La contraseña es incorrecta</p>
+                </div> */}
+                           
+                <input type="text" className={style.auth__input} autoComplete="off" placeholder="Nombre Usuario" name="nombre" required />
+                <input type="password"  className={style.auth__input} placeholder="Contraseña *" name="password" required />
+                <button type="submit" className={style.buttonWidth}>
+                    Login
+                </button>
+
             </form>
         </>
     )

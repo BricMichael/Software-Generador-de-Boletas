@@ -1,23 +1,21 @@
 // import Modal from "../../components/Modal";
-
-import Header from "../../components/Header";
+import style from './crearIndicador.module.css';
+import clogo from '../../assets/img/colegioLogo.png';
+import { colorIndicadores } from "../../helpers/coloresBG";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from "./ListaIndicDocente";
 
-const colorBody = () => {
-    let body = document.querySelector('body');
-    let header = document.getElementById('idColRepublica');
-    header.style.color = "#012c66"
-    body.style.backgroundColor = "#fff"
-}
-
 
 const IndicadoresDocente = () => { 
-    colorBody();
+    colorIndicadores();
 
     return (
         <>
-        <Header />
+        <header className={ style.headerlog }>
+            <img src={ clogo } className={ style.header_imag } alt='logo de la institucion' />
+            <p className={ style.header__title } >Colegio Rep&uacute;blica de Venezuela</p>
+        </header>
+
         <CreaIndicadorDocente />
 
         <ListaIndicDocente /> 

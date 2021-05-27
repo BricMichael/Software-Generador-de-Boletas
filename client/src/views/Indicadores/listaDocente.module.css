@@ -78,6 +78,7 @@
 .buttons {
     justify-self: flex-end;
     padding-top: 0.3rem;
+    display: flex;
 }
 
 .botones_indicadores {
@@ -95,4 +96,4 @@
 }
 
 .edit { background-color: #1da1f2cc; }
-.delete { background-color: #dc3545; }
+.delete { background-color: #dc3545; align-self: flex-start;}

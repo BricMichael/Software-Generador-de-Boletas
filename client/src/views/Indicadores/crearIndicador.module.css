@@ -2,9 +2,9 @@
     border: 2px solid #012c66;
     width: 70%;
     display: flex;
-    height: auto;
+    height: 250px;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-radius: 6px;
 }
 
@@ -19,10 +19,10 @@
 
 .textArea{
     resize: none;
-    padding: 10px;
+    padding: 3px 10px;
     width: 100%;
     height: 100%;
-    font-size: 17px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     border: none;
     border-radius: 7px;
@@ -61,4 +61,43 @@ select {
     border-radius: 3px;
     background: #012c66;
     color: #fff;
+}
+
+
+/* estilos header pertenicente a la vista indicadores */
+
+.headerlog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 0px 1em 0px;
+}
+
+.header_imag {
+    max-width: 100%;
+    height: auto;
+}
+
+.header__title {
+    font-size: 2.3em;
+    font-weight: 700;
+    color: #012c66;
+}
+
+@media screen and (max-width: 681px) {
+    
+    .headerlog { 
+        margin: 1.4em 0px;
+    }
+
+    .header__title {
+        font-size: 2em;
+    }
+}
+@media screen and (max-width: 600px) {
+
+    .header__title {
+        font-size: 1.4em;
+    }
+
 }

@@ -1,3 +1,4 @@
+import Modal from '../../components/Modal';
 import style from './listaDocente.module.css';
 
 
@@ -20,8 +21,8 @@ const ListaIndicDocente = () => {
                 <p className={`${style.parrafosData}`}>MB</p>
                 <p className={`${style.parrafosData} ${style.condEspecial}`}>NO</p>
                 <div className={`${style.buttons}`}>
-                    <button className={`${style.botones_indicadores} ${style.edit}`}>Editar</button>
-                    <button className={`${style.botones_indicadores} ${style.delete}`}>Eliminar</button>
+                    <Modal />
+                    <button className={`${style.botones_indicadores} ${style.delete}`}>Eliminar</button>                
                 </div>
             </div>                 
         </div>
