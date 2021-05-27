@@ -1,23 +1,98 @@
-.general {
-    width: 90%;
-    color: #000;
+.tabla_contain {
+    display: flex;
+    flex-direction: column; 
+    height: auto;
+    width: 75%;
+    border: 1px solid #dee2e6;
     margin: auto;
-    border-radius: 15px;
+    margin-top: 2rem;  
+    padding: 0.5rem;  
+    border-radius: 6px;
+    
 }
 
-.general > h1 {
+.titulos_tabla {
+    display: grid;
+    grid-template-columns: 7% 35% 10% 12% 32%;
+    width: 100%;
+    border-bottom: 1px solid #212529;
+}
+
+.hastag {
+    justify-self: flex-start;
+    padding-left: 0.3rem;
+}
+
+.tituloIndicador {
+    justify-self: flex-start;
+    padding-left: 1rem;
+}
+.areaTitulo {
+    /* padding-left: 0.4rem;
+    color: rebeccapurple; */
+}
+
+.titulosIndividuales {
+    color: #012c66;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.titleCEsp {
+    justify-self: flex-start;
+}
+
+ /* estilos de los datos */
+
+.data_indicadores {
+    display: grid;
+    grid-template-columns: 7% 35% 10% 12% 9% 26%;
+    width: 100%;
+    margin-top: 0.5rem; 
+    background-color: #f2f2f2;
+    padding: 4px;
+}
+
+.parrafosData {
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+}
+
+.rezise_indicador {
+    width: 95%;
+    text-align: left;
+}
+.data_indicadores > h3 {
+    font-weight: bold;  
+    justify-self: flex-start;  
+}
+.condEspecial {
+    justify-self: center;
+    padding-left: 17px;
+}
+
+/* botones esitlos  */
+
+.buttons {
+    justify-self: flex-end;
+    padding-top: 0.3rem;
+}
+
+.botones_indicadores {
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 18px;
     color: #fff;
-    font-size: 2.7rem;
+    margin: 0px 0.2rem;
 }
 
-.general  > table > thead, .general  > table > tbody  {
-    color: #fff;
+.botones_indicadores:focus {
+    outline: none;
 }
 
-/* .general  > table > tbody {
-    color: #fff;
-} */
-
-.indicador {
-    width: 40%;
-}
+.edit { background-color: #1da1f2cc; }
+.delete { background-color: #dc3545; }

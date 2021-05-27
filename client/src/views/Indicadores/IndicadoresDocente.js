@@ -1,13 +1,27 @@
 // import Modal from "../../components/Modal";
 
+import Header from "../../components/Header";
+import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from "./ListaIndicDocente";
 
-const IndicadoresDocente = () => {
+const colorBody = () => {
+    let body = document.querySelector('body');
+    let header = document.getElementById('idColRepublica');
+    header.style.color = "#012c66"
+    body.style.backgroundColor = "#fff"
+}
+
+
+const IndicadoresDocente = () => { 
+    colorBody();
+
     return (
         <>
-        <p>Input indicadores</p>
+        <Header />
+        <CreaIndicadorDocente />
 
-        <ListaIndicDocente />
+        <ListaIndicDocente /> 
+        {/* tiene un margin-top */}
         </>
     );
 }

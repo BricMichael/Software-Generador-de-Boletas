@@ -1,105 +1,31 @@
-import style from './listaDocente.module.css'
+import style from './listaDocente.module.css';
+
 
 const ListaIndicDocente = () => {
+    
     return (
-        <div className={ style.general }>
-        <h1>Lista de Indicadores</h1>
-        <table className="table mt-5 text-center">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th className={ style.indicador }>Indicador</th>
-                <th>Área</th>
-                <th>Literal</th>
-                <th>Condicion Especial</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>HTML Tutorial
-                    CSS Tutorial
-                    JavaScript Tutorial
-                    How To Tutorial
-                    SQL Tutorial
-                    Python Tutorial
-                    W3.CSS Tutorial
-                    Bootstrap Tutorial PHP Tutorial
-                    Java Tutorial
-                    C++ Tutorial
-                    jQuery Tutorial
-                </td>
-                <td>Ingles</td>
-                <td>MB</td>
-                <td>SI</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
-            </tr>
-            <tr>
-            <td>2</td>
-                <td>HTML Tutorial
-                    CSS Tutorial
-                    JavaScript Tutorial
-                    How To Tutorial
-                    SQL Tutorial
-                    Python Tutorial
-                    W3.CSS Tutorial
-                    Bootstrap Tutorial
-                    PHP Tutorial
-                    Java Tutorial
-                    C++ Tutorial
-                    jQuery Tutorial
-                </td>
-                <td>Matematica</td>
-                <td>MB</td>
-                <td>NO</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>HTML Tutorial
-                    CSS Tutorial
-                    JavaScript Tutorial
-                    How To Tutorial
-                    SQL Tutorial
-                    Python Tutorial
-                    W3.CSS Tutorial
-                    Bootstrap Tutorial
-                    PHP Tutorial
-                    Java Tutorial
-                    C++ Tutorial
-                    jQuery Tutorial
-                </td>
-                <td>Musica</td>
-                <td>MB</td>
-                <td>NO</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>HTML Tutorial
-                    CSS Tutorial
-                    JavaScript Tutorial
-                    How To Tutorial
-                    SQL Tutorial
-                    Python Tutorial
-                    W3.CSS Tutorial
-                    Bootstrap Tutorial
-                    PHP Tutorial
-                    Java Tutorial
-                    C++ Tutorial
-                    jQuery Tutorial
-                </td>
-                <td>Musica</td>
-                <td>MB</td>
-                <td>NO</td>
-            </tr>
-            
-            </tbody>
-        </table>
-            
+        <div className={`${style.tabla_contain}`}>
+            <div className={`${style.titulos_tabla}`}>
+                <h3 className={`${style.titulosIndividuales} ${style.hastag}`}>#</h3>
+                <h3 className={`${style.tituloIndicador} ${style.titulosIndividuales}`}>Indicador</h3>
+                <h3 className={`${style.areaTitulo} ${style.titulosIndividuales}`}>Área</h3>
+                <h3 className={`${style.titulosIndividuales}`}>Literal</h3>
+                <h3 className={`${style.titulosIndividuales} ${style.titleCEsp}`}>Cond. Especial</h3>
+            </div>
+
+            <div className={`${style.data_indicadores}`}>
+                <h3 className={`${style.parrafosData}`}>1</h3>
+                <p className={`${style.rezise_indicador} ${style.parrafosData}`}>Se le llama indicador a cualquier objeto o persona que se encargue de mostrar.Se le llama indicador a cualquier objecto.</p>
+                <p className={`${style.parrafosData}`}>Música</p>
+                <p className={`${style.parrafosData}`}>MB</p>
+                <p className={`${style.parrafosData} ${style.condEspecial}`}>NO</p>
+                <div className={`${style.buttons}`}>
+                    <button className={`${style.botones_indicadores} ${style.edit}`}>Editar</button>
+                    <button className={`${style.botones_indicadores} ${style.delete}`}>Eliminar</button>
+                </div>
+            </div>                 
         </div>
-    )
+    );
 }
 
 export default ListaIndicDocente;
