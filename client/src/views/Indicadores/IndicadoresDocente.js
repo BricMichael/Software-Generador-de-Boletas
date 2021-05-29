@@ -4,6 +4,7 @@ import clogo from '../../assets/img/colegioLogo.png';
 import { colorIndicadores } from "../../helpers/coloresBG";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from "./ListaIndicDocente";
+import ComentariosEmail from '../../components/ComentariosEmail';
 
 
 const IndicadoresDocente = () => { 
@@ -17,9 +18,9 @@ const IndicadoresDocente = () => {
         </header>
 
         <CreaIndicadorDocente />
+        <ListaIndicDocente /> {/* tiene un margin-top  mostrar dinamicamente si hay datos save in DB */}
+        <ComentariosEmail />
 
-        <ListaIndicDocente /> 
-        {/* tiene un margin-top */}
         </>
     );
 }
