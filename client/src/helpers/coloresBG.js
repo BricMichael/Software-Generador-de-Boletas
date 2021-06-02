@@ -2,7 +2,7 @@
 export const colorIndicadores = () => {
 
     let body = document.querySelector('body');
-    body.style.backgroundColor = "#fff";
+    body.style.backgroundColor = "#265aac";
 }
 
 export const colorPrincipal = () => {

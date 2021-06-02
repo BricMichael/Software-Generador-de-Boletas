@@ -4,7 +4,7 @@
     display: flex;
     height: 250px;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: -1rem;
     border-radius: 6px;
 }
 
@@ -15,17 +15,19 @@
     width: 100%;
     border-radius: 30px;
     color: #000;
+    background: #fff;
 }
 
 .textArea{
     resize: none;
-    padding: 3px 10px;
+    padding: 4px 10px 3px 10px;
     width: 100%;
     height: 100%;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     border: none;
     border-radius: 7px;
+    border-bottom: 1px solid #222;
 }
 
 .textArea:focus, select:focus, .button:focus {
@@ -35,7 +37,7 @@
 .all_selects {
     width: 100%;
     display: flex;
-    margin-top: 0.3rem;
+    margin-top: 0rem;
     height: 60px;   
 }
 
@@ -48,7 +50,6 @@ select {
     border-radius: 7px;
     border-left: 1px solid #012c66;
     border-right: 1px solid #012c66;
-    border-top: 1px solid #012c66;
 }
 
 .button {
@@ -66,7 +67,7 @@ select {
 
 /* estilos header pertenicente a la vista indicadores */
 
-.headerlog {
+/* .headerlog {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,4 +101,4 @@ select {
         font-size: 1.4em;
     }
 
-}
+} */
