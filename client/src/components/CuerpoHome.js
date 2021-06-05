@@ -21,7 +21,7 @@ const CuerpoHome = () => {
 
             <div className={ estilos.Homebuttons }>
                 <Link to='/InicioSesion' className={ estilos.Home_primaryLinks } onClick={handleAllUsers} id='btn-inicio'>Iniciar Sesi&oacute;n</Link>
-                <Link to='/indicadoresDocente' className={ estilos.Home_primaryLinks } id='btn-registrate'>Reg&iacute;strate</Link>
+                <Link to='/menuPrincipal' className={ estilos.Home_primaryLinks } id='btn-registrate'>Reg&iacute;strate</Link>
             </div>
         </>
     );

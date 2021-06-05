@@ -9,6 +9,7 @@ body{
   text-align: center;
   color: #fff;
   font-family: sans-serif, Arial, Helvetica;
+  line-height: 1.2 !important;
 }
 
 a{

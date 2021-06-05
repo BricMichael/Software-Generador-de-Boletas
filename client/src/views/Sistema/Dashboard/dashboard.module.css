@@ -1,0 +1,234 @@
+/* .contengoTODO {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    top: 0;
+    text-align: left;
+} */
+
+.Dashheader {
+    background-color: #05264c;
+    color: #d0d0d1;
+    display: flex;
+    justify-content: space-around;
+    height: 3.5rem;
+    box-shadow: 2px 2px 5px rgba(20, 20, 20, 0.979);
+    padding: 12px 10px;
+}
+
+.header_txt {
+    font-size: 1.5rem;
+}
+
+.fa_phone{
+    color: #f00;
+}
+
+.Dashnavbar {
+    width: 200px;
+    background-color: #05264c;
+    height: 100vh;
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+} 
+
+.Dashul{
+    list-style: none;
+    width: 100%;
+    padding-left: 0px;
+    margin-bottom: 0rem;
+    text-align: left;
+}
+
+.ul_items {
+    margin-bottom: 0.5em;
+    padding: 1.2rem;
+}
+
+.ul_items:hover {
+    background-color: #27a9e3;
+    cursor: pointer;
+}
+
+.ul_items > button {
+    border: none;
+    width: 100%;
+    background-color: transparent;
+}
+
+.bg_blue {
+    background-color: #27a9e3;
+}
+
+.bg_red {
+    background-color: hsla(0, 66%, 50%, 0.824);
+}
+.bg_red:hover {
+    background-color: rgba(156, 53, 53, 0.822);
+
+}
+
+.links {
+    color: #c8e1ff !important;
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* esitlos de la derecha */
+
+.main_container{
+    margin-top: -8px;
+    margin-left: 200px;
+}
+
+.menu_cabecera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.8em;
+}
+
+.header_img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header_title {
+    font-size: 2.1em;
+    font-weight: 700;
+    color: #2255a4;
+}
+
+.accesos{
+    margin-top: 2rem;
+}
+
+.all_links{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 0 2rem;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+}
+
+.grupo:hover {
+    box-shadow: 0px 0px 8px rgba(14, 94, 212, 0.692);
+    cursor: pointer;
+}
+
+.cl_azul {
+    background: #27a9e3;
+    border-radius: 3px;
+}
+
+.cl_verde {
+    background: #28b779;
+    border-radius: 3px;
+
+}
+
+.cl_amarillo {
+    background: #ffb848;
+    border-radius: 3px;
+}
+
+.cl_azulOscuro {
+    background: #2255a4;
+    border-radius: 3px;
+}
+
+.cl_naranja {
+    background: #da542e;
+    border-radius: 3px;
+}
+
+
+.opciones{
+    color: #fff !important;
+    font-size: 1.1rem;  
+}
+
+.bg{
+    font-size: 1.9rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user {
+    grid-column: 1/4;
+    margin-top: 2rem;
+}
+
+.user > p{
+    font-size: 2rem;
+    background: #2255a4;
+    padding: 15px 15px;
+    border-radius: 3px;
+    color: #ffffffb3;
+    text-align: left;
+}
+
+@media screen and ( max-width:1150px) {
+    #header {
+        justify-content: space-around;
+    }
+    
+    .header_txt {
+        font-size: 1.1rem;
+    }
+}
+
+
+@media screen and ( max-width:860px) {
+    .header_txt {
+        font-size: 0.9rem;
+    }
+
+    .header_title {
+        font-size: 1.6em;
+    }
+}
+
+@media screen and ( max-width:768px) {
+    .opciones{
+        font-size: .8rem;  
+    }
+
+}
+
+@media screen and ( max-width:710px) {
+    .header_txt {
+        font-size: 0.7rem;
+    }
+    .header_title {
+        font-size: 1.2em;
+    }
+
+    .all_links{
+        grid-template-columns: repeat(3, 85px);
+    }
+
+    .opciones{
+        font-size: 0.6rem;  
+    }
+}
+
+@media screen and ( max-width:549px) {
+    .header_txt {
+        font-size: 0.5rem;
+    }
+}
