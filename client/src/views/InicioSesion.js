@@ -3,21 +3,32 @@ import { useForm } from '../helpers/useForm';
 import Swal from 'sweetalert2';
 import style from './inicioSesion.module.css';
 import { useDispatch, useSelector} from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import { usuarioActivo } from '../Redux/actions/loginActions';
+import { colorPrincipal } from '../helpers/coloresBG';
 
 
 
 const InicioSesion = () => {
+    
+    colorPrincipal();
+    let history = useHistory()
     const dispatch = useDispatch();
+
     const [ values, handleInputChange ] = useForm({ email: '', password: '' }) ;
     const { email, password } = values;
     const { personal } = useSelector( (state) => state.login );
-    
+
     const handleSubmit = ( e ) => {
         e.preventDefault();       
         let validarUser = personal.find( element => element.email === email && element.contraseña === password);
+        
         if( validarUser === undefined ) Swal.fire('Datos inválidos', 'Asegurate de que la contraseña y el correo sean correctos', 'error') ;
-        if( validarUser ) dispatch( usuarioActivo(validarUser) )   
+        if( validarUser ){
+            localStorage.setItem('userActive', JSON.stringify(validarUser));
+            history.push("/menuPrincipal");
+            dispatch( usuarioActivo(validarUser) ); 
+        } 
     }
 
     return (

@@ -1,6 +1,6 @@
 import { colorIndicadores } from "../../helpers/coloresBG";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
-import ListaIndicDocente from "./ListaIndicDocente";
+import ListaIndicDocente from './ListaIndicDocente';
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
 import Header from "../../components/Header/Header";
 

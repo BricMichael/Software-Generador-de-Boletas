@@ -5,6 +5,8 @@ import { colorPrincipal } from '../helpers/coloresBG'
 
 const Principal = () => {
     colorPrincipal();
+
+
     return (
         <div>
             <Header/>

@@ -1,12 +1,11 @@
 import styles from '../../views/Sistema/Dashboard/dashboard.module.css';
 import clogo from '../../assets/img/colegioLogo.png';
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 
 
 const DashBody = () => {
-
-    const { nombre = '' }= useSelector( (state) => state.login.userActivo )
+    const nombreUser  = JSON.parse(window.localStorage.getItem('userActive')) // data formateada a json
 
     return (
         <>
@@ -47,7 +46,7 @@ const DashBody = () => {
                         <a href="#" className={styles.opciones}>Usuarios</a>
                     </div>
                     <div className={styles.user}>
-                        <p>{`Usuario: ${nombre}`}</p>
+                        <p>{`Usuario: ${ nombreUser ? nombreUser.nombre : '' }`}</p>
                     </div>     
                 </div>
             </section>
