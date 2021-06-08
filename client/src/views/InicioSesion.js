@@ -1,9 +1,10 @@
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { useForm } from '../helpers/useForm';
 import Swal from 'sweetalert2';
 import style from './inicioSesion.module.css';
 import { useDispatch, useSelector} from 'react-redux'
 import { usuarioActivo } from '../Redux/actions/loginActions';
+
 
 
 const InicioSesion = () => {

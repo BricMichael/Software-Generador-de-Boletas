@@ -1,8 +1,8 @@
 import estilos from './cuerpoHome.module.css';
-import logodevs from '../assets/img/logoDevs.jpg';
+import logodevs from '../../assets/img/logoDevs.jpg';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { obtenerUsuarios } from '../Redux/actions/loginActions';
+import { obtenerUsuarios } from '../../Redux/actions/loginActions';
 
 
 const CuerpoHome = () => {

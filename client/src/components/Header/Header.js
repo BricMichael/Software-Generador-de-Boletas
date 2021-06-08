@@ -1,5 +1,5 @@
 import estilo from './header.module.css';
-import clogo from '../assets/img/colegioLogo.png';
+import clogo from '../../assets/img/colegioLogo.png';
 
 const Header = () => {
     return (

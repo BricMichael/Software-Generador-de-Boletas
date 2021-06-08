@@ -1,9 +1,9 @@
-// import Modal from "../../components/Modal";
 import { colorIndicadores } from "../../helpers/coloresBG";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from "./ListaIndicDocente";
-import ComentariosEmail from '../../components/ComentariosEmail';
-import Header from '../../components/Header';
+import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
+import Header from "../../components/Header/Header";
+
 
 
 const IndicadoresDocente = () => { 

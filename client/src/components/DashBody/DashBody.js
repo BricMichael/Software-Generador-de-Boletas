@@ -1,6 +1,9 @@
 import styles from '../../views/Sistema/Dashboard/dashboard.module.css';
 import clogo from '../../assets/img/colegioLogo.png';
 import { useSelector } from 'react-redux'
+
+
+
 const DashBody = () => {
 
     const { nombre = '' }= useSelector( (state) => state.login.userActivo )
