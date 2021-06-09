@@ -2,8 +2,7 @@ import types from "../types";
 
 
 const initialState = {
-    personal: [],
-    userActivo: ''
+    personal: []
 }
 
 const loginReducer = (state = initialState, action ) => {
@@ -12,12 +11,7 @@ const loginReducer = (state = initialState, action ) => {
             return {
                 ...initialState,
                 personal: action.payload
-            };
-        case types.userActive:
-            return {
-                ...state,
-                userActivo: action.payload
-            }  
+            }; 
     
         default:
             return state;

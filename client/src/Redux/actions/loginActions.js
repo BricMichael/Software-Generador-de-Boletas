@@ -12,7 +12,13 @@ export const obtenerUsuarios = () => async (dispatch) => {
     }
 }
 
-export const usuarioActivo = ( user ) => ({
-    type: types.userActive,
-    payload: user
-})
+export const validarDatosLogin = async (datosLogin) => {
+    const { data } = await api.validarLogin(datosLogin);
+    ( data !== 'undefined' ) && localStorage.setItem('userActive', JSON.stringify(data));
+    
+    return new Promise(( resolve, reject ) => {
+        resolve( data );
+    })
+}
+
+

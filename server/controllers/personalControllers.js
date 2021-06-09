@@ -9,6 +9,19 @@ const mostrarRegistros = async (req, res) => {
     }
 }
 
+const validarUsuario = async(req, res) => {
+    try {
+        const resDB = await pool.query('SELECT * FROM personal');
+        const {email, password } = req.body;
+        const enviarFront = resDB.rows.find( user => user.email === email && user.contraseña === password);
+
+        res.json(enviarFront ? enviarFront : 'undefined')
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const registroById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -60,5 +73,6 @@ module.exports = {
     registroById,
     updateRegistro,
     deleteRegistro,
-    registrarUsuario
+    registrarUsuario,
+    validarUsuario
 }

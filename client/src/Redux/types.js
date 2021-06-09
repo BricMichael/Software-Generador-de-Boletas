@@ -1,7 +1,5 @@
 const types = {
-    allUsers: '[LOGIN] AllUsers',
-    userActive: '[LOGIN] USER ACTIVE',
-
+    allUsers: '[LOGIN] AllUsers'
 }
 
 

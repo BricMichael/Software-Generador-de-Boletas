@@ -1,6 +1,6 @@
 import styles from '../../views/Sistema/Dashboard/dashboard.module.css';
 import clogo from '../../assets/img/colegioLogo.png';
-// import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,13 +17,13 @@ const DashBody = () => {
             <section className={styles.accesos}>
                 <div className={styles.all_links}>
                     <div className={`${styles.cl_azul} ${styles.grupo}`}>
-                        <i className={`${styles.bg} far fa-address-book`}></i>
-                        <a href="#" className={styles.opciones}> Indicadores</a>
+                        <Link to="sistema-indicadores"><i className={`${styles.bg} far fa-address-book`}></i></Link>   
+                        <Link to="/sistema-indicadores" className={styles.opciones}> Indicadores</Link>
                     </div>
 
                     <div className={`${styles.cl_verde} ${styles.grupo}`}>           
                         <i className={`${styles.bg} fas fa-file-alt`}></i>
-                        <a href="#" className={styles.opciones}> Crear Boleta</a>                  
+                        <Link to="sistema-indicadores" className={styles.opciones}> Crear Boleta</Link>                  
                     </div>
 
                     <div className={`${styles.cl_amarillo} ${styles.grupo}`}>
