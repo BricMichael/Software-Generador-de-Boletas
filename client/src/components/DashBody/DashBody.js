@@ -17,9 +17,10 @@ const DashBody = () => {
             <section className={styles.accesos}>
                 <div className={styles.all_links}>
                     <div className={`${styles.cl_azul} ${styles.grupo}`}>
-                        <Link to="sistema-indicadores"><i className={`${styles.bg} far fa-address-book`}></i></Link>   
-                        <Link to="/sistema-indicadores" className={styles.opciones}> Indicadores</Link>
+                        <Link to="/menu-indicadores"><i className={`${styles.bg} far fa-address-book`}></i></Link>   
+                        <Link to="/menu-indicadores" className={styles.opciones}> Indicadores</Link>
                     </div>
+        
 
                     <div className={`${styles.cl_verde} ${styles.grupo}`}>           
                         <i className={`${styles.bg} fas fa-file-alt`}></i>

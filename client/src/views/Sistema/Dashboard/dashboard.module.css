@@ -194,6 +194,11 @@
 
 
 @media screen and ( max-width:860px) {
+
+    .Dashheader  {
+        padding: 18px 10px 0px 10px;;
+    }
+
     .header_txt {
         font-size: 0.9rem;
     }

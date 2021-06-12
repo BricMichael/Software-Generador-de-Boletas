@@ -13,8 +13,7 @@ const CuerpoHome = () => {
             </div>
 
             <div className={ estilos.Homebuttons }>
-                <Link to='/InicioSesion' className={ estilos.Home_primaryLinks } id='btn-inicio'>Iniciar Sesi&oacute;n</Link>
-                <Link to='/menuPrincipal' className={ estilos.Home_primaryLinks } id='btn-registrate'>Reg&iacute;strate</Link>
+                <Link to='/iniciar-sesion' className={ estilos.Home_primaryLinks } id='btn-inicio'>Iniciar Sesi&oacute;n</Link>
             </div>
         </>
     );

@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 
 
 
-const IndicadoresDocente = () => { 
+const Indicadores = () => { 
     colorIndicadores();
 
     return (
@@ -24,4 +24,4 @@ const IndicadoresDocente = () => {
     );
 }
 
-export default IndicadoresDocente;
+export default Indicadores;

@@ -1,21 +1,25 @@
-
-import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link} from 'react-router-dom';
 import DashBody from '../../../components/DashBody/DashBody';
 import { colorDashboard } from '../../../helpers/coloresBG';
+import { usuarioLogeado } from '../../../Redux/actions/loginActions';
+
 import styles from './dashboard.module.css';
+
 
 
 const Dashboard = () => {
         colorDashboard();
-        const { push } = useHistory();
+        const dispatch = useDispatch();
 
         const logoutUser = () =>{
-            push('/');
-            localStorage.removeItem('userActive')
+            dispatch( usuarioLogeado(false) );
+            localStorage.removeItem('userActive');    
         }
 
+
     return (
-        <div className="contengoTODO">
+        <>
             <header className={ styles.Dashheader }>
                 <p className={ styles.header_txt }><i className={`fas fa-phone ${styles.fa_phone}`}></i> +58(271)2312877</p>
                 <p className={ styles.header_txt }><i className="fas fa-street-view"></i> 
@@ -25,7 +29,7 @@ const Dashboard = () => {
 
             <nav className={ styles.Dashnavbar }>
                 <ul className={ styles.Dashul }>
-                    <li className={ `${styles.ul_items} ${styles.bg_blue }`}><Link to="/sistema-indicadores" className={ styles.links }><i className="far fa-address-book"></i>&nbsp;&nbsp;Indicadores</Link></li>
+                    <Link to="/menu-indicadores"><li className={ `${styles.ul_items} ${styles.bg_blue }`}><span className={ styles.links }><i className="far fa-address-book"></i>&nbsp;&nbsp;Indicadores</span></li></Link>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-file-alt"></i>&nbsp;&nbsp; Crear Boleta</a></li>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-pen-alt"></i>&nbsp;&nbsp;Editor de Boletas</a></li>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="far fa-newspaper"></i>&nbsp;&nbsp;Revisar Boleta</a></li>
@@ -36,7 +40,8 @@ const Dashboard = () => {
                 </ul>
             </nav>              
             <DashBody />
-        </div>
+
+        </>
     );
 }
 

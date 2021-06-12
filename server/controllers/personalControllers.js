@@ -11,11 +11,15 @@ const mostrarRegistros = async (req, res) => {
 
 const validarUsuario = async(req, res) => {
     try {
-        const resDB = await pool.query('SELECT * FROM personal');
         const {email, password } = req.body;
-        const enviarFront = resDB.rows.find( user => user.email === email && user.contraseña === password);
-
-        res.json(enviarFront ? enviarFront : 'undefined')
+        const resDB = await (await pool.query('SELECT * FROM personal WHERE (email = $1) and (contraseña = $2)', [email, password]));
+        const deletePassword = resDB.rows[0];
+        
+        if( !deletePassword ) res.json('undefined');
+        if( deletePassword ) {
+            delete deletePassword.contraseña;
+            res.json(deletePassword);
+        } 
 
     } catch (err) {
         console.log(err);

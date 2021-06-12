@@ -1,12 +1,13 @@
 
 .form {
     background: #fff;
-    width: 250px;
+    width: 280px;
     box-shadow: 0px 3px #363636;
     border-radius: 2px;
     margin: auto;
     padding: 20px;
     margin-top: 5rem;
+    height: 20%;
 }
 
 .auth__title {
