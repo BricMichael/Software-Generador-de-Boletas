@@ -1,18 +1,19 @@
 const pool = require('../configDB/poolConfig');
 
+
 const mostrarRegistros = async (req, res) => {
     try {
         const resDB = await pool.query('SELECT * FROM personal')
         res.json(resDB.rows)
     } catch (err) {
-        console.log(err)
+        console.log(err.message);
     }
 }
 
 const validarUsuario = async(req, res) => {
     try {
         const {email, password } = req.body;
-        const resDB = await (await pool.query('SELECT * FROM personal WHERE (email = $1) and (contraseña = $2)', [email, password]));
+        const resDB = await pool.query('SELECT * FROM personal WHERE (email = $1) and (contraseña = $2)', [email, password]);
         const deletePassword = resDB.rows[0];
         
         if( !deletePassword ) res.json('undefined');
@@ -22,17 +23,17 @@ const validarUsuario = async(req, res) => {
         } 
 
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 
-const registroById = async (req, res) => {
+const obtenerRegistroById = async (req, res) => {
     try {
         const { id } = req.params;
-        const resDB = await pool.query('SELECT * FROM personal WHERE id_personal = $1',[id])
-        res.json(resDB.rows)
+        const resDB = await pool.query('SELECT * FROM personal WHERE id_personal = $1',[id]);
+        res.json(resDB.rows[0]);
     } catch (err) {
-        console.log(err)
+        console.log(err.message);
     }
 
 }
@@ -44,7 +45,7 @@ const updateRegistro = async (req, res) => {
         res.send('Tu registro ha sido actualizado con exito')
 
     } catch (err) {
-        console.log(err)
+        console.log(err.message);
     }
 }
 
@@ -53,8 +54,8 @@ const deleteRegistro = async (req, res) => {
         const { id } = req.params;
         const resDB = await pool.query('DELETE FROM personal WHERE id_personal = $1', [id]);
         res.send('Tu registro ha sido eliminado')
-    } catch (error) {
-        
+    } catch (err) {
+        console.log(err.message);
     }
 }
 
@@ -66,7 +67,7 @@ const registrarUsuario = async (req, res) => {
         res.send('Usuario registado con exito!!!')
 
     } catch (err) {
-        console.log(err)
+        console.log(err.message);
     }
 } 
 
@@ -74,7 +75,7 @@ const registrarUsuario = async (req, res) => {
 
 module.exports = {
     mostrarRegistros,
-    registroById,
+    obtenerRegistroById,
     updateRegistro,
     deleteRegistro,
     registrarUsuario,
