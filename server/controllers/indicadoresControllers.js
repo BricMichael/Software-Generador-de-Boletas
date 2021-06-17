@@ -14,8 +14,7 @@ const guardarIndicador = async (req, res = response ) => {
                 VALUES( $1, $2, $3, $4, $5, $6 )`, [descripcion, literal, area, 
                 condicionEspecial, fechaCreacion, usuario] );
 
-        res.status(201).send('Indicador guardado satisfactoriamente');
-
+        res.status(201).send('Indicador guardado satisfactoriamente');        
     } catch (err) {
         console.log(err.message);
     }

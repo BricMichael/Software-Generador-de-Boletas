@@ -1,10 +1,11 @@
 CREATE DATABASE sistema_boletas;
 
 CREATE TABLE personal (
-    id_personal SERIAL NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     rol VARCHAR(50) NOT NULL,
+    cedula VARCHAR(14) NOT NULL;
     area_personal VARCHAR(50) NOT NULL,
     contraseña VARCHAR(100) NOT NULL UNIQUE,
     estado VARCHAR(10),

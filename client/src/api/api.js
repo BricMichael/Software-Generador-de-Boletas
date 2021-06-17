@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const url = 'http://localhost:4000/api/personal';
+const urlPersonal = 'http://localhost:4000/api/personal';
+const urlIndicador = 'http://localhost:4000/api/indicadores';
 
-export const usuariosDataBase = () => axios.get(url);
-export const validarLogin = ( datos ) => axios.post(`${url}Validar`, datos );
+export const usuariosDataBase = () => axios.get(urlPersonal);
+export const validarLogin = ( datos ) => axios.post(`${urlPersonal}Validar`, datos );
+
+
+
+export const guardarIndicador = (indicador) => axios.post(urlIndicador, indicador);
