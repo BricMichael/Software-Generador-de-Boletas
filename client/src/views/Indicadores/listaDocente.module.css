@@ -43,6 +43,13 @@
     justify-self: flex-start;
 }
 
+.zeroIndicador {
+    margin: 1rem 0px;
+    font-size: 24px;
+    color: #d8cbcb;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
  /* estilos de los datos */
 
 .data_indicadores {
@@ -61,8 +68,9 @@
 }
 
 .rezise_indicador {
-    width: 95%;
+    width: 85%;
     text-align: left;
+    word-wrap: break-word;
 }
 .data_indicadores > h3 {
     font-weight: bold;  
@@ -98,3 +106,4 @@
 
 .edit { background-color: #1da1f2cc; }
 .delete { background-color: #dc3545; align-self: flex-start;}
+

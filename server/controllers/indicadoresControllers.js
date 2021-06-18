@@ -2,6 +2,7 @@ const pool = require ('../configDB/poolConfig');
 const { response } = require('express');
 
 
+
 const guardarIndicador = async (req, res = response ) => {
     try {
 
@@ -23,11 +24,10 @@ const guardarIndicador = async (req, res = response ) => {
 const obtenerIndicadoresPorUsuario = async(req, res) => {
     try {
         const nombrePersonal = req.body.usuario;
+        console.log(nombrePersonal)
 
         const IndicadoresUsuario = await pool.query('SELECT * FROM indicador WHERE creador_personal = $1', [nombrePersonal]);
-
         res.status(200).json(IndicadoresUsuario.rows)
-
 
     } catch (err) {
         console.log(err.message);

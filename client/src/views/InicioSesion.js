@@ -12,14 +12,15 @@ import { useDispatch } from 'react-redux'
 const InicioSesion = () => {
     colorPrincipal();
     const dispatch = useDispatch();
-    const estatusOfLogin = JSON.parse(window.localStorage.getItem('userActive'));
+    
 
     const [ values, handleInputChange ] = useForm({ email: '', password: '' }) ;
     const { email, password } = values;
 
     useEffect(() => {
+        const estatusOfLogin = JSON.parse(window.localStorage.getItem('userActive'));
         if ( estatusOfLogin ) dispatch( usuarioLogeado(true) )          
-    }, [dispatch, estatusOfLogin])
+    }, [dispatch])
   
 
     const handleSubmit = async( e ) => {
@@ -33,7 +34,7 @@ const InicioSesion = () => {
         <>
             <Header />
             <form className={style.form} onSubmit={ handleSubmit }>
-                <h3 className={style.auth__title}>Login</h3>
+                <h3 className={style.auth__title}>Ingresar al sistema</h3>
                            
                 <input type="email" className={style.auth__input} 
                 autoComplete="off" placeholder="Correo electrónico" 

@@ -7,7 +7,7 @@ const { guardarIndicador, updateIndicador, obtenerIndicadoresPorUsuario,
 
 router.post('/indicadores', guardarIndicador );
 router.put('/indicadores/:id', updateIndicador);
-router.get('/indicadoresUsuario', obtenerIndicadoresPorUsuario);
+router.post('/indicadoresUsuario', obtenerIndicadoresPorUsuario);
 router.get('/indicadoresTotales', allIndicadores);
 router.delete('/indicadores/:id', eliminarIndicador);
 
