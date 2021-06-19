@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^7.4.4",
+    "@sendgrid/mail": "7.4.4",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "4.17.1",
     "pg": "^8.6.0"
   },
   "devDependencies": {

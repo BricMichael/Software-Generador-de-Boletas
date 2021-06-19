@@ -26,8 +26,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 indicadoresByUser: state.indicadoresByUser.filter( id =>  id.id_indicador !== action.payload)
             }; 
 
-        case types.limpiezaLogout:
-            
+        case types.limpiezaLogout:      
             return {
                 ...state,
                 carga : null,

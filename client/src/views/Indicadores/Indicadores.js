@@ -1,33 +1,22 @@
-import { indicadoresUserActivo } from "../../api/api";
-import { useEffect, useMemo } from "react";
-import { indicadoresUser} from "../../Redux/actions/indicadoresActions";
+// import { indicadoresUserActivo } from "../../api/api";
+import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import Header from "../../components/Header/Header";
+import { allIndicadorOfUser } from "../../Redux/actions/indicadoresActions";
 import { colorIndicadores } from "../../helpers/coloresBG";
+import Header from "../../components/Header/Header";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from './ListaIndicDocente';
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
 
 
 
-
 const Indicadores = () => { 
     colorIndicadores();
     const dispatch = useDispatch();
-
-    const memorizar = useMemo(() => async(nombre) => {
-        let { data } = await indicadoresUserActivo( {usuario: nombre} );
-        dispatch( indicadoresUser( data ) );
-
-        return data;
-    }, [dispatch])
  
-    // abajo la funcion incial
-    
     useEffect(() => {         
-        const { nombre } = JSON.parse( localStorage.getItem('userActive') );
-        memorizar(nombre)
-    },[memorizar])
+       dispatch( allIndicadorOfUser() );
+    },[dispatch])
 
      
     return (
@@ -47,9 +36,3 @@ const Indicadores = () => {
 }
 
 export default Indicadores;
-
-
-// const obtenerIndicadoresUser = async ( nombre ) => {
-//     let { data } = await indicadoresUserActivo( {usuario: nombre} );
-//     dispatch( indicadoresUser( data ) );
-// }

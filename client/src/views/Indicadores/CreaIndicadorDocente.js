@@ -1,36 +1,26 @@
 import style from './crearIndicador.module.css';
 import { useForm } from '../../helpers/useForm';
 import Validar_EnviarData from '../../helpers/validarCamposIndicador';
-import { useEffect } from 'react';
-import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
-import { updateTableList, indicadoresUser } from '../../Redux/actions/indicadoresActions';
-import { indicadoresUserActivo } from '../../api/api';
+import Swal from 'sweetalert2';
+import { allIndicadorOfUser } from '../../Redux/actions/indicadoresActions';
+
 
 const CreaIndicadorDocente = () => {  
-    const [values, handleInputChange, reset ] = useForm({ descripcion: '', literal: '', area: '',condicionEspecial: ''});
-    const { descripcion, literal, area, condicionEspecial } = values;
-    const dispatch = useDispatch();
 
-    const cargarNuevoIndicador = async (nombre) => {
-        let { data } = await indicadoresUserActivo( {usuario: nombre} );
-        dispatch( indicadoresUser( data ) );
-    }
-   
-    useEffect(() => {
-        values.usuario = JSON.parse(localStorage.getItem('userActive')).nombre;
-        values.fechaCreacion = new Date().toLocaleDateString();
-    }, [cargarNuevoIndicador])
+    const dispatch = useDispatch();
+    const [values, handleInputChange, reset ] = useForm({ descripcion: '', literal: '', area: '',condicionEspecial: '' });
+    const { descripcion, literal, area, condicionEspecial } = values;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { nombre } = JSON.parse( localStorage.getItem('userActive') );
-        let resp = await Validar_EnviarData(values)
+        const resp = await Validar_EnviarData( values );
+
         if( resp !== true ) Swal.fire('¡Vaya!', resp, 'warning');
         if( resp === true ) {
             Swal.fire('Has creado un nuevo indicador', 'El indicador ha sido guardado exitosamente', 'success');
             reset();
-            cargarNuevoIndicador(nombre);
+            dispatch( allIndicadorOfUser() );
         }  
     }
 

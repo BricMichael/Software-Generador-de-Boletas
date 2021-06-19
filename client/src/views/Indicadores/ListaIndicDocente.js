@@ -3,13 +3,12 @@ import style from './listaDocente.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteIndicador } from '../../Redux/actions/indicadoresActions';
 
-const ListaIndicDocente = ({count = 1}) => {
+const ListaIndicDocente = ({ count = 1 }) => {
     const dispatch = useDispatch();
     const { indicadoresByUser } = useSelector( state  => state.indicador);
 
-    const eliminarIndicador = (id) => {
-        dispatch( deleteIndicador(id) );
-    }
+    const eliminarIndicador = (id) => dispatch( deleteIndicador(id) );
+
     
 
     return (
@@ -23,7 +22,7 @@ const ListaIndicDocente = ({count = 1}) => {
             </div>   
 
             { indicadoresByUser.length === 0 && 
-            <div className={ style.zeroIndicador }>¡Aquí se mostraran tus indicadores!</div>
+            <div className={ style.zeroIndicador }>¡Aquí se mostrar&aacute;n tus indicadores!</div>
             }         
 
             {

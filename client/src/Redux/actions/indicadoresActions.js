@@ -9,6 +9,18 @@ export const indicadoresUser = ( indicadores ) => ({
 })
 
 
+export const allIndicadorOfUser = () => async( dispatch ) => {
+    try {
+        const { nombre } = JSON.parse( localStorage.getItem('userActive') );
+        let { data } = await api.indicadoresUserActivo({ usuario: nombre});
+        dispatch( indicadoresUser( data ) );
+        
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+
 export const updateTableList = (values) => ({
     type: types.updateTable,
     payload: values
@@ -22,4 +34,4 @@ export const deleteIndicador = ( id ) => {
     }
 }
 
-export const limpiarIndicadores = () => ({ type: types.limpiezaLogout })
+export const limpiarIndicadores = () => ({ type: types.limpiezaLogout });
