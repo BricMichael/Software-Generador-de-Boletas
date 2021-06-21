@@ -1,7 +1,7 @@
-// import { indicadoresUserActivo } from "../../api/api";
+import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import { allIndicadorOfUser } from "../../Redux/actions/indicadoresActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { allIndicadorOfUser, limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
 import { colorIndicadores } from "../../helpers/coloresBG";
 import Header from "../../components/Header/Header";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
@@ -10,15 +10,20 @@ import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmai
 
 
 
+
 const Indicadores = () => { 
     colorIndicadores();
     const dispatch = useDispatch();
+    const { estado } = useSelector( state => state.indicador.updateIndicador );
  
     useEffect(() => {         
        dispatch( allIndicadorOfUser() );
     },[dispatch])
 
-     
+    const cancelEdicion = () => {
+        dispatch( limpiarFormAlActualizar () );
+    }
+
     return (
         <>
         {/* <header className={ style.headerlog }>
@@ -27,8 +32,16 @@ const Indicadores = () => {
         </header> */}
         <Header />
         <CreaIndicadorDocente />
-         {/* tiene un margin-top  mostrar dinamicamente si hay datos save in DB */}
-         <ListaIndicDocente />
+        {
+            estado && 
+            ( <div className={ estado ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
+                <p>Editando el indicador seleccionado</p>
+                <button onClick={ cancelEdicion } >Cancelar</button>
+            </div>
+            )
+
+        }
+        <ListaIndicDocente />
         <ComentariosEmail />
 
         </>

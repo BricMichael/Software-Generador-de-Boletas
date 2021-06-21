@@ -3,7 +3,9 @@ const types = {
     checkUser: '[LOGIN] checkUser',
 
     indicadoresByUser: '[INDICADOR] ByUser',
-    updateTable: '[INDICADOR] UpdateTable',
+    indicadorActive: '[INDICADOR] IndicadorActivo',
+    refreshData: '[INDICADOR] RefrescarIndicador',
+    limpiarInputsForm: '[INDICADOR] LimpiarInputsForm',
     deleteAnIndicador: '[INDICADOR] DeleteAnIndicador',
     limpiezaLogout: '[INDICADOR] ResetIndicadores',
 }

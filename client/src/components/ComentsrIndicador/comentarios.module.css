@@ -54,3 +54,78 @@
 .comentsEnviarBtn:hover {
     background: #88a3c4;
 }
+.inactive {
+    display: none;
+}
+
+.active {
+    margin: auto;
+    margin-top: 0.7rem;
+    width: 40%;
+    background: #8aa9ca;
+    margin-bottom: -1rem;
+    border-radius: 11px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.active > p {
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    padding-top: 1rem;
+}
+
+.active > button {
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #dc3545;
+    transition: background-color .3s ease;
+}
+
+.active > button:hover {
+    background-color: #ac2c39;
+}
+
+.active > button:focus {
+    outline: none;
+}
+
+@media screen and ( max-width: 1250px ){ 
+    .active > p {
+        font-size: 1.2rem;
+    }
+    .active {
+        width: 47%;
+    }
+}
+
+@media screen and ( max-width: 980px ){
+    .active > p {
+        font-size: 1.2rem;
+        margin-right: 0.2rem;
+    }
+    .active {
+        width: 50%;
+    }
+}
+
+@media screen and ( max-width: 829px ) {
+    .active > p {
+        font-size: 1rem;
+        margin-right: 0.2rem;
+    }
+    .active {
+        width: 54%;
+    }
+
+    .active > button {
+        padding: 6px;
+        font-size: 17px;
+        margin-right: 0.3rem;
+    }
+}

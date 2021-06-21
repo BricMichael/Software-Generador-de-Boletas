@@ -20,17 +20,58 @@ export const allIndicadorOfUser = () => async( dispatch ) => {
     }
 }
 
+export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
 
-export const updateTableList = (values) => ({
-    type: types.updateTable,
+    await api.updateIndicadorActivo( id, dataForUpdate );
+    dispatch( refreshDataUpdate( id, dataForUpdate ) );
+
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tus modificaciones han sido realizadas',
+        showConfirmButton: false,
+        timer: 1300
+      })
+}
+
+export const refreshDataUpdate = ( id, refrescarData ) => ({
+
+    type: types.refreshData,
+    payload: { 
+        id, 
+        indicadorNew: { id, ...refrescarData }    
+    }
+
+})
+
+export const indicadorActivo = (values) => ({
+    type: types.indicadorActive,
     payload: values
 })
 
+
+export const limpiarFormAlActualizar = () => ( {type: types.limpiarInputsForm} )
+
+
 export const deleteIndicador = ( id ) => {
     return async(dispatch) => {
-        await api.eliminarIndicadorDB(id);
-        dispatch({ type: types.deleteAnIndicador, payload: id })
-        Swal.fire('Indicador eliminado', 'El indicador ha sido eliminado exitosamente', 'success');
+  
+        const { isConfirmed } = await Swal.fire({
+                title: '¿Eliminar indicador?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar!',
+                cancelButtonText: 'Cancelar'
+        })
+
+        if ( isConfirmed ) {
+            await api.eliminarIndicadorDB(id);
+            dispatch({ type: types.deleteAnIndicador, payload: id });
+            Swal.fire( { icon: 'success', title: 'La acción ha sido completada', showConfirmButton: false, timer: 1100 });
+        }
     }
 }
 

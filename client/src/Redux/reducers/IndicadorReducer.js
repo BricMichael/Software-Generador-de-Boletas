@@ -2,7 +2,10 @@ import types from "../types";
 
 const initialState = {
     indicadoresByUser: [],
-    carga: null
+    updateIndicador: {
+        estado: false,
+        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''},
+    }
 }
 
 
@@ -11,14 +14,36 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.indicadoresByUser:
             return {
                 ...state,
-                indicadoresByUser: action.payload
+                indicadoresByUser: [...action.payload]
+                
             };
 
-        case types.updateTable:
+        case types.indicadorActive:
             return {
                 ...state,
-                indicadoresByUser: [...state.indicadoresByUser, action.payload]
+                updateIndicador: {
+                    estado: true,
+                    dataIndicador: {...action.payload}
+                }
             };
+        case types.refreshData:
+            return { 
+                ...state,
+                indicadoresByUser: state.indicadoresByUser.map( 
+                    (newValue) => newValue.id_indicador === action.payload.id 
+                        ? action.payload.indicadorNew
+                        : newValue
+                    )
+            }    
+
+        case types.limpiarInputsForm:
+            return {
+                ...state,
+                updateIndicador: {
+                    estado: false,
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''},
+                }
+            }    
 
         case types.deleteAnIndicador:
             return {
@@ -29,8 +54,11 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.limpiezaLogout:      
             return {
                 ...state,
-                carga : null,
-                indicadoresByUser: []
+                indicadoresByUser: [],
+                updateIndicador: {
+                    estado: false,
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''}
+                }
             }    
     
         default:

@@ -1,14 +1,12 @@
 .tabla_contain {
     display: flex;
     flex-direction: column; 
-    height: auto;
     width: 75%;
     border: 2px solid #c0c8d3;
     margin: auto;
     margin-top: 2rem;  
     padding: 0.5rem;  
     border-radius: 6px;
-    
 }
 
 .titulos_tabla {
@@ -97,13 +95,15 @@
     border-radius: 6px;
     font-size: 18px;
     color: #fff;
-    margin: 0px 0.2rem;
 }
 
 .botones_indicadores:focus {
     outline: none;
 }
 
-.edit { background-color: #1da1f2cc; }
+.edit { background-color: #1da1f2cc;  margin-right: 0.2rem;}
 .delete { background-color: #dc3545; align-self: flex-start;}
 
+.edit:hover, .delete:hover {
+    box-shadow: 2px 3px 11px #c0c8d3;
+}
