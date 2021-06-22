@@ -10,12 +10,13 @@ import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmai
 
 
 
-
 const Indicadores = () => { 
     colorIndicadores();
     const dispatch = useDispatch();
     const { estado } = useSelector( state => state.indicador.updateIndicador );
- 
+
+    const { rol } = JSON.parse( localStorage.getItem('userActive') );
+
     useEffect(() => {         
        dispatch( allIndicadorOfUser() );
     },[dispatch])
@@ -42,7 +43,7 @@ const Indicadores = () => {
 
         }
         <ListaIndicDocente />
-        <ComentariosEmail />
+        { rol === 'coordinador' && <ComentariosEmail /> }
 
         </>
     );

@@ -1,10 +1,9 @@
+import { useEffect, useRef } from 'react';
 import style from './crearIndicador.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
-import { useEffect, useRef } from 'react';
 import { evaluarCampos, validar_EnviarData } from '../../helpers/validarCamposIndicador';
-import Swal from 'sweetalert2';
-import { allIndicadorOfUser, limpiarFormAlActualizar, actualizarIndicadorBD } from '../../Redux/actions/indicadoresActions';
+import { allIndicadorOfUser } from '../../Redux/actions/indicadoresActions';
 
 
 const CreaIndicadorDocente = () => {  
@@ -17,34 +16,29 @@ const CreaIndicadorDocente = () => {
     const idActive = useRef( dataIndicador.id_indicador );
   
     useEffect(() => {
+        const { rol } = JSON.parse( localStorage.getItem('userActive') );
+
         if ( dataIndicador.id_indicador !== idActive.current ) {
             reset( dataIndicador );
             idActive.current = dataIndicador.id_indicador
-        }     
+        }
+        
+        if ( rol !== 'especialista' ) document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
     }, [dataIndicador, reset])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if ( estado ) {    
-            const resp = evaluarCampos(values)
-            if ( resp ){
-                dispatch( actualizarIndicadorBD( idActive.current, values  ) );
-                dispatch( limpiarFormAlActualizar() ); 
-            }     
-        }
+        if ( estado ) dispatch( evaluarCampos( values, idActive ) );
 
         if ( !estado ) {
             const resp = await validar_EnviarData( values );
-            if( resp !== true ) Swal.fire('¡Vaya!', resp, 'warning');
          
             if( resp === true ) {
-            Swal.fire( { icon: 'success', title: 'Has creado un nuevo indicador', showConfirmButton: false, timer: 1300,position: 'top-end', });
             reset();
             dispatch( allIndicadorOfUser() );
             } 
         } 
-
     }
 
     return (
@@ -62,7 +56,7 @@ const CreaIndicadorDocente = () => {
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                     </select>
-                    <select className={`${style.select}`} name="literal" value={ literal  } onChange={ handleInputChange }>
+                    <select className={`${style.select}`} name="literal" value={ literal  } onChange={ handleInputChange } id="selectLiteral" >
                         <option value="default">Literal</option>
                         <option value="E">E</option>
                         <option value="B">B</option>

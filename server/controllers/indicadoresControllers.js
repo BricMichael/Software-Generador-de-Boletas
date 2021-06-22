@@ -1,6 +1,7 @@
 const pool = require ('../configDB/poolConfig');
 const { response } = require('express');
-
+const sgMail = require('@sendgrid/mail');
+const dotenv = require('dotenv');
 
 
 const guardarIndicador = async (req, res = response ) => {
@@ -44,7 +45,6 @@ const allIndicadores = async(req, res) => {
     }
 }
 
-
 const updateIndicador = async (req, res) => {
     try {
         const { id } = req.params;
@@ -61,6 +61,30 @@ const updateIndicador = async (req, res) => {
         console.log(err.message);
     }
 }
+
+const comentariosEmail = (req, res) => {
+    sgMail.setApiKey('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');
+    const { comentario, nameUser, emailDestinatario } = req.body;
+
+    const msg = {
+        to: [ emailDestinatario ],
+        from: 'colegioindicadores@gmail.com',
+        subject: `Correcciones del coordinador ${nameUser}`,
+        html: `
+            <h2>Coordinador: ${ nameUser }</h2>
+            <h3>Correciones del indicador</h3>
+            <span style='color:black'>${ comentario }</span>         
+         `   
+    }
+    sgMail.send( msg, (err) => {
+        if( err ){
+           console.log( err.message )
+        } else {
+            res.send(`Correo enviado a ${msg.to}`)
+        } 
+    }) 
+}
+
 
 const eliminarIndicador = async(req, res) => {
     try {
@@ -80,6 +104,7 @@ module.exports = {
     guardarIndicador,
     obtenerIndicadoresPorUsuario,
     allIndicadores,
+    updateIndicador,
+    comentariosEmail,
     eliminarIndicador,
-    updateIndicador
 }

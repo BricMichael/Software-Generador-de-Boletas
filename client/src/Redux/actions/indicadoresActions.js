@@ -39,7 +39,7 @@ export const refreshDataUpdate = ( id, refrescarData ) => ({
     type: types.refreshData,
     payload: { 
         id, 
-        indicadorNew: { id, ...refrescarData }    
+        refrescarData    
     }
 
 })

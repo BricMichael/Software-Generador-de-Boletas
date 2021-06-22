@@ -6,8 +6,7 @@ const initialState = {
         estado: false,
         dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''},
     }
-}
-
+}   
 
 const indicadorReducer = ( state = initialState, action ) => {
     switch (action.type) {
@@ -31,7 +30,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 indicadoresByUser: state.indicadoresByUser.map( 
                     (newValue) => newValue.id_indicador === action.payload.id 
-                        ? action.payload.indicadorNew
+                        ? action.payload.refrescarData  
                         : newValue
                     )
             }    
