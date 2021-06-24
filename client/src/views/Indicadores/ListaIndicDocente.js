@@ -20,10 +20,11 @@ const ListaIndicDocente = ({ count = 1 }) => {
         <div className={`${style.tabla_contain}`}>
             <div className={`${style.titulos_tabla}`}>
                 <h3 className={`${style.titulosIndividuales} ${style.hastag}`}>#</h3>
-                <h3 className={`${style.tituloIndicador} ${style.titulosIndividuales}`}>Indicador</h3>
-                <h3 className={`${style.areaTitulo} ${style.titulosIndividuales}`}>Área</h3>
-                <h3 className={`${style.titulosIndividuales}`}>Literal</h3>
+                <h3 className={`${style.tituloIndicador} ${style.indicadorTitle}`}>Indicador</h3>
+                <h3 className={`${style.indicadorArea}`}>Área</h3>
+                <h3 className={`${style.titulosIndividuales} ${style.indicadorLiteral}`}>Literal</h3>
                 <h3 className={`${style.titulosIndividuales} ${style.titleCEsp}`}>Cond. Especial</h3>
+                <h3 className={`${style.titulosIndividuales} ${style.acciones}`}>Acciones</h3>
             </div>
 
             { indicadoresByUser.length === 0 && 
@@ -36,7 +37,7 @@ const ListaIndicDocente = ({ count = 1 }) => {
                 <h3 className={`${style.parrafosData}`}>{ count++ }</h3>
                 <p className={`${style.rezise_indicador} ${style.parrafosData}`}>{ indicador.descripcion }</p>
                 <p className={`${style.parrafosData}`}>{ indicador.area }</p>
-                <p className={`${style.parrafosData}`}>{ indicador.literal }</p>
+                <p className={`${style.parrafosData} ${style.literalP}`}>{ indicador.literal }</p>
                 <p className={`${style.parrafosData} ${style.condEspecial}`}>{ indicador.condicion_especial }</p>
                 <div className={`${style.buttons}`}>
                     <button className={`${style.botones_indicadores} ${style.edit}`}

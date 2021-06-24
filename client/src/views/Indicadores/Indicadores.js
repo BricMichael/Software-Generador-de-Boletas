@@ -2,27 +2,26 @@ import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { allIndicadorOfUser, limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
-import { colorIndicadores } from "../../helpers/coloresBG";
+import { backgroundColorPage } from '../../helpers/coloresBG';
 import Header from "../../components/Header/Header";
 import CreaIndicadorDocente from "./CreaIndicadorDocente";
 import ListaIndicDocente from './ListaIndicDocente';
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
 
 
-
 const Indicadores = () => { 
-    colorIndicadores();
+    backgroundColorPage('#265aac'); 
     const dispatch = useDispatch();
-    const { estado } = useSelector( state => state.indicador.updateIndicador );
 
+    const { estado } = useSelector( state => state.indicador.updateIndicador );
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
 
-    useEffect(() => {         
-       dispatch( allIndicadorOfUser() );
+    useEffect(() => {        
+        dispatch( allIndicadorOfUser() );
     },[dispatch])
 
     const cancelEdicion = () => {
-        dispatch( limpiarFormAlActualizar () );
+        dispatch( limpiarFormAlActualizar() );
     }
 
     return (

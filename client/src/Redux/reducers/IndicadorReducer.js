@@ -4,7 +4,7 @@ const initialState = {
     indicadoresByUser: [],
     updateIndicador: {
         estado: false,
-        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''},
+        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''},
     }
 }   
 
@@ -40,7 +40,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''},
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''},
                 }
             }    
 
@@ -56,7 +56,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 indicadoresByUser: [],
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', id_indicador: ''}
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''}
                 }
             }    
     

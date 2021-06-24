@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Link} from 'react-router-dom';
 import DashBody from '../../../components/DashBody/DashBody';
-import { colorDashboard } from '../../../helpers/coloresBG';
+import { backgroundColorPage } from '../../../helpers/coloresBG';
 import { limpiarIndicadores } from '../../../Redux/actions/indicadoresActions';
 import { usuarioLogeado } from '../../../Redux/actions/loginActions';
 
@@ -10,14 +10,13 @@ import styles from './dashboard.module.css';
 
 
 const Dashboard = () => {
-        colorDashboard();
+        backgroundColorPage('#EEEEEE');
         const dispatch = useDispatch();
-
 
         const logoutUser = () =>{
             dispatch( usuarioLogeado(false) );
             localStorage.removeItem('userActive'); 
-            dispatch( limpiarIndicadores())
+            dispatch( limpiarIndicadores());
         }
 
 

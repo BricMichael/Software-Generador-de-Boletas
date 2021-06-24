@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react';
 import style from './crearIndicador.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
-import { evaluarCampos, validar_EnviarData } from '../../helpers/validarCamposIndicador';
-import { allIndicadorOfUser } from '../../Redux/actions/indicadoresActions';
+import { validar_EnviarData } from '../../helpers/validarCamposIndicador';
 
 
 const CreaIndicadorDocente = () => {  
@@ -14,31 +13,26 @@ const CreaIndicadorDocente = () => {
     const { descripcion, literal, area, condicion_especial } = values;
 
     const idActive = useRef( dataIndicador.id_indicador );
-  
+
     useEffect(() => {
         const { rol } = JSON.parse( localStorage.getItem('userActive') );
+        if ( rol !== 'especialista' ) document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
+    }, [])
+  
+    useEffect(() => {
 
         if ( dataIndicador.id_indicador !== idActive.current ) {
             reset( dataIndicador );
             idActive.current = dataIndicador.id_indicador
         }
-        
-        if ( rol !== 'especialista' ) document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
     }, [dataIndicador, reset])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if ( estado ) dispatch( evaluarCampos( values, idActive ) );
-
-        if ( !estado ) {
-            const resp = await validar_EnviarData( values );
-         
-            if( resp === true ) {
-            reset();
-            dispatch( allIndicadorOfUser() );
-            } 
-        } 
+        if ( estado ) dispatch( validar_EnviarData( values, 'update', idActive.current ) );
+        if ( !estado )dispatch( validar_EnviarData( values, 'save', reset ) );
     }
 
     return (

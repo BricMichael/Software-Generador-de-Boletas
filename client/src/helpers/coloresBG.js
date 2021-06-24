@@ -1,15 +1,7 @@
 
-export const colorIndicadores = () => {
+
+export const backgroundColorPage = ( color ) => {
     let body = document.querySelector('body');
-    body.style.backgroundColor = "#265aac";
+    body.style.backgroundColor = color;
 }
 
-export const colorPrincipal = () => {
-    let body = document.querySelector('body');
-    body.style.backgroundColor = "#012c66";
-}
-
-export const colorDashboard = () => {
-    let body = document.querySelector('body');
-    body.style.backgroundColor = "#EEEEEE";
-}

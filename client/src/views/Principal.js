@@ -1,11 +1,10 @@
 import CuerpoHome from "../components/CuerpoHome/CuerpoHome";
 import Header from "../components/Header/Header";
-import { colorPrincipal } from '../helpers/coloresBG'
+import { backgroundColorPage } from '../helpers/coloresBG'
 
 
 const Principal = () => {
-    colorPrincipal();
-
+    backgroundColorPage('#012c66');
 
     return (
         <div>

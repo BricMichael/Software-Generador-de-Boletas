@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import Header from '../components/Header/Header';
+import style from './inicioSesion.module.css';
 import { useForm } from '../helpers/useForm';
 import Swal from 'sweetalert2';
-import style from './inicioSesion.module.css';
 import { usuarioLogeado, validarDatosLogin } from '../Redux/actions/loginActions';
-import { colorPrincipal } from '../helpers/coloresBG';
+import { backgroundColorPage } from '../helpers/coloresBG';
 import { useDispatch } from 'react-redux'
 
 
 
 const InicioSesion = () => {
-    colorPrincipal();
+    backgroundColorPage('#012c66');
     const dispatch = useDispatch();
     
 
@@ -46,7 +46,7 @@ const InicioSesion = () => {
                 value={password} onChange={ handleInputChange } required />
 
                 <button type="submit" className={style.buttonWidth}>
-                    Login
+                    Iniciar Sesi&oacute;n
                 </button>
 
             </form>

@@ -33,9 +33,9 @@
 
 Alberto Graterol: Programador en PHP y Javascript, a cargo de la creación del Backend, encargado de los permisos que tendrá cada usuario y creador de la base de datos.  
 
-Michael Briceño: Programador Javascript Front-end, desarrollador de las vistas HTML y estilos CSS. Creador de las vistas dinámicas en Express y NodeJs.
+Michael Briceño: Programador web, React en el Frontend y  Nodejs en el Backend, encargado de crear las vistas con React y las consultas del Backend.
 
-Yulianny Mendez: Programadora PHP, diseñadora y creadora de los estilos en Figma.
+Yulianny Mendez: Programadora, diseñadora y creadora de los estilos en Figma.
 
 
 ## Contacto Devs
