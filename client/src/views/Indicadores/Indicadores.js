@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allIndicadorOfUser, limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
 import { backgroundColorPage } from '../../helpers/coloresBG';
 import Header from "../../components/Header/Header";
-import CreaIndicadorDocente from "./CreaIndicadorDocente";
-import ListaIndicDocente from './ListaIndicDocente';
+import CreaIndicador from './CreaIndicador'
+import ListaIndicadores from "./ListaIndicadores";
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
+
 
 
 const Indicadores = () => { 
@@ -31,7 +32,7 @@ const Indicadores = () => {
             <p className={ style.header__title } >Colegio Rep&uacute;blica de Venezuela</p>
         </header> */}
         <Header />
-        <CreaIndicadorDocente />
+        <CreaIndicador />
         {
             estado && 
             ( <div className={ estado ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
@@ -41,7 +42,7 @@ const Indicadores = () => {
             )
 
         }
-        <ListaIndicDocente />
+        <ListaIndicadores />
         { rol === 'coordinador' && <ComentariosEmail /> }
 
         </>

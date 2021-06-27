@@ -5,7 +5,7 @@ import { useForm } from '../../helpers/useForm';
 import { validar_EnviarData } from '../../helpers/validarCamposIndicador';
 
 
-const CreaIndicadorDocente = () => {  
+const CreaIndicador = () => {  
     const { dataIndicador, estado } = useSelector( state => state.indicador.updateIndicador );
     const dispatch = useDispatch();
 
@@ -63,4 +63,4 @@ const CreaIndicadorDocente = () => {
     );
 }
 
-export default CreaIndicadorDocente;
+export default CreaIndicador;

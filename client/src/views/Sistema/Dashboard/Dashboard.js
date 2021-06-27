@@ -32,7 +32,7 @@ const Dashboard = () => {
             <nav className={ styles.Dashnavbar }>
                 <ul className={ styles.Dashul }>
                     <Link to="/menu-indicadores"><li className={ `${styles.ul_items} ${styles.bg_blue }`}><span className={ styles.links }><i className="far fa-address-book"></i>&nbsp;&nbsp;Indicadores</span></li></Link>
-                    <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-file-alt"></i>&nbsp;&nbsp; Crear Boleta</a></li>
+                    <Link to="/menu-principal/creacion-de-boletas"><li className={ `${styles.ul_items}`}><span className={ styles.links }><i className="fas fa-file-alt"></i>&nbsp;&nbsp; Crear Boleta</span></li></Link>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-pen-alt"></i>&nbsp;&nbsp;Editor de Boletas</a></li>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="far fa-newspaper"></i>&nbsp;&nbsp;Revisar Boleta</a></li>
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-print"></i>&nbsp;&nbsp; Zona de Descargas</a></li>

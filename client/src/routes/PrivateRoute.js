@@ -17,10 +17,7 @@ const PrivateRoute = ({
                     : ( <Redirect to="/iniciar-sesion" /> )
 
             )}
-        
-        
-        
-
+      
         /> 
     );
 }

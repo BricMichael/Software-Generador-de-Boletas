@@ -6,25 +6,29 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../views/Sistema/Dashboard/Dashboard';
 import Indicadores from '../views/Indicadores/Indicadores';
 import PublicRoute from './PublicRoute';
+import CrearBoleta from '../views/Sistema/Boletas/CrearBoleta';
 
 
 
 const Routes = () => {
 
-   const { isAuthenticated } = useSelector((state) => state.login);
+   const { isAuthenticated } = useSelector( (state) => state.login );
   
 
     return (
         <Router>
             <Switch>
-                <PrivateRoute exact  path="/menu-principal" 
-                    isAuthenticated={isAuthenticated}  component={ Dashboard } />
-                
-                <PrivateRoute exact  path="/menu-indicadores" 
-                    isAuthenticated={isAuthenticated}  component={ Indicadores } />
+                <PrivateRoute exact path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} 
+                   component={ CrearBoleta }   /> 
 
-                <PublicRoute path="/iniciar-sesion" 
-                    isAuthenticated={isAuthenticated}  component={ InicioSesion } />
+                <PrivateRoute exact  path="/menu-principal" isAuthenticated={isAuthenticated}  
+                    component={ Dashboard } />
+                
+                <PrivateRoute exact  path="/menu-indicadores" isAuthenticated={isAuthenticated} 
+                    component={ Indicadores } />
+
+                <PublicRoute path="/iniciar-sesion" isAuthenticated={isAuthenticated} 
+                    component={ InicioSesion } />
 
                 <Route path="/" component={ Principal} />
             

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteIndicador, indicadorActivo } from '../../Redux/actions/indicadoresActions';
 
 
-const ListaIndicDocente = ({ count = 1 }) => {
+const ListaIndicadores = ({ count = 1 }) => {
     const dispatch = useDispatch();
     const { indicadoresByUser } = useSelector( state  => state.indicador);
     
@@ -58,5 +58,5 @@ const ListaIndicDocente = ({ count = 1 }) => {
     );
 }
 
-export default ListaIndicDocente;
+export default ListaIndicadores;
 
