@@ -1,23 +1,22 @@
 /* .Cboleta_input => Crear boleta*/
 
-.generales {
+.nooo {
     color: #eee;
 }
 
 .display {
     display:flex;
     width: 100%;
-    justify-content: space-between;
 }
 
 .contentForm {
     background: #fff;
-    width: 35%;
+    width: 29%;
     border-radius: 4px;
-    margin-left: 3.5rem;
-    padding: 18px;
+    margin-left: 13rem;
+    padding: 15px;
     margin-top: 3rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.6rem;
 }
 
 
@@ -25,7 +24,7 @@
     display: flex;
     flex-direction: column;
     color: #012c66;
-    margin-bottom: .8rem;
+    margin-bottom: .5rem;
 }
 
 .group > label {
@@ -50,29 +49,27 @@
 }
 
 .submit {
-        width: 100%;
-        background: #012c66;
-        border: none;
-        border-radius: 4px;
-        height: 30px;
-        padding: 3px;
-        color: #fff;
-        margin: auto;
-        margin-top: 0.5rem;
-        font-size: 18px;
-        cursor: pointer;
-        transition: box-shadow .2s ease;       
+    width: 100%;
+    background: #012c66;
+    border: none;
+    border-radius: 4px;
+    height: 30px;
+    padding: 3px;
+    color: #fff;
+    margin: auto;
+    margin-top: 0.5rem;
+    font-size: 18px;
+    cursor: pointer;
+    transition: box-shadow .2s ease;       
 }
 
-.submit:hover {
-    box-shadow: 2px 0px 4px #333;
-}
+.submit:hover { box-shadow: 2px 0px 4px #333; }
 
 .group > textarea {
     margin-top: 0.5rem;
     resize: none;
     width: 100%;
-    height: 200px;
+    height: 208px;
     padding: 8px 5px;
     border: none;
     border: 2px solid #012c66;
@@ -81,9 +78,7 @@
     font-size: 15px;
 }
 
-.group > textarea:focus {
-    outline: none;
-}
+.group > textarea:focus { outline: none; }
 
 .leyendaFlex {
     display: flex;
@@ -98,15 +93,11 @@
     font-size: 19px;
 }
 
-/*derecha estilos*/ 
+/*######  derecha estilos ###############*/ 
 
-.zoneRight {
-    width: 55%;
-}
+.zoneRight {  width: 55%; }
 
-.contentIndicadores {
-    margin-right: 1.5rem;
-}
+.contentIndicadores { margin-right: 1.5rem; }
 
 .cabeceraIndicadores {
     display: grid;
@@ -122,13 +113,9 @@
     padding-bottom: 4px;
 } 
 
-.materia {
-    font-size: 19px;
-}
+.materia { font-size: 19px; }
 
-.line {
-    border-bottom: 2px solid #eef1f6;
-}
+.line { border-bottom: 2px solid #eef1f6; }
 
 .descripIndicador {
     word-wrap: break-word;
@@ -142,18 +129,28 @@
     color: #012c66;
 }
 .checkbox {
-    justify-self: center;
-    
+    justify-self: center; 
     margin-top: 1rem;
 }
 
+.backColor { align-self:center; }
 
-.backColor {
-    align-self:center;
-    /* margin-bottom: 1rem; */
+.firstComponents {
+    display: flex;
+    align-items: flex-start;
 }
 
-/* parte de bsuqeda por grado y seccion */
+.FormSearchStudents {
+    width: 55%;
+    margin-left: 4rem;
+    background: #fff;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 3rem;
+    margin-bottom: 0.6rem;
+}
+
+/*######### parte de busqeda por grado y seccion #################*/
 
 .formFlex {
     display: flex;
@@ -176,131 +173,104 @@
 }
 
 
-/* lista de estudiantes */
-
+/* ################################################
+                    lista de estudiantes          */
 .listaEstudiantes {
+    display: flex;
+    flex-direction: column;
     background: #fff;
     width: 100%;
     border-radius: 4px;
-    padding: 7px;
+    padding: 9px 6px;
     margin-top: 0.4rem;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: background .3s ease;
+    margin-left: 4rem;
 }
 
-.listaEstudiantes:hover {
-    background: #bfc2c5;
+.listaEstudiantes > h3 { 
+    color: #012c66; 
+    text-align: left; 
+    padding: 2px 1px; 
+    border-bottom: 2px solid #c0c8d3;
+}
+
+.table {
+    margin-top: 0.7rem;
+    border-collapse: collapse;
+    margin-bottom: 0.6rem;
+}
+
+.table > thead {
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.table > thead > tr, th{
+   padding: 12px;
+   background-color: #012c66;
+   color: #fff;
+}
+
+.table > th, td {
+    border: none;
+    padding: 15px;
+}
+
+.table > tbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+    background-color: #ddd;
+}
+
+.tableTr {
+    color: #012c66;
 }
 
 .listaFiveFlex {
-    display: flex;
+    background: rgb(179, 172, 172);
     color: #012c66;
-    align-items: center;
-    margin: 7px 0rem;
+    margin-top: 2rem;  
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.listaFiveFlex > h4 {
-    margin-right: 0.2rem;
-    align-self: center;
-}
-.contentList {
-    background: rgba(190, 186, 204, 0.459);
-    display: flex;
-    flex-direction: column;
-    margin-left: 2rem;
-    padding: 1rem;
-    width: 44%;
-    border-radius: 4px;
+.listaFiveFlex:hover {
+    background: #012d6683 !important;
 }
 
-.contentList  > h3 {
-    display: flex;
-    font-size: 20px;
-}
 
-.contentList  > button {
-    background: #fff;
+.listaEstudiantes > button {
+    background: #012c66;
     width: 40%;
-    margin: 0.4rem 0px;
-    padding: 1rem;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    padding: 3px;
+    padding: 4px 3px;
     font-size: 18px;
-}
-
-.listaFiveFlex > p {
-    font-size: 16px;
-    align-self: center;
-    padding-bottom: 1px;
-}
-
-.indice {
-    background: #012c66;
     color: #fff;
-    padding: 5px;
-    border-radius: 6px;
-    margin-right: -0.5rem;
 }
+
 
 @media screen and ( max-width: 1150px ) {
-    .contentList {
-        width: 50%;
-        padding: 6px;
-    }
-
-    .listaFiveFlex > p {
-        font-size: 15px;
-    }
+    .listaFiveFlex { font-size: 15px; }
+    .listaEstudiantes { width: 90%; }
+    .contentForm {  margin-left: 5rem; width: 32%;}
 }
 
-@media screen and ( max-width: 1050px) {
-    .contentList{
-        width: 54%;
-        border-radius: 4px;
-        padding: 6px;
-
-    }
+@media screen and ( max-width: 935px) {
+    .contentForm {  margin-left: 2rem; width: 36%;}
 }
 
-@media screen and ( max-width: 940px) {
-    .contentList {
-        width: 63%;
-        border-radius: 4px;
-        padding: 6px;
-
-    }
+@media screen and ( max-width: 905px) {
+    .listaEstudiantes { width: 95%; margin-left: 2rem;}
+    .table > th, td { padding: 7px; }
+    .contentForm {  margin-left: 2rem; width: 39%}
+    .FormSearchStudents { margin-left: 2rem }
 }
 
-@media screen and ( max-width: 844px ) {
-    .contentList {
-        width: 70%;
-        padding: 5px;
-
-    }
-
-    .listaFiveFlex > p {
-        font-size: 12px;
-    }
+ @media screen and ( max-width: 851px) {
+    .listaFiveFlex { font-size: 12px; }
+    .listaEstudiantes { width: 98%;  }
+    .table > th, td { padding: 6px; }
+    .contentForm {  margin-left: 2.8rem;  width: 37%}
 }
 
-@media screen and ( max-width: 665px ) {
-    .contentList {
-        width: 80%;
-        padding: 4px;
 
-    }
-
-    .listaFiveFlex > h4 {
-        font-size: 14px;
-    }
-
-
-    .listaFiveFlex > p {
-        font-size: 12px;
-    }
-
-}
