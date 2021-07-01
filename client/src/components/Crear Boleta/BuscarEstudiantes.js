@@ -5,8 +5,8 @@ const BuscarEstudiantes = () => {
 
     return (
         <div>
-            <form className={ style.FormSearchStudents}> 
-                <label className={ style.searchStudents}>Buscar estudiantes</label>
+            <form className={style.FormSearchStudents}>
+                <label className={style.searchStudents}>Buscar estudiantes</label>
 
                 <div className={style.formFlex}>
                     <select required className={style.buscarOptions} >
@@ -30,11 +30,11 @@ const BuscarEstudiantes = () => {
                     </select>
                 </div>
                 <input value="Buscar estudiantes" type="submit" className={style.submit} />
-            </form>  
-            
+            </form>
+
             <ListaEstudiantes />
-               
-            
+
+
         </div>
     )
 }

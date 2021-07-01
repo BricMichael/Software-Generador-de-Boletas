@@ -1,0 +1,41 @@
+.tablaIndicadoresBoleta {
+    background: #ddd;
+    margin-bottom: 0.8rem;
+    border-collapse: collapse;
+    color: #012c66;
+    border-bottom: 3px solid #012c66;
+}
+
+.tHeadIndicadoresBoleta {
+    background-color: #012c66;
+}
+
+.tHeadIndicadoresBoleta > tr > th {
+    font-size: 18px;;
+}
+
+.indicadorDB {
+    word-wrap: break-word;
+    width: 45%;
+    text-align: left;
+}
+
+.tablaIndicadoresBoleta > tbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+    background: rgb(179, 172, 172);
+}
+
+.buttonSubmit  {
+    background: #012c66;
+    /* width: 40%; */
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 6px;
+    font-size: 18px;
+    color: #fff;
+    transition: background .4s ease;
+}
+
+.buttonSubmit:hover {
+    background: #084ca5fd;
+}

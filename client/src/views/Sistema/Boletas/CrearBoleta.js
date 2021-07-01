@@ -26,13 +26,15 @@ const CrearBoleta = ({num = 1}) => {
                 <CabeceraDatosAlumno />
             </div>
 
-            <div className={ style.leyendaFlex }>
+           
+            <div className={ style.display }>
+                <h2>Indicadores</h2>
+                <div className={ style.leyendaFlex }>
                     <h3 className={ style.leyendaTitulos }>Leyenda:</h3>
                     <p className={ style.leyendaTitulos }><b>E:</b> Exelente</p>
                     <p className={ style.leyendaTitulos }><b>B:</b> Bien</p>
                     <p className={ style.leyendaTitulos }><b>RN:</b> Requiere nivelaci&oacute;n</p>
-            </div>
-            <div className={ style.display }>
+                </div>
                 <IndicadoresAreas area='Lengua y Literatura' indicador={indicadorLengua}/> 
                 <IndicadoresAreas area='Matemática' indicador={indicadorMatema}/> 
                 <IndicadoresAreas area='Experimento científico' indicador={experimento}/>      

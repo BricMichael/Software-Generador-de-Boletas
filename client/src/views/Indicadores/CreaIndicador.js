@@ -28,11 +28,11 @@ const CreaIndicador = () => {
     }, [dataIndicador, reset])
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         if ( estado ) dispatch( validar_EnviarData( values, 'update', idActive.current ) );
-        if ( !estado )dispatch( validar_EnviarData( values, 'save', reset ) );
+        if ( !estado ) dispatch( validar_EnviarData( values, 'save', reset ) );
     }
 
     return (

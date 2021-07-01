@@ -13,8 +13,7 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.indicadoresByUser:
             return {
                 ...state,
-                indicadoresByUser: [...action.payload]
-                
+                indicadoresByUser: [...action.payload]           
             };
 
         case types.indicadorActive:

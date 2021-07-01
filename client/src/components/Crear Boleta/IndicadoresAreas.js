@@ -1,27 +1,34 @@
-import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
+import style from './indicadoresAreas.module.css';
 
-const IndicadoresAreas = ({area, indicador}) => {
+const IndicadoresAreas = ({area, indicador, num = 1}) => {
     return (
         <>
-            <div className={ style.zoneRight }>
-                <h2>Indicadores</h2>
-                <div className={ style.contentIndicadores }>
-                    <div className={ style.cabeceraIndicadores }>
-                        <h4 className={ style.materia }>Área: { area }</h4>
-                        <h4>E</h4>
-                        <h4>B</h4>
-                        <h4>RN</h4>
-                  
-                        <div className={ style.descripIndicador } >
-                            <p> {indicador}
-                            </p>
-                            </div>
-                        <div className={ style.backColor } ><input name={area} type="radio" value="E"  className={ style.checkbox} /></div>
-                        <div className={ style.backColor } ><input  name={area} type="radio" value="B"  className={ style.checkbox} /></div>
-                        <div className={ style.backColor } ><input  name={area} type="radio" value="RN"  className={ style.checkbox} /></div>                
-                     </div>
-                </div>
-            </div>    
+             <table className={style.tablaIndicadoresBoleta}>  
+                <thead className={style.tHeadIndicadoresBoleta}>
+                    <tr className={ style.a}>
+                        <th>#</th>
+                        <th>Área: { area}</th>
+                        <th>E</th>
+                        <th>B</th>
+                        <th>RN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className={style.l}>
+                        <td><b>#{num++}</b></td>
+                        <td className={ style.indicadorDB }>{ indicador }</td>
+                        <td>
+                            <input name={area} type="radio"value="E" />
+                        </td>
+                        <td>
+                            <input name={area} type="radio"value="B" />
+                        </td>
+                        <td>
+                            <input name={area} type="radio"value="RN" />
+                        </td>
+                    </tr>        
+                </tbody>
+            </table>   
         </>
     )
 }

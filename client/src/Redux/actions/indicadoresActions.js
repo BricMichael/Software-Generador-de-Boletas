@@ -23,7 +23,7 @@ export const allIndicadorOfUser = () => async( dispatch ) => {
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
 
     await api.updateIndicadorActivo( id, dataForUpdate );
-    dispatch( refreshDataUpdate( id, dataForUpdate ) );
+    dispatch( refreshData( id, dataForUpdate ) );
 
     Swal.fire({
         position: 'top-end',
@@ -34,7 +34,7 @@ export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) 
       })
 }
 
-export const refreshDataUpdate = ( id, refrescarData ) => ({
+export const refreshData = ( id, refrescarData ) => ({
 
     type: types.refreshData,
     payload: { 

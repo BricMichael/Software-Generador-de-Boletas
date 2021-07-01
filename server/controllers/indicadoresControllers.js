@@ -1,7 +1,7 @@
 const pool = require ('../configDB/poolConfig');
 const { response } = require('express');
 const sgMail = require('@sendgrid/mail');
-const dotenv = require('dotenv');
+
 
 
 const guardarIndicador = async (req, res = response ) => {
@@ -16,7 +16,7 @@ const guardarIndicador = async (req, res = response ) => {
                 VALUES( $1, $2, $3, $4, $5, $6 )`, [descripcion, literal, area, 
                     condicion_especial, fechaCreacion, usuario] );
 
-        res.status(201).send('Indicador guardado satisfactoriamente');        
+        res.status(201).send('Indicador guardado exitosamente');        
     } catch (err) {
         console.log(err.message);
     }
@@ -84,7 +84,6 @@ const comentariosEmail = (req, res) => {
         } 
     }) 
 }
-
 
 const eliminarIndicador = async(req, res) => {
     try {

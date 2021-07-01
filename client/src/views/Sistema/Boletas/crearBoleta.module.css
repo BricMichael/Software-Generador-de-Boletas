@@ -83,58 +83,36 @@
 .leyendaFlex {
     display: flex;
     justify-content: center;
-    margin: 0.8rem 0px;
+    margin: 0.4rem 0px;
     padding: 5px;
     align-items: center;
 }
 
 .leyendaTitulos {
-    margin-right: 0.4rem;
+    margin-right: 0.6rem;
     font-size: 19px;
 }
 
 /*######  derecha estilos ###############*/ 
 
-.zoneRight {  width: 55%; }
-
-.contentIndicadores { margin-right: 1.5rem; }
-
-.cabeceraIndicadores {
-    display: grid;
-    grid-template-columns: 70% 10% 10% 10%;
-    border: 2px solid #c0c8d3;
-    padding: 0.6rem 0px;
+.display {
+    background: rgba(196, 188, 188, 0.384);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65%;
+    margin: auto;
+    padding: 6px 6px 1px 6px;
     border-radius: 4px;
-    margin-bottom: 1.3rem;
+    margin-bottom: 0.8rem;
+    margin-top: 3.3rem;
+
 }
 
-.cabeceraIndicadores > h4 {
-    border-bottom: 2px solid #eef1f6;
-    padding-bottom: 4px;
-} 
+.display > h2 { color: #fff }
 
-.materia { font-size: 19px; }
 
-.line { border-bottom: 2px solid #eef1f6; }
-
-.descripIndicador {
-    word-wrap: break-word;
-    width: 90%;
-    text-align: left;
-    padding: 4px;
-    justify-self: center;
-    margin-top: 0.4rem;
-    background: #eef1f6;
-    border-radius: 3px;
-    color: #012c66;
-}
-.checkbox {
-    justify-self: center; 
-    margin-top: 1rem;
-}
-
-.backColor { align-self:center; }
-
+/*Componente Padre o contenedor de componentes*/
 .firstComponents {
     display: flex;
     align-items: flex-start;

@@ -7,14 +7,15 @@ CREATE TABLE personal (
     rol VARCHAR(50) NOT NULL,
     cedula VARCHAR(14) NOT NULL;
     area_personal VARCHAR(50) NOT NULL,
-    contraseña VARCHAR(100) NOT NULL UNIQUE,
+    claveuser VARCHAR(100) NOT NULL,
     estado VARCHAR(10),
     fecha_reg DATE NOT NULL
 );
 
+INSERT INTO personal(nombre, email, rol, cedula,area_personal, claveuser, estado, fecha_reg) 
+VALUES('Alberto Jesus Graterol Flores','algcmusic18@gmail.com','departamento de evaluacion', '2787564',
+	   'Directivo', 'clave8346', 'Activo', DATE '26-07-2021');
 
-INSERT INTO personal(nombre, email, rol, area_personal, contraseña, estado, fecha_reg) VALUES
-('alberto','algcmusic18@gmail.com', 'administrador', 'Directivo', 'DptoEvaluacion', 'Activo', DATE '01-06-2021');
 
 
 CREATE TABLE grado (
@@ -45,10 +46,17 @@ CREATE TABLE indicador (
 
 CREATE TABLE boleta (
     id_boleta BIGSERIAL NOT NULL PRIMARY KEY,
-    año_escolar VARCHAR(15) NOT NULL,
+    ano_escolar VARCHAR(15) NOT NULL,
     momento VARCHAR(10) NOT NULL,
-    personalidad_estudiante VARCHAR(1300) NOT NULL,
+    personalidad_estudiante text NOT NULL,
     fecha_de_creacion DATE NOT NULL
 );
+
+CREATE TABLE materias (
+    id SERIAL NOT NULL PRIMARY KEY,
+    materia VARCHAR(35) NOT NULL,
+    tipo VARCHAR(18) NOT NULL,
+);
+
 
 

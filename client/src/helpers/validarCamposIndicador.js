@@ -12,14 +12,14 @@ export const validar_EnviarData = (values, type, idOrFunction) => async ( dispat
     values.usuario = JSON.parse(localStorage.getItem('userActive')).nombre;
     values.fechaCreacion = new Date().toLocaleDateString();
 
-    if ( descripcion.length < 48 ) return Swal.fire( '¡Vaya!', 'El indicador no debe contener menos de 50 caracteres', 'warning' );
+    if ( descripcion.length < 35 ) return Swal.fire( '¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning' );
     if ( area === '' || area === 'default' ) return Swal.fire( '¡Vaya!', 'Asegurate de haber seleccionado un área*', 'warning' );
     if ( condicion_especial === '' || condicion_especial === 'default' ) return Swal.fire( '¡Vaya!', 'Asegurate de haber seleccionado una opción*', 'warning' );
      
     if ( type === 'save' ) {
         await guardarIndicador( values );
         dispatch( allIndicadorOfUser() );
-        idOrFunction();
+        idOrFunction();  // Limpia los campos del formulario.
         return Swal.fire( { icon: 'success', title: 'Has creado un nuevo indicador', showConfirmButton: false, timer: 1300,position: 'top-end' });    
     }
 
