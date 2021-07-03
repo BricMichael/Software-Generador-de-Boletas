@@ -15,9 +15,11 @@ export const indicadoresUserActivo = (usuario) => axios.post(`${urlIndicador}Usu
 export const updateIndicadorActivo = ( id, indicador ) => axios.put(`${urlIndicador}/${id}`, indicador);
 export const emailCorrecciones = ( comentario ) => axios.post(`${urlIndicador}Email`, comentario);
 export const eliminarIndicadorDB = ( id ) => axios.delete(`${urlIndicador}/${id}`);
+export const materiasExistentes = () => axios.get(`${urlBoleta}Materias`);  //Materias en la Bd.
   
 
 /*Peticiones a la Api boleta*/
    
+export const apiFiveStudents = ( datos ) => axios.post( `${urlBoleta}Estudiantes`, datos );
 
  

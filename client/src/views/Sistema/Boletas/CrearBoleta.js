@@ -1,12 +1,16 @@
+import {  useDispatch } from 'react-redux';
 import BuscarEstudiantes from '../../../components/Crear Boleta/BuscarEstudiantes';
 import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosAlumno';
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresAreas';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
+import { allIndicadorOfUser } from '../../../Redux/actions/indicadoresActions';
 import style from './crearBoleta.module.css'
 
 
 const CrearBoleta = ({num = 1}) => {
     backgroundColorPage('#012c66');
+    const dispatch = useDispatch();
+    // dispatch( allIndicadorOfUser() );
 
     let indicadorLengua = `Identificó de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las
     comillas, signos de interrogación, signos de admiración.

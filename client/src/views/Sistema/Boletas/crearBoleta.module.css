@@ -13,7 +13,7 @@
     background: #fff;
     width: 29%;
     border-radius: 4px;
-    margin-left: 13rem;
+    margin-left: 9rem;
     padding: 15px;
     margin-top: 3rem;
     margin-bottom: 0.6rem;
@@ -46,6 +46,17 @@
 .Cboleta_input:focus {
     outline: none;
     border-bottom: 2px solid #012c66;
+}
+
+.listaEstudiantes {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 650px;
+    border-radius: 4px;
+    padding: 9px 6px;
+    margin-top: 0.4rem;
+    margin-left: 4rem;
 }
 
 .submit {
@@ -119,7 +130,7 @@
 }
 
 .FormSearchStudents {
-    width: 55%;
+    width: 340px;
     margin-left: 4rem;
     background: #fff;
     border-radius: 4px;
@@ -153,16 +164,6 @@
 
 /* ################################################
                     lista de estudiantes          */
-.listaEstudiantes {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    width: 100%;
-    border-radius: 4px;
-    padding: 9px 6px;
-    margin-top: 0.4rem;
-    margin-left: 4rem;
-}
 
 .listaEstudiantes > h3 { 
     color: #012c66; 
@@ -205,9 +206,14 @@
     background: rgb(179, 172, 172);
     color: #012c66;
     margin-top: 2rem;  
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
+}
+
+.listaFiveFlex > td:nth-child(2){
+    text-align: left;
+    padding-left: 1rem;
 }
 
 .listaFiveFlex:hover {
@@ -224,25 +230,46 @@
     padding: 4px 3px;
     font-size: 18px;
     color: #fff;
+    transition: box-shadow .2s ease;       
 }
+
+.listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #333; }
 
 
 @media screen and ( max-width: 1150px ) {
     .listaFiveFlex { font-size: 15px; }
-    .listaEstudiantes { width: 90%; }
-    .contentForm {  margin-left: 5rem; width: 32%;}
+    .listaEstudiantes { width: 580px; margin-left: 3rem; }
+    .contentForm {  margin-left: 3.1rem; width: 33%; margin-right: 1rem;} 
+    .FormSearchStudents { margin-left: 3.1rem }
 }
 
-@media screen and ( max-width: 935px) {
-    .contentForm {  margin-left: 2rem; width: 36%;}
-}
+@media screen and ( max-width: 1055px) { .contentForm {  margin-left: 3rem; width: 35%;} }
 
-@media screen and ( max-width: 905px) {
-    .listaEstudiantes { width: 95%; margin-left: 2rem;}
-    .table > th, td { padding: 7px; }
-    .contentForm {  margin-left: 2rem; width: 39%}
+@media screen and ( max-width: 1010px) { .contentForm {  margin-left: 1.6rem; width: 35%;} }
+
+@media screen and ( max-width: 980px) { 
+    .contentForm {  margin-left: 2rem; width: 35%;} 
     .FormSearchStudents { margin-left: 2rem }
+    .listaEstudiantes { width: 515px;; margin-left: 2rem; }
 }
+
+
+@media screen and ( max-width: 936px) { 
+    .contentForm {  margin-left: 2rem; width: 31%;} 
+    .FormSearchStudents { margin-right: 0rem }
+    .listaEstudiantes { width: 520px; margin-right: 0rem; }
+    .Cboleta_input { font-size: 16px; }
+}
+
+
+ @media screen and ( max-width: 872px) {
+    .contentForm { 
+        margin-left: 1rem;
+        margin-right: 1rem;
+        width: 40%;
+    }
+}
+
 
  @media screen and ( max-width: 851px) {
     .listaFiveFlex { font-size: 12px; }

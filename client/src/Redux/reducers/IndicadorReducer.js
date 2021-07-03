@@ -5,6 +5,10 @@ const initialState = {
     updateIndicador: {
         estado: false,
         dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''},
+    },
+    materias: {
+        materiasDocente: [],
+        materiasEspecialista: [],
     }
 }   
 
@@ -15,6 +19,14 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 indicadoresByUser: [...action.payload]           
             };
+        case types.materiasDB:
+            return {
+                ...state,
+                materias: {
+                    materiasDocente: [...action.payload.materiasDocente],
+                    materiasEspecialista: [...action.payload.materiasEspecialista]
+                }
+            }    
 
         case types.indicadorActive:
             return {
@@ -56,8 +68,12 @@ const indicadorReducer = ( state = initialState, action ) => {
                 updateIndicador: {
                     estado: false,
                     dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''}
+                },
+                materias: {
+                    materiasDocente: [],
+                    materiasEspecialista: []
                 }
-            }    
+            };    
     
         default:
             return state;

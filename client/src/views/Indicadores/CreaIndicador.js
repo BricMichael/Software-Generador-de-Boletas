@@ -3,10 +3,12 @@ import style from './crearIndicador.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
 import { validar_EnviarData } from '../../helpers/validarCamposIndicador';
+import { materiasBD } from '../../Redux/actions/boletaActions';
 
 
 const CreaIndicador = () => {  
     const { dataIndicador, estado } = useSelector( state => state.indicador.updateIndicador );
+    const { materiasDocente } = useSelector( state => state.indicador.materias );
     const dispatch = useDispatch();
 
     const [ values, handleInputChange, reset ] = useForm( dataIndicador );
@@ -17,16 +19,15 @@ const CreaIndicador = () => {
     useEffect(() => {
         const { rol } = JSON.parse( localStorage.getItem('userActive') );
         if ( rol !== 'especialista' ) document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
+       dispatch( materiasBD() );
     }, [])
-  
-    useEffect(() => {
 
+    useEffect(() => {
         if ( dataIndicador.id_indicador !== idActive.current ) {
             reset( dataIndicador );
             idActive.current = dataIndicador.id_indicador
         }
     }, [dataIndicador, reset])
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,16 +36,25 @@ const CreaIndicador = () => {
         if ( !estado ) dispatch( validar_EnviarData( values, 'save', reset ) );
     }
 
+    
     return (
         <div className={`${style.pag_total}`}>
             <form className={`${style.form}`} onSubmit={ handleSubmit }>
                 <textarea className={`${style.textArea}`} name="descripcion" value={ descripcion } placeholder="Crea un indicador" onChange={ handleInputChange }></textarea>
                 <div className={`${style.all_selects}`}>
-                    <select className={`${style.select}`} name="area" value={ area  } onChange={ handleInputChange }>
-                        <option value="default">&Aacute;rea</option>
-                        <option value="Lengua y Literatura">Lengua y Literatura</option>
-                        <option value="Matematica">Matematica</option>
+                    
+                        
+                    <select className={`${style.select}`} name='area' value={ area } 
+                        onChange={ handleInputChange }>                  
+                        <option value="undefined">Área</option>
+                        {
+                            materiasDocente.map( area => (
+                                <option value={area.materia} key={area.materia} >{area.materia}
+                                </option>
+                            ))
+                        }                               
                     </select>
+                       
                     <select className={`${style.select}`} name="condicion_especial" value={ condicion_especial } onChange={ handleInputChange }>
                         <option value="default">Condición Especial</option>
                         <option value="Si">Si</option>

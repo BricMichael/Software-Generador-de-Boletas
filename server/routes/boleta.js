@@ -6,7 +6,7 @@ const { obtenerMaterias, fiveStudents } = require('../controllers/boletaControll
 
 
 router.get('/boletaMaterias', obtenerMaterias );
-router.get('/boletaEstudiantes', fiveStudents);
+router.post('/boletaEstudiantes', fiveStudents);
 
 
 

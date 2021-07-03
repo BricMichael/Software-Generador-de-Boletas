@@ -53,10 +53,12 @@
     cursor: pointer;
 }
 
+
 .ul_items > button {
     border: none;
     width: 100%;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .bg_blue {
