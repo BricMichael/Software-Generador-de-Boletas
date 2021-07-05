@@ -24,7 +24,7 @@ const CabeceraDatosAlumno = () => {
             <form className={ style.contentForm }>
                 <div className={ style.group }>
                     <label>Estudiante</label>
-                    <input placeholder="Nombre del estudiante" type="text" className={style.Cboleta_input} value={ nombres } name="nombres"
+                    <input placeholder="Nombre del estudiante" type="text" className={style.Cboleta_input} value={ nombres } name="nombres" autoComplete='off'
                     onChange={handleInputChange}
                     />
                 </div>
@@ -32,21 +32,21 @@ const CabeceraDatosAlumno = () => {
                     <label>Grado</label>
                     <input placeholder="Grado" type="text" name="grado"
                     className={style.Cboleta_input} value={grado}
-                    onChange={handleInputChange}
+                    onChange={handleInputChange} autoComplete='off'
                     />
                 </div>  
                 <div className={ style.group }>                   
                     <label>Secci&oacute;n</label>
                     <input placeholder="Sección" type="text" name="seccion"
                     className={style.Cboleta_input}  value={ seccion }
-                    onChange={handleInputChange}
+                    onChange={handleInputChange} autoComplete='off'
                     />
                 </div>
                 <div className={ style.group }>     
                     <label>Docente</label>
-                    <input placeholder="Docente"  className={style.Cboleta_input} 
+                    <input placeholder="Docente"  className={`${style.Cboleta_input} ${style.font_size}`}
                       type="text" value={ docente } name='docente' 
-                      onChange={handleInputChange}
+                      onChange={handleInputChange} autoComplete='off'
                     />
                 </div>
                 <div className={ style.group }>     

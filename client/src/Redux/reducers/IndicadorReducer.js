@@ -4,7 +4,7 @@ const initialState = {
     indicadoresByUser: [],
     updateIndicador: {
         estado: false,
-        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''},
+        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''},
     },
     materias: {
         materiasDocente: [],
@@ -14,19 +14,21 @@ const initialState = {
 
 const indicadorReducer = ( state = initialState, action ) => {
     switch (action.type) {
+        case types.materiasIndicadoresByUser:
+            return {
+                ...state,
+                indicadoresByUser: [...action.payload.indicadores],
+                materias: {
+                    materiasDocente: [...action.payload.materiasDocente],
+                    materiasEspecialista: [...action.payload.materiasEspecialista],
+                }
+            }
+
         case types.indicadoresByUser:
             return {
                 ...state,
                 indicadoresByUser: [...action.payload]           
             };
-        case types.materiasDB:
-            return {
-                ...state,
-                materias: {
-                    materiasDocente: [...action.payload.materiasDocente],
-                    materiasEspecialista: [...action.payload.materiasEspecialista]
-                }
-            }    
 
         case types.indicadorActive:
             return {
@@ -51,7 +53,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''},
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''},
                 }
             }    
 
@@ -67,7 +69,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 indicadoresByUser: [],
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: ''}
+                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''}
                 },
                 materias: {
                     materiasDocente: [],

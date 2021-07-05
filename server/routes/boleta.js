@@ -1,12 +1,13 @@
 const { Router } = require('express');
 const router = Router();
 
-const { obtenerMaterias, fiveStudents } = require('../controllers/boletaControllers');
+const { obtenerMaterias, InitialsFiveStudents, nextFiveStudents} = require('../controllers/boletaControllers');
 
 
 
 router.get('/boletaMaterias', obtenerMaterias );
-router.post('/boletaEstudiantes', fiveStudents);
+router.post('/boletaEstudiantes', InitialsFiveStudents);
+router.post('/boletaNextEstudiantes', nextFiveStudents);
 
 
 

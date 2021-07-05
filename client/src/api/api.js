@@ -18,8 +18,9 @@ export const eliminarIndicadorDB = ( id ) => axios.delete(`${urlIndicador}/${id}
 export const materiasExistentes = () => axios.get(`${urlBoleta}Materias`);  //Materias en la Bd.
   
 
-/*Peticiones a la Api boleta*/
+/*Peticiones a la Api boleta*/ 
    
 export const apiFiveStudents = ( datos ) => axios.post( `${urlBoleta}Estudiantes`, datos );
+export const apiNextFiveStudents = ( datos ) => axios.post( `${urlBoleta}NextEstudiantes`, datos );
 
  

@@ -1,10 +1,10 @@
 import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { estudianteSelected } from '../../Redux/actions/boletaActions';
+import { estudianteSelected, nextFiveStudents} from '../../Redux/actions/boletaActions';
 
 
 
-const ListaEstudiantes = ({num = 1, grado, alumno, nombre}) => {
+const ListaEstudiantes = ({num = 1, grado, seccion}) => {
     const dispatch = useDispatch();
     const { listFiveStudents } = useSelector( state => state.boleta );
 
@@ -12,11 +12,13 @@ const ListaEstudiantes = ({num = 1, grado, alumno, nombre}) => {
         dataAlumno.docente = JSON.parse( localStorage.getItem('userActive')).nombre;
         dispatch( estudianteSelected(dataAlumno) );
     }
+
+    const siguientesAlumnos = () => dispatch( nextFiveStudents( grado, seccion ) );
+    
     
     return (
         <div className={style.listaEstudiantes}>
             <h3>Lista de estudiantes</h3>
-            {/* { listFiveStudents.length !== 0 &&  */}
             <table className={ style.table}>  
                 <thead>
                     <tr className={ style.tableTr}>
@@ -29,8 +31,8 @@ const ListaEstudiantes = ({num = 1, grado, alumno, nombre}) => {
                 <tbody>
                    {
                        listFiveStudents.map( alumno => (
-                        <tr key={alumno.nombre} className={`${style.listaFiveFlex} animate__animated animate__fadeIn`} 
-                             key={num} onClick={() => handleStudent(alumno)} >
+                        <tr className={`${style.listaFiveFlex} animate__animated animate__fadeIn`} 
+                        onClick={() => handleStudent(alumno)} key={alumno.id}>
                             <td className={style.indicee}>#{num++}</td>
                             <td className={ style.borderRadius }>{ alumno.nombres }</td>
                             <td className={ style.borderRadius }>{ alumno.grado }</td>
@@ -40,8 +42,9 @@ const ListaEstudiantes = ({num = 1, grado, alumno, nombre}) => {
                    }
                 </tbody>
             </table>
-            <button type="submit">Siguientes alumnos</button>
-
+            {
+                listFiveStudents.length !== 0 && <button type="submit" onClick={ siguientesAlumnos }>Siguientes alumnos</button>
+            }
         </div>
     );
 }

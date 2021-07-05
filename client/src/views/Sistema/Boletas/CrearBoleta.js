@@ -1,26 +1,30 @@
-import {  useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+import style from './crearBoleta.module.css'
+import { backgroundColorPage } from '../../../helpers/coloresBG';
+import { useDispatch, useSelector } from 'react-redux';
 import BuscarEstudiantes from '../../../components/Crear Boleta/BuscarEstudiantes';
 import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosAlumno';
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresAreas';
-import { backgroundColorPage } from '../../../helpers/coloresBG';
-import { allIndicadorOfUser } from '../../../Redux/actions/indicadoresActions';
-import style from './crearBoleta.module.css'
+import IndicadoresEspecialista from '../../../components/Crear Boleta/IndicadoresEspecialista';
 
 
-const CrearBoleta = ({num = 1}) => {
+
+
+const CrearBoleta = () => {
     backgroundColorPage('#012c66');
     const dispatch = useDispatch();
-    // dispatch( allIndicadorOfUser() );
 
-    let indicadorLengua = `Identificó de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las
-    comillas, signos de interrogación, signos de admiración.
-    Comprendió y estableció comparaciones entre la silaba tónica.`;
+    const { indicadoresByUser, materias } = useSelector(state => state.indicador);
+    const { materiasDocente, materiasEspecialista } = materias;
 
-    let indicadorMatema = `Por medio de explicaciones utilizó el método apropiado, según sea el caso en divisiones de 
-    números con decimales.`; 
 
-    let experimento = `Por medio de explicaciones utilizó el método apropiado, según sea el caso en divisiones de 
-    números con decimales`;
+
+    // const indicadorLngLiteratura = indicadoresByUser.filter( materia => materia.area === 'Lengua y Literatura' );
+
+
+
+    const indicadorMath = indicadoresByUser.filter( materia => materia.area === 'Matemática' );
+    // const indicadorExpCientifico = indicadoresByUser.filter( materia => materia.area === 'Experimento cientifíco' );
 
     return (
         <>
@@ -39,13 +43,31 @@ const CrearBoleta = ({num = 1}) => {
                     <p className={ style.leyendaTitulos }><b>B:</b> Bien</p>
                     <p className={ style.leyendaTitulos }><b>RN:</b> Requiere nivelaci&oacute;n</p>
                 </div>
-                <IndicadoresAreas area='Lengua y Literatura' indicador={indicadorLengua}/> 
-                <IndicadoresAreas area='Matemática' indicador={indicadorMatema}/> 
-                <IndicadoresAreas area='Experimento científico' indicador={experimento}/>      
+               
+                {
+                    materiasDocente.map( materiaDB => (
+                        <IndicadoresAreas area={ materiaDB.materia } key={ materiaDB.materia }
+                        arrayIndicador={indicadorMath} />
+                    ))
+                } 
+                
+                
+                
+                
+                
+                {/* <IndicadoresAreas area='Matemática' arrayIndicador={indicadorMath}/> 
+                <IndicadoresAreas area='Experimento científico' arrayIndicador={indicadorExpCientifico}/>   */}
+
+
+
+
+
+                {/* componentes de especialistas */}
+                {/* <IndicadoresEspecialista area='Francés' /> */}
             </div>
             
         </>
-    )
+    );
 }
 
 export default CrearBoleta;

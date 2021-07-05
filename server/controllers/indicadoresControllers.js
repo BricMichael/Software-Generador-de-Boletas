@@ -8,13 +8,13 @@ const guardarIndicador = async (req, res = response ) => {
     try {
 
         const { descripcion, literal, area, 
-            condicion_especial, fechaCreacion, usuario} = req.body;
+            condicion_especial, fechaCreacion, usuario, grado} = req.body;
         
         await pool.query(
             `INSERT INTO indicador( descripcion, literal, area, 
-                condicion_especial, fecha_creacion, creador_personal )
-                VALUES( $1, $2, $3, $4, $5, $6 )`, [descripcion, literal, area, 
-                    condicion_especial, fechaCreacion, usuario] );
+                condicion_especial, fecha_creacion, creador_personal, grado )
+                VALUES( $1, $2, $3, $4, $5, $6, $7 )`, [descripcion, literal, area, 
+                    condicion_especial, fechaCreacion, usuario, grado] );
 
         res.status(201).send('Indicador guardado exitosamente');        
     } catch (err) {
@@ -48,12 +48,12 @@ const allIndicadores = async(req, res) => {
 const updateIndicador = async (req, res) => {
     try {
         const { id } = req.params;
-        const { descripcion, literal, area, condicion_especial } = req.body;
+        const { descripcion, literal, area, condicion_especial, grado } = req.body;
         
         await pool.query(
-            `UPDATE indicador SET descripcion = $1, literal = $2, area = $3, condicion_especial = $4
-                WHERE id_indicador = $5`, [descripcion, literal, area, 
-                    condicion_especial, id] );
+            `UPDATE indicador SET descripcion = $1, literal = $2, area = $3, condicion_especial = $4,
+            grado = $5 WHERE id_indicador = $6`, [descripcion, literal, area, 
+                    condicion_especial, grado, id] );
         
             res.status(201).send('Los datos han sido actualizados');
 

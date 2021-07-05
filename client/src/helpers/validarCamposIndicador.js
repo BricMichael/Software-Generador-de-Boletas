@@ -1,13 +1,15 @@
 import Swal from "sweetalert2";
 import { guardarIndicador } from "../api/api";
-import { actualizarIndicadorBD, limpiarFormAlActualizar, allIndicadorOfUser
-} from "../Redux/actions/indicadoresActions";
+import { actualizarIndicadorBD, limpiarFormAlActualizar, allIndicadorOfUser } from "../Redux/actions/indicadoresActions";
 
+
+//IMPORTANTE-----------------------------
+// separar la logica de negocio de redux thunk y ademas hacer las validaciones de los campos vacios cuando el rol es especialista.
 
 // El tercer parametro de la funcion puede ser un id, o una funcion. Esto es así para trabajar 
 // la logica dependiendo del <tipo> de accion.. <Type Save, se recibe una funcion>, <de type update se recibe un Id>
 export const validar_EnviarData = (values, type, idOrFunction) => async ( dispatch ) => {
-    const { descripcion, literal, area, condicion_especial } = values;
+    const { descripcion, literal, area, condicion_especial, grado } = values;
 
     values.usuario = JSON.parse(localStorage.getItem('userActive')).nombre;
     values.fechaCreacion = new Date().toLocaleDateString();
@@ -26,10 +28,20 @@ export const validar_EnviarData = (values, type, idOrFunction) => async ( dispat
     if ( type === 'update' ) {
         const id_indicador = idOrFunction;
         dispatch( actualizarIndicadorBD( id_indicador, 
-        { id_indicador, descripcion, literal, area, condicion_especial } )); //dataForUpdate
+        { id_indicador, ...values } )); //dataForUpdate  
 
         dispatch( limpiarFormAlActualizar() ); 
         return true;
     }
 }
 
+
+
+export const ocultarOptions = () => {
+    const { rol } = JSON.parse( localStorage.getItem('userActive') );
+    if ( rol !== 'especialista' ) { 
+        document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
+        document.querySelector('#gradoOption').setAttribute('disabled', 'true');
+    }
+    return rol; 
+}

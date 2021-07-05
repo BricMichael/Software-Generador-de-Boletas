@@ -2,8 +2,8 @@ const types = {
     allUsers: '[LOGIN] AllUsers',
     checkUser: '[LOGIN] checkUser',
 
-    indicadoresByUser: '[INDICADOR] ByUser',
-    materiasDB: '[INDICADOR] MateriasBD',
+    materiasIndicadoresByUser: '[INDICADOR] materiasIndicadorByUser',
+    indicadoresByUser: '[INDICADOR] ShowSavedIndicador',
     indicadorActive: '[INDICADOR] IndicadorActivo',
     refreshData: '[INDICADOR] RefrescarIndicador',
     limpiarInputsForm: '[INDICADOR] LimpiarInputsForm',

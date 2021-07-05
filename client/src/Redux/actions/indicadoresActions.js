@@ -3,21 +3,15 @@ import types from '../types';
 import Swal from 'sweetalert2';
 
 
-export const indicadoresUser = ( indicadores ) => ({
-    type: types.indicadoresByUser,
-    payload: indicadores
-})
 
 
 export const allIndicadorOfUser = () => async( dispatch ) => {
     try {
         const { nombre } = JSON.parse( localStorage.getItem('userActive') );
-        let { data } = await api.indicadoresUserActivo({ usuario: nombre});
-        dispatch( indicadoresUser( data ) );
+        let { data } = await api.indicadoresUserActivo({ usuario: nombre });
+        dispatch({ type: types.indicadoresByUser, payload: data });
         
-    } catch (err) {
-        console.log(err.message);
-    }
+    } catch (err) { console.log(err.message)  }
 }
 
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
