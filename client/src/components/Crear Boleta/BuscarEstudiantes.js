@@ -50,8 +50,7 @@ const BuscarEstudiantes = () => {
                 <input value="Buscar estudiantes" type="submit" className={style.submit} />
             </form>
 
-            <ListaEstudiantes grado={grado} seccion={seccion} />
-
+            <ListaEstudiantes seccion={seccion} />
 
         </div>
     )

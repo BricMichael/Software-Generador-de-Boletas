@@ -33,7 +33,12 @@ const Dashboard = () => {
 
             <nav className={ styles.Dashnavbar }>
                 <ul className={ styles.Dashul }>
-                    <Link to="/menu-indicadores"><li className={ `${styles.ul_items} ${styles.bg_blue }`}><span className={ styles.links }><i className="far fa-address-book"></i>&nbsp;&nbsp;Indicadores</span></li></Link>
+                    <Link to="/menu-indicadores">
+                        <li className={ `${styles.ul_items} ${styles.bg_blue }`} 
+                            onClick={ callMateriasIndicadoresBD}>
+                            <span className={ styles.links }><i className="far fa-address-book"></i>&nbsp;&nbsp;Indicadores</span>
+                        </li>
+                    </Link>
                     <Link to="/menu-principal/creacion-de-boletas" onClick={ callMateriasIndicadoresBD}>
                         <li className={ `${styles.ul_items}`}><span className={ styles.links }><i className="fas fa-file-alt"></i>&nbsp;&nbsp; Crear Boleta</span>
                         </li>

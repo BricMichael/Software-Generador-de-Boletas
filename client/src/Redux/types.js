@@ -12,7 +12,9 @@ const types = {
 
 
     fiveStudents: '[BOLETA] FiveStudents',
+    nextFiveStudents: '[BOLETA] NextFiveStudents',
     studentSelected: '[BOLETA] StudentSelected',
+    especialidadLiteralSelect: '[BOLETA] LiteralSelect',
 }
 
 

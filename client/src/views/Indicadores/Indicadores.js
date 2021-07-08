@@ -1,6 +1,5 @@
 import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { callsBackendViewCrearBoleta } from "../../Redux/actions/boletaActions";
 import { limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
 import { backgroundColorPage } from '../../helpers/coloresBG';
 import Header from "../../components/Header/Header";
@@ -10,15 +9,14 @@ import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmai
 
 
 
+
 const Indicadores = () => { 
     backgroundColorPage('#265aac'); 
     const dispatch = useDispatch();
 
-    const { updateIndicador, indicadoresByUser } = useSelector( state => state.indicador );
+    const { updateIndicador } = useSelector( state => state.indicador );
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
-   
-    if ( indicadoresByUser.length === 0 ) dispatch( callsBackendViewCrearBoleta() );  
-   
+    
     const cancelEdicion = () => dispatch( limpiarFormAlActualizar() );
     
     return (

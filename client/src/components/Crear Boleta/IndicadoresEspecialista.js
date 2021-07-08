@@ -1,10 +1,20 @@
 import style from './indicadoresAreas.module.css';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+
 export const IndicadoresEspecialista = ({area, num = 1}) => {
+    // const dispatch = useDispatch();
+    const { especialidades } = useSelector( state => state.boleta )
+    const [indicadorSelect, setIndicadorSelect] = useState({})
 
     const handleLiteral = ({target}) => {
-        console.log(target.value)
+        const literal = target.value;
+        const mostrar = especialidades.find( indicador => indicador.literal === literal && indicador.area === area);
+        setIndicadorSelect(mostrar)
     }
+ 
+    console.log('HOLA')
 
     return (
         <>
@@ -23,15 +33,19 @@ export const IndicadoresEspecialista = ({area, num = 1}) => {
                     <tr className={style.l}  >
                         <td><b>#{num++}</b></td>
                         <td className={ style.indicadorDB }>
-                            <p>Seleccione el literal correspodiente</p></td>
-                        <td>
-                            <input name='a' type="radio"value="E" onChange={handleLiteral} />
+                            {  
+                                Object.keys(indicadorSelect).length !== 0 ? <p>{ indicadorSelect.descripcion }</p> 
+                                    : <p>Seleccione el literal correspodiente</p>
+                            }               
                         </td>
                         <td>
-                            <input name='a' type="radio"value="B" onChange={handleLiteral} />
+                            <input name={area} type="radio"value="E" onChange={handleLiteral} />
                         </td>
                         <td>
-                            <input name='a' type="radio"value="RN" onChange={handleLiteral} />
+                            <input name={area} type="radio"value="B" onChange={handleLiteral} />
+                        </td>
+                        <td>
+                            <input name={area} type="radio"value="RN" onChange={handleLiteral} />
                         </td>
                     </tr>                    
                 </tbody>

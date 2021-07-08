@@ -4,7 +4,7 @@ import { estudianteSelected, nextFiveStudents} from '../../Redux/actions/boletaA
 
 
 
-const ListaEstudiantes = ({num = 1, grado, seccion}) => {
+const ListaEstudiantes = ({ num = 1, seccion }) => {
     const dispatch = useDispatch();
     const { listFiveStudents } = useSelector( state => state.boleta );
 
@@ -13,7 +13,7 @@ const ListaEstudiantes = ({num = 1, grado, seccion}) => {
         dispatch( estudianteSelected(dataAlumno) );
     }
 
-    const siguientesAlumnos = () => dispatch( nextFiveStudents( grado, seccion ) );
+    const siguientesAlumnos = () => dispatch( nextFiveStudents( seccion ) );
     
     
     return (
