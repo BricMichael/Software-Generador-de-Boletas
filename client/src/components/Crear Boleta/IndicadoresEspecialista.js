@@ -1,20 +1,25 @@
-import style from './indicadoresAreas.module.css';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import style from './indicadoresAreas.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { apiIndicadorlEspecialista } from '../../api/api';
+
 
 export const IndicadoresEspecialista = ({area, num = 1}) => {
     // const dispatch = useDispatch();
-    const { especialidades } = useSelector( state => state.boleta )
-    const [indicadorSelect, setIndicadorSelect] = useState({})
+    const gradoState  = useSelector( state => state.boleta.grado )
 
-    const handleLiteral = ({target}) => {
-        const literal = target.value;
-        const mostrar = especialidades.find( indicador => indicador.literal === literal && indicador.area === area);
-        setIndicadorSelect(mostrar)
+    const [indicadorSelect, setIndicadorSelect] = useState({})
+    
+
+    const indicadorEspecialistaByArea = async(literal) => {
+        const { data } = await apiIndicadorlEspecialista({grado: gradoState, area});
+        const mostrar = data.find( indicador =>  indicador.literal === literal);
+        setIndicadorSelect( mostrar !== undefined  && mostrar  );   
     }
- 
-    console.log('HOLA')
+
+
+    const handleLiteral = ({target}) => indicadorEspecialistaByArea( target.value );
+    
 
     return (
         <>
@@ -32,7 +37,7 @@ export const IndicadoresEspecialista = ({area, num = 1}) => {
                  
                     <tr className={style.l}  >
                         <td><b>#{num++}</b></td>
-                        <td className={ style.indicadorDB }>
+                        <td className={ style.indicadorDB }> 
                             {  
                                 Object.keys(indicadorSelect).length !== 0 ? <p>{ indicadorSelect.descripcion }</p> 
                                     : <p>Seleccione el literal correspodiente</p>

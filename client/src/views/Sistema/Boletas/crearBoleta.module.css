@@ -237,6 +237,12 @@
 
 .listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #333; }
 
+/* .derechita {
+    display: flex;
+} */
+.separar {
+    /* margin-right: 2rem; */
+}
 
 @media screen and ( max-width: 1150px ) {
     .listaFiveFlex { font-size: 15px; }

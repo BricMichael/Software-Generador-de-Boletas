@@ -36,28 +36,13 @@ const nextFiveStudents = async (req, res) => {
   }
 
 
-// const literalEspecialista = async (req, res) => {  YA NO VA BORRAR ---------------------------------
-//      try {
-//           const { literal, grado, area } = req.body;
-
-//           const respBD = await pool.query('SELECT descripcion FROM indicador WHERE grado = $1 and literal = $2 and area = $3', [grado, literal, area]);
-
-//           res.json(respBD.rows[0]);
-//      } catch (err) {
-//           console.log(err.message)
-//      }
-// }
-
-
-
-
-const indicadoresEspecialistaBoleta = async(req, res) => {
+const indicadorEspecialistaByArea = async (req, res) => {  
      try {
-        const { grado } = req.body;
-        const respBD = await pool.query("SELECT descripcion, area, literal FROM indicador WHERE literal != '' and grado= $1", [grado]);
-        res.json(respBD.rows);
+          const { grado, area } = req.body;
 
+          const respBD = await pool.query("SELECT descripcion, literal FROM indicador WHERE grado = $1 and literal != '' and area = $2", [grado, area]);
 
+          res.json(respBD.rows);
      } catch (err) {
           console.log(err.message)
      }
@@ -66,16 +51,9 @@ const indicadoresEspecialistaBoleta = async(req, res) => {
 
 
 
-
-
-
-
-
-
-
 module.exports = {
     obtenerMaterias,
     InitialsFiveStudents,
     nextFiveStudents,
-    indicadoresEspecialistaBoleta,
+    indicadorEspecialistaByArea
 }

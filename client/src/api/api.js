@@ -19,9 +19,10 @@ export const materiasExistentes = () => axios.get(`${urlBoleta}Materias`);  //Ma
   
 
 /*Peticiones a la Api boleta*/ 
-   
+// LiteralEspecialista   
+
 export const apiFiveStudents = ( datos ) => axios.post( `${urlBoleta}Estudiantes`, datos );
 export const apiNextFiveStudents = ( datos ) => axios.post( `${urlBoleta}NextEstudiantes`, datos );
-export const apiLiteralEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos );
+export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos );
 
  

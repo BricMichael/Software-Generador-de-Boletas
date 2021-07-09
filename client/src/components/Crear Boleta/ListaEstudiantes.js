@@ -6,16 +6,18 @@ import { estudianteSelected, nextFiveStudents} from '../../Redux/actions/boletaA
 
 const ListaEstudiantes = ({ num = 1, seccion }) => {
     const dispatch = useDispatch();
-    const { listFiveStudents } = useSelector( state => state.boleta );
+    const listFiveStudents = useSelector( state => state.boleta.listFiveStudents );
 
     const handleStudent = ( dataAlumno ) => {
+        document.querySelector('#borra').checked = false
+        // prueba.checked = false
+       
         dataAlumno.docente = JSON.parse( localStorage.getItem('userActive')).nombre;
         dispatch( estudianteSelected(dataAlumno) );
     }
 
     const siguientesAlumnos = () => dispatch( nextFiveStudents( seccion ) );
-    
-    
+
     return (
         <div className={style.listaEstudiantes}>
             <h3>Lista de estudiantes</h3>

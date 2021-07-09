@@ -39,3 +39,7 @@
 .buttonSubmit:hover {
     background: #084ca5fd;
 }
+
+.ocultaar {
+    visibility: collapse;
+}

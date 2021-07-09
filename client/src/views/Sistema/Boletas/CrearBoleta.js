@@ -9,17 +9,17 @@ import IndicadoresEspecialista from '../../../components/Crear Boleta/Indicadore
 
 
 
-
-
 const CrearBoleta = () => {
     backgroundColorPage('#012c66');
-    const dispatch = useDispatch();
+
+    // const dispatch = useDispatch();
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
     
     const { indicadoresByUser, materias } = useSelector(state => state.indicador);
     const { materiasDocente, materiasEspecialista } = materias;
-
-    const arrayOfMateriasIndicadores =  rol === 'docente' &&( materiaConIndicadores(materiasDocente, indicadoresByUser) );
+ 
+    const arrayOfMateriasIndicadores =  rol === 'docente' && materiaConIndicadores(materiasDocente, indicadoresByUser);
+  
 
     return (
         <>
@@ -38,22 +38,30 @@ const CrearBoleta = () => {
                     <p className={ style.leyendaTitulos }><b>B:</b> Bien</p>
                     <p className={ style.leyendaTitulos }><b>RN:</b> Requiere nivelaci&oacute;n</p>
                 </div>
-               
-                {   arrayOfMateriasIndicadores && (
-                        arrayOfMateriasIndicadores.map( materiaDB => (
-                            <IndicadoresAreas allIndicadores={ materiaDB} area={materiaDB[0]} key={ materiaDB[0]}
-                            />
-                        ))
-                    )
-                } 
-                
-                {/* componentes de especialistas */}
-                <IndicadoresEspecialista area='Francés' />
-                <IndicadoresEspecialista area='Inglés' />
+               <div className={style.derechita}>
+                   <div className={style.separar}>
+                    {   arrayOfMateriasIndicadores && (
+                            arrayOfMateriasIndicadores.map( materiaDB => (
+                                <IndicadoresAreas allIndicadores={ materiaDB} area={materiaDB[0]} key={ materiaDB[0]}
+                                />
+                            ))
+                        )
+                    } 
+                    </div>
+                    {/* componentes de especialistas */}
+                    <div>
+                    {
+                        materiasEspecialista.map( value => (
+                            <IndicadoresEspecialista area={value.materia} key={value.materia} />
+                        ))            
+                    }
+                    </div>
+                </div>
+
             </div>
             
         </>
     );
 }
-
+//
 export default CrearBoleta;

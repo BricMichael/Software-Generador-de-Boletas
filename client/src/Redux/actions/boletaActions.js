@@ -5,31 +5,23 @@ let count = 5;
 
 
 
-export const listFiveStudents = ({seccion, grado}) => async (dispatch) => {
+export const listFiveStudents = ({seccion, grado}) => async (dispatch, getState) => {
      try {
-         if( seccion !== 'default' && seccion !== '' && grado !== 'default' && grado !== '' ) {
-            const sendSearch = { seccionSelected: seccion, gradoSelected: grado, } //data de los parametros.
+         if ( seccion !== 'default' && seccion !== '' && grado !== 'default' && grado !== '' ) {
+
+            const sendSearch = { seccionSelected: seccion, gradoSelected: grado, } //data parametros.
             const { data } = await api.apiFiveStudents(sendSearch);
-            const { data: indicadoresEspecialista } = await api.apiLiteralEspecialista({grado});
+            const sendCopyToState = getState().indicador.indicadoresByUser;
     
-            dispatch({ 
-                type: types.fiveStudents, 
-                payload: { 
-                    data,
-                    grado, 
-                    indicadoresEspecialista
-                 } 
-            });
-            
+            dispatch({ type: types.fiveStudents, payload: { data, grado, sendCopyToState } });  
+
             count = 5; // reinicia la variable nuevamente a 5 cada que se busque estudiantes.
         }
         
-    } catch (err) {
-        console.log(err.message);
-    }
-
+    } catch (err) { console.log(err.message) }
 }
-// params, valorInicial, seccion, grado
+
+
 export const nextFiveStudents = ( seccion ) => async(dispatch, getState) => {
     try {
        const grado = getState().boleta.grado;
@@ -46,10 +38,10 @@ export const nextFiveStudents = ( seccion ) => async(dispatch, getState) => {
 }
 
 
-export const estudianteSelected = ( estudiante ) => ({
-    type: types.studentSelected,
-    payload: estudiante,
-})
+export const estudianteSelected = ( estudiante ) => ( dispatch, getState ) => {
+    const sendCopyToState = getState().indicador.indicadoresByUser;
+    dispatch({ type: types.studentSelected, payload: {estudiante, sendCopyToState} });
+}
 
 
 export const callsBackendViewCrearBoleta = () => async(dispatch) => {
@@ -71,8 +63,10 @@ export const callsBackendViewCrearBoleta = () => async(dispatch) => {
 }
 
 
-
-
+export const updateLiteralOfIndicador = (indicador, literal) => ({
+        type: types.updateLiteralDocente,
+        payload: { indicador, literal }
+})
 
 
 //const uidUser = getState().auth.uid 

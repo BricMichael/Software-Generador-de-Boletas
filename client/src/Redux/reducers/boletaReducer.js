@@ -6,8 +6,7 @@ const initialState = {
     listFiveStudents: [],
     studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
     setLiteralIndicadores: [],
-    grado: '',
-    especialidades: [],
+    grado: '',   
 }
 
 const boletaReducer = ( state = initialState, action ) => {
@@ -18,8 +17,8 @@ const boletaReducer = ( state = initialState, action ) => {
                 ...state,
                 listFiveStudents: [...action.payload.data],
                 grado: action.payload.grado,
-                especialidades: [ ...action.payload.indicadoresEspecialista ]
-            };
+                setLiteralIndicadores: [ ...action.payload.sendCopyToState ]
+            };   
         
         case types.nextFiveStudents:
             return {
@@ -30,8 +29,14 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.studentSelected:
             return {
                 ...state,
-                studentSelected: { ...action.payload, textArea:'' }
-            }      
+                studentSelected: { ...action.payload.estudiante, textArea:'' },
+                setLiteralIndicadores: [ ...action.payload.sendCopyToState ]
+            }
+        case types.updateLiteralDocente:
+            return {
+                ...state,
+                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.descripcion === action.payload.indicador ? { ...prop, literal: action.payload.literal } : prop)
+            }          
     
         default:
             return state;
