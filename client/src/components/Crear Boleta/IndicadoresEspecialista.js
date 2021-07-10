@@ -1,26 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './indicadoresAreas.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { apiIndicadorlEspecialista } from '../../api/api';
 
 
-export const IndicadoresEspecialista = ({area, num = 1}) => {
-    // const dispatch = useDispatch();
-    const gradoState  = useSelector( state => state.boleta.grado )
 
-    const [indicadorSelect, setIndicadorSelect] = useState({})
+export const IndicadoresEspecialista = ({area, numero,num = 1}) => {
+ 
     
+    const studentSelected  = useSelector( state => state.boleta.studentSelected );
+    const gradoState = useSelector( state => state.boleta.grado );
+ 
+    const [ literalIndicadorByArea, setLiteralIndicadorByArea ] = useState({ IndicadorByArea: [], literalSelected: {} });
 
-    const indicadorEspecialistaByArea = async(literal) => {
-        const { data } = await apiIndicadorlEspecialista({grado: gradoState, area});
-        const mostrar = data.find( indicador =>  indicador.literal === literal);
-        setIndicadorSelect( mostrar !== undefined  && mostrar  );   
+    useEffect(() => {
+        const indicadorEspecialistaByArea = async () => {
+            const { data } = await apiIndicadorlEspecialista({grado: gradoState, area});
+            setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} });    
+        }    
+        gradoState !== '' && indicadorEspecialistaByArea();
+
+    }, [gradoState])
+
+
+    useEffect(() => {
+        setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} }); 
+    }, [studentSelected])
+
+    const handleLiteral = ({target}) => {
+        const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
+        mostrar !== undefined  &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar }); 
     }
-
-
-    const handleLiteral = ({target}) => indicadorEspecialistaByArea( target.value );
     
-
     return (
         <>
              <table className={style.tablaIndicadoresBoleta}>  
@@ -39,7 +50,8 @@ export const IndicadoresEspecialista = ({area, num = 1}) => {
                         <td><b>#{num++}</b></td>
                         <td className={ style.indicadorDB }> 
                             {  
-                                Object.keys(indicadorSelect).length !== 0 ? <p>{ indicadorSelect.descripcion }</p> 
+                                Object.keys(literalIndicadorByArea.literalSelected).length !== 0 
+                                    ? <p>{ literalIndicadorByArea.literalSelected.descripcion }</p> 
                                     : <p>Seleccione el literal correspodiente</p>
                             }               
                         </td>

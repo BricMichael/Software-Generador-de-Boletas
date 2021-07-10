@@ -9,8 +9,6 @@ const ListaEstudiantes = ({ num = 1, seccion }) => {
     const listFiveStudents = useSelector( state => state.boleta.listFiveStudents );
 
     const handleStudent = ( dataAlumno ) => {
-        document.querySelector('#borra').checked = false
-        // prueba.checked = false
        
         dataAlumno.docente = JSON.parse( localStorage.getItem('userActive')).nombre;
         dispatch( estudianteSelected(dataAlumno) );

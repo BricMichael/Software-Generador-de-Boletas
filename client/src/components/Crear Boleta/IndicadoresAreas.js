@@ -11,7 +11,6 @@ const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
     const literalSeleccionado = ( descIndicador, {target} ) => {
        dispatch( updateLiteralOfIndicador( descIndicador, target.value ) )
     } 
-   
     return (
         <>
              <table className={style.tablaIndicadoresBoleta}>  
@@ -31,15 +30,15 @@ const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
                             <td><b>#{num++}</b></td>
                             <td className={ style.indicadorDB }>{ indicador }</td>
                             <td>
-                                <input name={indicador} type="radio"value="E" className="borra"
+                                <input name={indicador} type="radio"value="E" 
                                 onChange={ (e) => literalSeleccionado(indicador, e) } />
                             </td>
                             <td>
-                                <input name={indicador} type="radio"value="B" className="borra"
+                                <input name={indicador} type="radio"value="B" 
                                 onChange={ (e) => literalSeleccionado(indicador, e) } />
                             </td>
                             <td>
-                                <input name={indicador} type="radio"value="RN" className="borra"
+                                <input name={indicador} type="radio"value="RN" 
                                 onChange={ (e) => literalSeleccionado(indicador, e) } />
                             </td>
                         </tr>     

@@ -5,7 +5,7 @@ import { useForm } from '../../helpers/useForm';
 
 
 const CabeceraDatosAlumno = () => {
-    const { studentSelected } = useSelector( state => state.boleta );
+    const studentSelected = useSelector( state => state.boleta.studentSelected );
 
     const [ values, handleInputChange, reset ] = useForm(studentSelected)
     const {nombres, grado, seccion, textArea, docente} = values;

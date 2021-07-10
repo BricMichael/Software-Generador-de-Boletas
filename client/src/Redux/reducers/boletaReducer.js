@@ -6,7 +6,7 @@ const initialState = {
     listFiveStudents: [],
     studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
     setLiteralIndicadores: [],
-    grado: '',   
+    grado: '',
 }
 
 const boletaReducer = ( state = initialState, action ) => {
@@ -29,15 +29,22 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.studentSelected:
             return {
                 ...state,
-                studentSelected: { ...action.payload.estudiante, textArea:'' },
-                setLiteralIndicadores: [ ...action.payload.sendCopyToState ]
+                studentSelected: { ...action.payload, textArea:'' }    
             }
         case types.updateLiteralDocente:
             return {
                 ...state,
                 setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.descripcion === action.payload.indicador ? { ...prop, literal: action.payload.literal } : prop)
-            }          
-    
+            } 
+            
+        case types.savedBoletaTypes:
+            return {
+                ...state,
+                studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
+                setLiteralIndicadores: [ ...action.payload.sendCopyToState ],
+            }    
+        
+
         default:
             return state;
     }

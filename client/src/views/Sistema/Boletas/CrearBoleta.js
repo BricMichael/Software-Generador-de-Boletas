@@ -1,34 +1,39 @@
 import style from './crearBoleta.module.css'
 import { backgroundColorPage } from '../../../helpers/coloresBG';
+import { Link as Scroll } from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
 import materiaConIndicadores from '../../../helpers/IndicaDocenteBoleta';
 import BuscarEstudiantes from '../../../components/Crear Boleta/BuscarEstudiantes';
 import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosAlumno';
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresAreas';
 import IndicadoresEspecialista from '../../../components/Crear Boleta/IndicadoresEspecialista';
-
+import { guardarBoletaAction } from '../../../Redux/actions/boletaActions';
 
 
 const CrearBoleta = () => {
     backgroundColorPage('#012c66');
-
-    // const dispatch = useDispatch();
+  
+    const dispatch = useDispatch();
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
-    
+    const grado = useSelector( state => state.boleta.grado );
+
     const { indicadoresByUser, materias } = useSelector(state => state.indicador);
     const { materiasDocente, materiasEspecialista } = materias;
  
     const arrayOfMateriasIndicadores =  rol === 'docente' && materiaConIndicadores(materiasDocente, indicadoresByUser);
+    
+    const savedBoleta = () => {
+        dispatch( guardarBoletaAction() )    
+      
+    }
   
-
     return (
         <>
             <h1 className={ style.nooo }>Creación de boleta</h1>
-            <div className={style.firstComponents}>
+            <div className={style.firstComponents} id="hola">
                 <BuscarEstudiantes />
                 <CabeceraDatosAlumno />
             </div>
-
            
             <div className={ style.display }>
                 <h2>Indicadores</h2>
@@ -50,14 +55,20 @@ const CrearBoleta = () => {
                     </div>
                     {/* componentes de especialistas */}
                     <div>
-                    {
-                        materiasEspecialista.map( value => (
+                    {   grado !== '' &&  materiasEspecialista.map( value => (
                             <IndicadoresEspecialista area={value.materia} key={value.materia} />
-                        ))            
+                        ))                  
                     }
                     </div>
                 </div>
 
+            </div>
+
+            <div>
+               <Scroll to="hola" smooth="true" duration="1000" className={style.juepa}
+                onClick={ savedBoleta }
+               >Guardar Boleta
+               </Scroll>
             </div>
             
         </>

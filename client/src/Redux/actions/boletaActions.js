@@ -38,10 +38,7 @@ export const nextFiveStudents = ( seccion ) => async(dispatch, getState) => {
 }
 
 
-export const estudianteSelected = ( estudiante ) => ( dispatch, getState ) => {
-    const sendCopyToState = getState().indicador.indicadoresByUser;
-    dispatch({ type: types.studentSelected, payload: {estudiante, sendCopyToState} });
-}
+export const estudianteSelected = ( estudiante ) => ({ type: types.studentSelected, payload: estudiante });
 
 
 export const callsBackendViewCrearBoleta = () => async(dispatch) => {
@@ -53,12 +50,9 @@ export const callsBackendViewCrearBoleta = () => async(dispatch) => {
         const materiasDocente = data.filter( materia => materia.tipo === 'docente' );
         const materiasEspecialista = data.filter( materia => materia.tipo === 'especialista' );
 
-        dispatch({
-            type: types.materiasIndicadoresByUser,
-            payload: { indicadores, materiasDocente, materiasEspecialista }
-        }) 
+        dispatch({ type: types.materiasIndicadoresByUser, payload: { indicadores, materiasDocente, materiasEspecialista } }); 
     } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
     }     
 }
 
@@ -68,5 +62,15 @@ export const updateLiteralOfIndicador = (indicador, literal) => ({
         payload: { indicador, literal }
 })
 
+export const guardarBoletaAction = () => async( dispatch, getState ) => {
+    const sendCopyToState = getState().indicador.indicadoresByUser;
+
+    dispatch({
+        type: types.savedBoletaTypes,
+        payload: {
+            sendCopyToState,
+        }
+    })
+}
 
 //const uidUser = getState().auth.uid 

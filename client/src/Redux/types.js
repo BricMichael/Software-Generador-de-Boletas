@@ -15,6 +15,7 @@ const types = {
     nextFiveStudents: '[BOLETA] NextFiveStudents',
     studentSelected: '[BOLETA] StudentSelected',
     updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
+    savedBoletaTypes: '[BOLETA] GuardarBoleta',
 }
 
 

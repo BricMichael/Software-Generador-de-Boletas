@@ -244,6 +244,17 @@
     /* margin-right: 2rem; */
 }
 
+.juepa {
+    color: #fff;
+    font-size: 20px;
+    background: #363636;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
 @media screen and ( max-width: 1150px ) {
     .listaFiveFlex { font-size: 15px; }
     .listaEstudiantes { width: 580px; margin-left: 3rem; }
