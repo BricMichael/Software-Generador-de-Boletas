@@ -41,7 +41,7 @@ const CreaIndicador = () => {
     return (
         <div className={`${style.pag_total}`}>
             <form className={`${style.form}`} onSubmit={ handleSubmit }>
-                <textarea className={`${style.textArea}`} name="descripcion" value={ descripcion } placeholder="Crea un indicador" onChange={ handleInputChange }></textarea>
+                <textarea className={`${style.textArea}`} name="descripcion" value={ descripcion } placeholder="Escribe aquí el indicador" onChange={ handleInputChange }></textarea>
                 <div className={`${style.all_selects}`}>
                     
                         
@@ -59,6 +59,14 @@ const CreaIndicador = () => {
                         <option value="default">Cond. Especial</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
+                    </select>
+
+                    <select className={`${style.select}`} name="grado" value={ grado } onChange={ handleInputChange }>
+                            <option value="default">Momentun</option>
+                            <option value="1">1er Momentun</option>
+                            <option value="2">2do Momentun</option>
+                            <option value="3">3er Momentun</option>
+                        
                     </select>
                        
                     <select className={`${style.select}`} name="literal" value={ literal  }

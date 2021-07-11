@@ -1,10 +1,3 @@
-/* .contengoTODO {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    top: 0;
-    text-align: left;
-} */
 
 .Dashheader {
     background-color: #05264c;
@@ -88,24 +81,6 @@
     margin-left: 200px;
 }
 
-.menu_cabecera{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.8em;
-}
-
-.header_img {
-    max-width: 100%;
-    height: auto;
-}
-
-.header_title {
-    font-size: 2.1em;
-    font-weight: 700;
-    color: #2255a4;
-}
-
 .accesos{
     margin-top: 2rem;
 }
@@ -125,6 +100,7 @@
     align-items: center;
     justify-content: center;
     gap: .7rem;
+    /* color: #fff; */
 }
 
 .grupo:hover {
@@ -201,41 +177,25 @@
         padding: 18px 10px 0px 10px;;
     }
 
+    .user > p{ font-size: 1.6rem;}
+
     .header_txt {
         font-size: 0.9rem;
-    }
-
-    .header_title {
-        font-size: 1.6em;
     }
 }
 
 @media screen and ( max-width:768px) {
-    .opciones{
-        font-size: .8rem;  
-    }
-
+    .opciones{ font-size: .8rem; }
+    .user > p{ font-size: 1rem;}
 }
 
 @media screen and ( max-width:710px) {
-    .header_txt {
-        font-size: 0.7rem;
-    }
-    .header_title {
-        font-size: 1.2em;
-    }
-
-    .all_links{
-        grid-template-columns: repeat(3, 85px);
-    }
-
-    .opciones{
-        font-size: 0.6rem;  
-    }
+    .header_txt { font-size: 0.7rem; }
+    .all_links{ grid-template-columns: repeat(3, 105px); }
+    .opciones{ font-size: 0.6rem;  }
 }
 
 @media screen and ( max-width:549px) {
-    .header_txt {
-        font-size: 0.5rem;
-    }
+    .header_txt { font-size: 0.5rem; }
+   
 }

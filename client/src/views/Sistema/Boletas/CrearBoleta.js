@@ -1,4 +1,6 @@
 import style from './crearBoleta.module.css'
+import Header from '../../../components/Header/Header';
+import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
 import { Link as Scroll } from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +14,7 @@ import { guardarBoletaAction } from '../../../Redux/actions/boletaActions';
 
 const CrearBoleta = () => {
     backgroundColorPage('#012c66');
+    document.title = 'Crear Boleta';
   
     const dispatch = useDispatch();
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
@@ -26,10 +29,11 @@ const CrearBoleta = () => {
         dispatch( guardarBoletaAction() )    
       
     }
-  
+    
     return (
         <>
-            <h1 className={ style.nooo }>Creación de boleta</h1>
+            <BotonHome />
+            <Header title="Creación de Boleta" marginTop='-4.4rem' />
             <div className={style.firstComponents} id="hola">
                 <BuscarEstudiantes />
                 <CabeceraDatosAlumno />

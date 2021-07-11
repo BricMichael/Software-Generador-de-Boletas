@@ -11,6 +11,7 @@ import { usuarioLogeado } from '../../../Redux/actions/loginActions';
 
 const Dashboard = () => {
         backgroundColorPage('#EEEEEE');
+        document.title = 'Menú Principal';
         const dispatch = useDispatch();
         const { indicadoresByUser } = useSelector( state => state.indicador )
 

@@ -1,0 +1,19 @@
+.contentBtnHome {
+    margin-top: 2.3rem;
+    text-align: left;
+    margin-left: 2rem;
+    display: flex;
+}
+
+.btnHome {
+    background: #fff;
+    color: #012c66;
+    padding: 11px;
+    font-size: 21px;
+    border-radius: 6px;
+    transition: background .4s ease;
+}
+
+.btnHome:hover {
+    background: rgb(226, 221, 221);
+}

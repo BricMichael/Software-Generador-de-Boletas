@@ -61,23 +61,26 @@
 .active {
     margin: auto;
     margin-top: 0.7rem;
-    width: 40%;
+    width: 25%;
     background: #8aa9ca;
     margin-bottom: -1rem;
-    border-radius: 11px;
+    border-radius: 6px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    padding: 3px;
+    /* align-items: flex-start; */
 }
 
 .active > p {
-    font-size: 1.6rem;
-    margin-right: 1rem;
-    padding-top: 1rem;
+    font-size: 1.5rem;
+    align-self: center;
+    text-align: left;
+    padding-left: 0.3rem;
 }
 
 .active > button {
     border: none;
+    align-self: center;
     cursor: pointer;
     padding: 8px;
     border-radius: 6px;
@@ -95,37 +98,32 @@
     outline: none;
 }
 
+
 @media screen and ( max-width: 1250px ){ 
     .active > p {
         font-size: 1.2rem;
     }
     .active {
-        width: 47%;
+        width: 30%;
     }
 }
 
 @media screen and ( max-width: 980px ){
     .active > p {
-        font-size: 1.2rem;
-        margin-right: 0.2rem;
+        /* font-size: 1.1rem; */
     }
     .active {
-        width: 50%;
+        width: 33%;
     }
+}
+
+
+@media screen and ( max-width: 860px ){
+    .active > p {  font-size: 1.1rem; }
 }
 
 @media screen and ( max-width: 829px ) {
-    .active > p {
-        font-size: 1rem;
-        margin-right: 0.2rem;
-    }
-    .active {
-        width: 54%;
-    }
-
-    .active > button {
-        padding: 6px;
-        font-size: 17px;
-        margin-right: 0.3rem;
-    }
+     .active { width: 35% }
+     .active > p {  font-size: 1rem; }
 }
+

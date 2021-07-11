@@ -45,6 +45,8 @@ const BuscarEstudiantes = () => {
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
+                        <option value="B">D</option>
+                        <option value="C">E</option>
                     </select>
                 </div>
                 <input value="Buscar estudiantes" type="submit" className={style.submit} />

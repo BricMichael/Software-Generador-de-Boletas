@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 
 const InicioSesion = () => {
     backgroundColorPage('#012c66');
+    document.title = 'Iniciar Sesión';
     const dispatch = useDispatch();
     
 

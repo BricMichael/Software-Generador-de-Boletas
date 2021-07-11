@@ -1,15 +1,17 @@
 import estilo from './header.module.css';
 import clogo from '../../assets/img/colegioLogo.png';
 
-const Header = () => {
+const Header = ({ title = 'Colegio República de Venezuela', color, marginTop }) => {
+
     return (
         <>
-            <header className={ estilo.headerlog }>
+            <header className={ estilo.headerlog } style={{ marginTop }}>
                 <img src={ clogo } className={ estilo.header_imag } alt='logo de la institucion' />
-                <p className={ estilo.header__title }>Colegio Rep&uacute;blica de Venezuela</p>
+                <p className={estilo.header__title } style={{color}}>{ title }</p>
             </header>
         </>
     );
 }
 
 export default Header;
+

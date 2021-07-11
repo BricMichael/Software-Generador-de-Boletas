@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.5em 0px 2em 0px;
+    margin: 0.7em 0px 2em 0px;
 }
 
 .header_imag {
@@ -10,25 +10,16 @@
     height: auto;
 }
 
-.header__title {
-    font-size: 2.3em;
-    font-weight: 700;
+.header__title { font-size: 2.2rem; font-weight: 700; }
+
+@media screen and ( max-width:860px) { .header__title { font-size: 1.6em; } }
+
+@media screen and ( max-width:710px) {
+    .header__title { font-size: 1.2em; }
 }
 
 @media screen and (max-width: 681px) {
-    
-    .headerlog { 
-        margin: 1.4em 0px;
-    }
-
-    .header__title {
-        font-size: 2em;
-    }
+    .headerlog { margin: 1.4em 0px; }
 }
-@media screen and (max-width: 600px) {
 
-    .header__title {
-        font-size: 1.4em;
-    }
 
-}

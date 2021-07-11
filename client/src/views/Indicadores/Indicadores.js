@@ -6,12 +6,13 @@ import Header from "../../components/Header/Header";
 import CreaIndicador from './CreaIndicador'
 import ListaIndicadores from "./ListaIndicadores";
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
-
+import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
 
 
 
 const Indicadores = () => { 
     backgroundColorPage('#265aac'); 
+    document.title = 'Crear Indicador';
     const dispatch = useDispatch();
 
     const { updateIndicador } = useSelector( state => state.indicador );
@@ -21,16 +22,15 @@ const Indicadores = () => {
     
     return (
         <>
-        {/* <header className={ style.headerlog }>
-            <img src={ clogo } className={ style.header_imag } alt='logo de la institucion' />
-            <p className={ style.header__title } >Colegio Rep&uacute;blica de Venezuela</p>
-        </header> */}
-        <Header />
+
+        <BotonHome />
+        <Header title='Creación de Indicadores' marginTop='-4.4rem'/>       
         <CreaIndicador />
+        
         {
            updateIndicador.estado && 
             ( <div className={ updateIndicador.estado ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
-                <p>Editando el indicador seleccionado</p>
+                <p>Editando indicador</p>
                 <button onClick={ cancelEdicion } >Cancelar</button>
             </div>
             )

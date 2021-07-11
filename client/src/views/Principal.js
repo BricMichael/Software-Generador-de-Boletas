@@ -5,6 +5,7 @@ import { backgroundColorPage } from '../helpers/coloresBG'
 
 const Principal = () => {
     backgroundColorPage('#012c66');
+    document.write = 'Generador de Boletas';
 
     return (
         <div>
