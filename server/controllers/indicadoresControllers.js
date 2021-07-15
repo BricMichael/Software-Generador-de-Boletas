@@ -1,34 +1,28 @@
 const pool = require ('../configDB/poolConfig');
-const { response } = require('express');
 const sgMail = require('@sendgrid/mail');
 
 
 
-const guardarIndicador = async (req, res = response ) => {
+const guardarIndicador = async (req, res ) => {
     try {
+        const { indicador, literal, area, momento, condicion_especial, 
+            grado, anio, idUser } = req.body;
 
-        const { descripcion, literal, area, 
-            condicion_especial, fechaCreacion, usuario, grado} = req.body;
-        
-        await pool.query(
-            `INSERT INTO indicador( descripcion, literal, area, 
-                condicion_especial, fecha_creacion, creador_personal, grado )
-                VALUES( $1, $2, $3, $4, $5, $6, $7 )`, [descripcion, literal, area, 
-                    condicion_especial, fechaCreacion, usuario, grado] );
-
+        await pool.query(`INSERT INTO indicador (indicador, momento, area, condicion_especial, id_creador, grado, literal, fecha_creacion) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 )`, [indicador, momento, area, condicion_especial, idUser, grado, literal, anio]);
+     
         res.status(201).send('Indicador guardado exitosamente');        
     } catch (err) {
-        console.log(err.message);
+        console.log(err.message); 
     }
 }
 
 const obtenerIndicadoresPorUsuario = async(req, res) => {
     try {
-        const nombrePersonal = req.body.usuario;
+        const nombrePersonal = req.body.idUser;
         console.log(nombrePersonal)
 
-        const IndicadoresUsuario = await pool.query('SELECT * FROM indicador WHERE creador_personal = $1', [nombrePersonal]);
-        res.status(200).json(IndicadoresUsuario.rows)
+        const IndicadoresUsuario = await pool.query('SELECT * FROM indicador WHERE id_creador = $1', [nombrePersonal]);
+        res.status(200).json(IndicadoresUsuario.rows);
 
     } catch (err) {
         console.log(err.message);
@@ -48,12 +42,12 @@ const allIndicadores = async(req, res) => {
 const updateIndicador = async (req, res) => {
     try {
         const { id } = req.params;
-        const { descripcion, literal, area, condicion_especial, grado } = req.body;
+        const { indicador, literal, area, momento, condicion_especial, grado } = req.body;
         
         await pool.query(
-            `UPDATE indicador SET descripcion = $1, literal = $2, area = $3, condicion_especial = $4,
-            grado = $5 WHERE id_indicador = $6`, [descripcion, literal, area, 
-                    condicion_especial, grado, id] );
+            `UPDATE indicador SET indicador = $1, literal = $2, area = $3, condicion_especial = $4,
+            grado = $5, momento = $6 WHERE id = $7`, [indicador, literal, area, condicion_especial,  
+                 grado, momento, id] );
         
             res.status(201).send('Los datos han sido actualizados');
 
@@ -88,7 +82,7 @@ const comentariosEmail = (req, res) => {
 const eliminarIndicador = async(req, res) => {
     try {
         const { id } = req.params;
-        await pool.query('DELETE FROM indicador WHERE id_indicador = $1', [id]);
+        await pool.query('DELETE FROM indicador WHERE id = $1', [id]);
         res.status(201).send('Se ha eliminado exitosamente');
         
     } catch (err) {

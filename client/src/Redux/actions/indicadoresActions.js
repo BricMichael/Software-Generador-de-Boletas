@@ -7,8 +7,8 @@ import Swal from 'sweetalert2';
 
 export const allIndicadorOfUser = () => async( dispatch ) => {
     try {
-        const { nombre } = JSON.parse( localStorage.getItem('userActive') );
-        let { data } = await api.indicadoresUserActivo({ usuario: nombre });
+        const { id } = JSON.parse( localStorage.getItem('userActive') );
+        let { data } = await api.indicadoresUserActivo({ idUser: id });
         dispatch({ type: types.indicadoresByUser, payload: data });
         
     } catch (err) { console.log(err.message)  }

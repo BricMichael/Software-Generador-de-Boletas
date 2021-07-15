@@ -13,9 +13,9 @@ const CreaIndicador = () => {
     const dispatch = useDispatch();
 
     const [ values, handleInputChange, reset ] = useForm( dataIndicador );
-    const { descripcion, literal, area, condicion_especial, grado } = values;
+    const { indicador, literal, area, condicion_especial, grado, momento } = values;
 
-    const idActive = useRef( dataIndicador.id_indicador );
+    const idActive = useRef( dataIndicador.id );
     const rolUser = useRef();
 
     useEffect(() => {
@@ -24,9 +24,9 @@ const CreaIndicador = () => {
     }, [])
 
     useEffect(() => {
-        if ( dataIndicador.id_indicador !== idActive.current ) {
+        if ( dataIndicador.id !== idActive.current ) {
             reset( dataIndicador );
-            idActive.current = dataIndicador.id_indicador
+            idActive.current = dataIndicador.id
         }
     }, [dataIndicador, reset])
 
@@ -41,7 +41,7 @@ const CreaIndicador = () => {
     return (
         <div className={`${style.pag_total}`}>
             <form className={`${style.form}`} onSubmit={ handleSubmit }>
-                <textarea className={`${style.textArea}`} name="descripcion" value={ descripcion } placeholder="Escribe aquí el indicador" onChange={ handleInputChange }></textarea>
+                <textarea className={`${style.textArea}`} name="indicador" value={ indicador } placeholder="Escribe aquí el indicador" onChange={ handleInputChange }></textarea>
                 <div className={`${style.all_selects}`}>
                     
                         
@@ -61,11 +61,11 @@ const CreaIndicador = () => {
                         <option value="No">No</option>
                     </select>
 
-                    <select className={`${style.select}`} name="grado" value={ grado } onChange={ handleInputChange }>
-                            <option value="default">Momentun</option>
-                            <option value="1">1er Momentun</option>
-                            <option value="2">2do Momentun</option>
-                            <option value="3">3er Momentun</option>
+                    <select className={`${style.select}`} name="momento" value={ momento } onChange={ handleInputChange }>
+                            <option value="default">Momento</option>
+                            <option value="Momento 1">Momento 1</option>
+                            <option value="Momento 2">Momento 2</option>
+                            <option value="Momento 3">Momento 3</option>
                         
                     </select>
                        

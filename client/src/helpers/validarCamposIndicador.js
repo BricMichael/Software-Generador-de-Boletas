@@ -9,12 +9,12 @@ import { actualizarIndicadorBD, limpiarFormAlActualizar, allIndicadorOfUser } fr
 // El tercer parametro de la funcion puede ser un id, o una funcion. Esto es así para trabajar 
 // la logica dependiendo del <tipo> de accion.. <Type Save, se recibe una funcion>, <de type update se recibe un Id>
 export const validar_EnviarData = (values, type, idOrFunction) => async ( dispatch ) => {
-    const { descripcion, literal, area, condicion_especial, grado } = values;
+    const { indicador, literal, area, condicion_especial, grado } = values;
 
-    values.usuario = JSON.parse(localStorage.getItem('userActive')).nombre;
-    values.fechaCreacion = new Date().toLocaleDateString();
+    values.idUser = JSON.parse(localStorage.getItem('userActive')).id;
+    values.anio = new Date().getFullYear();
 
-    if ( descripcion.length < 35 ) return Swal.fire( '¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning' );
+    if ( indicador.length < 35 ) return Swal.fire( '¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning' );
     if ( area === '' || area === 'default' ) return Swal.fire( '¡Vaya!', 'Asegurate de haber seleccionado un área*', 'warning' );
     if ( condicion_especial === '' || condicion_especial === 'default' ) return Swal.fire( '¡Vaya!', 'Asegurate de haber seleccionado una opción*', 'warning' );
      
@@ -27,8 +27,7 @@ export const validar_EnviarData = (values, type, idOrFunction) => async ( dispat
 
     if ( type === 'update' ) {
         const id_indicador = idOrFunction;
-        dispatch( actualizarIndicadorBD( id_indicador, 
-        { id_indicador, ...values } )); //dataForUpdate  
+        dispatch( actualizarIndicadorBD( id_indicador, { id_indicador, ...values } )); //dataForUpdate  
 
         dispatch( limpiarFormAlActualizar() ); 
         return true;

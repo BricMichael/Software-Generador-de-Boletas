@@ -4,7 +4,7 @@ const initialState = {
     indicadoresByUser: [],
     updateIndicador: {
         estado: false,
-        dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''},
+        dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
     },
     materias: {
         materiasDocente: [],
@@ -42,7 +42,7 @@ const indicadorReducer = ( state = initialState, action ) => {
             return { 
                 ...state,
                 indicadoresByUser: state.indicadoresByUser.map( 
-                    (newValue) => newValue.id_indicador === action.payload.id 
+                    (newValue) => newValue.id === action.payload.id 
                         ? action.payload.refrescarData  
                         : newValue
                     )
@@ -53,7 +53,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''},
+                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
                 }
             }    
 
@@ -69,7 +69,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 indicadoresByUser: [],
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { descripcion: '', literal: '', area: '', condicion_especial: '', grado: ''}
+                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''}
                 },
                 materias: {
                     materiasDocente: [],

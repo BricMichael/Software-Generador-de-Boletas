@@ -43,8 +43,8 @@ export const estudianteSelected = ( estudiante ) => ({ type: types.studentSelect
 
 export const callsBackendViewCrearBoleta = () => async(dispatch) => {
     try {
-        const { nombre } = JSON.parse( localStorage.getItem('userActive') );
-        const { data: indicadores } = await api.indicadoresUserActivo({ usuario: nombre });
+        const { id } = JSON.parse( localStorage.getItem('userActive') );
+        const { data: indicadores } = await api.indicadoresUserActivo({ idUser: id });
         const { data } = await api.materiasExistentes();
         
         const materiasDocente = data.filter( materia => materia.tipo === 'docente' );

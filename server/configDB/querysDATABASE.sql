@@ -36,13 +36,17 @@ CREATE TABLE estudiante (
 );
 
 CREATE TABLE indicador (
-    id_indicador BIGSERIAL NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(1050) NOT NULL,
-    literal VARCHAR(10) NOT NULL,
+    id SERIAL NOT NULL PRIMARY KEY,
+    indicador VARCHAR(1200) NOT NULL,
+    momento VARCHAR(17) NOT NULL,,
     area VARCHAR(50) NOT NULL,
-    condicion_especial VARCHAR(30) NULL,
-    fecha_creacion DATE NOT NULL
+    condicion_especial VARCHAR(10),
+    id_creador VARCHAR(6) NOT NULL,
+    grado VARCHAR(9),
+    literal VARCHAR(10), 
+    fecha_creacion VARCHAR(8) NOT NULL,
 );
+
 
 CREATE TABLE boleta (
     id_boleta BIGSERIAL NOT NULL PRIMARY KEY,
@@ -60,3 +64,4 @@ CREATE TABLE materias (
 
 
 
+select jsonb_pretty(data::jsonb) from jsoon where data ->> 'edad' = '15' and data ->> 'ciudad' = 'trujillito';   -----.
