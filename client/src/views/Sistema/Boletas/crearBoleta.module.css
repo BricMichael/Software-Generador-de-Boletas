@@ -176,23 +176,22 @@
     margin-bottom: 0.6rem;
 }
 
-.table > thead {
+.tableThead{
     font-size: 18px;
-    border-radius: 6px;
 }
 
-.table > thead > tr, th{
+.tableTr, .th{
    padding: 12px;
    background-color: #012c66;
    color: #fff;
 }
 
-.table > th, td {
+.table > .th, .borderRadius {
     border: none;
     padding: 15px;
 }
 
-.table > tbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+.table > .tbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
     background-color: #ddd;
 }
 
@@ -209,7 +208,7 @@
     transition: background 0.3s ease;
 }
 
-.listaFiveFlex > td:nth-child(2){
+.listaFiveFlex > .borderRadius:nth-child(2){
     text-align: left;
     padding-left: 1rem;
 }
@@ -233,12 +232,7 @@
 
 .listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #333; }
 
-/* .derechita {
-    display: flex;
-} */
-.separar {
-    /* margin-right: 2rem; */
-}
+
 
 .juepa {
     color: #fff;

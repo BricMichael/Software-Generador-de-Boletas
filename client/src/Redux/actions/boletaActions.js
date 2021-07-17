@@ -41,16 +41,14 @@ export const nextFiveStudents = ( seccion ) => async(dispatch, getState) => {
 export const estudianteSelected = ( estudiante ) => ({ type: types.studentSelected, payload: estudiante });
 
 
-export const callsBackendViewCrearBoleta = () => async(dispatch) => {
+export const materiasExistentes = () => async(dispatch) => {
     try {
-        const { id } = JSON.parse( localStorage.getItem('userActive') );
-        const { data: indicadores } = await api.indicadoresUserActivo({ idUser: id });
-        const { data } = await api.materiasExistentes();
+        const { data } = await api.apiMateriasExistentes();
         
         const materiasDocente = data.filter( materia => materia.tipo === 'docente' );
         const materiasEspecialista = data.filter( materia => materia.tipo === 'especialista' );
 
-        dispatch({ type: types.materiasIndicadoresByUser, payload: { indicadores, materiasDocente, materiasEspecialista } }); 
+        dispatch({ type: types.materiasTypes, payload: { materiasDocente, materiasEspecialista } }); 
     } catch (err) {
         console.log(err.message);
     }     

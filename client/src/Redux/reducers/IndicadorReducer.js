@@ -2,6 +2,7 @@ import types from "../types";
 
 const initialState = {
     indicadoresByUser: [],
+    momentoAnio: { momento: '', anio: '' },
     updateIndicador: {
         estado: false,
         dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
@@ -14,10 +15,19 @@ const initialState = {
 
 const indicadorReducer = ( state = initialState, action ) => {
     switch (action.type) {
-        case types.materiasIndicadoresByUser:
+        case types.momentoAndYear:
             return {
                 ...state,
-                indicadoresByUser: [...action.payload.indicadores],
+                momentoAnio: { 
+                    momento: action.payload.momento, 
+                    anio: action.payload.year 
+                },
+                indicadoresByUser: [ ...action.payload.data ]
+            }
+
+        case types.materiasTypes:
+            return {
+                ...state,
                 materias: {
                     materiasDocente: [...action.payload.materiasDocente],
                     materiasEspecialista: [...action.payload.materiasEspecialista],
@@ -60,20 +70,21 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.deleteAnIndicador:
             return {
                 ...state,
-                indicadoresByUser: state.indicadoresByUser.filter( id =>  id.id_indicador !== action.payload)
+                indicadoresByUser: state.indicadoresByUser.filter( idIteration =>  idIteration.id !== action.payload)
             }; 
 
         case types.limpiezaLogout:      
             return {
                 ...state,
                 indicadoresByUser: [],
+                momentoAnio: { momento: '', anio:'' },
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''}
+                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
                 },
                 materias: {
                     materiasDocente: [],
-                    materiasEspecialista: []
+                    materiasEspecialista: [],
                 }
             };    
     

@@ -42,7 +42,7 @@ export const links = [
         pStyle: styles.opciones
     },
     { 
-        to: '/menu-principal',  
+        to: '/menu-principal/registros',  
         className: `${styles.cl_naranja} ${styles.grupo}`, 
         styleIcon: `${styles.bg} fas fa-users`,
         p: 'Usuarios', 

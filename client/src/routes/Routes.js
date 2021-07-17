@@ -7,6 +7,7 @@ import Dashboard from '../views/Sistema/Dashboard/Dashboard';
 import Indicadores from '../views/Indicadores/Indicadores';
 import PublicRoute from './PublicRoute';
 import CrearBoleta from '../views/Sistema/Boletas/CrearBoleta';
+import Usuarios from '../views/Sistema/Usuarios/Usuarios';
 
 
 
@@ -18,8 +19,9 @@ const Routes = () => {
     return (
         <Router>
             <Switch>
-                <PrivateRoute exact path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} 
-                   component={ CrearBoleta }   /> 
+            <PrivateRoute exact path="/menu-principal/registros" isAuthenticated={isAuthenticated}  component={ Usuarios} /> 
+
+                <PrivateRoute exact path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} component={ CrearBoleta } /> 
 
                 <PrivateRoute exact  path="/menu-principal" isAuthenticated={isAuthenticated}  
                     component={ Dashboard } />

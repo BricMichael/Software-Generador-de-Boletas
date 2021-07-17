@@ -60,15 +60,13 @@
 
 .active {
     margin: auto;
-    margin-top: 0.7rem;
+    margin-top: 1.4rem;
     width: 25%;
-    background: #8aa9ca;
-    margin-bottom: -1rem;
+    background: #447bc4;
     border-radius: 6px;
     display: flex;
     justify-content: space-between;
     padding: 3px;
-    /* align-items: flex-start; */
 }
 
 .active > p {
@@ -76,6 +74,8 @@
     align-self: center;
     text-align: left;
     padding-left: 0.3rem;
+    color: #dde3eb;
+    font-weight: 700;
 }
 
 .active > button {
@@ -86,12 +86,12 @@
     border-radius: 6px;
     font-size: 18px;
     color: #fff;
-    background-color: #dc3545;
-    transition: background-color .3s ease;
+    background: #dc3545;
+    transition: background .3s ease;
 }
 
 .active > button:hover {
-    background-color: #ac2c39;
+    background: #ac2c39;
 }
 
 .active > button:focus {
@@ -124,6 +124,6 @@
 
 @media screen and ( max-width: 829px ) {
      .active { width: 35% }
-     .active > p {  font-size: 1rem; }
+     .active > p {  font-size: 1rem; font-weight: 100;}
 }
 

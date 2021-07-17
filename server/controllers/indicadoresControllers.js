@@ -18,11 +18,11 @@ const guardarIndicador = async (req, res ) => {
 
 const obtenerIndicadoresPorUsuario = async(req, res) => {
     try {
-        const nombrePersonal = req.body.idUser;
-        console.log(nombrePersonal)
+        const { year, momento, id } = req.body;
 
-        const IndicadoresUsuario = await pool.query('SELECT * FROM indicador WHERE id_creador = $1', [nombrePersonal]);
-        res.status(200).json(IndicadoresUsuario.rows);
+        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, year]);
+
+        res.status(200).json(indicadoresUsuario.rows);
 
     } catch (err) {
         console.log(err.message);

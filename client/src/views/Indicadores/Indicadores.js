@@ -1,3 +1,4 @@
+
 import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
@@ -11,12 +12,13 @@ import OptionsSeeIndicadores from "../../components/Options&Links/OptionsSeeIndi
 
 
 
+
 const Indicadores = () => { 
-    backgroundColorPage('#265aac'); 
+    backgroundColorPage('#012c66'); 
     document.title = 'Crear Indicador';
     const dispatch = useDispatch();
 
-    const { updateIndicador } = useSelector( state => state.indicador );
+    const  stateUpdateIndicador  = useSelector( state => state.indicador.updateIndicador.estado );
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
     
     const cancelEdicion = () => dispatch( limpiarFormAlActualizar() );
@@ -25,12 +27,12 @@ const Indicadores = () => {
         <>
 
         <BotonHome />
-        <Header title='Creación de Indicadores' marginTop='-4.4rem'/>       
+        <Header title='Creación de Indicadores' marginTop='-4.4rem' />       
         <CreaIndicador />
         
         {
-           updateIndicador.estado && 
-            ( <div className={ updateIndicador.estado ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
+           stateUpdateIndicador  && 
+            ( <div className={ stateUpdateIndicador ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
                 <p>Editando indicador</p>
                 <button onClick={ cancelEdicion } >Cancelar</button>
             </div>

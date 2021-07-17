@@ -1,0 +1,55 @@
+.parrafInformative {
+    font-size: 18px;
+    margin: 9px 0px;
+    margin-top: 2rem;
+}
+
+.optionsFormCont {
+    background: #eee;
+    width: 450px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.optionsFormCont > input {
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background: #447bc4;
+    color: #eee;
+    padding-left: 7px;
+    width: 150px;
+}
+
+.optionsFormCont > input::placeholder {
+
+    color: #eee;
+}
+
+.optionsForm_Select {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 145px;
+    background: #447bc4;
+    color: #eee;
+}
+
+
+.optionsFormCont > button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 19px;
+    width: 100px;
+    background: #447bc4;
+    color: #eee;
+    transition: background .3s ease;
+}
+
+.optionsFormCont > button:hover { background: #356db6; }
+.optionsFormCont > button:focus { outline: none; }

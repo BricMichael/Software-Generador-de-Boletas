@@ -20,15 +20,15 @@ const ListaEstudiantes = ({ num = 1, seccion }) => {
         <div className={style.listaEstudiantes}>
             <h3>Lista de estudiantes</h3>
             <table className={ style.table}>  
-                <thead>
+                <thead className={ style.tableThead} >
                     <tr className={ style.tableTr}>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Grado</th>
-                        <th>Secci&oacute;n</th>
+                        <th className={ style.th } >#</th>
+                        <th className={ style.th } >Nombre</th>
+                        <th className={ style.th } >Grado</th>
+                        <th className={ style.th } >Secci&oacute;n</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={ style.tbody }>
                    {
                        listFiveStudents.map( alumno => (
                         <tr className={`${style.listaFiveFlex} animate__animated animate__fadeIn`} 

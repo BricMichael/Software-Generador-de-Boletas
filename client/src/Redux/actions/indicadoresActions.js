@@ -3,12 +3,17 @@ import types from '../types';
 import Swal from 'sweetalert2';
 
 
+export const filtroBusqueda = ( year, momento ) => async( dispatch ) => {
+    const { id } = JSON.parse( localStorage.getItem('userActive') );
+    let { data } = await api.indicadoresUserActivo({ year, momento, id });
+    dispatch({ type: types.momentoAndYear, payload: { year, momento, data } });
+}
 
-
-export const allIndicadorOfUser = () => async( dispatch ) => {
+export const allIndicadorOfUser = () => async( dispatch, getState ) => {
     try {
+        const { momento, anio:year } = getState().indicador.momentoAnio;
         const { id } = JSON.parse( localStorage.getItem('userActive') );
-        let { data } = await api.indicadoresUserActivo({ idUser: id });
+        let { data } = await api.indicadoresUserActivo( { year, momento, id } );
         dispatch({ type: types.indicadoresByUser, payload: data });
         
     } catch (err) { console.log(err.message)  }
@@ -19,10 +24,7 @@ export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) 
     await api.updateIndicadorActivo( id, dataForUpdate );
     dispatch( refreshData( id, dataForUpdate ) );
 
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Tus modificaciones han sido realizadas',
+    Swal.fire({ position: 'top-end', icon: 'success', title: 'Tus modificaciones han sido realizadas',
         showConfirmButton: false,
         timer: 1300
       })

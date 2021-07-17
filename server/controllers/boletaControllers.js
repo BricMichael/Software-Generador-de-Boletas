@@ -40,7 +40,7 @@ const indicadorEspecialistaByArea = async (req, res) => {
      try {
           const { grado, area } = req.body;
 
-          const respBD = await pool.query("SELECT descripcion, literal FROM indicador WHERE grado = $1 and literal != '' and area = $2", [grado, area]);
+          const respBD = await pool.query("SELECT indicador, literal FROM indicador WHERE grado = $1 and literal != '' and area = $2", [grado, area]);
 
           res.json(respBD.rows);
      } catch (err) {
