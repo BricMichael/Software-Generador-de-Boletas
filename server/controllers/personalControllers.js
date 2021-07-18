@@ -1,84 +1,68 @@
 const pool = require('../configDB/poolConfig');
 
 
-const mostrarRegistros = async (req, res) => {
-    try {
-        const resDB = await pool.query('SELECT * FROM personal')
-        res.json(resDB.rows)
-    } catch (err) {
-        console.log(err.message);
-    }
-}
+
 
 const validarUsuario = async(req, res) => {
     try {
-        const {email, password } = req.body;
-        const resDB = await pool.query('SELECT * FROM personal WHERE (email = $1) and (claveuser = $2)', [email, password]);
-        const response = resDB.rows[0];
+        const { email, password } = req.body;
+        const resDB = await pool.query('SELECT  id, nombre, email, rol, area_personal  FROM personal WHERE (email = $1) and (claveuser = $2)', [email, password]);
         
         if( !response ) res.json('undefined');
-        if( response) {
-            delete response.claveuser;
-            delete response.fecha_reg;
-            delete response.cedula;
-            res.json(response);
-        } 
+        if( response) res.json( resDB.rows[0] ); 
 
     } catch (err) {
         console.log(err.message);
     }
 }
 
-const obtenerRegistroById = async (req, res) => {
+
+const updatePersonal = async(req, res) => {
     try {
         const { id } = req.params;
-        const resDB = await pool.query('SELECT * FROM personal WHERE id = $1',[id]);
-        res.json(resDB.rows[0]);
-    } catch (err) {
-        console.log(err.message);
-    }
+        const { nombre, area, cedula, email, rol }  = req.body;
 
+        await pool.query(`UPDATE personal set nombre = $1, email = $2, rol = $3, cedula = $4, area_personal = $5 WHERE id = $6`, [nombre, email, rol, cedula, area, id ]);
+
+        res.send('User actualizado');
+    } catch (err) {
+        console.log(err);
+    }
 }
 
-const updateRegistro = async (req, res) => {
+
+const seePasswordUser = async(req, res) => {
     try {
         const { id } = req.params;
-        const resDB = await pool.query('UPDATE personal SET campo = $1, campo = $2 WHERE id = $3', ['data nueva del usuario'])
-        res.send('Tu registro ha sido actualizado con exito')
 
+        const respBD = await pool.query(`SELECT claveuser FROM personal WHERE id = $1`, [ id ]);
+
+        res.json(respBD.rows[0]);
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
-const deleteRegistro = async (req, res) => {
+const updatePassword = async(req, res) => {
     try {
         const { id } = req.params;
-        await pool.query('DELETE FROM personal WHERE id = $1', [id]);
-        res.send('Tu registro ha sido eliminado')
+        const { password } = req.body;
+
+        await pool.query(`UPDATE personal set claveuser = $1 WHERE id = $2`, [ password, id ]);
+
+        res.send('Password updated');
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
-const registrarUsuario = async (req, res) => {
-    try {   
-        const { nombre, email, rol, cedula, area_personal, password, estado, fecha_reg } = req.body
-        await pool.query('INSERT INTO personal(nombre, email, rol, cedula, area_personal, claveuser, estado, fecha_reg) VALUES($1, $2, $3, $4, $5, $6, $7, $8)', [ nombre, email, rol, cedula, area_personal, password, estado, fecha_reg]);
-        res.send('Usuario registado con exito!!!')
 
-    } catch (err) {
-        console.log(err.message);
-    }
-} 
 
 
 
 module.exports = {
-    mostrarRegistros,
-    obtenerRegistroById,
-    updateRegistro,
-    deleteRegistro,
-    registrarUsuario,
-    validarUsuario
+    validarUsuario,
+    updatePersonal,
+    updatePassword,
+    seePasswordUser
 }

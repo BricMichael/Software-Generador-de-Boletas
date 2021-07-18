@@ -8,7 +8,6 @@ CREATE TABLE personal (
     cedula VARCHAR(14) NOT NULL;
     area_personal VARCHAR(50) NOT NULL,
     claveuser VARCHAR(100) NOT NULL,
-    estado VARCHAR(10),
     fecha_reg DATE NOT NULL
 );
 

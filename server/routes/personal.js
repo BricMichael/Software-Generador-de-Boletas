@@ -1,16 +1,17 @@
 const { Router } = require('express');
 const router = Router();
 
-const { mostrarRegistros, obtenerRegistroById, updateRegistro, 
-deleteRegistro, registrarUsuario, validarUsuario} = require('../controllers/personalControllers');
+const { validarUsuario , updatePersonal, updatePassword , seePasswordUser} = require('../controllers/personalControllers');
 
 
-router.get('/personal', mostrarRegistros);
+router.get('/personal/:id', seePasswordUser);
 router.post('/personalValidar', validarUsuario);
-router.post('/personal', registrarUsuario);
-router.get('/personal/:id', obtenerRegistroById);
-router.put('/personal/:id', updateRegistro);
-router.delete('/personal/:id', deleteRegistro);
+router.put('/personal/:id', updatePersonal);
+router.put('/personalPassword/:id', updatePassword);
+
+
+
+
 
 
 

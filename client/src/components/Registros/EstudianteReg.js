@@ -8,7 +8,7 @@ import { gradoStudent, seccionStudent } from '../../helpers/arraysOptionsForm'
 const EstudianteReg = () => {
     const initialState = useSelector( state => state.registros.formStudent )
     const [ values, handleInputChange, reset ] = useForm( initialState );
-    const { nombre, cedulaE, genero, grado, seccion } = values;
+    const { nombres, cedulaE, genero, grado, seccion } = values;
     
     const idActive = useRef( initialState.id )
 
@@ -29,7 +29,7 @@ const EstudianteReg = () => {
                     
             <input type="text" className={style.registerInputs} 
             autoComplete="off" placeholder="Nombre Completo" 
-            name="nombre" value={ nombre } onChange={ handleInputChange }
+            name="nombres" value={ nombres } onChange={ handleInputChange }
              />
 
             <input type="text" className={style.registerInputs} 
