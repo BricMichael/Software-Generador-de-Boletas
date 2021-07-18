@@ -1,17 +1,29 @@
+.registros {
+    /* background: rgb(95, 88, 88); */
+    display: flex; 
+    margin-top: -2rem; 
+    width: 740px;
+    align-items: flex-start;
+}
+
+
+
+/*Estilos de los dos registros */
 .estudianteRegForm {
     background: #fff;
     width: 290px;
     box-shadow: 0px 3px #363636;
     border-radius: 2px;
-    margin: auto;
+    margin: 0px 3rem;
     padding: 18px;
-    margin-top: 5rem;
+    margin-top: 3rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.titleRegisters {color: #012c66;
-    font-size: 26px;
+.titleRegisters {color: #356db6;
+    font-size: 24px;
     margin-bottom: 2rem;
+    font-weight: 400;
 }
 
 .registerInputs {
@@ -25,14 +37,23 @@
     transition: border-bottom .5s ease;
 }
 
+.optionsRegister { 
+    color: #363636;
+    border: none;
+    border-bottom: 2px solid #d8d8d8;
+    font-size: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+ }
+
 .registerInputs:focus {
     outline: none;
-    border-bottom: 2px solid #012c66;
+    border-bottom: 2px solid #356db6;
 }
 
 .registerbuton {
     width: 100%;
-    background: #012c66;
+    background: #356db6;
     border: none;
     border-radius: 4px;
     padding: 8px;
@@ -48,5 +69,100 @@
 }
 
 .registerbuton:hover {
-    background: #12417e;
+    background: #3877c9;
+}
+
+
+/* estilos de las tablas */
+
+.titleH2 {
+    text-align: left;
+    margin-left: 3rem;
+    margin-top: 3rem;
+}
+
+.registersTable {
+    width: 800px;
+    margin: 0.5rem 0.8rem 1rem 3rem;
+    border-collapse: collapse; 
+}
+
+.registersTableThead {
+    background: #447bc4;
+    color: #021e42;
+}
+
+.registersTableTr > .registersTh  {
+    padding: 10px 3px;
+    font-size: 16px;
+}
+
+
+.registersTbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+    background-color: #ddd;
+}
+
+
+.indIndividual > .padding:nth-child(1){  text-align: left; }
+
+.registerTrBody {
+    color: #012c66;
+    background: rgb(179, 172, 172);
+}
+
+.registerTrBody > .childrenBody {
+    padding: 16px 0px;
+}
+
+.childrenBody {
+    font-size: 14px;
+    font-weight: 200;
+}
+
+
+.botones {
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    transition: background .3s ease;
+    border-radius: 6px;
+    margin-top: 0.1rem;
+}
+
+.edit { background: #447bc4; margin-right: 0.4rem; margin-left: 0.4rem;}
+
+.delete { background: rgb(158, 25, 52); }
+
+/*Segundo contenedor*/
+
+.secondContent {
+    /* background: red; */
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+@media screen and ( max-width: 1310px) {
+    .registersTable {
+        margin: 0.5rem 0.8rem 1rem 0rem;
+    }
+    .titleH2 { margin-left: 0rem; }
+}
+
+@media screen and ( max-width: 1200px) {
+    .secondContent {flex-direction: column;} 
+    .registersTable {
+        margin: 0.5rem 0.8rem 1rem 3rem;
+    }
+    .titleH2 { margin-left: 3rem; }
+    
+}
+
+@media screen and ( max-width: 860px) {
+    .registersTable {
+        width: 700px;
+    }
 }

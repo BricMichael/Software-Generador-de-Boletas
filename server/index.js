@@ -8,6 +8,7 @@ const app = express();
 const personalRoutes = require('./routes/personal')
 const indicadoresRoutes = require('./routes/indicadores') 
 const routesCrearBoleta = require('./routes/boleta') 
+const routesRegistros = require('./routes/registros')
 
 //middlewares
 app.use(express.json());  // => Esto hace que si le envian al servidor un datoe formato Json, este sea capaz de entenderlo y convertirlo en un objecto de javascript.
@@ -18,6 +19,7 @@ app.use(cors())
 app.use('/api', personalRoutes); 
 app.use('/api', indicadoresRoutes);
 app.use('/api', routesCrearBoleta);
+app.use('/api', routesRegistros);
 
 
 

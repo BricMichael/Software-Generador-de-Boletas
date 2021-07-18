@@ -1,30 +1,42 @@
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useForm } from '../../helpers/useForm';
+
+
+
 
 const PersonalReg = () => {
+    const initialState = useSelector( state => state.registros.formUsuario )
     const { materiasEspecialista, materiasDocente } = useSelector( state => state.indicador.materias );
+
+    const [ values, handleInputChange, reset ] = useForm( initialState );
+    const { nombre, area, cedula, email, password, rol } = values;
+
     const allMaterias = [ ...materiasDocente, ...materiasEspecialista ];
 
-
-
+    const handleSubmit = () => {}
+ 
     return (
-        <form className={style.estudianteRegForm} onSubmit="">
+        <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
             <h3 className={style.titleRegisters}>Registro de usuario</h3>
                     
             <input type="text" className={style.registerInputs} 
-            autoComplete="off" placeholder="Nombre Completo" name="name"
+            autoComplete="off" placeholder="Nombre Completo" name="nombre"
+            onChange={ handleInputChange } value={nombre}
              />
 
             <input type="text" className={ style.registerInputs } 
-            placeholder="Cédula" name="cedula"  autoComplete='off' />
+            placeholder="Cédula" name="cedula"  autoComplete='off' onChange={handleInputChange}
+            value={cedula}
+            />
 
-            <input type="email" className={ style.registerInputs } required autoComplete='off'
-            placeholder="Correo eléctronico" name="email" />
+            <input type="email" className={ style.registerInputs } required autoComplete='off' value={email}
+            placeholder="Correo eléctronico" name="email" onChange={handleInputChange} />
 
-            <input type="password" className={ style.registerInputs } required autoComplete='off'
-                placeholder="Contraseña *" name="password" />
+            <input type="password" className={ style.registerInputs } required autoComplete='off'value={password}
+                placeholder="Contraseña *" name="password" onChange={handleInputChange} />
 
-            <select className={ style.optionsRegister }>
+            <select className={ style.optionsRegister } onChange={handleInputChange} name='area' value={area}>
                 <option value="default" >&Aacute;rea</option>
                 {
                     allMaterias.map( value => (
@@ -35,8 +47,8 @@ const PersonalReg = () => {
                 }  
             </select>
 
-            <select className={ style.optionsRegister } >
-                <option>Rol</option>
+            <select className={ style.optionsRegister } onChange={handleInputChange} name='rol' value={rol}>
+                <option value="default">Rol</option>
                 <option value="especialista">Especialista</option>
                 <option value="docente">Docente</option>  
                 <option value="coordinador">Coordinador</option>

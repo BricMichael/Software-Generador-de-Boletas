@@ -8,7 +8,7 @@ import CreaIndicador from './CreaIndicador'
 import ListaIndicadores from "./ListaIndicadores";
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
 import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
-import OptionsSeeIndicadores from "../../components/Options&Links/OptionsSeeIndicadores";
+import Options from "../../components/Options&Links/Options";
 
 
 
@@ -39,7 +39,7 @@ const Indicadores = () => {
             )
 
         }
-        <OptionsSeeIndicadores />
+        <Options />
         <ListaIndicadores />
         { rol === 'coordinador' && <ComentariosEmail /> }
 

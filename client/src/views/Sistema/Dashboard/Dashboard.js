@@ -1,5 +1,5 @@
 import styles from './dashboard.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { materiasExistentes } from '../../../Redux/actions/boletaActions';
 import { Link} from 'react-router-dom';
 import DashBody from '../../../components/DashBody/DashBody';
@@ -15,8 +15,9 @@ const Dashboard = () => {
         document.title = 'Menú Principal';
         const dispatch = useDispatch();
 
-        dispatch( materiasExistentes() );
-        
+        const handle = useSelector( state => state.indicador.materias.materiasDocente )
+        handle.length === 0 && dispatch( materiasExistentes() );
+          
         const logoutUser = () =>{
             dispatch( usuarioLogeado(false) );
             localStorage.removeItem('userActive'); 

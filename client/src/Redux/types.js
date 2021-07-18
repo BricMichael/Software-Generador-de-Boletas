@@ -17,6 +17,10 @@ const types = {
     studentSelected: '[BOLETA] StudentSelected',
     updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
+
+
+    registrarEstudiante: '[REGISTRO] ESTUDIANTE',
+    registrarUsuario: '[REGISTRO] Usuario',
 }
 
 
