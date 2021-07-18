@@ -25,7 +25,7 @@ export const Options = ({ cabecera = 'Mostrar indicadores por año / momento', b
                 <input type='text' name={ condition ? 'fecha' : 'cedula'}  autoComplete='off'
                 value={ condition ? fecha : cedula} onChange={ handleInputChange } 
                 placeholder={ condition === false && 'Ingrese la cédula del estudiante' }   />
-                
+
                 {
                     condition &&
                     <select name='momento' value={momento} onChange={handleInputChange} className={style.optionsForm_Select}>

@@ -2,14 +2,14 @@ const pool = require('../configDB/poolConfig');
 
 
 
-
+// 
 const validarUsuario = async(req, res) => {
     try {
         const { email, password } = req.body;
         const resDB = await pool.query('SELECT  id, nombre, email, rol, area_personal  FROM personal WHERE (email = $1) and (claveuser = $2)', [email, password]);
-        
-        if( !response ) res.json('undefined');
-        if( response) res.json( resDB.rows[0] ); 
+
+        if( resDB.rowCount === 0) res.json('undefined');
+        if( resDB.rowCount === 1 ) res.json( resDB.rows[0] ); 
 
     } catch (err) {
         console.log(err.message);

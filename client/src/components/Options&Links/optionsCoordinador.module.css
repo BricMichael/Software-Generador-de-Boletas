@@ -1,0 +1,66 @@
+.coordinador {
+    font-size: 19px;
+    margin-left: 2.4rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+
+.optionsCoordinador {
+    background: #fff;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 3px;
+    margin-left: 2rem;
+    margin-top: 0.6rem;
+}
+
+.optionsCoordinador > input {
+    border: none;
+    font-size: 16px;
+    border-bottom: 2px solid #b1acac;
+    color: #363636;
+    padding: 8px 7px;
+    margin: 0.3rem 0px;
+    width: 230px;
+    transition: border-bottom .3s ease;
+}
+.optionsCoordinador > input::placeholder { color: #363636; }
+
+.momentoSelect {
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 230px;
+    color: #363636;
+    margin: 0.3rem 0px;
+    border-bottom: 2px solid #b1acac;
+}
+
+.optionsCoordinador > button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    padding: 7px;
+    font-size: 19px;
+    width: 100%;
+    background: #447bc4;
+    color: #eee;
+    transition: background .3s ease;
+}
+
+.optionsCoordinador > button:focus {
+    outline: none;
+}
+
+.optionsCoordinador > input:focus {
+    outline: none;
+    border-bottom: 2px solid #447bc4;
+}
+
+.optionsCoordinador > button:hover {
+    background: #3877c9;
+}

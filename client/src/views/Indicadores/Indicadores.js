@@ -1,4 +1,3 @@
-
 import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
@@ -9,6 +8,7 @@ import ListaIndicadores from "./ListaIndicadores";
 import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmail";
 import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
 import Options from "../../components/Options&Links/Options";
+import OptionsCoordinador from "../../components/Options&Links/OptionsCoordinador";
 
 
 
@@ -27,8 +27,10 @@ const Indicadores = () => {
         <>
 
         <BotonHome />
-        <Header title='Creación de Indicadores' marginTop='-4.4rem' />       
-        <CreaIndicador />
+        <Header title={ rol === 'coordinador' ? 'Observación de Indicadores' : 'Creación de Indicadores' } 
+        marginTop='-4.4rem' /> 
+
+        { rol !== 'coordinador' &&  <CreaIndicador /> }
         
         {
            stateUpdateIndicador  && 
@@ -39,10 +41,15 @@ const Indicadores = () => {
             )
 
         }
-        <Options />
+        { rol !==  'coordinador' &&  <Options />}
+        { rol === 'coordinador' && 
+            <div className={style.estilosCoordinador}>
+                <OptionsCoordinador />
+                <ComentariosEmail />
+            </div>
+        }
         <ListaIndicadores />
-        { rol === 'coordinador' && <ComentariosEmail /> }
-
+     
         </>
     );
 }

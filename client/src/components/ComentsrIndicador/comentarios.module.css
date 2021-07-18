@@ -1,59 +1,75 @@
-.comentsForm {
-    background: #012c66;
-    color: #fff;
+.estilosCoordinador {
     display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    width: 35%;
-    padding: 10px;
-    border-radius: 7px;
-    margin-bottom: 0.9rem;
-    margin-left: 10.6rem;
+    align-items: flex-start;
+    justify-content: center;
+  
 }
 
+.comentsForm {
+    background: #fff;
+    color: #447bc4;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 2rem 0px 0.9rem 7rem;
+}
+
+/*ESITLOS DE LOS COMENTARIOS*/
 .comentsTitle {
     font-size: 24px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
+    margin-bottom: 0.6rem;
 }
 .comentsObservaciones {
     resize: none;
     margin: 0.5rem 0px;
-    height: 130px;
+    height: 160px;
     width: 100%;
     border: none;
     padding: 6px;
     font-family: arial;
     font-size: 17px;
-    border-radius: 5px;
-    margin-top: -0.2rem;
-}
-
-.comentsObservaciones:focus, .comentsCorreo:focus, .comentsEnviarBtn:focus{
-    outline: none;
+    border-radius: 3px;
+    border: 2px solid #447bc4;
 }
 
 .comentsCorreo {
     border: none;
-    padding: 4px 6px;
+    padding: 7px 6px;
     width: 100%;
-    border-radius: 5px;
     margin-bottom: 0.5rem;
-    font-size: 17px;
+    font-size: 18px;
+    border-bottom: 2px solid #b1acac;
+    transition:  border-bottom .3s ease;
 }
 .comentsEnviarBtn {
     border: none;
+    color: rgb(233, 221, 221);
+    background: #447bc4;
     border-radius: 5px;
     width: 100%;
     padding: 5px;
     margin-bottom: 0.1rem;
-    font-size: 20px;
-    color: #012c66;
+    font-size: 20px; 
+    cursor: pointer;
     transition: background .4s ease;
 }
 .comentsEnviarBtn:hover {
-    background: #88a3c4;
+    background: #3877c9;
 }
+.comentsObservaciones:focus {
+    outline: none;
+    border: 2px solid #447bc4;
+}
+
+.comentsCorreo:focus {
+    border-bottom: 2px solid #447bc4;
+    outline: none;
+}
+
 .inactive {
     display: none;
 }
@@ -99,6 +115,8 @@
 }
 
 
+
+
 @media screen and ( max-width: 1250px ){ 
     .active > p {
         font-size: 1.2rem;
@@ -109,9 +127,6 @@
 }
 
 @media screen and ( max-width: 980px ){
-    .active > p {
-        /* font-size: 1.1rem; */
-    }
     .active {
         width: 33%;
     }
@@ -125,5 +140,10 @@
 @media screen and ( max-width: 829px ) {
      .active { width: 35% }
      .active > p {  font-size: 1rem; font-weight: 100;}
+     .comentsForm {margin: 0rem 0px 0.9rem 3rem; }
 }
+@media screen and ( max-width: 750px ) { 
+    .comentsForm {margin: 0rem 0px 0.9rem 1.3rem; }
+}
+
 

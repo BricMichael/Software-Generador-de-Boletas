@@ -26,10 +26,7 @@
     width: 150px;
 }
 
-.optionsFormCont > input::placeholder {
-
-    color: #eee;
-}
+.optionsFormCont > input::placeholder { color: #eee;}
 
 .optionsForm_Select {
     border: none;
