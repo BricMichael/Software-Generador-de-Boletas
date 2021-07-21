@@ -1,7 +1,7 @@
 .coordinador {
     font-size: 19px;
-    margin-left: 2.4rem;
-    text-align: left;
+    margin-left: 2rem;
+    text-align: center;
     margin-top: 2rem;
 }
 
@@ -24,7 +24,7 @@
     color: #363636;
     padding: 8px 7px;
     margin: 0.3rem 0px;
-    width: 230px;
+    /* width: 230px; */
     transition: border-bottom .3s ease;
 }
 .optionsCoordinador > input::placeholder { color: #363636; }
@@ -33,7 +33,7 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
-    width: 230px;
+    width: 260px;
     color: #363636;
     margin: 0.3rem 0px;
     border-bottom: 2px solid #b1acac;

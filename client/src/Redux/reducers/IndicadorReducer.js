@@ -2,7 +2,6 @@ import types from "../types";
 
 const initialState = {
     indicadoresByUser: [],
-    momentoAnio: { momento: '', anio: '' },
     updateIndicador: {
         estado: false,
         dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
@@ -17,12 +16,8 @@ const indicadorReducer = ( state = initialState, action ) => {
     switch (action.type) {
         case types.momentoAndYear:
             return {
-                ...state,
-                momentoAnio: { 
-                    momento: action.payload.momento, 
-                    anio: action.payload.year 
-                },
-                indicadoresByUser: [ ...action.payload.data ]
+                ...state,  
+                indicadoresByUser: [ ...action.payload ]
             }
 
         case types.materiasTypes:
@@ -75,27 +70,13 @@ const indicadorReducer = ( state = initialState, action ) => {
 
         case types.limpiezaLogout:      
             return {
-                ...state,
-                indicadoresByUser: [],
-                momentoAnio: { momento: '', anio:'' },
-                updateIndicador: {
-                    estado: false,
-                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
-                },
-                materias: {
-                    materiasDocente: [],
-                    materiasEspecialista: [],
-                }
+               ...initialState
             };    
     
         default:
             return state;
     }
 }
-
-
-
-
 
 
 export default indicadorReducer;

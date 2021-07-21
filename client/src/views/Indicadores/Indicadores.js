@@ -30,18 +30,21 @@ const Indicadores = () => {
         <Header title={ rol === 'coordinador' ? 'Observación de Indicadores' : 'Creación de Indicadores' } 
         marginTop='-4.4rem' /> 
 
-        { rol !== 'coordinador' &&  <CreaIndicador /> }
+        { rol !== 'coordinador' && 
+            <>
+                <CreaIndicador />
+                <Options />
+            </>
+        }
         
         {
            stateUpdateIndicador  && 
-            ( <div className={ stateUpdateIndicador ? `${style.active} animate__animated animate__fadeIn`: style.inactive }>
+             <div className={ `${style.active} animate__animated animate__fadeIn`}>
                 <p>Editando indicador</p>
                 <button onClick={ cancelEdicion } >Cancelar</button>
             </div>
-            )
-
         }
-        { rol !==  'coordinador' &&  <Options />}
+
         { rol === 'coordinador' && 
             <div className={style.estilosCoordinador}>
                 <OptionsCoordinador />

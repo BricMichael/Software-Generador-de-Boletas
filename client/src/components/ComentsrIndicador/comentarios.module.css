@@ -13,7 +13,7 @@
     width: 350px;
     padding: 10px;
     border-radius: 4px;
-    margin: 2rem 0px 0.9rem 7rem;
+    margin: 2rem 0px 0.9rem 10rem;
 }
 
 /*ESITLOS DE LOS COMENTARIOS*/
@@ -70,10 +70,6 @@
     outline: none;
 }
 
-.inactive {
-    display: none;
-}
-
 .active {
     margin: auto;
     margin-top: 1.4rem;
@@ -115,8 +111,6 @@
 }
 
 
-
-
 @media screen and ( max-width: 1250px ){ 
     .active > p {
         font-size: 1.2rem;
@@ -126,16 +120,20 @@
     }
 }
 
-@media screen and ( max-width: 980px ){
-    .active {
-        width: 33%;
+
+
+   
+@media screen and ( max-width: 915px ){ 
+    .comentsForm {
+        margin: 2rem 0px 0.9rem 7rem;
     }
 }
-
 
 @media screen and ( max-width: 860px ){
     .active > p {  font-size: 1.1rem; }
 }
+
+
 
 @media screen and ( max-width: 829px ) {
      .active { width: 35% }

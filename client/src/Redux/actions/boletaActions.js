@@ -10,8 +10,8 @@ export const listFiveStudents = ({seccion, grado}) => async (dispatch, getState)
          if ( seccion !== 'default' && seccion !== '' && grado !== 'default' && grado !== '' ) {
 
             const sendSearch = { seccionSelected: seccion, gradoSelected: grado, } //data parametros.
-            const { data } = await api.apiFiveStudents(sendSearch);
             const sendCopyToState = getState().indicador.indicadoresByUser;
+            const { data } = await api.apiFiveStudents(sendSearch); 
     
             dispatch({ type: types.fiveStudents, payload: { data, grado, sendCopyToState } });  
 

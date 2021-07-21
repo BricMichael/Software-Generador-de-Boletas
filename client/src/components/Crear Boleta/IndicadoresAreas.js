@@ -7,7 +7,6 @@ import style from './indicadoresAreas.module.css';
 const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
     allIndicadores.shift();
     const dispatch = useDispatch();
-  
     const literalSeleccionado = ( descIndicador, {target} ) => {
        dispatch( updateLiteralOfIndicador( descIndicador, target.value ) )
     } 

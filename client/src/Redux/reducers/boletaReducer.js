@@ -34,7 +34,7 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.updateLiteralDocente:
             return {
                 ...state,
-                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.descripcion === action.payload.indicador ? { ...prop, literal: action.payload.literal } : prop)
+                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.indicador === action.payload.indicador ? { ...prop, literal: action.payload.literal } : prop)
             } 
             
         case types.savedBoletaTypes:

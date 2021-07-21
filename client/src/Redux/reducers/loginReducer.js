@@ -1,20 +1,10 @@
 import types from "../types";
 
 
-const initialState = {
-    personal: [],
-    isAuthenticated: false
+const initialState = { isAuthenticated: false };
 
-}
-
-const loginReducer = (state = initialState, action ) => {
+const loginReducer = ( state = initialState, action ) => {
     switch (action.type) {
-        case types.allUsers:
-            return {
-                ...state,
-                personal: action.payload
-            }; 
-
         case types.checkUser:
             return {
                 ...state,

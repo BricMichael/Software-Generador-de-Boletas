@@ -7,7 +7,7 @@ const BotonHome = () => {
     return (
         <div className={ style.contentBtnHome }>
             <Link to="/menu-principal" className={ style.btnHome } >
-                <i class="fas fa-chevron-left"></i> Inicio
+                <i className="fas fa-chevron-left"></i> Inicio
             </Link>
             
         </div>

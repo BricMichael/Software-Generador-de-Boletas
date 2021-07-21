@@ -14,7 +14,7 @@ const OptionsCoordinador= () => {
 
     return (
         <div>
-            <p className={style.coordinador}>Mostrar indicadores por usuario</p>
+            <p className={style.coordinador}>Indicadores por usuario</p>
 
             <form onSubmit={ handleState } className={ style.optionsCoordinador  }>    
                 <input type='text' name='cedula'  autoComplete='off' value={ cedula} 

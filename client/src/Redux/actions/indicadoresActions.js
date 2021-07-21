@@ -3,17 +3,17 @@ import types from '../types';
 import Swal from 'sweetalert2';
 
 
-export const filtroBusqueda = ( year, momento ) => async( dispatch ) => {
+export const filtroBusqueda = ( momento ) => async( dispatch ) => {
     const { id } = JSON.parse( localStorage.getItem('userActive') );
-    let { data } = await api.indicadoresUserActivo({ year, momento, id });
-    dispatch({ type: types.momentoAndYear, payload: { year, momento, data } });
+    let { data } = await api.indicadoresUserActivo({ momento, id });
+    dispatch({ type: types.momentoAndYear, payload: data });
 }
 
 export const allIndicadorOfUser = () => async( dispatch, getState ) => {
     try {
-        const { momento, anio:year } = getState().indicador.momentoAnio;
+        const momento = 'Momento 1'
         const { id } = JSON.parse( localStorage.getItem('userActive') );
-        let { data } = await api.indicadoresUserActivo( { year, momento, id } );
+        let { data } = await api.indicadoresUserActivo({ momento, id });
         dispatch({ type: types.indicadoresByUser, payload: data });
         
     } catch (err) { console.log(err.message)  }
