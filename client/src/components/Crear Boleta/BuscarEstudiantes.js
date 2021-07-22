@@ -18,7 +18,6 @@ const BuscarEstudiantes = () => {
             [target.name]: target.value
         })
     }
-
     const subtmiForm = (e) => {
         e.preventDefault();
         dispatch( listFiveStudents(busqueda) );
@@ -52,7 +51,7 @@ const BuscarEstudiantes = () => {
                 <input value="Buscar estudiantes" type="submit" className={style.submit} />
             </form>
 
-            <ListaEstudiantes seccion={seccion} />
+            <ListaEstudiantes />
 
         </div>
     )

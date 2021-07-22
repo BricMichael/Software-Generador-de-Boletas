@@ -7,9 +7,10 @@ const initialState = {
         dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
     },
     materias: {
-        materiasDocente: [],
+         materiasDocente: [],
         materiasEspecialista: [],
-    }
+    },
+    momento: ''
 }   
 
 const indicadorReducer = ( state = initialState, action ) => {
@@ -17,7 +18,8 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.momentoAndYear:
             return {
                 ...state,  
-                indicadoresByUser: [ ...action.payload ]
+                indicadoresByUser: [ ...action.payload.data ],
+                momento: action.payload.momento
             }
 
         case types.materiasTypes:

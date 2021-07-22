@@ -84,7 +84,7 @@ const ListaIndicadores = ({ count = 1 }) => {
         <select className={ style.showOptionsOfMaterias } onChange={ handleDisplay }>
             <option value='indicadoresByUser'>Todas las áreas</option>
             { materiasShowOptions.map( value => (
-                <option key={ value.materia }  value={ value.materia }>{ value.materia }</option>
+                <option key={ value.materia } value={ value.materia }>{ value.materia }</option>
             )) }
         </select> 
     } 

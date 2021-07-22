@@ -10,6 +10,7 @@ import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosA
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresAreas';
 import IndicadoresEspecialista from '../../../components/Crear Boleta/IndicadoresEspecialista';
 import { guardarBoletaAction } from '../../../Redux/actions/boletaActions';
+import Options from '../../../components/Options&Links/Options';
 
 
 const CrearBoleta = () => {
@@ -20,16 +21,15 @@ const CrearBoleta = () => {
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
     const grado = useSelector( state => state.boleta.grado );
 
-    const { indicadoresByUser, materias } = useSelector(state => state.indicador);
-    const { materiasDocente, materiasEspecialista } = materias;
+    const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
+    const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
  
     const arrayOfMateriasIndicadores =  rol === 'docente' && materiaConIndicadores(materiasDocente, indicadoresByUser);
 
     const savedBoleta = () => {
-
-        dispatch( guardarBoletaAction() )    
-      
+        dispatch( guardarBoletaAction() )       
     }
+
     
     return (
         <>
@@ -39,7 +39,8 @@ const CrearBoleta = () => {
                 <BuscarEstudiantes />
                 <CabeceraDatosAlumno />
             </div>
-           
+            <Options vista='Boleta' />
+
             <div className={ style.display }>
                 <h2>Indicadores</h2>
                 <div className={ style.leyendaFlex }>
@@ -50,15 +51,16 @@ const CrearBoleta = () => {
                 </div>
                <div className={style.derechita}>
                    <div className={style.separar}>
-                    {   arrayOfMateriasIndicadores && (
+                    {   arrayOfMateriasIndicadores 
+                            && 
                             arrayOfMateriasIndicadores.map( materiaDB => (
                                 <IndicadoresAreas allIndicadores={ materiaDB} area={materiaDB[0]} key={ materiaDB[0]} />
-                            ))
+                            )
                         )
                     } 
                     </div>
                     {/* componentes de especialistas */}
-                    {/* <div>
+                     {/* <div>
                     {   grado !== '' &&  materiasEspecialista.map( value => (
                             <IndicadoresEspecialista area={value.materia} key={value.materia} />
                         ))                  

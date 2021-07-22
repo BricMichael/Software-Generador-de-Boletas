@@ -3,15 +3,24 @@ import types from '../types';
 import Swal from 'sweetalert2';
 
 
-export const filtroBusqueda = ( momento ) => async( dispatch ) => {
-    const { id } = JSON.parse( localStorage.getItem('userActive') );
-    let { data } = await api.indicadoresUserActivo({ momento, id });
-    dispatch({ type: types.momentoAndYear, payload: data });
+export const filtroBusqueda = ( momento, vista ) => async( dispatch ) => {
+    try {
+        const { id } = JSON.parse( localStorage.getItem('userActive') );
+        let { data } = await api.indicadoresUserActivo({ momento, id });
+
+        if ( vista === 'Indicador' ) dispatch({ type: types.momentoAndYear, payload: { data, momento } })
+        else {
+            dispatch({ type: types.momentoAndYear, payload: { data, momento : '' } })   // estado vista ListaIndicadores.
+            dispatch({ type: types.allIndicadoresOfUser, payload: data });  // estado vista Boleta
+        } 
+    } catch (err) {
+        console.log( err.message );
+    }
 }
 
 export const allIndicadorOfUser = () => async( dispatch, getState ) => {
     try {
-        const momento = 'Momento 1'
+        const { momento } = getState().indicador
         const { id } = JSON.parse( localStorage.getItem('userActive') );
         let { data } = await api.indicadoresUserActivo({ momento, id });
         dispatch({ type: types.indicadoresByUser, payload: data });

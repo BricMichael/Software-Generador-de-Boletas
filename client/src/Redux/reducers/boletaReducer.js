@@ -6,7 +6,7 @@ const initialState = {
     listFiveStudents: [],
     studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
     setLiteralIndicadores: [],
-    grado: '',
+    gradoSeccion: { grado: '', seccion: '' },
 }
 
 const boletaReducer = ( state = initialState, action ) => {
@@ -16,8 +16,10 @@ const boletaReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 listFiveStudents: [...action.payload.data],
-                grado: action.payload.grado,
-                setLiteralIndicadores: [ ...action.payload.sendCopyToState ]
+                gradoSeccion: {
+                    grado: action.payload.grado,
+                    seccion: action.payload.seccion,
+                }
             };   
         
         case types.nextFiveStudents:
@@ -31,17 +33,26 @@ const boletaReducer = ( state = initialState, action ) => {
                 ...state,
                 studentSelected: { ...action.payload, textArea:'' }    
             }
+
+        case types.allIndicadoresOfUser:
+            return{
+                ...state,
+                setLiteralIndicadores: [ ...action.payload ] 
+            }
+            
         case types.updateLiteralDocente:
             return {
                 ...state,
-                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.indicador === action.payload.indicador ? { ...prop, literal: action.payload.literal } : prop)
+                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.indicador === action.payload.indicador 
+                    ? { ...prop, literal: action.payload.literal } 
+                    : prop )
             } 
             
         case types.savedBoletaTypes:
             return {
                 ...state,
                 studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
-                setLiteralIndicadores: [ ...action.payload.sendCopyToState ],
+                setLiteralIndicadores: [ ...action.payload ]
             }    
         
 

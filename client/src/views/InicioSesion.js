@@ -37,14 +37,11 @@ const InicioSesion = () => {
             <form className={style.form} onSubmit={ handleSubmit }>
                 <h3 className={style.auth__title}>Ingresar al sistema</h3>
                            
-                <input type="email" className={style.auth__input} 
-                autoComplete="off" placeholder="Correo electrónico" 
-                name="email" value={email} 
-                onChange={ handleInputChange } required />
+                <input type="email" className={style.auth__input} autoComplete="off" placeholder="Correo electrónico" 
+                name="email" value={email} onChange={ handleInputChange } required />
 
-                <input type="password" className={style.auth__input} 
-                placeholder="Contraseña *" name="password" 
-                value={password} onChange={ handleInputChange } required />
+                <input type="password" className={style.auth__input} placeholder="Contraseña *" name="password" 
+                value={password} onChange={ handleInputChange } required  autocomplete="off"/>
 
                 <button type="submit" className={style.buttonWidth}>
                     Iniciar Sesi&oacute;n
