@@ -37,7 +37,7 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.allIndicadoresOfUser:
             return{
                 ...state,
-                setLiteralIndicadores: [ ...action.payload ] 
+                setLiteralIndicadores: [ ...action.payload ]
             }
             
         case types.updateLiteralDocente:

@@ -14,22 +14,22 @@ const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
  
     return (
         <>
-             <table className={style.tablaIndicadoresBoleta}>  
-                <thead className={style.tHeadIndicadoresBoleta}>
-                    <tr className={ style.a}>
-                        <th>#</th>
-                        <th>Área: { area }</th>
-                        <th>E</th>
-                        <th>B</th>
-                        <th>RN</th>
+             <table className={style.tableBoleta}>  
+                <thead className={style.tableBoletaTh}>
+                    <tr className={ style.tableBoletaThTr}>
+                        <th className={ style.childOne }>#</th>
+                        <th className={ style.childOne }>Área: { area }</th>
+                        <th className={ style.childOne }>E</th>
+                        <th className={ style.childOne }>B</th>
+                        <th className={ style.childOne }>RN</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={ style.tableBody }>
                    {
                        allIndicadores.map( indicador => (
-                        <tr className={style.l} key={ indicador}>
-                            <td><b>#{num++}</b></td>
-                            <td className={ style.indicadorDB }>{ indicador }</td>
+                        <tr className={`${style.tableTrBody} animate__animated animate__fadeIn`} key={ indicador}>
+                            <td className={ style.childrenTwo }><b>#{num++}</b></td>
+                            <td className={ style.childrenTwo }>{ indicador }</td>
                             <td>
                                 <input name={indicador} type="radio"value="E" 
                                 onChange={ (e) => literalSeleccionado(indicador, e) } />

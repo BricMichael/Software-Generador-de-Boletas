@@ -27,6 +27,7 @@ const CrearBoleta = () => {
     const arrayOfMateriasIndicadores =  rol === 'docente' && materiaConIndicadores(materiasDocente, indicadoresByUser);
 
     const savedBoleta = () => {
+
         dispatch( guardarBoletaAction() )       
     }
 
@@ -60,12 +61,12 @@ const CrearBoleta = () => {
                     } 
                     </div>
                     {/* componentes de especialistas */}
-                     {/* <div>
+                     <div>
                     {   grado !== '' &&  materiasEspecialista.map( value => (
                             <IndicadoresEspecialista area={value.materia} key={value.materia} />
                         ))                  
                     }
-                    </div> */}
+                    </div>
                 </div>
 
             </div>

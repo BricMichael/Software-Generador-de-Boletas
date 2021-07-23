@@ -1,28 +1,51 @@
-.tablaIndicadoresBoleta {
+.tableBoleta{
     background: #ddd;
     margin-bottom: 0.8rem;
     border-collapse: collapse;
     color: #012c66;
     border-bottom: 3px solid #012c66;
+    width: 700px;
 }
 
-.tHeadIndicadoresBoleta {
-    background-color: #012c66;
+.tableBoletaTh {
+    background: #447bc4;
+    color: #021e42;
 }
 
-.tHeadIndicadoresBoleta > tr > th {
-    font-size: 18px;;
+.tableBoletaTh > .tableBoletaThTr > .childOne {
+    padding: 9px 16px;
+    font-size: 18px;
 }
 
-.indicadorDB {
+/* .indicadorDB {
     word-wrap: break-word;
     width: 45%;
     text-align: left;
-}
+} */
 
-.tablaIndicadoresBoleta > tbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+.tableBody {
+    color: #012c66;
     background: rgb(179, 172, 172);
 }
+
+.tableBody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+    background: #ddd
+}
+
+.tableTrBody >.childrenTwo:nth-child(2) { 
+    text-align: left; 
+    word-wrap: break-word;
+    width: 60%;
+}
+
+.tableTrBody > .childrenTwo {
+    padding: 12px 10px;
+}
+
+.childrenTwo {
+    font-size: 18px;
+}
+
 
 .buttonSubmit  {
     background: #012c66;

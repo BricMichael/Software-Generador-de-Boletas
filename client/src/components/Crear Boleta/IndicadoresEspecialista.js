@@ -5,11 +5,11 @@ import { apiIndicadorlEspecialista } from '../../api/api';
 
 
 
-export const IndicadoresEspecialista = ({area, numero,num = 1}) => {
+export const IndicadoresEspecialista = ({area, num = 1}) => {
  
     
     const studentSelected  = useSelector( state => state.boleta.studentSelected );
-    const gradoState = useSelector( state => state.boleta.grado );
+    const gradoState = useSelector( state => state.boleta.gradoSeccion.grado );
  
     const [ literalIndicadorByArea, setLiteralIndicadorByArea ] = useState({ IndicadorByArea: [], literalSelected: {} });
 
@@ -18,40 +18,40 @@ export const IndicadoresEspecialista = ({area, numero,num = 1}) => {
             const { data } = await apiIndicadorlEspecialista({grado: gradoState, area});
             setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} });    
         }    
-        gradoState !== '' && indicadorEspecialistaByArea();
+        gradoState && indicadorEspecialistaByArea();
 
     }, [gradoState])
 
 
     useEffect(() => {
-        setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} }); 
+       studentSelected.nombres && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} }); 
     }, [studentSelected])
 
     const handleLiteral = ({target}) => {
         const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
         mostrar !== undefined  &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar }); 
     }
-    
+  
     return (
         <>
-             <table className={style.tablaIndicadoresBoleta}>  
-                <thead className={style.tHeadIndicadoresBoleta}>
-                    <tr className={ style.a}>
-                        <th>#</th>
-                        <th>Área: {area}</th>
-                        <th>E</th>
-                        <th>B</th>
-                        <th>RN</th>
+             <table className={style.tableBoleta}>  
+                <thead className={style.tableBoletaTh}>
+                    <tr className={ style.tableBoletaThTr}>
+                        <th className={ style.childOne }>#</th>
+                        <th className={ style.childOne }>Área: {area}</th>
+                        <th className={ style.childOne }>E</th>
+                        <th className={ style.childOne }>B</th>
+                        <th className={ style.childOne }>RN</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={ style.tableBody }>
                  
-                    <tr className={style.l}  >
-                        <td><b>#{num++}</b></td>
-                        <td className={ style.indicadorDB }> 
+                    <tr className={`${style.tableTrBody} animate__animated animate__fadeIn`}>
+                        <td className={ style.childrenTwo }><b>#{num++}</b></td>
+                        <td className={ style.childrenTwo } > 
                             {  
                                 Object.keys(literalIndicadorByArea.literalSelected).length !== 0 
-                                    ? <p>{ literalIndicadorByArea.literalSelected.descripcion }</p> 
+                                    ? <p>{ literalIndicadorByArea.literalSelected.indicador }</p> 
                                     : <p>Seleccione el literal correspodiente</p>
                             }               
                         </td>

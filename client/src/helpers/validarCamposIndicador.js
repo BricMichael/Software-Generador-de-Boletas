@@ -36,8 +36,7 @@ export const validar_EnviarData = (values, type, idOrFunction) => async ( dispat
 
 
 
-export const ocultarOptions = () => {
-    const { rol } = JSON.parse( localStorage.getItem('userActive') );
+export const ocultarOptions = ( rol ) => {
     if ( rol !== 'especialista' ) { 
         document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
         document.querySelector('#gradoOption').setAttribute('disabled', 'true');

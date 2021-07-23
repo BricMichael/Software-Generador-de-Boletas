@@ -16,11 +16,10 @@ const CreaIndicador = () => {
     const { indicador, literal, area, condicion_especial, grado, momento } = values;
 
     const idActive = useRef( dataIndicador.id );
-    const rolUser = useRef();
+    const rolUser = useRef( JSON.parse( localStorage.getItem('userActive') ).rol );
 
     useEffect(() => {
-        const rol = ocultarOptions();  
-        rolUser.current = rol;
+        ocultarOptions( rolUser.current );  
     }, [])
 
     useEffect(() => {
@@ -50,8 +49,7 @@ const CreaIndicador = () => {
                         <option value="undefined">Área</option>
                         {           
                             recorrerArray.map( area => (
-                                <option value={area.materia} key={area.materia} >{area.materia}
-                                </option>
+                                <option value={area.materia} key={area.materia} >{area.materia}</option>
                             ))
                         }                               
                     </select>
