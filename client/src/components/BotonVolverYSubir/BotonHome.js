@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom'
 
 
 
-const BotonHome = () => {
+const BotonHome = ({ resetStateViewIndcadores }) => {
     return (
         <div className={ style.contentBtnHome }>
-            <Link to="/menu-principal" className={ style.btnHome } >
+            <Link to="/menu-principal" className={ style.btnHome } onClick={resetStateViewIndcadores}>
                 <i className="fas fa-chevron-left"></i> Inicio
-            </Link>
-            
+            </Link>       
         </div>
     )
 }

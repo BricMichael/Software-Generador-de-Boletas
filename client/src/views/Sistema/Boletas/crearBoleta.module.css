@@ -102,15 +102,16 @@
     font-size: 19px;
 }
 
-/*######  derecha estilos ###############*/ 
+/*######  derecha estilos aquiiiiii ###############*/ 
 
 .display {
     /* background: rgba(196, 188, 188, 0.384); */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 65%;
-    margin: auto;
+    /* align-items: center; */
+    width: 100%;
+    /* background: red; */
+    /* margin: auto; */
     padding: 6px 6px 1px 6px;
     border-radius: 4px;
     margin-bottom: 0.8rem;
@@ -232,8 +233,65 @@
 
 .listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #333; }
 
+/* ESTILOS DE LAS TABLAS DE LOS INDICADORES */
 
+.derechita {
+    /* display: flex;
+    justify-content: center; */
+}
 
+.flexis{
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+}
+.tarjeta  {
+    background: #eef4f4;
+    width: 380px;
+    height: auto;
+    margin-left: 2rem;
+    border-radius: 10px;
+    color: #093268;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+.parrafAndIcon {
+    display: flex;
+    justify-content: center;
+}
+
+.tarjetaTitle {
+    margin-bottom: 1rem;
+    padding-right: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.ICon {
+    font-size: 22px;
+}
+
+.tarjetaParraf {
+    font-size: 18px;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1.3rem;
+    /* background: cyan; */
+}
+
+.tarjeta > label {
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.tarjetaInputs {
+    margin-right: 40px;
+}
+
+/*NEL*/
 .juepa {
     color: #fff;
     font-size: 20px;

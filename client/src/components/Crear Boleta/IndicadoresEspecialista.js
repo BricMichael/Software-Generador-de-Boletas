@@ -5,7 +5,7 @@ import { indicadorEspecialistaByArea } from '../../Redux/actions/boletaActions';
 
 
 
-export const IndicadoresEspecialista = ({area, num = 1}) => {
+export const IndicadoresEspecialista = ({ area }) => {
     const dispatch = useDispatch();
     
     const resetData = useSelector( state  => state.boleta.reset )
@@ -31,7 +31,6 @@ export const IndicadoresEspecialista = ({area, num = 1}) => {
              <table className={style.tableBoleta}>  
                 <thead className={style.tableBoletaTh}>
                     <tr className={ style.tableBoletaThTr}>
-                        <th className={ style.childOne }>#</th>
                         <th className={ style.childOne }>Área: {area}</th>
                         <th className={ style.childOne }>E</th>
                         <th className={ style.childOne }>B</th>
@@ -41,8 +40,7 @@ export const IndicadoresEspecialista = ({area, num = 1}) => {
                 <tbody className={ style.tableBody }>
                  
                     <tr className={`${style.tableTrBody} animate__animated animate__fadeIn`}>
-                        <td className={ style.childrenTwo }><b>#{num++}</b></td>
-                        <td className={ style.childrenTwo } > 
+                        <td className={ `${style.childrenTwo} ${ style.letterLeft }`} > 
                             {  
                                 Object.keys(literalIndicadorByArea.literalSelected).length !== 0 
                                     ? <p>{ literalIndicadorByArea.literalSelected.indicador }</p> 

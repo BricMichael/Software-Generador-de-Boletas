@@ -1,6 +1,6 @@
 import style from "../../components/ComentsrIndicador/comentarios.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
+import { limpiarFormAlActualizar, limpiarIndicadores } from "../../Redux/actions/indicadoresActions";
 import { backgroundColorPage } from '../../helpers/coloresBG';
 import Header from "../../components/Header/Header";
 import CreaIndicador from './CreaIndicador'
@@ -9,7 +9,6 @@ import ComentariosEmail from "../../components/ComentsrIndicador/ComentariosEmai
 import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
 import Options from "../../components/Options&Links/Options";
 import OptionsCoordinador from "../../components/Options&Links/OptionsCoordinador";
-
 
 
 
@@ -22,11 +21,13 @@ const Indicadores = () => {
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
     
     const cancelEdicion = () => dispatch( limpiarFormAlActualizar() );
+
+    const limpiarState = () => dispatch( limpiarIndicadores() );
     
     return (
         <>
 
-        <BotonHome />
+        <BotonHome resetStateViewIndcadores={ limpiarState } />
         <Header title={ rol === 'coordinador' ? 'Observación de Indicadores' : 'Creación de Indicadores' } 
         marginTop='-4.4rem' /> 
 
