@@ -1,5 +1,6 @@
 import * as api from '../../api/api';
 import types from '../types';
+import Swal from 'sweetalert2';
 
 let count = 5;
 
@@ -54,6 +55,12 @@ export const materiasExistentes = () => async(dispatch) => {
 }
 
 
+export const indicadorEspecialistaByArea = ( gradoState, area,setLiteralIndicadorByArea ) => async( dispatch, getState ) => {
+    const { momento } = getState().boleta;
+    const { data } = await api.apiIndicadorlEspecialista({grado: gradoState, area, momento}); 
+    setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} }); 
+}  
+
 export const updateLiteralOfIndicador = (indicador, literal) => ({
         type: types.updateLiteralDocente,
         payload: { indicador, literal }
@@ -65,6 +72,17 @@ export const guardarBoletaAction = () => async( dispatch, getState ) => {
         type: types.savedBoletaTypes,
         payload: data
     })
+    Swal.fire({ title: 'La boleta ha sido creada',
+    text: 'Espere unos segundos...',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1600,
+    timerProgressBar: true,
+    })
+    Swal.showLoading()
+    
 }
+
+
 
 //const uidUser = getState().auth.uid 

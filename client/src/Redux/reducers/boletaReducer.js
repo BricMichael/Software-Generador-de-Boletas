@@ -7,6 +7,8 @@ const initialState = {
     studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
     setLiteralIndicadores: [],
     gradoSeccion: { grado: '', seccion: '' },
+    momento: '',
+    reset: 0
 }
 
 const boletaReducer = ( state = initialState, action ) => {
@@ -37,7 +39,8 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.allIndicadoresOfUser:
             return{
                 ...state,
-                setLiteralIndicadores: [ ...action.payload ]
+                setLiteralIndicadores: [ ...action.payload.data ],
+                momento: action.payload.momento
             }
             
         case types.updateLiteralDocente:
@@ -52,7 +55,8 @@ const boletaReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
-                setLiteralIndicadores: [ ...action.payload ]
+                setLiteralIndicadores: [ ...action.payload ],
+                reset: state.reset + 1
             }    
         
 

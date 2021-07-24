@@ -37,10 +37,11 @@ const nextFiveStudents = async (req, res) => {
 
 
 const indicadorEspecialistaByArea = async (req, res) => {  
+     const anio = new Date().getFullYear();
      try {
-          const { grado, area } = req.body;
+          const { grado, area, momento } = req.body;
 
-          const respBD = await pool.query("SELECT indicador, literal FROM indicador WHERE grado = $1 and literal != '' and area = $2", [grado, area]);
+          const respBD = await pool.query("SELECT indicador, literal FROM indicador WHERE grado = $1 and area = $2 and momento = $3 and fecha_creacion = $4", [grado, area, momento, anio]);
 
           res.json(respBD.rows);
      } catch (err) {

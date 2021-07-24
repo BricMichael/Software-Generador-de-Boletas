@@ -1,37 +1,31 @@
 import { useEffect, useState } from 'react';
 import style from './indicadoresAreas.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { apiIndicadorlEspecialista } from '../../api/api';
+import { indicadorEspecialistaByArea } from '../../Redux/actions/boletaActions';
 
 
 
 export const IndicadoresEspecialista = ({area, num = 1}) => {
- 
+    const dispatch = useDispatch();
     
-    const studentSelected  = useSelector( state => state.boleta.studentSelected );
+    const resetData = useSelector( state  => state.boleta.reset )
     const gradoState = useSelector( state => state.boleta.gradoSeccion.grado );
  
     const [ literalIndicadorByArea, setLiteralIndicadorByArea ] = useState({ IndicadorByArea: [], literalSelected: {} });
 
     useEffect(() => {
-        const indicadorEspecialistaByArea = async () => {
-            const { data } = await apiIndicadorlEspecialista({grado: gradoState, area});
-            setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} });    
-        }    
-        gradoState && indicadorEspecialistaByArea();
-
+        dispatch( indicadorEspecialistaByArea( gradoState, area, setLiteralIndicadorByArea ) ); 
     }, [gradoState])
 
 
     useEffect(() => {
-       studentSelected.nombres && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} }); 
-    }, [studentSelected])
+       resetData !== 0 && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} })
+    }, [resetData])
 
     const handleLiteral = ({target}) => {
         const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
         mostrar !== undefined  &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar }); 
     }
-  
     return (
         <>
              <table className={style.tableBoleta}>  

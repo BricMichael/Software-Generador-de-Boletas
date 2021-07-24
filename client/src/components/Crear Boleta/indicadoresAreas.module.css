@@ -1,10 +1,11 @@
 .tableBoleta{
     background: #ddd;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     border-collapse: collapse;
     color: #012c66;
-    border-bottom: 3px solid #012c66;
+    /* border-bottom: 3px solid #012c66; */
     width: 700px;
+    box-shadow: 0px 9px 20px #000813;
 }
 
 .tableBoletaTh {
@@ -16,12 +17,6 @@
     padding: 9px 16px;
     font-size: 18px;
 }
-
-/* .indicadorDB {
-    word-wrap: break-word;
-    width: 45%;
-    text-align: left;
-} */
 
 .tableBody {
     color: #012c66;
@@ -43,13 +38,13 @@
 }
 
 .childrenTwo {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 
 .buttonSubmit  {
     background: #012c66;
-    /* width: 40%; */
     border: none;
     cursor: pointer;
     border-radius: 3px;

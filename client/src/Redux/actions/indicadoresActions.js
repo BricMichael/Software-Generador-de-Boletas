@@ -11,7 +11,7 @@ export const filtroBusqueda = ( momento, vista ) => async( dispatch, getState ) 
         if ( vista === 'Indicador' ) dispatch({ type: types.momentoAndYear, payload:{ data, momento }})
         else {
             dispatch({ type: types.momentoAndYear, payload: { data, momento : '' } })   // estado vista ListaIndicadores.
-            dispatch({ type: types.allIndicadoresOfUser, payload:  data  });  // estado vista Boleta
+            dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } });  // estado vista Boleta
         } 
     } catch (err) {
         console.log( err.message );

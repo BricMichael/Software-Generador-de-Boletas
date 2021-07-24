@@ -1,9 +1,8 @@
 .solucion {
-    background: rgba(221, 221, 221, 0.815);
     display: flex;
     align-items: flex-start;
     padding: 15px;
-    width: 80%;
+    width: 85%;
     margin: 1.3rem auto;
     border-radius: 6px;
 }
@@ -84,7 +83,7 @@
     #tablaViewIndicadores{
         width: 820px; 
     }
-    .solucion { width: 94%; }
+    .solucion { width: 96%; }
     .indIndividual > .padding:nth-child(2){  padding-left: 5px;  padding-right: 0px; }
     
     .showOptionsOfMaterias {
