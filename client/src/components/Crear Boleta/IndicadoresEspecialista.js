@@ -26,6 +26,7 @@ export const IndicadoresEspecialista = ({ area }) => {
         const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
         mostrar !== undefined  &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar }); 
     }
+
     return (
         <>
              <table className={style.tableBoleta}>  
@@ -44,7 +45,7 @@ export const IndicadoresEspecialista = ({ area }) => {
                             {  
                                 Object.keys(literalIndicadorByArea.literalSelected).length !== 0 
                                     ? <p>{ literalIndicadorByArea.literalSelected.indicador }</p> 
-                                    : <p>Seleccione el literal correspodiente</p>
+                                    : <b>Seleccione el literal correspodiente</b>
                             }               
                         </td>
                         <td>

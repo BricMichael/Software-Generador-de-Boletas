@@ -59,7 +59,7 @@
 
 .submit {
     width: 100%;
-    background: #012c66;
+    background: #4169e1;
     border: none;
     border-radius: 4px;
     height: 30px;
@@ -153,7 +153,7 @@
 }
 
 .searchStudents {
-    color: #012c66;
+    color: #25272c;
     font-size: 21px;
     display: flex;
     margin-bottom: 0.4rem;
@@ -165,7 +165,7 @@
                     lista de estudiantes          */
 
 .listaEstudiantes > h3 { 
-    color: #012c66; 
+    color: #25272c;
     text-align: left; 
     padding: 2px 1px; 
     border-bottom: 2px solid #c0c8d3;
@@ -183,7 +183,7 @@
 
 .tableTr, .th{
    padding: 12px;
-   background-color: #012c66;
+   background-color: #4169e1;
    color: #fff;
 }
 
@@ -202,7 +202,7 @@
 
 .listaFiveFlex {
     background: rgb(179, 172, 172);
-    color: #012c66;
+    color: #0d1c4b;
     margin-top: 2rem;  
     font-size: 16px;
     cursor: pointer;
@@ -220,7 +220,7 @@
 
 
 .listaEstudiantes > button {
-    background: #012c66;
+    background: #4169e1;
     width: 40%;
     border: none;
     cursor: pointer;
@@ -231,65 +231,17 @@
     transition: box-shadow .2s ease;       
 }
 
-.listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #333; }
+.listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #3052b8; }
 
 /* ESTILOS DE LAS TABLAS DE LOS INDICADORES */
 
 .derechita {
-    /* display: flex;
-    justify-content: center; */
-}
-
-.flexis{
     display: flex;
-    justify-content: center;
-    align-content: flex-start;
-}
-.tarjeta  {
-    background: #eef4f4;
-    width: 380px;
-    height: auto;
-    margin-left: 2rem;
-    border-radius: 10px;
-    color: #093268;
-    padding: 10px;
-    margin-bottom: 1rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
-.parrafAndIcon {
-    display: flex;
-    justify-content: center;
-}
 
-.tarjetaTitle {
-    margin-bottom: 1rem;
-    padding-right: 16px;
-    font-size: 20px;
-    font-weight: bold;
-    align-self: center;
-}
-
-.ICon {
-    font-size: 22px;
-}
-
-.tarjetaParraf {
-    font-size: 18px;
-    text-align: left;
-    width: 90%;
-    margin: auto;
-    margin-bottom: 1.3rem;
-    /* background: cyan; */
-}
-
-.tarjeta > label {
-    font-weight: bold;
-    margin-right: 4px;
-}
-
-.tarjetaInputs {
-    margin-right: 40px;
-}
 
 /*NEL*/
 .juepa {
