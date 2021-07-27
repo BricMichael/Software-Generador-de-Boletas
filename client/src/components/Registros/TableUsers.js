@@ -1,6 +1,6 @@
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
 
-const TableUsers = ({count = 1}) => {
+const TableUsers = ({count = 1, openModal}) => {
     return (
         <table className={ style.registersTable}>  
             <thead className={ style.registersTableThead} >
@@ -25,7 +25,7 @@ const TableUsers = ({count = 1}) => {
                         <td className={ style.childrenBody }>3</td>
                         <td className={ style.childrenBody }>Rol</td>
                         <td className={ style.childrenEdit}>
-                            <button className={`${style.edit}  ${style.botones}`}>
+                            <button className={`${style.edit}  ${style.botones}`} onClick={ () => openModal(true) }>
                                 Editar
                             </button> 
                             <button className={ `${style.delete}  ${style.botones}`}>

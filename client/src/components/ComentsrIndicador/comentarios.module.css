@@ -70,45 +70,6 @@
     outline: none;
 }
 
-.active {
-    margin: auto;
-    margin-top: 1.4rem;
-    width: 25%;
-    background: #447bc4;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    padding: 3px;
-}
-
-.active > p {
-    font-size: 1.5rem;
-    align-self: center;
-    text-align: left;
-    padding-left: 0.3rem;
-    color: #dde3eb;
-}
-
-.active > button {
-    border: none;
-    align-self: center;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 18px;
-    color: #fff;
-    background: #dc3545;
-    transition: background .3s ease;
-}
-
-.active > button:hover {
-    background: #ac2c39;
-}
-
-.active > button:focus {
-    outline: none;
-}
-
 
 @media screen and ( max-width: 1250px ){ 
     .active > p {

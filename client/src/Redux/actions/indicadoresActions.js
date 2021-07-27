@@ -31,23 +31,15 @@ export const allIndicadorOfUser = () => async( dispatch, getState ) => {
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
 
     await api.updateIndicadorActivo( id, dataForUpdate );
-    dispatch( refreshData( id, dataForUpdate ) );
+    dispatch({ type: types.refreshData, payload: { id, dataForUpdate } });
 
     Swal.fire({ position: 'top-end', icon: 'success', title: 'Tus modificaciones han sido realizadas',
         showConfirmButton: false,
         timer: 1300
       })
+    dispatch( limpiarFormAlActualizar() );
 }
 
-export const refreshData = ( id, refrescarData ) => ({
-
-    type: types.refreshData,
-    payload: { 
-        id, 
-        refrescarData    
-    }
-
-})
 
 export const indicadorActivo = (values) => ({
     type: types.indicadorActive,

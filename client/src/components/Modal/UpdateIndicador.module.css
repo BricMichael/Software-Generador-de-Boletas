@@ -1,0 +1,77 @@
+.formModal {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 460px;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 1.2rem 2rem 1rem 2rem;
+}
+
+.titleFormModal {
+    background: #fff;
+    color: #012c66;
+    text-align: left;
+    margin-left: 0.5rem;
+}
+
+.ModaltextArea {
+    height: 80px;
+    width: 420px;
+    border: none;
+    resize: none;
+    border-radius: none;
+    align-self: center;
+    margin: 0.9rem 0px;
+    font-size: 16px;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 2px solid #012c66;
+    transition: border-bottom .3s ease;
+    border-radius: 3px;
+}
+
+.Height {
+    height: 175px;
+    padding-right: 8px;
+}
+
+.ModaltextArea:focus, .Modalselect:focus {
+    outline: none;
+    border-bottom: 2px solid #012c66;
+}
+
+.Modalselect {
+    border: none;
+    border-bottom: 2px solid #012c66;
+    border-radius: 3px;
+    margin-left: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.formModalButtons {
+    background: #012c66;
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: .5rem;
+    width: 60%;
+    font-size: 17px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: background .3s ease;
+}
+
+.formModalButtons:hover {
+    background: #0b2a53;
+}
+
+.buttonCancel {
+    background: #be2342;
+}
+
+.buttonCancel:hover {
+    background: #ac1b38;
+}

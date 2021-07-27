@@ -8,31 +8,22 @@ import { validar_EnviarData, ocultarOptions } from '../../helpers/validarCamposI
 
 const CreaIndicador = () => {  
     
-    const { dataIndicador, estado } = useSelector( state => state.indicador.updateIndicador );
     const { materiasDocente, materiasEspecialista} = useSelector( state => state.indicador.materias );
     const dispatch = useDispatch();
 
-    const [ values, handleInputChange, reset ] = useForm( dataIndicador );
-    const { indicador, literal, area, condicion_especial, grado, momento } = values;
+    const [ values, handleInputChange, reset ] = useForm({ indicador: '', literal: '', area: '', 
+    condicion_especial: '', grado: '', momento: '' });
 
-    const idActive = useRef( dataIndicador.id );
+    const { indicador, literal, area, condicion_especial, grado, momento } = values;
     const rolUser = useRef( JSON.parse( localStorage.getItem('userActive') ).rol );
 
     useEffect(() => {
         ocultarOptions( rolUser.current );  
     }, [])
 
-    useEffect(() => {
-        if ( dataIndicador.id !== idActive.current ) {
-            reset( dataIndicador );
-            idActive.current = dataIndicador.id
-        }
-    }, [dataIndicador, reset])
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if ( estado ) dispatch( validar_EnviarData( values, 'update', idActive.current ) );
-        if ( !estado ) dispatch( validar_EnviarData( values, 'save', reset ) );
+        dispatch( validar_EnviarData( values, reset ) );
     }
 
     const recorrerArray = rolUser.current === 'especialista' ? materiasEspecialista : materiasDocente;

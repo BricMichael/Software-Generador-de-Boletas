@@ -15,13 +15,11 @@ import OptionsCoordinador from "../../components/Options&Links/OptionsCoordinado
 const Indicadores = () => { 
     backgroundColorPage('#012c66'); 
     document.title = 'Crear Indicador';
+
     const dispatch = useDispatch();
 
-    const  stateUpdateIndicador  = useSelector( state => state.indicador.updateIndicador.estado );
-    const { rol } = JSON.parse( localStorage.getItem('userActive') );
-    
-    const cancelEdicion = () => dispatch( limpiarFormAlActualizar() );
-
+    const { rol } = JSON.parse( localStorage.getItem('userActive') ); 
+     
     const limpiarState = () => dispatch( limpiarIndicadores() );
     
     return (
@@ -36,14 +34,6 @@ const Indicadores = () => {
                 <CreaIndicador />
                 <Options />
             </>
-        }
-        
-        {
-           stateUpdateIndicador  && 
-             <div className={ `${style.active} animate__animated animate__fadeIn`}>
-                <p>Editando indicador</p>
-                <button onClick={ cancelEdicion } >Cancelar</button>
-            </div>
         }
 
         { rol === 'coordinador' && 

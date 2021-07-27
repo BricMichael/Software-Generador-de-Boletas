@@ -50,7 +50,7 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 indicadoresByUser: state.indicadoresByUser.map( 
                     (newValue) => newValue.id === action.payload.id 
-                        ? action.payload.refrescarData  
+                        ? action.payload.dataForUpdate 
                         : newValue
                     )
             }    

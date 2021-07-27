@@ -5,7 +5,7 @@ import { useForm } from '../../helpers/useForm';
 
 
 
-const PersonalReg = () => {
+const PersonalReg = ({ title = 'Registro de usuario', closeModal }) => {
     const initialState = useSelector( state => state.registros.formUsuario )
     const { materiasEspecialista, materiasDocente } = useSelector( state => state.indicador.materias );
 
@@ -17,8 +17,8 @@ const PersonalReg = () => {
     const handleSubmit = () => {}
  
     return (
-        <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
-            <h3 className={style.titleRegisters}>Registro de usuario</h3>
+        <form className={`${style.estudianteRegForm} ${ title !== 'Registro de usuario' && style.centrar }`} onSubmit={ handleSubmit }>
+            <h3 className={style.titleRegisters}>{ title }</h3>
                     
             <input type="text" className={style.registerInputs} 
             autoComplete="off" placeholder="Nombre Completo" name="nombre"
@@ -33,8 +33,10 @@ const PersonalReg = () => {
             <input type="email" className={ style.registerInputs } required autoComplete='off' value={email}
             placeholder="Correo eléctronico" name="email" onChange={handleInputChange} />
 
-            <input type="password" className={ style.registerInputs } required autoComplete='off'value={password}
+            { title === 'Registro de usuario' 
+                &&  <input type="password" className={ style.registerInputs } required autoComplete='off'value={password}
                 placeholder="Contraseña *" name="password" onChange={handleInputChange} />
+            }
 
             <select className={ style.optionsRegister } onChange={handleInputChange} name='area' value={area}>
                 <option value="default" >&Aacute;rea</option>
@@ -56,8 +58,14 @@ const PersonalReg = () => {
             </select>      
 
             <button type="submit" className={style.registerbuton}>
-                Registrar usuario
+                { title === 'Registro de usuario' ? title : 'Actualizar Registro' }
             </button>
+            {
+                title !== 'Registro de usuario'
+                &&  <button type="submit" className={`${style.buttonCancelModal}`} onClick={() => closeModal(false)}>
+                        Cancelar
+                    </button>
+            }
 
          </form>   
     )
