@@ -1,43 +1,41 @@
-import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
-import { useSelector, useDispatch } from 'react-redux'
+import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
 
 
 
 
-const PersonalReg = ({ title = 'Registro de usuario', closeModal }) => {
-    const initialState = useSelector( state => state.registros.formUsuario )
+const PersonalReg = () => {
     const { materiasEspecialista, materiasDocente } = useSelector( state => state.indicador.materias );
+    const [ values, handleInputChange, reset ] = useForm({nombre: '', area: '', cedula: '', email: '', password: '', rol: '' });
 
-    const [ values, handleInputChange, reset ] = useForm( initialState );
     const { nombre, area, cedula, email, password, rol } = values;
-
     const allMaterias = [ ...materiasDocente, ...materiasEspecialista ];
 
     const handleSubmit = () => {}
  
     return (
-        <form className={`${style.estudianteRegForm} ${ title !== 'Registro de usuario' && style.centrar }`} onSubmit={ handleSubmit }>
-            <h3 className={style.titleRegisters}>{ title }</h3>
+        <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
+            <h3 className={style.titleRegisters}>Registro de Usuario</h3>
                     
             <input type="text" className={style.registerInputs} 
-            autoComplete="off" placeholder="Nombre Completo" name="nombre"
-            onChange={ handleInputChange } value={nombre}
-             />
+                autoComplete="off" placeholder="Nombre Completo" name="nombre"
+                onChange={ handleInputChange } value={nombre}
+            />
 
             <input type="text" className={ style.registerInputs } 
-            placeholder="Cédula" name="cedula"  autoComplete='off' onChange={handleInputChange}
-            value={cedula}
+                placeholder="Cédula" name="cedula"  autoComplete='off' onChange={handleInputChange}
+                value={cedula}
             />
 
             <input type="email" className={ style.registerInputs } required autoComplete='off' value={email}
-            placeholder="Correo eléctronico" name="email" onChange={handleInputChange} />
+                placeholder="Correo eléctronico" name="email" onChange={handleInputChange} 
+            />
 
-            { title === 'Registro de usuario' 
-                &&  <input type="password" className={ style.registerInputs } required autoComplete='off'value={password}
-                placeholder="Contraseña *" name="password" onChange={handleInputChange} />
-            }
-
+            <input type="password" className={ style.registerInputs } required autoComplete='off'value={password}
+                placeholder="Contraseña *" name="password" onChange={handleInputChange} 
+            />
+            
             <select className={ style.optionsRegister } onChange={handleInputChange} name='area' value={area}>
                 <option value="default" >&Aacute;rea</option>
                 {
@@ -58,15 +56,8 @@ const PersonalReg = ({ title = 'Registro de usuario', closeModal }) => {
             </select>      
 
             <button type="submit" className={style.registerbuton}>
-                { title === 'Registro de usuario' ? title : 'Actualizar Registro' }
+                Registrar usuario
             </button>
-            {
-                title !== 'Registro de usuario'
-                &&  <button type="submit" className={`${style.buttonCancelModal}`} onClick={() => closeModal(false)}>
-                        Cancelar
-                    </button>
-            }
-
          </form>   
     )
 }

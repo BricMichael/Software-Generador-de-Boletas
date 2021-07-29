@@ -33,7 +33,7 @@ const EstudianteReg = () => {
              />
 
             <input type="text" className={style.registerInputs} 
-            placeholder="Cédula escolar" name="cedulaE"  value={ cedulaE }
+            placeholder="Cédula escolar" name="cedulaE"  value={ cedulaE } autoComplete="off"
              onChange={ handleInputChange }  />
 
             <select className={ style.optionsRegister } name='genero' value={genero}
@@ -65,8 +65,8 @@ const EstudianteReg = () => {
                 Registrar Estudiante
             </button>
 
-         </form>   
-    )
+        </form>   
+    );
 }
 
 export default EstudianteReg;

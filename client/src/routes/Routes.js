@@ -19,7 +19,8 @@ const Routes = () => {
     return (
         <Router>
             <Switch>
-            <PrivateRoute exact path="/menu-principal/registros" isAuthenticated={isAuthenticated}  component={ Usuarios} /> 
+
+                <PrivateRoute path="/menu-principal/registros" isAuthenticated={isAuthenticated}  component={ Usuarios} /> 
 
                 <PrivateRoute exact path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} component={ CrearBoleta } /> 
 

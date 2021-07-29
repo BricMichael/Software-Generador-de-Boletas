@@ -1,45 +1,38 @@
-import { useState } from 'react';
-import style from './registrosUsers.module.css';
+import { Switch, Route, useRouteMatch} from 'react-router-dom'
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import Header from '../../../components/Header/Header';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
+import Sidebar from '../../../components/Sidebar/Sidebar';
 import EstudianteReg from '../../../components/Registros/EstudianteReg';
 import PersonalReg from '../../../components/Registros/PersonalReg';
 import TableUsers from '../../../components/Registros/TableUsers';
 import Options from '../../../components/Options&Links/Options';
-import UpdateEstudiante from '../../../components/Modal/UpdateEstudiante';
 
+
+import style from './registrosUsers.module.css'
 
 
 const Usuarios = () => {
     backgroundColorPage('#012c66'); 
     document.title = 'Registro de Usuarios';
-    const [handleOpenModal, setHandleOpenModal] = useState(false);
-    let rol= 'admin'
+    let { path } = useRouteMatch();
+
+   
     return (
         <>
             <BotonHome />
             <Header title="Zona de registros"  marginTop='-4.4rem' />
-            <div className={ style.registros }>
-                <EstudianteReg />
-                <Options 
-                    cabecera='Buscar estudiante por cédula escolar' 
-                    btnText='Buscar estudiante'
-                />
-            </div>  
+            <div className={style.contienetodo}>
+                <Sidebar />
+           
 
-            {  handleOpenModal && <UpdateEstudiante closeModal={ setHandleOpenModal } /> }
-
-            {
-                rol === 'admin' &&
-                    <div className={ style.secondContent }>
-                        <PersonalReg />
-                        <div>
-                            <h2 className={ style.titleH2 } >Usuarios registrados</h2>    
-                            <TableUsers openModal={ setHandleOpenModal } />
-                        </div>
-                    </div>
-            }        
+                <Switch>  
+                    <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
+                    <Route path={`${path}/ListaUsuarios`} exact component={ TableUsers} />
+                    <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
+                    <Route path={`${path}/ActualizarDatos`} exact component={ Options} />
+                </Switch>
+            </div>
         </>
     )
 }
