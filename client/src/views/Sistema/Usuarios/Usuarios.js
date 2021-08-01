@@ -8,7 +8,7 @@ import PersonalReg from '../../../components/Registros/PersonalReg';
 import TableUsers from '../../../components/Registros/TableUsers';
 import Options from '../../../components/Options&Links/Options';
 
-
+import image from './registro.svg'
 import style from './registrosUsers.module.css'
 
 
@@ -22,9 +22,10 @@ const Usuarios = () => {
         <>
             <BotonHome />
             <Header title="Zona de registros"  marginTop='-4.4rem' />
-            <div className={style.contienetodo}>
+            <div className={style.contentInitial}>
                 <Sidebar />
-           
+                <img src={image} alt='nofound' className={style.imageSvg}></img>
+            </div>
 
                 <Switch>  
                     <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
@@ -32,7 +33,7 @@ const Usuarios = () => {
                     <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
                     <Route path={`${path}/ActualizarDatos`} exact component={ Options} />
                 </Switch>
-            </div>
+              
         </>
     )
 }

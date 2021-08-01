@@ -3,7 +3,7 @@ import { useForm } from "../../helpers/useForm";
 import { useDispatch } from 'react-redux'
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
 
-//estilar esto
+
 const Options = ({ cabecera = 'Mostrar indicadores por momento', btnText = 'Buscar', vista = 'Indicador'}) => {
     
     let condition = btnText === 'Buscar';

@@ -1,21 +1,28 @@
-.contienetodo {
+.contentInitial{
     display: flex;
+    width: 100%;
     align-items: flex-start;
-    /* background: rgb(158, 25, 52); */
+    margin: 4rem 0px;
 }
 
+.imageSvg {
+    width: 64%;
+    height: 280px;
+    margin: auto;
+    z-index: 99999;
+}
 
 /*Estilos de los dos registros */
+
 .estudianteRegForm {
     background: #fff;
     width: 290px;
     box-shadow: 0px 3px #363636;
     border-radius: 2px;
-    margin: 0px auto;
     padding: 18px;
     font-family: Arial, Helvetica, sans-serif;
     justify-self: flex-start;
-    margin-left: 15%;
+    margin: auto;
 } 
 
 
@@ -87,37 +94,39 @@
 .registerbuton:focus, .buttonCancelModal:focus {
     outline: none;
 }
+
 /* estilos de las tablas */
 
-.titleH2 {
-    text-align: left;
-    margin-left: 3rem;
-    margin-top: 3rem;
+.infoAndComponent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.8rem;
 }
 
 .registersTable {
-    width: 800px;
-    margin: 0.5rem 0.8rem 1rem 3rem;
+    width: 850px;
     border-collapse: collapse; 
+    
 }
 
 .registersTableThead {
     background: #447bc4;
     color: #021e42;
+  
 }
 
 .registersTableTr > .registersTh  {
     padding: 10px 3px;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 
-.registersTbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
+.registersTbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, el background*/
     background-color: #ddd;
 }
 
-
-.indIndividual > .padding:nth-child(1){  text-align: left; }
 
 .registerTrBody {
     color: #012c66;
@@ -129,10 +138,9 @@
 }
 
 .childrenBody {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 200;
 }
-
 
 .botones {
     padding: 5px;
@@ -145,22 +153,37 @@
     margin-top: 0.1rem;
 }
 
-.edit { background: #447bc4; margin-right: 0.4rem; margin-left: 0.4rem;}
+.edit { background: #447bc4; margin-right: 0.3rem;}
 
-.delete { background: rgb(158, 25, 52); }
+.delete { background: rgb(158, 25, 52);}
 
 
-@media screen and ( max-width: 1310px) {
-    .registersTable {
-        margin: 0.5rem 0.8rem 1rem 0rem;
+@media screen and ( max-width: 980px) {
+    .childrenBody {
+        font-size: 13px;
+        font-weight: 200;
     }
-}
-
-@media screen and ( max-width: 1200px) {
-    .registersTable {
-        margin: 0.5rem 0.8rem 1rem 3rem;
+    .botones{
+        font-size: 16px;
     }
- 
+    .childrenBody:nth-child(5){
+        text-align: right;
+    }
+    .registersTable {
+        width: 800px;
+    }
+    .registrosUsers_edit{
+        background: #447bc4;
+        margin-right: 0.2rem;
+        margin-left: 0.2rem;
+    }
+    .menuInformativo {
+        justify-self: flex-start;
+        margin-left: 0px;
+    }
+    .imageSvg {
+        width: 55%;
+    }
     
 }
 

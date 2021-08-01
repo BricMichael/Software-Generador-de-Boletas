@@ -1,0 +1,24 @@
+.menuInformativo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0px;
+}
+
+.dataMenu {
+    background: #fff;
+    color: #012c66;
+    padding: 8px;
+    border-radius: 6px;
+    margin-right: 0.6rem;
+    transition: background .3s ease;
+}
+
+.dataMenu:hover {
+    background: #ddd;
+}
+
+.dataMenu > p > small {
+    font-weight: bold;
+    font-size: 17px;
+}

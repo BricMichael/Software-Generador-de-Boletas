@@ -6,7 +6,7 @@ import { allIndicadorOfUser } from "../Redux/actions/indicadoresActions";
 //IMPORTANTE-----------------------------
 // separar la logica de negocio de redux thunk y ademas hacer las validaciones de los campos vacios cuando el rol es especialista.
 
-export const validar_EnviarData = ( values, cleanForm ) => async ( dispatch ) => {
+export const validar_EnviarData = ( values ) => async ( dispatch ) => {
     const { indicador,  area, condicion_especial } = values;
 
     values.idUser = JSON.parse(localStorage.getItem('userActive')).id;
@@ -18,8 +18,13 @@ export const validar_EnviarData = ( values, cleanForm ) => async ( dispatch ) =>
      
     await guardarIndicador( values );
     dispatch( allIndicadorOfUser() );
-    cleanForm();  // Limpia los campos del formulario.
-    return Swal.fire( { icon: 'success', title: 'Has creado un nuevo indicador', showConfirmButton: false, timer: 1300,position: 'top-end' });    
+    return Swal.fire( 
+        { icon: 'success', 
+        title: 'Has creado un nuevo indicador', 
+        showConfirmButton: false, 
+        timer: 1300,
+        position: 'top-end' 
+    });    
     
 }
 

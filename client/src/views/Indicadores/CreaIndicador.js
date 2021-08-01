@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import style from './crearIndicador.module.css';
+import { stateCrearIndicador } from '../../helpers/estadosRegistros';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
 import { validar_EnviarData, ocultarOptions } from '../../helpers/validarCamposIndicador';
+
 
 
 
@@ -11,8 +13,7 @@ const CreaIndicador = () => {
     const { materiasDocente, materiasEspecialista} = useSelector( state => state.indicador.materias );
     const dispatch = useDispatch();
 
-    const [ values, handleInputChange, reset ] = useForm({ indicador: '', literal: '', area: '', 
-    condicion_especial: '', grado: '', momento: '' });
+    const [ values, handleInputChange, reset ] = useForm(stateCrearIndicador);
 
     const { indicador, literal, area, condicion_especial, grado, momento } = values;
     const rolUser = useRef( JSON.parse( localStorage.getItem('userActive') ).rol );
@@ -23,7 +24,8 @@ const CreaIndicador = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch( validar_EnviarData( values, reset ) );
+        dispatch( validar_EnviarData( values ));
+        reset();
     }
 
     const recorrerArray = rolUser.current === 'especialista' ? materiasEspecialista : materiasDocente;

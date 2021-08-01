@@ -2,8 +2,6 @@ import types from "../types";
 
 
 const initialState = {
-    formStudent: { nombres:'', cedulaE: '', genero: '', grado: '', seccion: '' },
-    formUsuario: { nombre:'', cedula: '', email: '', password: '', area: '', rol: '' },
     updateActive: '',
     allUsersRegisters: []
 }

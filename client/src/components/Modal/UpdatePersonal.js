@@ -54,7 +54,7 @@ const UpdatePersonal = ({closeModal}) => {
                 <button type="submit" className={style.registerbuton}>
                     Actualizar datos
                 </button>
-                <button type="submit" className={`${style.buttonCancelModal}`} 
+                <button className={`${style.buttonCancelModal}`} 
                 onClick={() => closeModal(false)}>
                     Cancelar
                 </button>
