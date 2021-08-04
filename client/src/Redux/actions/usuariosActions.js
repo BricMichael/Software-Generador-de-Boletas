@@ -35,13 +35,18 @@ export const registroPersonalAction = async( values, reset, statusRegistro ) => 
 
 export const allUsuarios = async() => {
     const { data } = await api.apiGetAllRegisters();
-    const initial = []
+    const names = []
 
     for (const name of data) {
-        initial.push( name.nombre.split(' ')[0] + ' ' + name.nombre.split(' ')[2] )  
+        names.push( name.nombre.split(' ')[0] + ' ' + name.nombre.split(' ')[2] )  
     }
 
     return new Promise( (resolve, reject ) => {
-        resolve({ data, initial });
+        resolve({ data, names });
     })
 }
+
+export const updateRegistroAction = async(id, newData) => {
+    // await api.updateRegisterPersonal( id, newData );
+//    console.log(newData)
+ }

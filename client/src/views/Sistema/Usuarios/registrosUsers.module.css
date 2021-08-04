@@ -15,7 +15,7 @@
 
 .estudianteRegForm {
     background: #fff;
-    width: 290px;
+    width: 300px;
     box-shadow: 0px 3px #363636;
     border-radius: 2px;
     padding: 18px;
@@ -38,6 +38,7 @@
     font-size: 16px;
     margin-bottom: 16px;
     height: 25px;
+    padding: 0px 8px;
     width: 100%;
     transition: border-bottom .5s ease;
 }
@@ -162,7 +163,7 @@
 .registersTh:nth-child(3){ padding-right: 8px; }
 .childrenBody:nth-child(4){ padding-left: 6px; }
 .registersTh:nth-child(4){ padding-left:35px;}
-.childrenBody:nth-child(5){ padding-left: 4px;}
+.childrenBody:nth-child(5){ padding-left: 3px;}
 .childrenBody:nth-child(6){ padding-left: 4px;}
 
 

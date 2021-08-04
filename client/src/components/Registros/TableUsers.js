@@ -7,13 +7,13 @@ import UpdatePersonal from '../Modal/UpdatePersonal';
 
 
 const TableUsers = ({indice = 1, countName = 0 }) => {
-    const [handleOpenModal, setHandleOpenModal] = useState(false);
+    const [handleOpenModal, setHandleOpenModal] = useState({ status: false, userSelected: {} });
     const [usersRegistrados, setUsersRegistrados] = useState({ datos: [], nombres: [] })
     
     useEffect(() => {
       let ejectuar =  async() => {
-          const { data, initial } = await allUsuarios()
-          setUsersRegistrados({ datos: data, nombres: initial })
+          const { data, names } = await allUsuarios()
+          setUsersRegistrados({ datos: data, nombres: names })
       }
       ejectuar();
 
@@ -22,10 +22,20 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     }      
     }, [])
 
+    const updateOpenModal = (valores) => {
+        setHandleOpenModal({ status: true, userSelected: valores })
+    }
    
     return (
         <>
-            {  handleOpenModal && <UpdatePersonal closeModal={ setHandleOpenModal } /> }
+            {  handleOpenModal.status && <UpdatePersonal 
+                    closeModal={ setHandleOpenModal } 
+                    datos={ handleOpenModal.userSelected }
+                    dataState={ usersRegistrados } 
+                    updateState = {setUsersRegistrados}
+                /> 
+            }
+
             <div className={ style.infoAndComponent }>
                 <InfoRegistros />
             
@@ -45,12 +55,8 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
                        {
                            usersRegistrados.datos.map( user => (
                                 <tr className={`${style.registerTrBody} animate__animated animate__fadeIn`} key={user.id}>
-                                    <td className={style.childrenBody}><b>#{ indice++ }</b></td>
-
-                                 
-                                    <td className={ style.childrenBody }>{ usersRegistrados.nombres[countName++] }</td>
-                                    
-                                    
+                                    <td className={style.childrenBody}><b>#{ indice++ }</b></td>                                 
+                                    <td className={ style.childrenBody }>{ usersRegistrados.nombres[countName++] }</td>         
                                     <td className={ style.childrenBody }>V- { user.cedula }</td>
                                     <td className={ style.childrenBody }>{ user.email }</td>
                                     <td className={ style.childrenBody }>{ user.area_personal }</td>
@@ -58,7 +64,7 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
                                     <td className={ style.childrenEdit}>
                                         <button 
                                             className={`${style.edit} ${style.botones}`} 
-                                            onClick={ () => setHandleOpenModal(true) }
+                                            onClick={ () => updateOpenModal(user) }
                                         >
                                             Editar
                                         </button> 

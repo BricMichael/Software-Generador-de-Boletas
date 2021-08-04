@@ -20,13 +20,13 @@ const validarUsuario = async(req, res) => {
 const updatePersonal = async(req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, area, cedula, email, rol }  = req.body;
+        const { nombre, area_personal, cedula, email, rol }  = req.body;
 
-        await pool.query(`UPDATE personal set nombre = $1, email = $2, rol = $3, cedula = $4, area_personal = $5 WHERE id = $6`, [nombre, email, rol, cedula, area, id ]);
+        await pool.query(`UPDATE personal set nombre = $1, email = $2, rol = $3, cedula = $4, area_personal = $5 WHERE id = $6`, [nombre, email, rol, cedula, area_personal, id ]);
 
         res.send('User actualizado');
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 
