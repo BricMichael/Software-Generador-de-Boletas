@@ -6,20 +6,20 @@ import UpdatePersonal from '../Modal/UpdatePersonal';
 
 
 
-const TableUsers = ({count = 1 }) => {
+const TableUsers = ({indice = 1, countName = 0 }) => {
     const [handleOpenModal, setHandleOpenModal] = useState(false);
-    const [usersRegistrados, setUsersRegistrados] = useState([])
+    const [usersRegistrados, setUsersRegistrados] = useState({ datos: [], nombres: [] })
     
     useEffect(() => {
       let ejectuar =  async() => {
-          const resp = await allUsuarios()
-          setUsersRegistrados(resp)
+          const { data, initial } = await allUsuarios()
+
+          console.log( initial )
+          setUsersRegistrados({ datos: data, nombres: initial })
       }
       ejectuar();
     }, [])
-
-    console.log(usersRegistrados)
-
+   
     return (
         <>
             {  handleOpenModal && <UpdatePersonal closeModal={ setHandleOpenModal } /> }
@@ -34,33 +34,39 @@ const TableUsers = ({count = 1 }) => {
                             <th className={ style.registersTh } >C&eacute;dula</th>
                             <th className={ style.registersTh } >Correo</th>
                             <th className={ style.registersTh } >&Aacute;rea</th>
-                            <th className={ style.registersTh } >Grado</th>
                             <th className={ style.registersTh } >Rol</th>
                             <th className={ style.registersTh } >Acciones</th>
                         </tr>
                         </thead>
                     <tbody className={ style.registersTbody }>    
-                        <tr className={`${style.registerTrBody} animate__animated animate__fadeIn`} >
-                                <td className={style.childrenBody}><b>{ count++ }</b></td>
-                                <td className={style.childrenBody}>Eduardo Torrealba</td>
-                                <td className={ style.childrenBody }>V- 2487564</td>
-                                <td className={ style.childrenBody }>EduarJose23@gmail.com</td>
-                                <td className={ style.childrenBody }>Matemática</td>
-                                <td className={ style.childrenBody }>3</td>
-                                <td className={ style.childrenBody }>Rol</td>
-                                <td className={ style.childrenEdit}>
-                                    <button 
-                                        className={`${style.edit} ${style.botones}`} 
-                                        onClick={ () => setHandleOpenModal(true) }
-                                    >
-                                        Editar
-                                    </button> 
+                       {
+                           usersRegistrados.datos.map( user => (
+                                <tr className={`${style.registerTrBody} animate__animated animate__fadeIn`} key={user.id}>
+                                    <td className={style.childrenBody}><b>#{ indice++ }</b></td>
 
-                                    <button className={ `${style.delete} ${style.botones}`}>
-                                        Eliminar
-                                    </button>  
-                                </td>
-                        </tr>      
+                                 
+                                    <td className={ style.childrenBody }>{ usersRegistrados.nombres[countName++] }</td>
+                                    
+                                    
+                                    <td className={ style.childrenBody }>V- { user.cedula }</td>
+                                    <td className={ style.childrenBody }>{ user.email }</td>
+                                    <td className={ style.childrenBody }>{ user.area_personal }</td>
+                                    <td className={ style.childrenBody }>{ user.rol }</td>
+                                    <td className={ style.childrenEdit}>
+                                        <button 
+                                            className={`${style.edit} ${style.botones}`} 
+                                            onClick={ () => setHandleOpenModal(true) }
+                                        >
+                                            Editar
+                                        </button> 
+
+                                        <button className={ `${style.delete} ${style.botones}`}>
+                                            Eliminar
+                                        </button>  
+                                    </td>
+                                </tr> 
+                           ))
+                       }     
                     </tbody>
                 </table>
             </div>    

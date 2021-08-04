@@ -121,9 +121,9 @@
 }
 
 .registersTable {
-    width: 850px;
+    width: 70%;
     border-collapse: collapse; 
-    
+
 }
 
 .registersTableThead {
@@ -146,6 +146,7 @@
 .registerTrBody {
     color: #012c66;
     background: rgb(179, 172, 172);
+   
 }
 
 .registerTrBody > .childrenBody {
@@ -155,7 +156,10 @@
 .childrenBody {
     font-size: 15px;
     font-weight: 200;
+    /* padding: 15px; */
 }
+
+.childrenBody:nth-child(2){color: red; padding: 0px 4px;}
 
 .botones {
     padding: 5px;
