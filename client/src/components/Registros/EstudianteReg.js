@@ -1,11 +1,10 @@
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
+import { useEffect, useState } from 'react';
+import { useForm } from '../../helpers/useForm';
 import InfoRegistros from '../InfoDataRegistros/InfoRegistros';
 import { stateRegistroEstudiante } from '../../helpers/estadosRegistros';
-import { useEffect } from 'react';
-import { useForm } from '../../helpers/useForm';
-import { useDispatch } from 'react-redux';
+import { registroEstudianteAction } from '../../Redux/actions/usuariosActions';
 import { gradoStudent, seccionStudent } from '../../helpers/arraysOptionsForm';
-
 
 
 
@@ -13,14 +12,36 @@ const EstudianteReg = () => {
 
     const [ values, handleInputChange, reset ] = useForm(stateRegistroEstudiante);
     const { nombres, cedulaE, genero, grado, seccion } = values;
+    const [estadoReg, setEstadoReg] = useState({ status: false, msg: '', type: '' })
     
     const handleSubmit = (e) => { 
-         e.preventDefault(); 
+        e.preventDefault(); 
+        registroEstudianteAction( values, reset, setEstadoReg );
     }
+
+    useEffect(() => {
+        return () => {
+            setEstadoReg({ status: false, msg: '', type: '' });
+            reset();
+        }
+    }, [])
 
     return (
         <div className={ style.infoAndComponent }>
             <InfoRegistros />
+
+           {
+               estadoReg.status
+                &&  <div className={ estadoReg.type === 'exito'
+                        ? style.EstadoRegistroEstudiante 
+                        : style.estadoError}
+                    >
+                        <p className={`${style.respEstado} ${style.respError}`}>
+                            { estadoReg.msg }
+                        </p>
+                    </div>
+
+           }
             <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
                 <h3 className={style.titleRegisters}>Registro de Estudiante</h3>
                         
@@ -61,10 +82,8 @@ const EstudianteReg = () => {
                 <button type="submit" className={style.registerbuton}>
                     Registrar Estudiante
                 </button>
-
             </form>   
-        </div>
-      
+        </div>  
     );
 }
 

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { allUsuarios } from '../../Redux/actions/usuariosActions';
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
 import InfoRegistros from '../InfoDataRegistros/InfoRegistros';
 import UpdatePersonal from '../Modal/UpdatePersonal';
@@ -7,6 +8,17 @@ import UpdatePersonal from '../Modal/UpdatePersonal';
 
 const TableUsers = ({count = 1 }) => {
     const [handleOpenModal, setHandleOpenModal] = useState(false);
+    const [usersRegistrados, setUsersRegistrados] = useState([])
+    
+    useEffect(() => {
+      let ejectuar =  async() => {
+          const resp = await allUsuarios()
+          setUsersRegistrados(resp)
+      }
+      ejectuar();
+    }, [])
+
+    console.log(usersRegistrados)
 
     return (
         <>
@@ -33,7 +45,7 @@ const TableUsers = ({count = 1 }) => {
                                 <td className={style.childrenBody}>Eduardo Torrealba</td>
                                 <td className={ style.childrenBody }>V- 2487564</td>
                                 <td className={ style.childrenBody }>EduarJose23@gmail.com</td>
-                                <td className={ style.childrenBody }>Matematica</td>
+                                <td className={ style.childrenBody }>Matemática</td>
                                 <td className={ style.childrenBody }>3</td>
                                 <td className={ style.childrenBody }>Rol</td>
                                 <td className={ style.childrenEdit}>

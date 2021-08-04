@@ -8,12 +8,12 @@ const registroEstudiante = async( req, res) => {
         const respBD = await pool.query('SELECT cedula_escolar FROM estudiante WHERE cedula_escolar = $1', [cedulaE])
 
         if ( respBD.rowCount === 1 ) {
-            res.json({error: 'Ya existe un usuario con esa cedula escolar'})
+            res.json({msg: 'Error: Ya existe un usuario con esa cédula escolar'});
         }
         else{
             await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion ) VALUES($1,$2, $3, $4, $5)', [cedulaE, nombres, genero, grado, seccion]);
 
-            res.send(`Estudiante ${nombres} registrado`);
+            res.json({msg: 'Estudiante registrado exitosamente'});
         }
 
     } catch (err) {
@@ -31,12 +31,12 @@ const registroUsuario = async( req, res) => {
         const respBD = await pool.query(`SELECT * FROM personal WHERE cedula = $1 OR email = $2`, [cedula, email])
 
         if ( respBD.rowCount === 1 ) {
-            res.json({error: 'Ya existe un usuario con ese correo electrónico o cédula'})
+            res.json({msg: 'Error: Ya existe un usuario con ese correo electrónico o cédula'})
         }
         else{
             await pool.query('INSERT INTO personal( nombre, email, rol, cedula, area_personal, claveuser, fecha_reg ) VALUES($1,$2, $3, $4, $5, $6, $7)', [nombre, email, rol,cedula,area, password, dateToday ]);
             
-            res.send(`Usuario ${nombre} registrado`);
+            res.json({msg: 'Usuario registrado exitosamente'});
         }
 
     } catch (err) {

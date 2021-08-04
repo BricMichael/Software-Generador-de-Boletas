@@ -21,7 +21,7 @@ const Usuarios = () => {
     return (
         <>
             <BotonHome />
-            <Header title="Zona de registros"  marginTop='-4.4rem' />
+            <Header title="Registros"  marginTop='-4.4rem' />
             <div className={style.contentInitial}>
                 <Sidebar />
                 <img src={image} alt='nofound' className={style.imageSvg}></img>

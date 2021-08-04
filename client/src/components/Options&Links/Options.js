@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
 
 
-const Options = ({ cabecera = 'Mostrar indicadores por momento', btnText = 'Buscar', vista = 'Indicador'}) => {
+const Options = ({ cabecera = 'Seleccione momento actual', btnText = 'Buscar', vista = 'Indicador'}) => {
     
     let condition = btnText === 'Buscar';
     const dispatch = useDispatch();

@@ -4,12 +4,16 @@ export const gradoStudent = [
         desc: 'Grado'
     },
     {
+        value: '1',
+        desc: 'Primer Grado'
+    },
+    {
         value: '2',
         desc: 'Segundo Grado'
     },
     {
         value: '3',
-        desc: 'Terce Grado'
+        desc: 'Tercer Grado'
     },
     {
         value: '4',

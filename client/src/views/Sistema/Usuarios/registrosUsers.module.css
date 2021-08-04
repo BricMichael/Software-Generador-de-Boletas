@@ -9,7 +9,6 @@
     width: 64%;
     height: 280px;
     margin: auto;
-    z-index: 99999;
 }
 
 /*Estilos de los dos registros */
@@ -93,6 +92,22 @@
 
 .registerbuton:focus, .buttonCancelModal:focus {
     outline: none;
+}
+
+/*Respuesta aprobado o denegado en los registros*/
+.EstadoRegistroEstudiante, .estadoError  {
+    width: auto;
+    height: 40px;
+    background-color: #389e77; 
+    padding: 10px;
+    margin-bottom: 0.6rem;
+    border-radius: 4px;
+}
+.estadoError { background-color: #c72b38; }
+
+.respEstado, .respError{ 
+    color:#efefef;
+    font-size: 21px;
 }
 
 /* estilos de las tablas */
