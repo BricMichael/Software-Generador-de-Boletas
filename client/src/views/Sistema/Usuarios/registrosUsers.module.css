@@ -115,7 +115,6 @@
 .infoAndComponent{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     margin-bottom: 1.8rem;
 }
@@ -123,7 +122,7 @@
 .registersTable {
     width: 70%;
     border-collapse: collapse; 
-
+    margin: auto;
 }
 
 .registersTableThead {
@@ -133,8 +132,10 @@
 }
 
 .registersTableTr > .registersTh  {
-    padding: 10px 3px;
+    padding: 10px 17px;
     font-size: 17px;
+    text-align: left;
+    
 }
 
 
@@ -149,24 +150,28 @@
    
 }
 
-.registerTrBody > .childrenBody {
-    padding: 16px 0px;
-}
-
 .childrenBody {
     font-size: 15px;
     font-weight: 200;
-    /* padding: 15px; */
+    padding: 14px 0px;
+    text-align: left;
 }
 
-.childrenBody:nth-child(2){color: red; padding: 0px 4px;}
+
+.childrenBody:nth-child(1){ padding-left: 14px;}
+.registersTh:nth-child(3){ padding-right: 8px; }
+.childrenBody:nth-child(4){ padding-left: 6px; }
+.registersTh:nth-child(4){ padding-left:35px;}
+.childrenBody:nth-child(5){ padding-left: 4px;}
+.childrenBody:nth-child(6){ padding-left: 4px;}
+
 
 .botones {
     padding: 5px;
     color: #fff;
     cursor: pointer;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
     transition: background .3s ease;
     border-radius: 6px;
     margin-top: 0.1rem;
@@ -184,9 +189,6 @@
     }
     .botones{
         font-size: 16px;
-    }
-    .childrenBody:nth-child(5){
-        text-align: right;
     }
     .registersTable {
         width: 800px;
@@ -208,6 +210,6 @@
 
 @media screen and ( max-width: 860px) {
     .registersTable {
-        width: 700px;
+        width: 730px;
     }
 }

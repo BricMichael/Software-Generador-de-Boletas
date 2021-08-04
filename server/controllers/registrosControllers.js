@@ -61,7 +61,7 @@ const updateEstudiante = async(req, res) => {
 //
 const allRegistrosUsuarios = async (req, res) => {
     try {
-        const resDB = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal');
+        const resDB = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre');
         res.json(resDB.rows);
     } catch (err) {
         console.log(err.message);

@@ -4,6 +4,7 @@ import { stateCrearIndicador } from '../../helpers/estadosRegistros';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
 import { validar_EnviarData, ocultarOptions } from '../../helpers/validarCamposIndicador';
+import { roles } from '../../helpers/roles';
 
 
 
@@ -28,7 +29,7 @@ const CreaIndicador = () => {
         reset();
     }
 
-    const recorrerArray = rolUser.current === 'especialista' ? materiasEspecialista : materiasDocente;
+    const recorrerArray = rolUser.current === roles.especialista ? materiasEspecialista : materiasDocente;
  
     return (
         <div className={`${style.pag_total}`}>

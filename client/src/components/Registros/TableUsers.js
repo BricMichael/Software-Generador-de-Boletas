@@ -13,12 +13,15 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     useEffect(() => {
       let ejectuar =  async() => {
           const { data, initial } = await allUsuarios()
-
-          console.log( initial )
           setUsersRegistrados({ datos: data, nombres: initial })
       }
       ejectuar();
+
+      return () => {
+        setUsersRegistrados({ datos: [], nombres: [] });
+    }      
     }, [])
+
    
     return (
         <>

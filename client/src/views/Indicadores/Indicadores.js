@@ -9,6 +9,7 @@ import ComentariosEmail from "../../components/ComentsEmail/ComentariosEmail";
 import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
 import Options from "../../components/Options&Links/Options";
 import OptionsCoordinador from "../../components/Options&Links/OptionsCoordinador";
+import { roles } from "../../helpers/roles";
 
 
 
@@ -26,17 +27,17 @@ const Indicadores = () => {
         <>
 
         <BotonHome resetStateViewIndcadores={ limpiarState } />
-        <Header title={ rol === 'coordinador' ? 'Observación de Indicadores' : 'Creación de Indicadores' } 
+        <Header title={ rol === roles.coordinador ? 'Observación de Indicadores' : 'Creación de Indicadores' } 
         marginTop='-4.4rem' /> 
 
-        { rol !== 'coordinador' && 
+        { rol !== roles.coordinador && 
             <>
                 <CreaIndicador />
                 <Options />
             </>
         }
 
-        { rol === 'coordinador' && 
+        { rol === roles.coordinador && 
             <div className={style.estilosCoordinador}>
                 <OptionsCoordinador />
                 <ComentariosEmail />

@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { guardarIndicador } from "../api/api";
 import { allIndicadorOfUser } from "../Redux/actions/indicadoresActions";
+import { roles } from "./roles";
 
 
 //IMPORTANTE-----------------------------
@@ -31,7 +32,7 @@ export const validar_EnviarData = ( values ) => async ( dispatch ) => {
 
 
 export const ocultarOptions = ( rol ) => {
-    if ( rol !== 'especialista' ) { 
+    if ( rol !== roles.especialista ) { 
         document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
         document.querySelector('#gradoOption').setAttribute('disabled', 'true');
     }

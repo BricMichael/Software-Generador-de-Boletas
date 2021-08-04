@@ -5,7 +5,7 @@ import { links } from '../../helpers/coloresBG';
 
 
 const DashBody = () => {
-    const nombreUser  = JSON.parse(window.localStorage.getItem('userActive')) // data formateada a json
+    const nombreUser  = JSON.parse(window.localStorage.getItem('userActive')).nombre // data formateada a json
 
     return (
         <>
@@ -25,7 +25,7 @@ const DashBody = () => {
                     }    
             
                     <div className={styles.user}>
-                        <p>{`Usuario: ${ nombreUser ? nombreUser.nombre : '' }`}</p>
+                        <p>{`Usuario: ${ nombreUser ? nombreUser : '' }`}</p>
                     </div>     
                 </div>
             </section>

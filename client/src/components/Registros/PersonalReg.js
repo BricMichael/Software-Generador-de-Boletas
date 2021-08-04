@@ -67,7 +67,7 @@ const PersonalReg = () => {
                 />
                 
                 <select className={ style.optionsRegister } onChange={handleInputChange} name='area' value={area}>
-                    <option value="default" >&Aacute;rea</option>
+                    <option value="default">&Aacute;rea</option>
                     {
                         allMaterias.map( value => (
                             <option key={ value.materia } value={ value.materia }>  
@@ -79,10 +79,10 @@ const PersonalReg = () => {
 
                 <select className={ style.optionsRegister } onChange={handleInputChange} name='rol' value={rol}>
                     <option value="default">Rol</option>
-                    <option value="especialista">Especialista</option>
-                    <option value="docente">Docente</option>  
-                    <option value="coordinador">Coordinador</option>
-                    <option value="admin">Administador</option>    
+                    <option value="Especialista">Especialista</option>
+                    <option value="Docente">Docente</option>  
+                    <option value="Coordinador">Coordinador</option>
+                    <option value="Admin">Administador</option>    
                 </select>      
 
                 <button type="submit" className={style.registerbuton}>
