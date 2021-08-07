@@ -22,6 +22,7 @@
     font-family: Arial, Helvetica, sans-serif;
     justify-self: flex-start;
     margin: auto;
+    margin-top: 1rem;
 } 
 
 
@@ -99,10 +100,11 @@
 .EstadoRegistroEstudiante, .estadoError  {
     width: auto;
     height: 40px;
+    margin: auto;
     background-color: #389e77; 
     padding: 10px;
-    margin-bottom: 0.6rem;
     border-radius: 4px;
+    
 }
 .estadoError { background-color: #c72b38; }
 
@@ -121,7 +123,7 @@
 }
 
 .registersTable {
-    width: 70%;
+    width: 85%;
     border-collapse: collapse; 
     margin: auto;
 }
@@ -183,6 +185,13 @@
 .delete { background: rgb(158, 25, 52);}
 
 
+@media screen and ( min-width: 1140px) { 
+    .registersTable {
+        width: 75%;
+    }
+}
+
+
 @media screen and ( max-width: 980px) {
     .childrenBody {
         font-size: 13px;
@@ -211,6 +220,6 @@
 
 @media screen and ( max-width: 860px) {
     .registersTable {
-        width: 730px;
+        width: 750px;
     }
 }

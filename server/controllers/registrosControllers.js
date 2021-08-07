@@ -8,7 +8,7 @@ const registroEstudiante = async( req, res) => {
         const respBD = await pool.query('SELECT cedula_escolar FROM estudiante WHERE cedula_escolar = $1', [cedulaE])
 
         if ( respBD.rowCount === 1 ) {
-            res.json({msg: 'Error: Ya existe un usuario con esa cédula escolar'});
+            res.json({msg: 'Error: Ya existe un estudiante con esa cédula escolar'});
         }
         else{
             await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion ) VALUES($1,$2, $3, $4, $5)', [cedulaE, nombres, genero, grado, seccion]);
@@ -83,8 +83,8 @@ const getEstudiantebyCedula = async (req, res) => {
 const eliminarRegistro = async(req, res) => {
     try {
         const { id } = req.params;
-        const { tabla } = req.body;
-        await pool.query(`DELETE FROM ${tabla} WHERE id = $1`, [id]);
+        const  tablaName  = req.query.tabla;
+        await pool.query(`DELETE FROM ${tablaName} WHERE id = $1`, [id]);
 
         res.send('Registro eliminado');
 

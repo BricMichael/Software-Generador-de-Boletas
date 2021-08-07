@@ -34,4 +34,6 @@ export const apiRegisterPersonal = (datos) => axios.post(`${urlRegistro}Usuario`
 export const apiGetAllRegisters = () => axios.get(`${urlRegistro}Usuarios`);
 export const getStudentByCedula = ( cedula ) => axios.post(`${urlRegistro}Unico`, cedula);
 export const updateStudent = (id, dataNew) => axios.put( `${urlRegistro}/${id}`, dataNew );
-export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, nameTable);
+export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable}});
+ 
+

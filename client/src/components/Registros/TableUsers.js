@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { allUsuarios } from '../../Redux/actions/usuariosActions';
+import Swal from 'sweetalert2';
+import { allUsuarios, eliminaRegistroAction } from '../../Redux/actions/usuariosActions';
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
 import InfoRegistros from '../InfoDataRegistros/InfoRegistros';
 import UpdatePersonal from '../Modal/UpdatePersonal';
+
 
 
 
@@ -22,8 +24,21 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     }      
     }, [])
 
-    const updateOpenModal = (valores) => {
-        setHandleOpenModal({ status: true, userSelected: valores })
+    const deleteUser = async( user ) => {   
+   
+        const { isConfirmed } = await Swal.fire({
+            title: '¿Eliminar usuario?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar!',
+            cancelButtonText: 'Cancelar',
+            width: '400px'
+         })
+
+        isConfirmed && eliminaRegistroAction( user, usersRegistrados, setUsersRegistrados );
     }
    
     return (
@@ -64,12 +79,14 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
                                     <td className={ style.childrenEdit}>
                                         <button 
                                             className={`${style.edit} ${style.botones}`} 
-                                            onClick={ () => updateOpenModal(user) }
+                                            onClick={ () => setHandleOpenModal({ status: true, userSelected: user }) }
                                         >
                                             Editar
                                         </button> 
 
-                                        <button className={ `${style.delete} ${style.botones}`}>
+                                        <button className={ `${style.delete} ${style.botones}`} 
+                                            onClick={ () => deleteUser(user) }
+                                        >
                                             Eliminar
                                         </button>  
                                     </td>

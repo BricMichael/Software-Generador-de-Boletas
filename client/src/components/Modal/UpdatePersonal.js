@@ -21,26 +21,26 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // updateRegistroAction(values.id, values );
-        let indiceName = 0;
-        let newName = '';
 
-        if ( datos.nombre !== values.nombre ) {
-            const verificarNombre = datos.nombre.split(' ')[0] + ' ' + datos.nombre.split(' ')[2]
-            indiceName = dataState.nombres.indexOf(verificarNombre);
+        if ( datos !== values ) {
+            updateRegistroAction(values.id, values );
 
-            newName = values.nombre.split(' ')[0] + ' ' + values.nombre.split(' ')[2]
-        }
-         
-     
+            const updateStateNewData = dataState.datos.map( usuario => usuario.id === values.id ? values : usuario )
+            let verificarNombre = datos.nombre.split(' ')[0] + ' ' + datos.nombre.split(' ')[2];;
+            let newName = '';
 
-        const updateStateNewData = dataState.datos.map( usuario => usuario.id === values.id ? values : usuario )
-        updateState({...dataState, datos: updateStateNewData })
-      
-    
-        // reset();
-        // closeModal({ status: false, userSelected: {} })
-    }
+            if ( datos.nombre !== values.nombre ) newName = values.nombre.split(' ')[0] + ' ' + values.nombre.split(' ')[2];       
+            
+            if ( newName !== '' ) {
+                const updateNombre = dataState.nombres.map( name => name === verificarNombre ? newName : name );
+                updateState({ datos: updateStateNewData, nombres: updateNombre });
+            
+            } else {
+                updateState({ ...dataState, datos: updateStateNewData });
+            } 
+        }       
+        closeModal({ status: false, userSelected: {} })
+     }
 
     
     return (

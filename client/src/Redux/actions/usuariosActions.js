@@ -1,5 +1,5 @@
 import * as api from '../../api/api';
-
+import Swal from 'sweetalert2';
 
 // type exito or error
 
@@ -47,6 +47,24 @@ export const allUsuarios = async() => {
 }
 
 export const updateRegistroAction = async(id, newData) => {
-    // await api.updateRegisterPersonal( id, newData );
-//    console.log(newData)
+    await api.updateRegisterPersonal( id, newData );
+    Swal.fire( 
+        { icon: 'success', 
+        title: 'Datos actualizados exitosamente', 
+        showConfirmButton: false, 
+        timer: 1200,
+        position: 'center',
+        width: '45%'
+    });
+ }
+
+export const eliminaRegistroAction = async( user, state, updateState ) => {
+    await api.apiDeleteRegister( user.id, 'personal' );
+
+    const NameToDelete = user.nombre.split(' ')[0] + ' ' + user.nombre.split(' ')[2];
+
+    const newData = state.datos.filter( registro => registro.id !== user.id );
+    const nameFilters = state.nombres.filter( name => name !== NameToDelete )
+
+    updateState({ datos: newData, nombres: nameFilters });
  }
