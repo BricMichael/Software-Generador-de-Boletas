@@ -25,8 +25,8 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
         if ( datos !== values ) {
             updateRegistroAction(values.id, values );
 
-            const updateStateNewData = dataState.datos.map( usuario => usuario.id === values.id ? values : usuario )
-            let verificarNombre = datos.nombre.split(' ')[0] + ' ' + datos.nombre.split(' ')[2];;
+            const updateStateNewData = dataState.datos.map( usuario => usuario.id === values.id ? values : usuario );
+            let verificarNombre = datos.nombre.split(' ')[0] + ' ' + datos.nombre.split(' ')[2];
             let newName = '';
 
             if ( datos.nombre !== values.nombre ) newName = values.nombre.split(' ')[0] + ' ' + values.nombre.split(' ')[2];       
@@ -39,7 +39,7 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
                 updateState({ ...dataState, datos: updateStateNewData });
             } 
         }       
-        closeModal({ status: false, userSelected: {} })
+        closeModal({ status: false, userSelected: {} });
      }
 
     

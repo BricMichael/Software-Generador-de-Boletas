@@ -31,7 +31,7 @@ export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Lite
 
 export const apiRegisterStudent = (datos) => axios.post(`${urlRegistro}Estudiante`, datos);
 export const apiRegisterPersonal = (datos) => axios.post(`${urlRegistro}Usuario`, datos);
-export const apiGetAllRegisters = () => axios.get(`${urlRegistro}Usuarios`);
+export const apiGetAllRegisters = (param) => axios.get(`${urlRegistro}Usuarios`, { params: { param }});
 export const getStudentByCedula = ( cedula ) => axios.post(`${urlRegistro}Unico`, cedula);
 export const updateStudent = (id, dataNew) => axios.put( `${urlRegistro}/${id}`, dataNew );
 export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable}});

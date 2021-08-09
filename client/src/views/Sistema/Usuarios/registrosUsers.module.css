@@ -184,13 +184,38 @@
 
 .delete { background: rgb(158, 25, 52);}
 
+.nextPersonal {
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+    background: #447bc4;
+    border-radius: 6px;
+    margin-top: 1.4rem;
+    align-self: flex-end;
+    width: 120px;
+    margin-right: 13%;
+}
 
 @media screen and ( min-width: 1140px) { 
     .registersTable {
         width: 75%;
     }
+    .nextPersonal {
+        margin-right: 13%;
+    }
+
 }
 
+
+@media screen and ( max-width: 1128px) { 
+    .nextPersonal { margin-right: 8%; }
+}
+
+@media screen and ( max-width: 890px) { 
+    .nextPersonal { margin-right: 2rem; }
+}
 
 @media screen and ( max-width: 980px) {
     .childrenBody {
@@ -218,8 +243,14 @@
     
 }
 
+@media screen and ( max-width: 950px) {
+    .nextPersonal { margin-right: 6%; }
+}
+
 @media screen and ( max-width: 860px) {
     .registersTable {
-        width: 750px;
+        width: 750px;   
     }
+
+    .nextPersonal { margin-right: 2.8rem; }
 }

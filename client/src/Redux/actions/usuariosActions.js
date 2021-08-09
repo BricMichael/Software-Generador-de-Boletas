@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 export const registroEstudianteAction = async( values, reset, statusRegistro ) => {
     const { data: {msg} } = await api.apiRegisterStudent( values );
     let verificacionTipo = msg === 'Estudiante registrado exitosamente';
-    verificacionTipo && reset();
+    verificacionTipo && reset(); // el registro fue exitoso y se limpia el form.
     statusRegistro({ status: true, msg, type: verificacionTipo ? 'exito' : 'error' })
     setTimeout(() => {
         statusRegistro({ status: false, msg: '', type: ''})
@@ -33,18 +33,51 @@ export const registroPersonalAction = async( values, reset, statusRegistro ) => 
     }, 4000);
 }
 
-export const allUsuarios = async() => {
-    const { data } = await api.apiGetAllRegisters();
-    const names = []
+const twoNamesOfUsers = (data) => {
+    const names = [];
 
     for (const name of data) {
         names.push( name.nombre.split(' ')[0] + ' ' + name.nombre.split(' ')[2] )  
     }
 
+    return names;
+}
+
+export const allUsuarios = async() => {
+    const { data } = await api.apiGetAllRegisters();
+    const names = twoNamesOfUsers( data );
+
     return new Promise( (resolve, reject ) => {
         resolve({ data, names });
     })
 }
+
+
+let count = 0; 
+export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = next o back 
+
+    let newData = {}
+
+    if ( accion === 'next' ) {
+        count += 4;
+        const { data } = await api.apiGetAllRegisters( count);
+        const names = twoNamesOfUsers( data);
+        newData = { data, names }
+        data[0].aviso && document.getElementById('deshabilitar').setAttribute('disabled','true');
+      
+    }else {
+        count =  count <= 0 ? count = 0 : count - 4;
+        const { data } = await api.apiGetAllRegisters( count);
+        const names = twoNamesOfUsers( data);
+        newData = { data, names }
+        !data[0].aviso && document.getElementById('deshabilitar').removeAttribute('disabled')
+    }
+   
+    return new Promise( (resolve, reject ) => {
+        resolve(newData);
+    })
+}
+
 
 export const updateRegistroAction = async(id, newData) => {
     await api.updateRegisterPersonal( id, newData );

@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const { registroEstudiante, registroUsuario, allRegistrosUsuarios, getEstudiantebyCedula, updateEstudiante, eliminarRegistro, } = require('../controllers/registrosControllers');
+const { registroEstudiante, registroUsuario, allUsuariosRegistrados, getEstudiantebyCedula, updateEstudiante, eliminarRegistro, } = require('../controllers/registrosControllers');
 
-router.get('/registroUsuarios', allRegistrosUsuarios);
+router.get('/registroUsuarios', allUsuariosRegistrados);
 router.post('/registroEstudiante', registroEstudiante);
 router.post('/registroUsuario', registroUsuario);
 router.post('/registroUnico', getEstudiantebyCedula);

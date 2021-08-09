@@ -59,10 +59,26 @@ const updateEstudiante = async(req, res) => {
 }
 
 //
-const allRegistrosUsuarios = async (req, res) => {
+const allUsuariosRegistrados = async (req, res) => {
     try {
-        const resDB = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre');
-        res.json(resDB.rows);
+        let longitudOfRegistros = await pool.query('SELECT * FROM personal ORDER BY nombre');
+
+        let valorInicial = +req.query.param;
+        let lastUser = longitudOfRegistros.rows[ longitudOfRegistros.rows.length -1 ].id // Obtener el ultimo usuario de la BD.
+       
+       if( valorInicial ) {  // si esto es true el usuario quiere ver los siguientes o anteriores regs, segun el <<valorInicial>>
+            const resBD = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [valorInicial, 4]); 
+
+            if( resBD.rows[ resBD.rows.length - 1 ].id  === lastUser ) {
+                resBD.rows[0].aviso = true; // se le notifica al front mediante esta propiedad que se estan mostrando los ultimos regs
+                res.json(resBD.rows);
+            }else {
+                res.json(resBD.rows);
+            }          
+        }else { // sino mostrar los primeros 10 regs.
+            const resBD = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [0, 4]);
+            res.json(resBD.rows);
+        }       
     } catch (err) {
         console.log(err.message);
     }
@@ -71,8 +87,8 @@ const allRegistrosUsuarios = async (req, res) => {
 const getEstudiantebyCedula = async (req, res) => {
     try {
         const { cedula } = req.body;
-        const resDB = await pool.query('SELECT * FROM estudiante WHERE cedula_escolar = $1', [cedula]);
-        res.json(resDB.rows[0]);
+        const resBD = await pool.query('SELECT * FROM estudiante WHERE cedula_escolar = $1', [cedula]);
+        res.json(resBD.rows[0]);
     } catch (err) {
         console.log(err.message);
     }
@@ -96,7 +112,7 @@ const eliminarRegistro = async(req, res) => {
 module.exports = {
     registroEstudiante,
     registroUsuario,
-    allRegistrosUsuarios,
+    allUsuariosRegistrados,
     getEstudiantebyCedula,
     updateEstudiante,
     eliminarRegistro

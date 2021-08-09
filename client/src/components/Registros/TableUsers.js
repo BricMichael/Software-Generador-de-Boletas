@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { allUsuarios, eliminaRegistroAction } from '../../Redux/actions/usuariosActions';
+import { allUsuarios, eliminaRegistroAction, siguientes_AnterioresUsuarios } from '../../Redux/actions/usuariosActions';
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
 import InfoRegistros from '../InfoDataRegistros/InfoRegistros';
 import UpdatePersonal from '../Modal/UpdatePersonal';
@@ -15,12 +15,12 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     useEffect(() => {
       let ejectuar =  async() => {
           const { data, names } = await allUsuarios()
-          setUsersRegistrados({ datos: data, nombres: names })
+          setUsersRegistrados({ datos: data, nombres: names });
       }
       ejectuar();
-
+    
       return () => {
-        setUsersRegistrados({ datos: [], nombres: [] });
+        setUsersRegistrados({ datos: [], nombres: [] });  
     }      
     }, [])
 
@@ -39,6 +39,16 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
          })
 
         isConfirmed && eliminaRegistroAction( user, usersRegistrados, setUsersRegistrados );
+    }
+
+    const botonVerMas  = async() => {
+        let { data, names }  = await siguientes_AnterioresUsuarios('next');
+         setUsersRegistrados({ datos: data, nombres: names });
+    }
+
+    const botonAtras = async() => {
+        let { data, names } = await siguientes_AnterioresUsuarios('back');
+         setUsersRegistrados({ datos: data, nombres: names });  
     }
    
     return (
@@ -95,6 +105,12 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
                        }     
                     </tbody>
                 </table>
+                <button className={style.nextPersonal} onClick={ botonAtras }>
+                    Atrás
+                </button>
+                <button className={style.nextPersonal} onClick={ botonVerMas } id='deshabilitar'>
+                    Siguientes
+                </button>
             </div>    
         </>
     )
