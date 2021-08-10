@@ -85,10 +85,19 @@ const allUsuariosRegistrados = async (req, res) => {
 }
 
 const getEstudiantebyCedula = async (req, res) => {
+    let capitalizeName = '';
+
     try {
         const { cedula } = req.body;
         const resBD = await pool.query('SELECT * FROM estudiante WHERE cedula_escolar = $1', [cedula]);
+        let lowercaseName =  resBD.rows[0].nombres.toLowerCase().split(' ');
+        
+        for (const name of lowercaseName ) { // se reemplaza la primera letra minuscula por mayuscula
+            capitalizeName = capitalizeName + ' ' +  name.replace( name[0], name[0].toUpperCase() );
+        }
+        resBD.rows[0].nombres = capitalizeName.trim();
         res.json(resBD.rows[0]);
+
     } catch (err) {
         console.log(err.message);
     }

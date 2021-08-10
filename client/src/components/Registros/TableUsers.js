@@ -14,7 +14,7 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     
     useEffect(() => {
       let ejectuar =  async() => {
-          const { data, names } = await allUsuarios()
+          const [ data, names ] = await allUsuarios()
           setUsersRegistrados({ datos: data, nombres: names });
       }
       ejectuar();
@@ -42,12 +42,12 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
     }
 
     const botonVerMas  = async() => {
-        let { data, names }  = await siguientes_AnterioresUsuarios('next');
+        let [ data, names ] = await siguientes_AnterioresUsuarios('next');
          setUsersRegistrados({ datos: data, nombres: names });
     }
 
     const botonAtras = async() => {
-        let { data, names } = await siguientes_AnterioresUsuarios('back');
+        let [ data, names ] = await siguientes_AnterioresUsuarios('back');
          setUsersRegistrados({ datos: data, nombres: names });  
     }
    

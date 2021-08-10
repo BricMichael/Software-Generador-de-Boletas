@@ -1,4 +1,4 @@
-import { Switch, Route, useRouteMatch} from 'react-router-dom'
+import { Switch, Route, useRouteMatch} from 'react-router-dom';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import Header from '../../../components/Header/Header';
 import image from './registro.svg';
@@ -7,8 +7,10 @@ import Sidebar from '../../../components/Sidebar/Sidebar';
 import EstudianteReg from '../../../components/Registros/EstudianteReg';
 import PersonalReg from '../../../components/Registros/PersonalReg';
 import TableUsers from '../../../components/Registros/TableUsers';
-import Options from '../../../components/Options&Links/Options';
+import UpdateStudents from '../../../components/Registros/UpdateStudents';
 import style from './registrosUsers.module.css'
+
+
 
 
 const Usuarios = () => {
@@ -30,7 +32,7 @@ const Usuarios = () => {
                     <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
                     <Route path={`${path}/ListaUsuarios`} exact component={ TableUsers} />
                     <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
-                    <Route path={`${path}/ActualizarDatos`} exact component={ Options} />
+                    <Route path={`${path}/ActualizarDatos`} exact component={ UpdateStudents } />
                 </Switch>
               
         </>

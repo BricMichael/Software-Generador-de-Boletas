@@ -40,7 +40,6 @@ const EstudianteReg = () => {
                             { estadoReg.msg }
                         </p>
                     </div>
-
            }
             <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
                 <h3 className={style.titleRegisters}>Registro de Estudiante</h3>

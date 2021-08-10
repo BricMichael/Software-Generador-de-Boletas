@@ -15,6 +15,9 @@
 
 .estudianteRegForm {
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 300px;
     box-shadow: 0px 3px #363636;
     border-radius: 2px;
@@ -28,8 +31,9 @@
 
 .titleRegisters {color: #356db6;
     font-size: 24px;
-    margin-bottom: 2rem;
+    margin: auto;
     font-weight: 400;
+    margin-bottom: 2rem;
 }
 
 .registerInputs {
@@ -197,6 +201,36 @@
     width: 120px;
     margin-right: 13%;
 }
+
+ /* Estilos modal de update estudiante */
+
+.formModalEstudianteButtons{
+    background: #012c66;
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: .5rem;
+    width: 100%;
+    font-size: 17px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    /* margin-left: 1rem; */
+    transition: background .3s ease;
+}
+
+.formModalEstudianteButtons:hover {
+    background: #0b2a53;
+}
+
+.buttonCancel {
+    background: #be2342;
+}
+
+.buttonCancel:hover {
+    background: #ac1b38;
+}
+
+ /* FIN Estilos modal de update estudiante */
 
 @media screen and ( min-width: 1140px) { 
     .registersTable {

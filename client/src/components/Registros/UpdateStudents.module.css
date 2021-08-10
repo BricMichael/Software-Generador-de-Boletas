@@ -1,0 +1,87 @@
+.contentUpdateStudent  {
+    padding: 20px;
+    margin: 2.5rem 0px;
+}
+
+.contentSearchForm {
+    background: #fff;
+    padding: 10px 5px;
+    width: 380px;
+    margin: auto;
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+}
+
+.contentSearchForm > h2 {
+    color: #1e90ff;
+    margin-bottom: 0.8rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.SearchFormInput:focus { outline: none;  border-bottom: 2px solid #1e90ff; }
+.SearchFormButton :focus { outline: none; }
+
+.SearchFormInput {
+    border: none;
+    border-bottom: 2px solid #808080;
+    padding: 7px 3px;
+    font-size: 17px;
+    color: #000;
+    width: 245px;
+    transition: border-bottom .3s ease;
+}
+
+.SearchFormButton {
+    border: none;
+    background: #1e90ff;
+    color: #fff;
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-left: 1.3rem;
+}
+
+.contentResponse {
+    background: #fff;
+    padding: 10px 8px;
+    width: 380px;
+    margin: auto;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contentResponse > h2 {
+    color: #1e90ff;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    margin-left: 0.3rem;
+}
+
+.flexdata {
+    color: dodgerblue;
+    display: flex;
+    margin-bottom: 0.4rem;
+    padding-left: 5px;
+}
+.flexdata > p {
+    font-size: 15px;
+    color: #093d70;
+    padding-left: 5px;
+    font-weight: 700;
+}
+
+.ResponseButton  {
+    border: none;
+    background: #1e90ff;
+    color: #fff;
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+    width: 60%;
+    margin-left: 0.3rem;
+}

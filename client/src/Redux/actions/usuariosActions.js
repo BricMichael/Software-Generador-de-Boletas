@@ -48,7 +48,7 @@ export const allUsuarios = async() => {
     const names = twoNamesOfUsers( data );
 
     return new Promise( (resolve, reject ) => {
-        resolve({ data, names });
+        resolve([ data, names ]);
     })
 }
 
@@ -56,21 +56,21 @@ export const allUsuarios = async() => {
 let count = 0; 
 export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = next o back 
 
-    let newData = {}
+    let newData = []
 
     if ( accion === 'next' ) {
         count += 4;
         const { data } = await api.apiGetAllRegisters( count);
         const names = twoNamesOfUsers( data);
-        newData = { data, names }
+        newData.push(data, names);
         data[0].aviso && document.getElementById('deshabilitar').setAttribute('disabled','true');
-      
+
     }else {
         count =  count <= 0 ? count = 0 : count - 4;
         const { data } = await api.apiGetAllRegisters( count);
         const names = twoNamesOfUsers( data);
-        newData = { data, names }
-        !data[0].aviso && document.getElementById('deshabilitar').removeAttribute('disabled')
+        newData.push( data, names );
+        !data[0].aviso && document.getElementById('deshabilitar').removeAttribute('disabled');    
     }
    
     return new Promise( (resolve, reject ) => {
