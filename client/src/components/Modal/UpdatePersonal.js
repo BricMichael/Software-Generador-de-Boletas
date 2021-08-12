@@ -80,10 +80,10 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
                     <option value="Admin">Administador</option>    
                 </select>      
 
-                <button className={style.registerbuton}>
+                <button className={style.registerbuton} type='submit'>
                     Actualizar datos
                 </button>
-                <button className={`${style.buttonCancelModal}`} 
+                <button className={`${style.buttonCancelModal}`} type='button'
                 onClick={() => closeModal({ status: false, userSelected: {} })}>
                     Cancelar
                 </button>

@@ -25,7 +25,7 @@ export const allIndicadorOfUser = () => async( dispatch, getState ) => {
         let { data } = await api.indicadoresUserActivo({ momento, id });
         dispatch({ type: types.indicadoresByUser, payload: data });
         
-    } catch (err) { console.log(err.message)  }
+    } catch (err) { console.log(err.message) }
 }
 
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {

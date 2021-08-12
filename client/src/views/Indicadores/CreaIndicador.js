@@ -3,7 +3,7 @@ import style from './crearIndicador.module.css';
 import { stateCrearIndicador } from '../../helpers/estadosRegistros';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../helpers/useForm';
-import { validar_EnviarData, ocultarOptions } from '../../helpers/validarCamposIndicador';
+import { enviarData, ocultarOptions } from '../../helpers/OpcionesCrearIndicador';
 import { roles } from '../../helpers/roles';
 
 
@@ -25,8 +25,8 @@ const CreaIndicador = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch( validar_EnviarData( values ));
-        reset();
+      
+        dispatch( enviarData( values, reset ));
     }
 
     const recorrerArray = rolUser.current === roles.especialista ? materiasEspecialista : materiasDocente;
@@ -40,7 +40,7 @@ const CreaIndicador = () => {
                         
                     <select className={`${style.select}`} name='area' value={ area } 
                         onChange={ handleInputChange }>                  
-                        <option value="undefined">Área</option>
+                        <option value="default">Área</option>
                         {           
                             recorrerArray.map( area => (
                                 <option value={area.materia} key={area.materia} >{area.materia}</option>

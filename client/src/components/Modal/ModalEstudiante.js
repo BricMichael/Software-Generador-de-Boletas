@@ -2,6 +2,7 @@ import Modal from "./Modal";
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
 import { gradoStudent, seccionStudent } from "../../helpers/arraysOptionsForm";
 import { useForm } from "../../helpers/useForm";
+import { updateStudentModal } from "../../Redux/actions/usuariosActions";
 
 
 const ModalEstudiante = ({ alumno, closeModal }) => {
@@ -9,12 +10,13 @@ const ModalEstudiante = ({ alumno, closeModal }) => {
     const [ values, handleInputChange, reset ] = useForm( alumno.dataEstudiante );
     const { nombres, cedula_escolar, genero, grado, seccion } = values;
 
-    const handleSubmit = () => {}
+    const cancelUpdate = ( valor ) => closeModal({ ...alumno, state: valor });
 
-    const  updateNewData = () => {}
-
-
-    const cancelUpdate = ( valor ) => closeModal({ ...alumno, state: valor })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { id, ...rest } = values;
+        updateStudentModal( id, rest, closeModal );
+    }
 
 
     return (
@@ -56,13 +58,13 @@ const ModalEstudiante = ({ alumno, closeModal }) => {
                 }
                 </select>
 
-                <button type='submit' onClick={ updateNewData }
+                <button type='submit'
                     className={style.formModalEstudianteButtons}>
                     Actualizar
                 </button>
 
                 <button className={`${style.formModalEstudianteButtons} ${style.buttonCancel}`}
-                    onClick={ () => cancelUpdate(false) }>   
+                    onClick={ () => cancelUpdate(false) } type='button' >   
                     Cancelar
                 </button>
             </form>

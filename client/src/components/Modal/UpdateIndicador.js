@@ -111,7 +111,7 @@ const UpdateIndicador = ({ closeModal }) => {
 
 
                 <button className={`${style.formModalButtons} ${style.buttonCancel}`}
-                    onClick={ cancelUpdate }>   
+                    onClick={ cancelUpdate } type='button'>   
                     Cancelar
                 </button>
             </form>

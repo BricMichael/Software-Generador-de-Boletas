@@ -16,9 +16,9 @@ const UpdateStudents = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         const { data } =  await getStudentByCedula({ cedula: input.cedula });
-        setModalData({ state: false, dataEstudiante: data })
-        console.log( data)
+        setModalData({ state: false, dataEstudiante: data });
     }
+
     return (
         <>
             { modalData.state && <ModalEstudiante  closeModal={ setModalData }  alumno={ modalData } /> }
@@ -36,7 +36,7 @@ const UpdateStudents = () => {
                     <button className={ style.SearchFormButton}>Buscar</button>
                 </form>
 
-               {    Object.entries( modalData.dataEstudiante ).length > 4  &&
+               {    Object.keys( modalData.dataEstudiante ).length > 4  &&
                     <div className={ style.contentResponse }>
                         <h2>Estudiante</h2>
                         <div className={ style.flexdata}>

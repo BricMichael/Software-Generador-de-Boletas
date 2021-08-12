@@ -55,7 +55,7 @@ const EstudianteReg = () => {
 
                 <select className={ style.optionsRegister } name='genero' value={genero}
                 onChange={handleInputChange} >
-                    <option>G&eacute;nero</option>
+                    <option value='default'>G&eacute;nero</option>
                     <option value="F">F</option>
                     <option value="M">M</option>     
                 </select>

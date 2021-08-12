@@ -11,7 +11,7 @@ const registroEstudiante = async( req, res) => {
             res.json({msg: 'Error: Ya existe un estudiante con esa cédula escolar'});
         }
         else{
-            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion ) VALUES($1,$2, $3, $4, $5)', [cedulaE, nombres, genero, grado, seccion]);
+            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion ) VALUES($1,$2, $3, $4, $5)', [cedulaE, nombres.toUpperCase(), genero, grado, seccion]);
 
             res.json({msg: 'Estudiante registrado exitosamente'});
         }
@@ -48,9 +48,9 @@ const registroUsuario = async( req, res) => {
 const updateEstudiante = async(req, res) => {
     try {
         const { id } = req.params;
-        const { nombres, cedulaE, genero, grado, seccion } = req.body;
+        const { nombres, cedula_escolar, genero, grado, seccion } = req.body;
 
-        await pool.query(`UPDATE estudiante set cedula_escolar = $1, nombres = $2, genero = $3,  grado = $4, seccion = $5 WHERE id = $6`, [cedulaE, nombres, genero, grado, seccion, id ]);
+        await pool.query(`UPDATE estudiante set cedula_escolar = $1, nombres = $2, genero = $3,  grado = $4, seccion = $5 WHERE id = $6`, [cedula_escolar, nombres.toUpperCase() , genero, grado, seccion, id ]);
 
         res.send('Estudiante actualizado');
     } catch (err) {
@@ -88,18 +88,19 @@ const getEstudiantebyCedula = async (req, res) => {
     let capitalizeName = '';
 
     try {
-        const { cedula } = req.body;
+        const cedula = req.body.cedula.trim();
+    
         const resBD = await pool.query('SELECT * FROM estudiante WHERE cedula_escolar = $1', [cedula]);
         let lowercaseName =  resBD.rows[0].nombres.toLowerCase().split(' ');
         
         for (const name of lowercaseName ) { // se reemplaza la primera letra minuscula por mayuscula
-            capitalizeName = capitalizeName + ' ' +  name.replace( name[0], name[0].toUpperCase() );
+            capitalizeName += ' ' +  name.replace( name[0], name[0].toUpperCase() );
         }
         resBD.rows[0].nombres = capitalizeName.trim();
         res.json(resBD.rows[0]);
 
     } catch (err) {
-        console.log(err.message);
+        console.log('error getCedula',err.message);
     }
 
 }
