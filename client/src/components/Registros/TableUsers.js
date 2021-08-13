@@ -53,12 +53,13 @@ const TableUsers = ({indice = 1, countName = 0 }) => {
    
     return (
         <>
-            {  handleOpenModal.status && <UpdatePersonal 
+            {  handleOpenModal.status 
+                && <UpdatePersonal 
                     closeModal={ setHandleOpenModal } 
                     datos={ handleOpenModal.userSelected }
                     dataState={ usersRegistrados } 
                     updateState = {setUsersRegistrados}
-                /> 
+                    /> 
             }
 
             <div className={ style.infoAndComponent }>

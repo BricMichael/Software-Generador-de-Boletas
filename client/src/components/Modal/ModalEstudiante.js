@@ -3,6 +3,7 @@ import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
 import { gradoStudent, seccionStudent } from "../../helpers/arraysOptionsForm";
 import { useForm } from "../../helpers/useForm";
 import { updateStudentModal } from "../../Redux/actions/usuariosActions";
+import { useEffect } from "react";
 
 
 const ModalEstudiante = ({ alumno, closeModal }) => {
@@ -11,6 +12,12 @@ const ModalEstudiante = ({ alumno, closeModal }) => {
     const { nombres, cedula_escolar, genero, grado, seccion } = values;
 
     const cancelUpdate = ( valor ) => closeModal({ ...alumno, state: valor });
+
+    useEffect(() => {
+        return () => {
+            reset();
+        }
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();

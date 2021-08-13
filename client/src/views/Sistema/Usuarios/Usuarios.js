@@ -9,6 +9,7 @@ import PersonalReg from '../../../components/Registros/PersonalReg';
 import TableUsers from '../../../components/Registros/TableUsers';
 import UpdateStudents from '../../../components/Registros/UpdateStudents';
 import style from './registrosUsers.module.css'
+import UpdatePassword from '../../../components/Registros/UpdatePassword';
 
 
 
@@ -25,15 +26,16 @@ const Usuarios = () => {
             <Header title="Registros"  marginTop='-4.4rem' />
             <div className={style.contentInitial}>
                 <Sidebar />
-                <img src={image} alt='nofound' className={style.imageSvg}></img>
+                <img src={image} alt='trabajando imagen' className={style.imageSvg}></img>
             </div>
 
-                <Switch>  
-                    <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
-                    <Route path={`${path}/ListaUsuarios`} exact component={ TableUsers} />
-                    <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
-                    <Route path={`${path}/ActualizarDatos`} exact component={ UpdateStudents } />
-                </Switch>
+            <Switch>  
+                <Route path={`${path}/cambioClave`} exact component={ UpdatePassword } />
+                <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
+                <Route path={`${path}/ListaUsuarios`} exact component={ TableUsers} />
+                <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
+                <Route path={`${path}/ActualizarDatos`} exact component={ UpdateStudents } />
+            </Switch>
               
         </>
     )

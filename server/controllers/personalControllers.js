@@ -31,28 +31,31 @@ const updatePersonal = async(req, res) => {
 }
 
 
-const seePasswordUser = async(req, res) => {
+const getUserByCedula = async(req, res) => {
     try {
-        const { id } = req.params;
-
-        const respBD = await pool.query(`SELECT claveuser FROM personal WHERE id = $1`, [ id ]);
-
-        res.json(respBD.rows[0]);
+        const cedula  = req.params.cedula.trim();
+        const respBD = await pool.query(`SELECT nombre, rol, area_personal, id FROM personal WHERE cedula = $1`, [ cedula ]);
+        if( respBD.rowCount === 0 ){
+            res.json({ error: 'No se ha podido encontrar al usuario, vuelve a intentarlo.' });
+        } else {
+            res.json(respBD.rows[0]);     
+        }
+        
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 
 const updatePassword = async(req, res) => {
     try {
         const { id } = req.params;
-        const { password } = req.body;
+        const clave = req.body.password.trim();
 
-        await pool.query(`UPDATE personal set claveuser = $1 WHERE id = $2`, [ password, id ]);
+        await pool.query(`UPDATE personal set claveuser = $1 WHERE id = $2`, [ clave, id ]);
 
         res.send('Password updated');
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 
@@ -64,5 +67,5 @@ module.exports = {
     validarUsuario,
     updatePersonal,
     updatePassword,
-    seePasswordUser
+    getUserByCedula
 }

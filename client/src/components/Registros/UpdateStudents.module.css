@@ -85,3 +85,18 @@
     width: 60%;
     margin-left: 0.3rem;
 }
+
+.inputUpdatePassword {
+    padding: 3px;
+    border: none;
+    margin-left: 14px;
+    width: 200px;
+    border-bottom: 1px solid gray;
+    font-size: 15px;
+    margin-top: -0.5rem;
+    margin-bottom: 0.7rem;
+}
+.inputUpdatePassword:focus {
+    outline: none;
+    border-bottom: 1px solid #1e90ff;;
+}

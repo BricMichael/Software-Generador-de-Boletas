@@ -89,16 +89,20 @@ const getEstudiantebyCedula = async (req, res) => {
 
     try {
         const cedula = req.body.cedula.trim();
-    
         const resBD = await pool.query('SELECT * FROM estudiante WHERE cedula_escolar = $1', [cedula]);
-        let lowercaseName =  resBD.rows[0].nombres.toLowerCase().split(' ');
-        
-        for (const name of lowercaseName ) { // se reemplaza la primera letra minuscula por mayuscula
-            capitalizeName += ' ' +  name.replace( name[0], name[0].toUpperCase() );
-        }
-        resBD.rows[0].nombres = capitalizeName.trim();
-        res.json(resBD.rows[0]);
 
+        if ( resBD.rowCount === 0 ) {
+            res.json({ error: 'No se ha podido encontrar al usuario, vuelve a intentarlo.' })
+        }else {
+            let lowercaseName =  resBD.rows[0].nombres.toLowerCase().split(' ');
+            
+            for (const name of lowercaseName ) { // se reemplaza la primera letra minuscula por mayuscula
+                capitalizeName += ' ' +  name.replace( name[0], name[0].toUpperCase() );
+            }
+            resBD.rows[0].nombres = capitalizeName.trim();
+            res.json(resBD.rows[0]);
+        }
+        
     } catch (err) {
         console.log('error getCedula',err.message);
     }

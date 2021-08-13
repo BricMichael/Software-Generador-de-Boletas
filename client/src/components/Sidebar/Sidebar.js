@@ -17,10 +17,8 @@ const Sidebar = () => {
                 <Link to={`${url}/regUsuario`}>
                     Registrar Usuario
                 </Link>
-                <Link to={`${url}/ListaUsuarios`}>
-                    Lista de Usuarios
-                </Link>
-                <Link to='/a'>Cambiar contraseña *</Link>
+                <Link to={`${url}/ListaUsuarios`}>Lista de Usuarios</Link>
+                <Link to={`${url}/cambioClave`}>Cambiar contraseña</Link>
             </ul>
         </div>
     )

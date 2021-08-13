@@ -40,11 +40,14 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
             } 
         }       
         closeModal({ status: false, userSelected: {} });
-     }
+    }
 
+    const buttonCancelModal = (valor) => {
+        closeModal({ status: valor, userSelected: {} });
+    }
     
     return (
-        <Modal closeModal={ closeModal }>
+        <Modal closeModal={ buttonCancelModal }>
             <form className={style.estudianteRegForm} onSubmit={ handleSubmit }>
                 <h3 className={style.titleRegisters}>Actualizando Usuario</h3>
                         
@@ -84,7 +87,7 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
                     Actualizar datos
                 </button>
                 <button className={`${style.buttonCancelModal}`} type='button'
-                onClick={() => closeModal({ status: false, userSelected: {} })}>
+                onClick={() => buttonCancelModal(false)}>
                     Cancelar
                 </button>
             

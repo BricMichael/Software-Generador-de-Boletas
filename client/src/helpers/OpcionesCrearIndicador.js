@@ -5,7 +5,7 @@ import { roles } from "./roles";
 import { validarCampos } from "./validarRegistros";
 
 
-
+// pendiente arreglar qye sirva tambien paras los indicadores de specialistas.
 export const enviarData = ( values, resetForm ) => async ( dispatch ) => {
    
     const { indicador } = values;

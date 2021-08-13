@@ -1,7 +1,9 @@
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
+import style from './UpdateStudents.module.css';
 import { getStudentByCedula } from '../../api/api';
 import ModalEstudiante from '../Modal/ModalEstudiante';
-import style from './UpdateStudents.module.css';
+import Swal from 'sweetalert2';
+
 
 const UpdateStudents = () => {
     const [ input, setInput ] = useState({ cedula: '' })
@@ -13,10 +15,27 @@ const UpdateStudents = () => {
          })
     }
 
+    useEffect(() => {
+        return () => {
+            setModalData({ state: false, dataEstudiante: {} });
+            setInput({ cedula: '' });
+        }
+    }, [])
+
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const { data } =  await getStudentByCedula({ cedula: input.cedula });
-        setModalData({ state: false, dataEstudiante: data });
+        if( input.cedula.length > 3 ) {  
+            const { data } =  await getStudentByCedula({ cedula: input.cedula });
+            data.error 
+            ?   Swal.fire({ 
+                    icon: 'warning', 
+                    title: 'Datos incorrectos', 
+                    confirmButtonColor:'#538fca',
+                    text: data.error,
+                    width: '440px'
+                })
+            :  setModalData({ state: false, dataEstudiante: data });
+        }
     }
 
     return (
@@ -32,6 +51,7 @@ const UpdateStudents = () => {
                         name='cedula'
                         value={ input.cedula }
                         onChange={ handleInputChange }
+                        autoComplete='off'
                     />
                     <button className={ style.SearchFormButton}>Buscar</button>
                 </form>
