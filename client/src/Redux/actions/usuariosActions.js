@@ -58,26 +58,27 @@ const twoNamesOfUsers = (data) => {
     return names;
 }
 
+let count = 0; 
 export const allUsuarios = async() => {
     const { data } = await api.apiGetAllRegisters();
     const names = twoNamesOfUsers( data );
 
+    count = 0; // reiniciar el contador cada que se renderice el component
     return new Promise( (resolve, reject ) => {
         resolve([ data, names ]);
     })
 }
 
-
-let count = 0; 
-export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = next o back 
+export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = next or back 
 
     let newData = []
 
     if ( accion === 'next' ) {
         count += 4;
-        const { data } = await api.apiGetAllRegisters( count);
 
+        const { data } = await api.apiGetAllRegisters( count);
         const names = twoNamesOfUsers( data);
+
         newData.push(data, names);
         data[0].aviso && document.getElementById('deshabilitar').setAttribute('disabled','true');
 
@@ -85,6 +86,7 @@ export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = ne
         count =  count <= 0 ? count = 0 : count - 4;
         const { data } = await api.apiGetAllRegisters( count);
         const names = twoNamesOfUsers( data);
+        
         newData.push( data, names );
         !data[0].aviso && document.getElementById('deshabilitar').removeAttribute('disabled');    
     }

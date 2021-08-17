@@ -2,6 +2,7 @@ import style from './crearBoleta.module.css'
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
+import { roles } from '../../../helpers/roles';
 import { Link as Scroll } from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
 import materiaConIndicadores from '../../../helpers/IndicaDocenteBoleta';
@@ -24,7 +25,7 @@ const CrearBoleta = () => {
     const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
  
-    const arrayOfMateriasIndicadores =  rol === 'docente' && materiaConIndicadores(materiasDocente, indicadoresByUser);
+    const arrayOfMateriasIndicadores =  rol === roles.docente && materiaConIndicadores(materiasDocente, indicadoresByUser);
 
     const savedBoleta = () => {
         dispatch( guardarBoletaAction() )       

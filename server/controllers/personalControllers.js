@@ -2,7 +2,6 @@ const pool = require('../configDB/poolConfig');
 
 
 
-// 
 const validarUsuario = async(req, res) => {
     try {
         const { email, password } = req.body;
@@ -22,7 +21,7 @@ const updatePersonal = async(req, res) => {
         const { id } = req.params;
         const { nombre, area_personal, cedula, email, rol }  = req.body;
 
-        await pool.query(`UPDATE personal set nombre = $1, email = $2, rol = $3, cedula = $4, area_personal = $5 WHERE id = $6`, [nombre, email, rol, cedula, area_personal, id ]);
+        await pool.query(`UPDATE personal set nombre = $1, email = $2, rol = $3, cedula = $4, area_personal = $5 WHERE id = $6`, [nombre.trim(), email.trim(), rol, cedula.trim(), area_personal, id ]);
 
         res.send('User actualizado');
     } catch (err) {
@@ -51,7 +50,7 @@ const updatePassword = async(req, res) => {
         const { id } = req.params;
         const clave = req.body.password.trim();
 
-        await pool.query(`UPDATE personal set claveuser = $1 WHERE id = $2`, [ clave, id ]);
+        await pool.query(`UPDATE personal SET claveuser = $1 WHERE id = $2`, [ clave, id ]);
 
         res.send('Password updated');
     } catch (err) {

@@ -20,7 +20,7 @@ const InicioSesion = () => {
 
     useEffect(() => {
         const estatusOfLogin = JSON.parse(window.localStorage.getItem('userActive'));
-        if ( estatusOfLogin ) dispatch( usuarioLogeado(true) )          
+        if ( estatusOfLogin ) dispatch( usuarioLogeado(true) )       
     }, [dispatch])
   
 

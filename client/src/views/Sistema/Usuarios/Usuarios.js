@@ -1,7 +1,7 @@
 import { Switch, Route, useRouteMatch} from 'react-router-dom';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import Header from '../../../components/Header/Header';
-import image from './registro.svg';
+import image from '../../../assets/img/registro.svg';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import EstudianteReg from '../../../components/Registros/EstudianteReg';
@@ -36,7 +36,7 @@ const Usuarios = () => {
                 <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
                 <Route path={`${path}/ActualizarDatos`} exact component={ UpdateStudents } />
             </Switch>
-              
+              <i id='slideDown'></i>
         </>
     )
 }

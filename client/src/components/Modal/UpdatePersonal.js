@@ -4,6 +4,7 @@ import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
 import Modal from './Modal'
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRegistroAction } from '../../Redux/actions/usuariosActions';
+import { cambioDeDatos, removerEspacios } from '../../helpers/validarRegistros';
 
 
 const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
@@ -21,15 +22,16 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if ( datos !== values ) {
+        let resp = cambioDeDatos(datos, values)
+     
+        if ( resp ) {
             updateRegistroAction(values.id, values );
-
+      
             const updateStateNewData = dataState.datos.map( usuario => usuario.id === values.id ? values : usuario );
             let verificarNombre = datos.nombre.split(' ')[0] + ' ' + datos.nombre.split(' ')[2];
             let newName = '';
 
-            if ( datos.nombre !== values.nombre ) newName = values.nombre.split(' ')[0] + ' ' + values.nombre.split(' ')[2];       
+            if ( datos.nombre !== values.nombre ) newName = removerEspacios( values.nombre.split(' ') );      
             
             if ( newName !== '' ) {
                 const updateNombre = dataState.nombres.map( name => name === verificarNombre ? newName : name );

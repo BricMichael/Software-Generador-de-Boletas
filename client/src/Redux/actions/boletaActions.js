@@ -1,15 +1,16 @@
 import * as api from '../../api/api';
 import types from '../types';
 import Swal from 'sweetalert2';
+import { validarCampos } from '../../helpers/validarRegistros';
 
 let count = 5;
 
 
-
 export const listFiveStudents = ({seccion, grado}) => async ( dispatch ) => {
-     try {
-         if ( seccion !== 'default' && seccion !== '' && grado !== 'default' && grado !== '' ) {
 
+     try {
+         const respError = validarCampos({ seccion, grado })
+         if ( respError === 'excelente' ) {
             const sendSearch = { seccionSelected: seccion, gradoSelected: grado, } //data parametros.
             const { data } = await api.apiFiveStudents(sendSearch); 
     
