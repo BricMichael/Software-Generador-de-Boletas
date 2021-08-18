@@ -4,6 +4,7 @@ const urlPersonal = 'http://localhost:4000/api/personal';
 const urlIndicador = 'http://localhost:4000/api/indicadores';
 const urlBoleta = 'http://localhost:4000/api/boleta';
 const urlRegistro = 'http://localhost:4000/api/registro';
+const urlConfiguracion = 'http://localhost:4000/api';
 
 /*Peticiones a la Api usuarios*/
 export const apiGetUserByCedula = ( cedula ) => axios.get( `${urlPersonal}/${cedula}` );
@@ -17,9 +18,8 @@ export const indicadoresUserActivo = (usuario) => axios.post( `${urlIndicador}Us
 export const updateIndicadorActivo = ( id, indicador ) => axios.put(`${urlIndicador}/${id}`, indicador);
 export const emailCorrecciones = ( comentario ) => axios.post(`${urlIndicador}Email`, comentario);
 export const eliminarIndicadorDB = ( id ) => axios.delete(`${urlIndicador}/${id}`);
-export const apiMateriasExistentes = () => axios.get(`${urlBoleta}Materias`);  //Materias en la Bd.
-  
 
+  
 /*Peticiones a la Api boleta*/   
 
 export const apiFiveStudents = ( datos ) => axios.post( `${urlBoleta}Estudiantes`, datos );
@@ -35,5 +35,10 @@ export const apiGetAllRegisters = (param) => axios.get(`${urlRegistro}Usuarios`,
 export const getStudentByCedula = ( cedula ) => axios.post(`${urlRegistro}Unico`, cedula);
 export const apiUpdateStudent = (id, dataNew) => axios.put( `${urlRegistro}/${id}`, dataNew );
 export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable}});
+
+/* Peticiones configuración del sistema  */
  
+export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}/allMaterias`);  //Materias en la Bd.
+export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}/savedMateria`, datos); 
+export const apiDeleteAllStudents = () => axios.delete(`${urlConfiguracion}/truncateData`); 
 

@@ -72,7 +72,8 @@ const indicadorReducer = ( state = initialState, action ) => {
 
         case types.limpiezaLogout:      
             return {
-               ...initialState
+               ...initialState,
+               materias: state.materias,
             };    
     
         default:

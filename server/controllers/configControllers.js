@@ -8,8 +8,25 @@ const guardarNuevaMateria = async( req, res ) => {
     res.send('Registro exitoso');
 }
 
+const obtenerMaterias = async (req, res) => {
+    try {
+         const resp = await pool.query('SELECT materia, tipo, id FROM materias');
+         res.json(resp.rows);
+ 
+    } catch (err) {
+         console.log(err.message);
+    }
+ }
 
-
+const deleteAllStudents = async(req, res) => {
+    try {
+        await pool.query('TRUNCATE TABLE estudiante RESTART IDENTITY');
+        res.json({message: 'Todos los estudiantes fueron eliminados'});
+    } catch (err) {
+        console.log(err.message);
+        res.json({message: 'Ha ocurrido un error, vuelve a intentarlo'});
+    }
+}
 
 
 
@@ -17,5 +34,7 @@ const guardarNuevaMateria = async( req, res ) => {
 
 
 module.exports = {
-    guardarNuevaMateria
+    guardarNuevaMateria,
+    obtenerMaterias,
+    deleteAllStudents,
 }

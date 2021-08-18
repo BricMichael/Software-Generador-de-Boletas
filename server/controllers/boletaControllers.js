@@ -1,15 +1,6 @@
 const pool = require ('../configDB/poolConfig');
 
 
-const obtenerMaterias = async (req, res) => {
-   try {
-        const resp = await pool.query('SELECT materia, tipo, id FROM materias');
-        res.json(resp.rows);
-
-   } catch (err) {
-        console.log(err.message);
-   }
-}
 
 const InitialsFiveStudents = async (req, res) => {
    try {
@@ -53,7 +44,6 @@ const indicadorEspecialistaByArea = async (req, res) => {
 
 
 module.exports = {
-    obtenerMaterias,
     InitialsFiveStudents,
     nextFiveStudents,
     indicadorEspecialistaByArea

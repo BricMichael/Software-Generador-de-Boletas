@@ -9,7 +9,6 @@ import { usuarioLogeado } from '../../../Redux/actions/loginActions';
 
 
 
-
 const Dashboard = () => {
         backgroundColorPage('#eee');
         document.title = 'Menú Principal';
@@ -23,7 +22,7 @@ const Dashboard = () => {
             localStorage.removeItem('userActive'); 
             dispatch( limpiarIndicadores());
         }
-        
+      
     return (
         <>
             <header className={ styles.Dashheader }>
