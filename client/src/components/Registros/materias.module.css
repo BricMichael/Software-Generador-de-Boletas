@@ -1,0 +1,71 @@
+.contentMaterias {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+}
+.tableMaterias{
+    width: 100%;
+    border-collapse: collapse; 
+    margin: auto;
+    margin-top: 0.8rem;
+}
+
+.tableMateriasThead {
+    background: #447bc4;
+    color: #021e42;
+  
+}
+
+.tableMateriasTr > .tableMateriasTh {
+    padding: 5px 16px;
+    font-size: 17px;
+    text-align: justify;
+}
+
+
+.tableMateriasTbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, el background*/
+    background-color: #ddd;
+}
+
+.tableMateriasTrBody {
+    color: #012c66;
+    background: rgb(179, 172, 172);
+}
+
+.tableMateriaschildrenBody {
+    font-size: 16px;
+    font-weight: 200;
+    padding: 5px 10px;
+    text-align: justify;
+}
+
+.deleteMateria, .buttonNewMateria  {
+    background: #ac1b38;
+    padding: 5px 7px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    transition: background .3s ease;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+.deleteMateria:hover { background: #be2342; }
+
+.divButtonNewMateria {
+    align-self: flex-end;
+}
+.buttonNewMateria { 
+    letter-spacing: 0;
+    padding: 6px 9px;
+    background: rgb(255, 255, 255);
+    color: #012c66;
+    font-size: 16px;
+    font-weight: 700;
+}
+.buttonNewMateria:hover { background: rgb(235, 226, 226); }
+
+
+.deleteMateria:focus, .buttonNewMateria{ outline: none; }
+/*Modal estilos*/

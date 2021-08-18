@@ -5,20 +5,26 @@ import { roles } from "./roles";
 import { validarCampos } from "./validarRegistros";
 
 
-// pendiente arreglar qye sirva tambien paras los indicadores de specialistas.
+
 export const enviarData = ( values, resetForm ) => async ( dispatch ) => {
-   
     const { indicador } = values;
-    const respErrors = validarCampos(values) 
+    const { id, rol } = JSON.parse(localStorage.getItem('userActive'));
+    let respErrors = '';
+
+    if ( rol === roles.docente ) {
+        const { literal, grado, ...rest  } = values;
+        respErrors = validarCampos(rest) 
+    }else { respErrors = validarCampos(values) }
 
     if ( indicador.length < 35 ) return Swal.fire( '¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning' );
     if ( respErrors === 'error') return Swal.fire( '¡Vaya!', 'Asegurate de haber llenado todos los campos', 'warning' );
 
-    values.idUser = JSON.parse(localStorage.getItem('userActive')).id;
+    values.idUser = id;
     values.anio = new Date().getFullYear(); 
-    await guardarIndicador( values );
 
+    await guardarIndicador( values );
     dispatch( allIndicadorOfUser() );
+
     resetForm();
     return Swal.fire({
         icon: 'success', 

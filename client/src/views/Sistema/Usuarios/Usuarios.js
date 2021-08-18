@@ -10,6 +10,7 @@ import TableUsers from '../../../components/Registros/TableUsers';
 import UpdateStudents from '../../../components/Registros/UpdateStudents';
 import style from './registrosUsers.module.css'
 import UpdatePassword from '../../../components/Registros/UpdatePassword';
+import TablaMaterias from '../../../components/Registros/TablaMaterias';
 
 
 
@@ -26,10 +27,11 @@ const Usuarios = () => {
             <Header title="Registros"  marginTop='-4.4rem' />
             <div className={style.contentInitial}>
                 <Sidebar />
-                <img src={image} alt='trabajando imagen' className={style.imageSvg}></img>
+                <img src={image} alt='cargando imagen' className={style.imageSvg}></img>
             </div>
 
             <Switch>  
+                <Route path={`${path}/materias`} exact component={ TablaMaterias } />
                 <Route path={`${path}/cambioClave`} exact component={ UpdatePassword } />
                 <Route path={`${path}/regUsuario`} exact component={ PersonalReg } />
                 <Route path={`${path}/ListaUsuarios`} exact component={ TableUsers} />

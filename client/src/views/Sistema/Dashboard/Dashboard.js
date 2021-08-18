@@ -53,7 +53,11 @@ const Dashboard = () => {
                     </Link>
 
                     <li className={ styles.ul_items }><a href="#" className={ styles.links }><i className="fas fa-tools"></i>&nbsp;&nbsp; Configuraci&oacute;n</a></li>
-                    <li className={ `${styles.ul_items} ${styles.bg_red}`} onClick={logoutUser}><button className={ styles.links } type="submit"><i className="fas fa-sign-in-alt"></i>&nbsp;&nbsp; Cerrar Sesión</button></li>
+                    <li className={ `${styles.ul_items} ${styles.bg_red}`} onClick={logoutUser}>
+                        <button className={ styles.links } type="submit"><i className="fas fa-sign-in-alt">
+                            </i>&nbsp;&nbsp; Cerrar Sesión
+                        </button>
+                    </li>
                 </ul>
             </nav>              
             <DashBody />

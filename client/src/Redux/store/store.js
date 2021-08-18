@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import loginReducer from '../reducers/loginReducer';
 import indicadorReducer from '../reducers/IndicadorReducer';
 import boletaReducer from '../reducers/boletaReducer';
-import registrosReducer from '../reducers/registrosReducer';
+
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
@@ -13,7 +13,6 @@ const reducers = combineReducers({
     login: loginReducer,
     indicador: indicadorReducer,
     boleta: boletaReducer,
-    registros: registrosReducer
 })
 
 export const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));

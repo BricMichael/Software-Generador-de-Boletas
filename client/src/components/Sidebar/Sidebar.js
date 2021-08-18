@@ -24,7 +24,7 @@ const Sidebar = () => {
 
             <span className={ style.sidebarTitle}>Configuración</span>
             <ul className={ style.sidebarContentUl }>
-                <Link to={`${url}/ListaUsuariosoooo`}>Agregar Materias</Link>
+                <Link to={`${url}/materias`}>Agregar Materias</Link>
                 <Link to={`${url}/cambioClaveooooo`}>Eliminar Estudiantes</Link>
             </ul>
         </div>
