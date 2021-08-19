@@ -65,7 +65,58 @@
     font-weight: 700;
 }
 .buttonNewMateria:hover { background: rgb(235, 226, 226); }
-
-
 .deleteMateria:focus, .buttonNewMateria{ outline: none; }
+
+
 /*Modal estilos*/
+
+.formMaterias  {
+    background: #fff;
+    width: 280px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 14px;
+}
+.formMaterias > h5 { font-size: 24px; color: #012c66; }
+.formMateriasLabel {
+    text-align: left;
+    font-size: 20px;
+    margin-top: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: #012c66; 
+}
+
+.formMateriasSets {
+    width: 90%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 2px solid rgb(224, 219, 219);
+    transition: border-bottom .3s ease;
+    font-size: 16px;
+}
+.formMateriasSets:focus { outline: none; border-bottom: 2px solid #012c66;  }
+
+.formMateriasSelect { 
+    width: 90%;
+    border-radius: 3px; 
+    height: 30px; 
+    margin-bottom: 1rem; 
+    padding: 0;
+    border: unset;
+    border-bottom: 2px solid rgb(224, 219, 219);
+}
+
+.formMateriasButtons {
+    width: 60%;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+.materiasBtnSaved { background: #012c66; margin-bottom: 0.4rem; }
+.materiasBtnCancelar { background: #be2342; }

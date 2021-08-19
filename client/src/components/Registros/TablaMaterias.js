@@ -1,23 +1,26 @@
 import style from './materias.module.css';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { apiDeleteRegister } from '../../api/api';
 import { materiasExistentes } from '../../Redux/actions/boletaActions';
-
+import ModalMaterias from '../Modal/ModalMaterias';
 
 
 
 const TablaMaterias = () => {
     const dispatch = useDispatch();
     const { materiasDocente, materiasEspecialista}  = useSelector( state => state.indicador.materias );
+
+    const [modalOpen, setModalOpen] = useState(false);
     const allMaterias = [ ...materiasDocente, ...materiasEspecialista ];
 
 
-    const deleteMateria = async(id) => {
-        
+    const deleteMateria = async(id, materia) => {
+    
         const { isConfirmed } = await Swal.fire({
-            title: '¿Eliminar Materia?',
-            text: "¡No podrás revertir esto!",
+            title: '¡No podrás revertir esto!',
+            text: `Eliminar Materia: ${materia}`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -27,15 +30,18 @@ const TablaMaterias = () => {
     })
         if( isConfirmed ) {
             await apiDeleteRegister(id, 'materias');
-            Swal.fire( { icon: 'success', title: 'La acción ha sido completada', showConfirmButton: false, timer: 1100, position: 'center' });
             dispatch( materiasExistentes() );
+            Swal.fire( { icon: 'success', title: 'La acción ha sido completada', showConfirmButton: false, timer: 1100, position: 'center' });    
         }
     }
 
     return (
         <div className={style.contentMaterias }>
+                {  modalOpen && <ModalMaterias  updateStateModal={ setModalOpen } /> }
                 <div className={ style.divButtonNewMateria }>
-                    <button type='button' className={style.buttonNewMateria} >Crear Materia</button>
+                    <button type='button' className={style.buttonNewMateria} onClick={ () => setModalOpen(true) }>
+                        Crear Materia
+                    </button>
                 </div>
                 <table className={ style.tableMaterias}>  
                     <thead className={ style.tableMateriasThead} >
@@ -52,7 +58,8 @@ const TablaMaterias = () => {
                                     <td className={ style.tableMateriaschildrenBody }>{value.materia}</td>
                                     <td className={ style.tableMateriaschildrenBody }>{value.tipo}</td>
                                     <td className={ style.tableMateriaschildrenBody}>
-                                        <button className={ style.deleteMateria} onClick={ () => deleteMateria(value.id) } type='button' >
+                                        <button className={ style.deleteMateria} 
+                                        onClick={ () => deleteMateria(value.id, value.materia) } type='button' >
                                             Eliminar
                                         </button>  
                                     </td>
@@ -61,8 +68,7 @@ const TablaMaterias = () => {
                         }
                                  
                     </tbody>
-                </table>
-            
+                </table> 
         </div>
     )
 }

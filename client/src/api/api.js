@@ -36,6 +36,7 @@ export const getStudentByCedula = ( cedula ) => axios.post(`${urlRegistro}Unico`
 export const apiUpdateStudent = (id, dataNew) => axios.put( `${urlRegistro}/${id}`, dataNew );
 export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable}});
 
+
 /* Peticiones configuración del sistema  */
  
 export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}/allMaterias`);  //Materias en la Bd.
