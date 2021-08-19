@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { materiasExistentes } from "../../Redux/actions/boletaActions";
 import Swal from "sweetalert2";
 
-const ModalMaterias = ({ updateStateModal }) => {
+const ModalMaterias = ({ closeModal }) => {
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({ tipo:'', materia: '' })
     
@@ -23,8 +23,6 @@ const ModalMaterias = ({ updateStateModal }) => {
             setInputs({ tipo:'', materia: '' });
         }
     }, [])
-
-    const closeModal = (value) => updateStateModal(value);
 
     const subtmitData = async(e) => {
         e.preventDefault();

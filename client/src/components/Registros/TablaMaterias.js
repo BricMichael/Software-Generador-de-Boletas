@@ -37,7 +37,7 @@ const TablaMaterias = () => {
 
     return (
         <div className={style.contentMaterias }>
-                {  modalOpen && <ModalMaterias  updateStateModal={ setModalOpen } /> }
+                {  modalOpen && <ModalMaterias  closeModal={ setModalOpen } /> }
                 <div className={ style.divButtonNewMateria }>
                     <button type='button' className={style.buttonNewMateria} onClick={ () => setModalOpen(true) }>
                         Crear Materia
