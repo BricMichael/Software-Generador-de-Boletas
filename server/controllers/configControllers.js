@@ -16,7 +16,34 @@ const obtenerMaterias = async (req, res) => {
     } catch (err) {
          console.log(err.message);
     }
- }
+}
+
+const consultaTotalStudents = async(req, res) => {
+    try {
+        const resp = await pool.query('SELECT grado, count(*) as total FROM estudiante GROUP BY grado ORDER BY grado');
+        let totalStudents = 0;
+ 
+        for (const totalByGrado of resp.rows ) {
+            totalStudents += parseInt(totalByGrado.total);
+        }
+        resp.rows.push({ total: totalStudents });
+        res.json( resp.rows );
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+const deleteStudentsByGrado = async(req, res) => {
+    try {
+        const { grado } = req.params;
+        await pool.query('DELETE FROM estudiante WHERE grado = $1', [grado]);
+
+        res.json({message: `Acción realizada exitosamente`});
+    } catch (error) {
+        console.log(error.message);
+        res.json({message: 'Ha ocurrido un error, vuelve a intentarlo'});
+    }
+}
 
 const deleteAllStudents = async(req, res) => {
     try {
@@ -35,6 +62,8 @@ const deleteAllStudents = async(req, res) => {
 
 module.exports = {
     guardarNuevaMateria,
+    consultaTotalStudents,
     obtenerMaterias,
+    deleteStudentsByGrado,
     deleteAllStudents,
 }

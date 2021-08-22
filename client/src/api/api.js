@@ -37,9 +37,11 @@ export const apiUpdateStudent = (id, dataNew) => axios.put( `${urlRegistro}/${id
 export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable}});
 
 
-/* Peticiones configuración del sistema  */
+/* Peticiones configuración del sistema */
  
 export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}/allMaterias`);  //Materias en la Bd.
-export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}/savedMateria`, datos); 
+export const apiAllStudents = () => axios.get(`${urlConfiguracion}/allStudents`); 
+export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}/savedMateria`, datos);
+export const apiDeleteStudentsByGrado = ( grado )  => axios.delete(`${urlConfiguracion}/deleteByGrado/${grado}`);
 export const apiDeleteAllStudents = () => axios.delete(`${urlConfiguracion}/truncateData`); 
 

@@ -1,6 +1,6 @@
 import * as api from '../../api/api';
 import types from '../types';
-import Swal from 'sweetalert2';
+import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
 
 
 export const filtroBusqueda = ( momento, vista ) => async( dispatch, getState ) => {
@@ -31,13 +31,11 @@ export const allIndicadorOfUser = () => async( dispatch, getState ) => {
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
 
     await api.updateIndicadorActivo( id, dataForUpdate );
-    dispatch({ type: types.refreshData, payload: { id, dataForUpdate } });
 
-    Swal.fire({ position: 'top-end', icon: 'success', title: 'Tus modificaciones han sido realizadas',
-        showConfirmButton: false,
-        timer: 1300
-      })
+    dispatch({ type: types.refreshData, payload: { id, dataForUpdate } });
     dispatch( limpiarFormAlActualizar() );
+
+    alertSuccess('Tus modificaciones han sido realizadas');
 }
 
 
@@ -52,22 +50,12 @@ export const limpiarFormAlActualizar = () => ( {type: types.limpiarInputsForm} )
 
 export const deleteIndicador = ( id ) => {
     return async(dispatch) => {
-  
-        const { isConfirmed } = await Swal.fire({
-                title: '¿Eliminar indicador?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar!',
-                cancelButtonText: 'Cancelar'
-        })
-
-        if ( isConfirmed ) {
+        const resp = await alertDeleteItems('¿Eliminar indicador?');
+        
+        if ( resp ) {
             await api.eliminarIndicadorDB(id);
             dispatch({ type: types.deleteAnIndicador, payload: id });
-            Swal.fire( { icon: 'success', title: 'La acción ha sido completada', showConfirmButton: false, timer: 1100 });
+            alertSuccess('La acción ha sido completada');
         }
     }
 }

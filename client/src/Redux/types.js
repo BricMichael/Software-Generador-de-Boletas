@@ -4,7 +4,7 @@ const types = {
 
     materiasTypes: '[INDICADOR] MateriasIndicadorByUser',
     momentoAndYear: '[INDICADOR] BusquedaMomentoAño',
-    indicadoresByUser: '[INDICADOR] ShowSavedIndicador',
+    indicadoresByUser: '[INDICADOR] ShowIndicadorByUser',
     indicadorActive: '[INDICADOR] IndicadorActivo',
     refreshData: '[INDICADOR] RefrescarIndicador',
     limpiarInputsForm: '[INDICADOR] LimpiarInputsForm',

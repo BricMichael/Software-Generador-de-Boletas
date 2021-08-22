@@ -11,7 +11,7 @@ export const registroEstudianteAction = async( values, reset, statusRegistro ) =
         statusRegistro({ status: true, msg: 'Asegurate de haber llenado todos los campos', type: 'error' })
         setTimeout(() => {
             statusRegistro({ status: false, msg: '', type: ''})
-        }, 3500);
+        }, 2500);
     } else {
         const { data: {msg} } = await api.apiRegisterStudent( values );
         let verificacionTipo = msg === 'Estudiante registrado exitosamente';
@@ -20,7 +20,7 @@ export const registroEstudianteAction = async( values, reset, statusRegistro ) =
         statusRegistro({ status: true, msg, type: verificacionTipo ? 'exito' : 'error' })
         setTimeout(() => {
             statusRegistro({ status: false, msg: '', type: ''})
-        }, 3500);
+        }, 2500);
     }
 }
 
@@ -45,7 +45,7 @@ export const registroPersonalAction = async( values, reset, statusRegistro ) => 
     }
     setTimeout(() => {
         statusRegistro({ status: false, msg: '', type: ''})
-    }, 3500);
+    }, 2500);
 }
 
 const twoNamesOfUsers = (data) => {
