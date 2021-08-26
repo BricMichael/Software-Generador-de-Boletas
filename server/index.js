@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const app = express();
+const path = require('path'); // saber en que s.o nos encontramos y poner las barras direccionales correctas => / O \.
 
 
 
@@ -17,12 +18,17 @@ app.use(express.urlencoded({extended: false})) // => entender datos que vienen d
 app.use(cors())
 
 //routes 
+app.get('/image', (req, res) => { // logo del colegio
+    res.sendFile(path.join(__dirname, 'boletas/colegioLogo.png'))
+});
 app.use('/api', routesConfiguracion);
 app.use('/api', personalRoutes); 
 app.use('/api', indicadoresRoutes);
 app.use('/api', routesCrearBoleta);
 app.use('/api', routesRegistros);
-
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'boletas/boleta.html'))
+})
 
 
 

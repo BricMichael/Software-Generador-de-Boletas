@@ -1,5 +1,5 @@
 const pool = require ('../configDB/poolConfig');
-
+const puppeteer = require('puppeteer');
 
 
 const InitialsFiveStudents = async (req, res) => {
@@ -40,11 +40,28 @@ const indicadorEspecialistaByArea = async (req, res) => {
      }
 }
 
+const creacionBoleta = async(req, res) => {
+     const naveg = await puppeteer.launch()
+     const page = await naveg.newPage();
+     const options = { format: 'A4', path: 'boletas/boleta2.pdf'} 
+
+     await page.goto('http://localhost:4000', {waitUntil: 'networkidle2' });
+     await page.pdf(options)
+     
+     await naveg.close()
+    
+     console.log('pdf generated')
+     res.send('pdf generado')
+}
+
+
+
 
 
 
 module.exports = {
     InitialsFiveStudents,
     nextFiveStudents,
+    creacionBoleta,
     indicadorEspecialistaByArea
 }
