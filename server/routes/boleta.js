@@ -9,7 +9,7 @@ const {
 } = require('../controllers/boletaControllers');
 
 
-router.get('/crearBoleta', creacionBoleta);
+router.get('/crearBoleta/:alumno', creacionBoleta);
 router.post('/boletaEstudiantes', InitialsFiveStudents);
 router.post('/boletaNextEstudiantes', nextFiveStudents);
 router.post('/boletaLiteral', indicadorEspecialistaByArea);

@@ -41,22 +41,20 @@ const indicadorEspecialistaByArea = async (req, res) => {
 }
 
 const creacionBoleta = async(req, res) => {
-     const naveg = await puppeteer.launch()
+     const { alumno } = req.params;
+ 
+     const naveg = await puppeteer.launch();
      const page = await naveg.newPage();
-     const options = { format: 'A4', path: 'boletas/boleta2.pdf'} 
+     const options = { format: 'A4', path: `pdf/Boleta${alumno}.pdf`};
 
      await page.goto('http://localhost:4000', {waitUntil: 'networkidle2' });
-     await page.pdf(options)
+     await page.pdf(options);
      
-     await naveg.close()
+     await naveg.close();
     
-     console.log('pdf generated')
-     res.send('pdf generado')
+     console.log('pdf generated');
+     res.send(`La boleta al estudiante ${alumno} ha sido creada exitosamente`);
 }
-
-
-
-
 
 
 module.exports = {
