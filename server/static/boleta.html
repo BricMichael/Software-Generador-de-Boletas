@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boleta “”</title>
     <style>
-        body { padding: 0; box-sizing: border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; width: 780px; margin: auto; margin-top: 4px; overflow:visible; }
+        body { padding: 0; box-sizing: border-box; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; width: 780px; margin: auto; margin-top: 4px; overflow:visible; height: 290mm;
+            }
 
         p, h2, h3, h4{ margin: 0; padding: 0; }
    
         /*Header*/
-        .header { 
+        #header { 
             margin-bottom: 0.6rem;
             margin-right: 5.5rem;
             padding: 1px;    
@@ -59,7 +60,7 @@
 
          /* Indicadores docentes esitlos */
 
-        .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 1rem; margin-bottom: 2rem;} 
+        .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 1rem; margin-bottom: 5rem;} 
         .cabeceraAreas { display: flex; }
                 
         .cabeceraAreaTitle, .cabeceraLiterales{ width: 600px; border-bottom: 1px solid #000;  border-right: 1px solid #000;     display: flex;justify-content: center; align-items: center; padding: 1px 0;}
@@ -72,20 +73,36 @@
         /* cuerpo del contenido  */
         .contenidoIndicadores { display: flex; }
         .rotateParrafo { width: 20px; border-right: 1px solid #000;  border-bottom: 1px solid #000;}
-        .rotateParrafo > p{ font-size: 12px; transform: rotate(-90deg); margin-top: 600%; font-weight: bold; }
+        .rotateParrafo > p{ font-size: 11px; transform: rotate(-90deg); margin-top: 600%; font-weight: bold; }
 
         .contentDescripcion { display: flex; border-bottom: 1px solid #000; }
-        .descripcion {  width: 570px;  border-right: 1px solid #000; font-size: 11px; text-align: justify; padding: 1px 4px; }
+        .descripcion {  width: 570px;  border-right: 1px solid #000; font-size: 11.4px; text-align: justify; padding: 1px 4px; }
 
         /*Indicador experimento cientifico*/
         .descripcionexperimentoC, .literalesExperimentoC  { display: flex; align-items: center; }
-        .literalesExperimentoC { width: 36.2px; border-left: 1px solid #000; justify-content: center;}
+        .literalesExperimentoC { width: 36.5px; border-left: 1px solid #000; justify-content: center;}
         .descripcionexperimentoC { border-left: 1px solid #000;  margin-left: 20px; width: 578px; font-size: 11px; text-align: justify; padding: 1px 4px; }
+
+        /* Firmas del personal */
+        .footerFirmas, #footer { width: 620px; margin: auto; display: flex !important; justify-content: space-between !important;}
+        .firmaModel, .firmaCenterDocente, .firmaCenterPadre {
+            font-size: 13px; width: 170px; text-align: center
+        }
+        .top { border-top: 1px solid #000; }
+        .firmaMargin { margin-top: 1rem; text-align: center;} 
+        .firmaCenterDocente { margin-bottom: 2.8rem;}
+
+        
+        /*Estilos segundo modelo*/
+        .apreciacion { width: 710px; margin: auto; text-align: justify; margin-top: 3rem;}
+        .msg1 { font-size: 13px; }
+        .msg2 { font-size: 14px; margin-top: 1rem; }
+
       
     </style>
 </head>
 <body>
-    <header class="header">
+    <header id="header">
         <img src="http://localhost:4000/image" class="LogoImg"
         >
         <div class="content-inline">
@@ -128,7 +145,6 @@
     </div>
 
     <!-- Indicadores docentes -->
-
     <div class="contentIndicadorDocentes">
         <div class="cabeceraAreas">
             <h3 class="cabeceraAreaTitle">ÁREA: LENGUA Y LITERATURA</h3>
@@ -346,6 +362,98 @@
                 </div> 
             </div>          
         </div> 
+        <div class="cabeceraAreas">
+            <h3 class="cabeceraAreaTitle">ÁREA: MATEMÁTICA </h3>
+            <h3 class="cabeceraLiterales">E</h3>
+            <h3 class="cabeceraLiterales">B</h3>
+            <h3 class="cabeceraLiterales no-borde-right">RN</h3>
+        </div>
+        <div class="contenidoIndicadores">
+            <div class="rotateParrafo"><p>INDICADORES</p></div>
+            <div class="allIndicadores">
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Ubicó en el cartel de valor posicional cantidades con decimales hasta diezmilésimas.
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Realizó descomposición de cantidades con decimales hasta diezmilésimas
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right">✓</span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Realizó lectura y escribió correctamente cantidades con decimales hasta diezmilésimas. 
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Por medio de imágenes estableció el orden de los números decimales: mayor a menor o viceversa. 
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Con ayuda de ejemplos ordenó y resolvió de manera posicional las adiciones con decimales.
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div>                       
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Ordenó y resolvió de manera posicional las sustracciones con decimales.  
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Manifestó de manera oral (audio) los resultados de las tablas de multiplicar.  
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Determinó los elementos de la división.   
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Con material de apoyo desarrolló el proceso de las divisiones de dos cifras con números naturales.  
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descripcion">
+                        Por medio de explicaciones utilizó el método apropiado, según sea el caso en divisiones de números con decimales.  
+                    </p>
+                    <span class="cabeceraLiterales no-borde-bottom"></span>
+                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
+                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div> 
+            </div>          
+        </div> 
+  
 
         <div class="cabeceraAreas">
             <h3 class="cabeceraAreaTitle">ÁREA: EXPERIMENTO CIENTÍFICO</h3>
@@ -362,6 +470,34 @@
             <span class="literalesExperimentoC no-borde-bottom"></span>             
         </div>
     </div>     
-        
+ 
+
+
+    
+
+     <!-- Segundo modelo-->
+     <div class="apreciacion">
+        <p class="msg1"><b>Apreciación de la docente:</b> seguir manteniendo comunicación regular entre el hogar y la escuela.</p>
+        <p class="msg2">“Estoy orgullosa de ti y de tus logros, no olvides que las excelentes personas como tú germinan en el corazón, crecen día a día en el alma y pase lo que pase jamás se olvidan.”</p>
+    </div>
+
+
+        <!-- Firmas del personal-->
+    <footer class="footerFirmas" id='footer'>
+        <div class="firmaModel">
+            <p class="firmaBorde top">Mgtr. Dalimilet Herrera </p>
+            <p class="firmaMargin">Directora</p>
+        </div>
+        <div class="firmaCenter">
+            <p class="firmaCenterDocente top">Docente</p>
+            <p class="firmaCenterPadre top">Representante</p>
+        </div>
+        <div class="firmaModel">
+            <p class="firmaBorde top">Mgtr. Ivanna Domínguez
+            </p>
+            <p class="firmaMargin">Coordinadora Pedagógica
+            </p>
+        </div>
+    </footer>  
 </body>
 </html>

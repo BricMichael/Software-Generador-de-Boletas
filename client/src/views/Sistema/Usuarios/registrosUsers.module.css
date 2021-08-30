@@ -230,6 +230,8 @@
     background: #ac1b38;
 }
 
+.registrosUsers_ocultar { background: red; color: aqua; }
+
  /* FIN Estilos modal de update estudiante */
 
 @media screen and ( min-width: 1140px) { 

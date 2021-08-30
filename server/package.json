@@ -14,7 +14,8 @@
     "cors": "^2.8.5",
     "express": "4.17.1",
     "pg": "^8.6.0",
-    "puppeteer": "^10.2.0"
+    "puppeteer": "^10.2.0",
+    "puppeteer-report": "^3.0.1"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

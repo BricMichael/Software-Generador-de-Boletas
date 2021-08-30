@@ -80,7 +80,10 @@ export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = ne
         const names = twoNamesOfUsers( data);
 
         newData.push(data, names);
-        data[0].aviso && document.getElementById('deshabilitar').setAttribute('disabled','true');
+        if( data[0].aviso ){
+            let btn = document.getElementById('deshabilitar')
+            btn.style.display = 'none';
+        }
 
     }else {
         count =  count <= 0 ? count = 0 : count - 4;
@@ -88,7 +91,10 @@ export const siguientes_AnterioresUsuarios = async( accion ) => { // accion = ne
         const names = twoNamesOfUsers( data);
         
         newData.push( data, names );
-        !data[0].aviso && document.getElementById('deshabilitar').removeAttribute('disabled');    
+        if(!data[0].aviso){
+            let btn = document.getElementById('deshabilitar')  ;
+            btn.style.display = 'initial';
+        } 
     }
    
     return new Promise( (resolve, reject ) => {

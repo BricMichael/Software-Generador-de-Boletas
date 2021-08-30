@@ -16,7 +16,6 @@ const routesConfiguracion = require('./routes/configuracion');
 app.use(express.json());  // => Esto hace que si le envian al servidor un datoe formato Json, este sea capaz de entenderlo y convertirlo en un objecto de javascript.
 app.use(express.urlencoded({extended: false})) // => entender datos que vienen de un formulario.
 app.use(cors())
-
 //routes 
 app.get('/image', (req, res) => { // logo del colegio
     res.sendFile(path.join(__dirname, 'static/colegioLogo.png'));

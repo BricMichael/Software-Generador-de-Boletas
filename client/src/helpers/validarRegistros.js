@@ -8,13 +8,13 @@ export const validarCampos = (data) => {
 }
 
 
-export const removerEspacios = (data) => {
+export const removerEspacios = (data) => { //evaluar que cada item o nombre no tenga espacios al inicio o final.
     let newValor = [];
 
     for (let item of data) {
        if( item !== '' ) newValor.push( item );
     }
-    
+
     let nameSend = newValor[0] + ' ' + newValor[2]; 
     return nameSend;
 }

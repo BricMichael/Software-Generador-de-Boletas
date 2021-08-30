@@ -4,6 +4,7 @@ import { gradoStudent, seccionStudent } from "../../helpers/arraysOptionsForm";
 import { useForm } from "../../helpers/useForm";
 import { updateStudentModal } from "../../Redux/actions/usuariosActions";
 import { useEffect } from "react";
+import { cambioDeDatos } from "../../helpers/validarRegistros";
 
 
 const ModalEstudiante = ({ alumno, closeModal }) => {
@@ -21,8 +22,11 @@ const ModalEstudiante = ({ alumno, closeModal }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { id, ...rest } = values;
-        updateStudentModal( id, rest, closeModal );
+        let resp = cambioDeDatos( alumno.dataEstudiante, values );     
+        if ( resp ) {
+            const { id, ...rest } = values;
+            updateStudentModal( id, rest, closeModal );
+        }
     }
 
 

@@ -1,5 +1,7 @@
 const pool = require ('../configDB/poolConfig');
 const puppeteer = require('puppeteer');
+const pupeerReport = require('puppeteer-report');
+const path = require('path');
 
 
 const InitialsFiveStudents = async (req, res) => {
@@ -39,22 +41,32 @@ const indicadorEspecialistaByArea = async (req, res) => {
           console.log(err.message)
      }
 }
+    // await page.setContent(htmlContent({saludo: 'hola', data: ['daooots']}))
+     // await page.goto(path.join(__dirname, '../static/boleta.html'), {waitUntil: 'networkidle2' });
+     // let pdf = await page.pdf(options);
+
+     // const page = await naveg.newPage();
 
 const creacionBoleta = async(req, res) => {
+   try {
      const { alumno } = req.params;
- 
-     const naveg = await puppeteer.launch();
-     const page = await naveg.newPage();
-     const options = { format: 'A4', path: `pdf/Boleta${alumno}.pdf`};
 
-     await page.goto('http://localhost:4000', {waitUntil: 'networkidle2' });
-     await page.pdf(options);
-     
+     const naveg = await puppeteer.launch();
+     const options = { format: 'letter', path: `pdf/Boleta${alumno}.pdf`,margin: { bottom: '15px', top: '6px' } };
+     const pathHtmlFile = path.join(__dirname, '../static/boleta.html');
+ 
+     await pupeerReport.pdf(naveg, pathHtmlFile, options)
+
      await naveg.close();
     
      console.log('pdf generated');
-     res.send(`La boleta al estudiante ${alumno} ha sido creada exitosamente`);
-}
+     // res.contentType('application/pdf');
+     // await res.send( path.join(__dirname, `../pdf/Boleta${alumno}.pdf`) );
+     res.send('ped generado')
+   } catch (error) {
+        console.log(error)
+   }
+ }
 
 
 module.exports = {
