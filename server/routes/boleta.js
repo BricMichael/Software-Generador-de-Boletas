@@ -5,18 +5,16 @@ const {
     InitialsFiveStudents,
     nextFiveStudents, 
     indicadorEspecialistaByArea,
-    creacionBoleta
+    creacionBoleta,
+    modelFinalPagePdf, 
 } = require('../controllers/boletaControllers');
 
 
 router.get('/crearBoleta/:alumno', creacionBoleta);
+router.get('/boleta/modelPDF', modelFinalPagePdf);
 router.post('/boletaEstudiantes', InitialsFiveStudents);
 router.post('/boletaNextEstudiantes', nextFiveStudents);
 router.post('/boletaLiteral', indicadorEspecialistaByArea);
-
-
-
-
 
 
 

@@ -9,6 +9,7 @@ import { usuarioLogeado } from '../../../Redux/actions/loginActions';
 
 
 
+
 const Dashboard = () => {
         backgroundColorPage('#eee');
         document.title = 'Menú Principal';

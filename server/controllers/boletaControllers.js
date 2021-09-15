@@ -2,6 +2,8 @@ const pool = require ('../configDB/poolConfig');
 const puppeteer = require('puppeteer');
 const pupeerReport = require('puppeteer-report');
 const path = require('path');
+// const { renderTemplate,createdPDF, prueba } = require('../helpers/renderTemplate');
+
 
 
 const InitialsFiveStudents = async (req, res) => {
@@ -41,30 +43,43 @@ const indicadorEspecialistaByArea = async (req, res) => {
           console.log(err.message)
      }
 }
-    // await page.setContent(htmlContent({saludo: 'hola', data: ['daooots']}))
-     // await page.goto(path.join(__dirname, '../static/boleta.html'), {waitUntil: 'networkidle2' });
-     // let pdf = await page.pdf(options);
+   
 
-     // const page = await naveg.newPage();
+let dataToBuildPDF = {};
+const modelFinalPagePdf = (req, res) => {
+     console.log(dataToBuildPDF)
+     res.setHeader('Content-Type', 'text/html');
+     res.render('main', dataToBuildPDF);  
+ }
 
 const creacionBoleta = async(req, res) => {
    try {
      const { alumno } = req.params;
 
-     const naveg = await puppeteer.launch();
-     const options = { format: 'letter', path: `pdf/Boleta${alumno}.pdf`,margin: { bottom: '15px', top: '6px' } };
-     const pathHtmlFile = path.join(__dirname, '../static/boleta.html');
- 
-     await pupeerReport.pdf(naveg, pathHtmlFile, options)
+     let esto = [{area: 'ÁREA: Turimos y negocios', indicadores}]
 
+     dataToBuildPDF = { alumno, docente: 'Delia Maria Bastidas', esto};
+     console.log('llego')
+
+     const options = { 
+          format: 'letter', 
+          path: `pdf/Boleta${alumno}.pdf`,
+          margin: { bottom: '15px', top: '6px' } 
+     };
+
+     const naveg = await puppeteer.launch();
+     const page = await naveg.newPage();
+     await page.goto('http://localhost:4000/api/boleta/modelPDF');
+ 
+     await pupeerReport.pdfPage(page, options);
      await naveg.close();
     
      console.log('pdf generated');
-     // res.contentType('application/pdf');
-     // await res.send( path.join(__dirname, `../pdf/Boleta${alumno}.pdf`) );
-     res.send('ped generado')
-   } catch (error) {
-        console.log(error)
+     
+     dataToBuildPDF = {}; // reiniciar la variable.
+     res.sendFile(path.join(__dirname, `../pdf/Boleta${alumno}.pdf`));
+   } catch (err) {
+        console.log(err.message)
    }
  }
 
@@ -72,6 +87,21 @@ const creacionBoleta = async(req, res) => {
 module.exports = {
     InitialsFiveStudents,
     nextFiveStudents,
+    indicadorEspecialistaByArea,
     creacionBoleta,
-    indicadorEspecialistaByArea
+    modelFinalPagePdf
 }
+
+/*Helps
+      // const pathHtmlFile = path.join(__dirname, '../static/boleta.html');
+     // await page.setContent(``);
+     // await page.pdf(options);
+     // res.contentType('application/pdf');
+
+      // await page.setContent(htmlContent({saludo: 'hola', data: ['daooots']}))
+     // await page.goto(path.join(__dirname, '../static/boleta.html'), {waitUntil: 'networkidle2' });
+     // let pdf = await page.pdf(options);
+
+     // const page = await naveg.newPage();
+
+*/
