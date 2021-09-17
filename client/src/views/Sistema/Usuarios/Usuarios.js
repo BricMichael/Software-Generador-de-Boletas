@@ -38,7 +38,7 @@ const Usuarios = () => {
                 <Route path={`${path}/regEstudiante`} exact component={ EstudianteReg } />
                 <Route path={`${path}/ActualizarDatos`} exact component={ UpdateStudents } />
             </Switch>
-              <i id='slideDown'></i>
+            <i id='slideDown'></i>
         </>
     )
 }

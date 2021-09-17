@@ -72,7 +72,7 @@
        
          /* Indicadores docentes esitlos */
 
-        .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 1rem; margin-bottom: 13rem; margin-left: 3rem;}  /*margin abajo de 13rem, para que tire el contenido sobrante para abajo, genere una nueva hoja y no vaya a mostrarse cortado.*/
+        .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 0.7rem; margin-bottom: 17rem; margin-left: 3rem;}  /*margin abajo de 17rem, para que tire el contenido sobrante para abajo, genere una nueva hoja y no vaya a mostrarse cortado.  height: 657px;*/
         .cabeceraAreas { display: flex; }
                 
         .cabeceraAreaTitle, .cabeceraLiterales{ width: 600px; border-bottom: 1px solid #000;  border-right: 1px solid #000;     display: flex;justify-content: center; align-items: center; padding: 1px 0;}
@@ -88,7 +88,8 @@
         .rotateParrafo > p{ font-size: 12px; transform: rotate(-90deg); margin-top: 600%; font-weight: bold; }
 
         .contentDescripcion { display: flex; border-bottom: 1px solid #000; }
-        .descripcion {  width: 570px;  border-right: 1px solid #000; font-size: 11.4px; text-align: justify; padding: 1px 4px; }
+        .descripcion, .descHojaCompleta {  width: 570px;  border-right: 1px solid #000; font-size: 11.4px; text-align: justify; padding: 1px 4px; }
+        .descHojaCompleta { width: 568px; }
 
         /*Indicador experimento cientifico*/
         .descripcionexperimentoC, .literalesExperimentoC  { display: flex; align-items: center; }
@@ -102,9 +103,10 @@
         .firmaModel, .firmaCenterDocente, .firmaCenterPadre {
             font-size: 13px; width: 170px; text-align: center
         }
+        .bajar { margin-top: 1.1rem; }/* dejar mas espacio superior en las firmas laterales. */
         .top { border-top: 1px solid #000; }
         .firmaMargin { margin-top: 0.5rem; text-align: center;} 
-        .firmaCenterDocente { margin-bottom: 2.2rem;}
+        .firmaCenterDocente { margin-bottom: 1.7rem;}
 
 
         /*Estilos segundo modelo*/
@@ -115,7 +117,7 @@
 
         /*Cuerpo del segundo modelo*/
 
-        .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 13rem; height: 650px;}
+        .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 23rem; height: 650px;}
         .titleEspecialidades { text-align: center; border: 1px solid #000; font-size: 23px;}
 
         .nombreEspecialidad { display: flex; }
@@ -129,6 +131,13 @@
         .tipo { margin-left: 1rem;  font-size: 15px; font-weight: bold; border-right: 1px solid #000; width: calc(100% - 65px);}
         .descIndEspecialista { padding: 3px 4px; text-align: justify; font-size: 11.4px; border:  1px solid #000;}
 
+        /*Modificaciones ultimas generales*/
+        #IndHojaCompleta { height: 800px !important; border: none; }
+        .putBorde { border-top: 1px solid #000; border-left: 1px solid #000;  }
+        .bordeLeft {border-left: 1px solid #000; }
+        .descHojaLiteral{ width: 36px; border-right: 1px solid #000; overflow: hidden !important; text-align: center;}
+        .mlg { width: 37px; }
+        
     </style>
 </head>
 <body>
@@ -173,138 +182,7 @@
         <p class='literalesTop'>RN= REQUIERE NIVELACIÓN.</p>
     </div>
 
-    <!-- Indicadores docentes -->
-    <div class="contentIndicadorDocentes">
-        <div class="cabeceraAreas">
-            <h3 class="cabeceraAreaTitle">ÁREA: {{esto.[0].area}}</h3>
-            <h3 class="cabeceraLiterales">E</h3>
-            <h3 class="cabeceraLiterales">B</h3>
-            <h3 class="cabeceraLiterales no-borde-right">RN</h3>
-        </div>
-        <div class="contenidoIndicadores">
-            <div class="rotateParrafo"><p>INDICADORES</p></div>
-            <div class="allIndicadores">
-                {{#each esto.[0].indicadores }}
-                    <div class="contentDescripcion">
-                        <p class="descripcion">{{indicador}}</p>
-                        <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                        <span class="cabeceraLiterales no-borde-bottom"></span>
-                        <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                    </div> 
-                {{/each}}         
-            </div>    
-        </div>
-        
-        <div class="cabeceraAreas">
-            <h3 class="cabeceraAreaTitle">ÁREA: MATEMÁTICA </h3>
-            <h3 class="cabeceraLiterales">E</h3>
-            <h3 class="cabeceraLiterales">B</h3>
-            <h3 class="cabeceraLiterales no-borde-right">RN</h3>
-        </div>
-        <div class="contenidoIndicadores">
-            <div class="rotateParrafo"><p>INDICADORES</p></div>
-            <div class="allIndicadores">
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Ubicó en el cartel de valor posicional cantidades con decimales hasta diezmilésimas.
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Realizó descomposición de cantidades con decimales hasta diezmilésimas
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right">✓</span>
-                </div>
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Realizó lectura y escribió correctamente cantidades con decimales hasta diezmilésimas. 
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Por medio de imágenes estableció el orden de los números decimales: mayor a menor o viceversa. 
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Con ayuda de ejemplos ordenó y resolvió de manera posicional las adiciones con decimales.
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>                       
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Ordenó y resolvió de manera posicional las sustracciones con decimales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Manifestó de manera oral (audio) los resultados de las tablas de multiplicar.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Determinó los elementos de la división.   
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Con material de apoyo desarrolló el proceso de las divisiones de dos cifras con números naturales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Por medio de explicaciones utilizó el método apropiado, según sea el caso en divisiones de números con decimales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-            </div>          
-        </div> 
-  
-
-        <div class="cabeceraAreas">
-            <h3 class="cabeceraAreaTitle">ÁREA: EXPERIMENTO CIENTÍFICO</h3>
-            <h3 class="cabeceraLiterales">E</h3>
-            <h3 class="cabeceraLiterales">B</h3>
-            <h3 class="cabeceraLiterales no-borde-right">RN</h3>
-        </div>
-        <div class="contentDescripcion">
-            <p class="descripcionexperimentoC">
-                Elaboró un collage en la presentación de experimento científico. 
-            </p>
-            <span class="literalesExperimentoC no-borde-bottom no-borde-right">✓</span>
-            <span class="literalesExperimentoC no-borde-bottom"></span>
-            <span class="literalesExperimentoC no-borde-bottom"></span>             
-        </div>
-    </div>  
-
-    
+    <!-- Indicadores docentes 29 indicadores max a la hoja principal -->
     <div class="contentIndicadorDocentes">
         <div class="cabeceraAreas">
             <h3 class="cabeceraAreaTitle">ÁREA: LENGUA Y LITERATURA</h3>
@@ -429,8 +307,8 @@
                     <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
                 </div> 
             </div>          
-        </div>
-        
+        </div> 
+              
         <div class="cabeceraAreas">
             <h3 class="cabeceraAreaTitle">ÁREA: MATEMÁTICA </h3>
             <h3 class="cabeceraLiterales">E</h3>
@@ -519,101 +397,232 @@
                     <span class="cabeceraLiterales no-borde-bottom"></span>
                     <span class="cabeceraLiterales no-borde-bottom">✓</span>
                     <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
+                </div> 
+            </div>          
+        </div>
+    </div>  
+
+    {{!-- segundo modelo hoja max 34 indicadores --}}
+    <div class="contentIndicadorDocentes" id='IndHojaCompleta'>
+     
+
+         <div class="cabeceraAreas putBorde">
+            <h3 class="cabeceraAreaTitle">ÁREA: LENGUA Y LITERATURA</h3>
+            <h3 class="cabeceraLiterales">E</h3>
+            <h3 class="cabeceraLiterales">B</h3>
+            <h3 class="cabeceraLiterales mlg">RN</h3>
+        </div>
+        <div class="contenidoIndicadores">
+            <div class="rotateParrafo bordeLeft"><p>INDICADORES</p></div>
+            <div class="allIndicadores">
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Identificó de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogación, signos de admiración.
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Comprendió y estableció comparaciones entre la silaba tónica y átona. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Distinguió las palabras que llevan acento ortográfico. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Subrayó y utilizó eficazmente el acento prosódico.
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                         Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>                       
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Separó correctamente palabras en silabas. Conoció cabalmente el nombre según el número de silabas: monosílabas, bisílabas, trisílabas, polisílabas y pentasílabas.
+                        
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Clasificó las palabras en agudas, graves y esdrújulas.    
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Identificó apropiadamente los elementos de la oración: sujeto, verbo y predicado.    
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Por medio de imágenes reconoció y aplicó la ampliación del sujeto.   
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Evidenció en oraciones la ampliación del predicado   
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Conjugó y completó en elaboración de cuadro los verbos: en pasado, presente y futuro. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        En actividad de completación clasificó los artículos en determinados e indeterminados. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Con ayuda de ejemplos resaltó el sustantivo en cada oración. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Mostró interés por aprender y comparar los adjetivos de los adverbios
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+            </div>          
+        </div>
+        
+        <div class="cabeceraAreas putBorde">
+            <h3 class="cabeceraAreaTitle">ÁREA: MATEMÁTICA </h3>
+            <h3 class="cabeceraLiterales">E</h3>
+            <h3 class="cabeceraLiterales">B</h3>
+            <h3 class="cabeceraLiterales mlg">RN</h3>
+        </div>
+        <div class="contenidoIndicadores">
+            <div class="rotateParrafo bordeLeft"><p>INDICADORES</p></div>
+            <div class="allIndicadores">
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Ubicó en el cartel de valor posicional cantidades con decimales hasta diezmilésimas.
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Realizó descomposición de cantidades con decimales hasta diezmilésimas
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                </div>
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Realizó lectura y escribió correctamente cantidades con decimales hasta diezmilésimas. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Por medio de imágenes estableció el orden de los números decimales: mayor a menor o viceversa. 
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Con ayuda de ejemplos ordenó y resolvió de manera posicional las adiciones con decimales.
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>                       
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Ordenó y resolvió de manera posicional las sustracciones con decimales.  
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Manifestó de manera oral (audio) los resultados de las tablas de multiplicar.  
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Determinó los elementos de la división.   
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div>  
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Con material de apoyo desarrolló el proceso de las divisiones de dos cifras con números naturales.  
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                </div> 
+                <div class="contentDescripcion">
+                    <p class="descHojaCompleta">
+                        Por medio de explicaciones descHojaLiteral apropiado, según sea el caso en divisiones de números con decimales.  
+                    </p>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
+                    <span class="descHojaLiteral no-borde-bottom">✓</span>
+                    <span class="descHojaLiteral no-borde-bottom"></span>
                 </div> 
             </div>          
         </div> 
 
-        <div class="cabeceraAreas">
-            <h3 class="cabeceraAreaTitle">ÁREA: MATEMÁTICA </h3>
-            <h3 class="cabeceraLiterales">E</h3>
-            <h3 class="cabeceraLiterales">B</h3>
-            <h3 class="cabeceraLiterales no-borde-right">RN</h3>
-        </div>
-        <div class="contenidoIndicadores">
-            <div class="rotateParrafo"><p>INDICADORES</p></div>
-            <div class="allIndicadores">
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Ubicó en el cartel de valor posicional cantidades con decimales hasta diezmilésimas.
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Realizó descomposición de cantidades con decimales hasta diezmilésimas
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right">✓</span>
-                </div>
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Realizó lectura y escribió correctamente cantidades con decimales hasta diezmilésimas. 
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Por medio de imágenes estableció el orden de los números decimales: mayor a menor o viceversa. 
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Con ayuda de ejemplos ordenó y resolvió de manera posicional las adiciones con decimales.
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>                       
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Ordenó y resolvió de manera posicional las sustracciones con decimales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Manifestó de manera oral (audio) los resultados de las tablas de multiplicar.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Determinó los elementos de la división.   
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div>  
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Con material de apoyo desarrolló el proceso de las divisiones de dos cifras con números naturales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-                <div class="contentDescripcion">
-                    <p class="descripcion">
-                        Por medio de explicaciones utilizó el método apropiado, según sea el caso en divisiones de números con decimales.  
-                    </p>
-                    <span class="cabeceraLiterales no-borde-bottom"></span>
-                    <span class="cabeceraLiterales no-borde-bottom">✓</span>
-                    <span class="cabeceraLiterales no-borde-bottom no-borde-right"></span>
-                </div> 
-            </div>          
-        </div> 
     </div> 
     
   
@@ -624,7 +633,7 @@
             <p class="msg2">“Estoy orgullosa de ti y de tus logros, no olvides que las excelentes personas como tú germinan en el corazón, crecen día a día en el alma y pase lo que pase jamás se olvidan.”</p>
         </div>
         <div class="contentImgStartStudent">
-            <img src='https://www.imageneseducativas.com/wp-content/uploads/2020/04/Stickers-Para-corregir-las-tareas-online-20.jpeg' alt='holaIMG' class="imgStartStudent"/>
+            <img src='https://www.imageneseducativas.com/wp-content/uploads/2020/04/Stickers-Para-corregir-las-tareas-online-20.jpeg' alt='imagenBoleta' class="imgStartStudent"/>
         </div>
     
         <div class="contentEspecialidades">
@@ -637,7 +646,7 @@
                 </div>
                 <div class="contentDesc">
                     <p class="descIndEspecialista">
-                        El estudiante a través del aprovechamiento de las tecnologías de la información y comunicación, utilizó el programa Microsoft Office Word, elaborando con constancia y responsabilidad cada una de las partes de su primer folleto informativo y explorando las herramientas básicas impartidas del programa como: dar formato a los textos (tipo de letra, tamaño, color, uso de negrita, cursiva y subrayado), dar formato a los párrafos (interlineado, alineación, uso de viñetas y numeración), insertar WordArt, imágenes, entre otros, al mismo tiempo que investigaba y desarrollaba el tema de su preferencia; favoreciendo y potenciando sus habilidades en cuanto al uso positivo y educativo de dispositivos tecnológicos (computador, tablet o teléfono inteligente). ¡Excelente trabajo mi niño! Has manifestado y demostrado tu dedicación y constancia en el cumplimiento de esta especialidad.
+                        El estudiante a través del aprovechamiento de las tecnologías de la información y comunicación, utilizó el programa Microsoft Office Word, elaborando con constancia y responsabilidad cada una de las partes de su primer folleto informativo y explorando las herramientas básicas impartidas del programa como: dar formato a los textos (tipo de letra, tamaño, color, uso de negrita, cursiva y subrayado), dar formato a los párrafos (interlineado, alineación, uso de viñetas y numeración), insertar WordArt, imágenes, entre descHojaLiterals, al mismo tiempo que investigaba y desarrollaba el tema de su preferencia; favoreciendo y potenciando sus habilidades en cuanto al uso positivo y educativo de dispositivos tecnológicos (computador, tablet o teléfono inteligente). ¡Excelente trabajo mi niño! Has manifestado y demostrado tu dedicación y constancia en el cumplimiento de esta especialidad.
                     </p>
                 </div>
             </div>
@@ -653,7 +662,7 @@
                     </p>
                 </div>
             </div>
-    
+{{!--     
             <div class="cuerpoDescripcion">
                 <div class="nombreEspecialidad">
                     <p class="area">ÁREA</p>
@@ -664,7 +673,7 @@
                         El estudiante durante el segundo momento realizó de manera óptima las actividades planificadas en el área de música, reconociendo cualidades importantes de la música como: el sonido, melodía, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un compás y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando interés en cumplir con todas las actividades asignadas a distancia.
                     </p>
                 </div>
-            </div>
+            </div> --}}
     
             <div class="cuerpoDescripcion">
                 <div class="nombreEspecialidad">
@@ -703,10 +712,11 @@
             </div>
         </div>  
     </div>
+
+
     <!-- Firmas del personal-->
-  
     <div id='footer'>
-        <div class="firmaModel">
+        <div class="firmaModel bajar">
             <p class="firmaBorde top">Mgtr. Dalimilet Herrera </p>
             <p class="firmaMargin">Directora</p>
         </div>
@@ -714,7 +724,7 @@
             <p class="firmaCenterDocente top">Docente</p>
             <p class="firmaCenterPadre top">Representante</p>
         </div>
-        <div class="firmaModel">
+        <div class="firmaModel bajar">
             <p class="firmaBorde top">Mgtr. Ivanna Domínguez
             </p>
             <p class="firmaMargin">Coordinadora Pedagógica

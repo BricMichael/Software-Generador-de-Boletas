@@ -18,8 +18,7 @@ app.use(express.json());  // => Esto hace que si le envian al servidor un datoe 
 app.use(express.urlencoded({extended: false})) // => entender datos que vienen de un formulario.
 app.use(cors())
 
-// hbs.registerPartials(__dirname + '/views/partials', function (err) {});
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
 app.set("views", __dirname + "/views");
 
 
@@ -37,11 +36,9 @@ app.get('/', (req, res) => {
 })
 
 
-// app.get('/hbs', (req, res) => {
-//     let resp = prueba('raul')
-//     console.log(resp)
+// app.get('/pug', (req, res) => {
 //     res.setHeader('Content-Type', 'text/html')
-//     res.render('main', resp)
+//     res.render('index', {docente: 'Gabriela Mejia Suarez Perez', alumno: 'Jose Felipe Uchearega'})
 // })
 
 

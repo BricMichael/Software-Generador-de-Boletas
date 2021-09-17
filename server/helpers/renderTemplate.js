@@ -1,4 +1,3 @@
-const hbs = require('handlebars');
 const path = require('path');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
@@ -12,7 +11,7 @@ const renderTemplate =(data) => {
 
     // const rendered = plantilla(data);
 
-    path.join(__dirname, `../views/main.hbs`)
+    // path.join(__dirname, `../views/main.hbs`)
 
     return rendered;
 }
