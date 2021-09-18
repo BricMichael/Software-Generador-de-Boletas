@@ -1,8 +1,8 @@
 
-const materiaConIndicadores = (docenteMaterias, indicadoresOfMateria) => {
+const materiaConIndicadores = (materiasTypeDocente, indicadoresOfMateria) => {
     const arrayMulti = []
     
-    for( let area of docenteMaterias) {
+    for( let area of materiasTypeDocente) {
         let soloAreas = area.materia
         arrayMulti.push([soloAreas])
     }

@@ -24,7 +24,7 @@ const CreaIndicador = () => {
     }, [])
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // arreglar que el validador de campos permita guardar indi.. de doc.. y espc.. 
+        e.preventDefault(); 
         dispatch( enviarData( values, reset ));
     }
 

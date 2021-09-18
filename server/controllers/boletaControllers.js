@@ -2,7 +2,7 @@ const pool = require ('../configDB/poolConfig');
 const puppeteer = require('puppeteer');
 const pupeerReport = require('puppeteer-report');
 const path = require('path');
-// const { renderTemplate,createdPDF, prueba } = require('../helpers/renderTemplate');
+const { serYConvivir,especialistas } = require('../helpers/parseoDataPDF');
 
 
 
@@ -47,7 +47,7 @@ const indicadorEspecialistaByArea = async (req, res) => {
 
 let dataToBuildPDF = {};
 const modelFinalPagePdf = (req, res) => {
-     console.log(dataToBuildPDF)
+     // console.log(dataToBuildPDF)
      res.setHeader('Content-Type', 'text/html');
      res.render('index', dataToBuildPDF);  
  }
@@ -57,43 +57,45 @@ const modelFinalPagePdf = (req, res) => {
      {indicador: 'Comprendió y estableció comparaciones entre la silaba tónica y átona. ', literal: 'E'},
      {indicador: 'Distinguió las palabras que llevan acento ortográfico. ', literal: 'RN'},
      {indicador: 'Subrayó y utilizó eficazmente el acento prosódico.', literal: 'E'},
-     {indicador: ' Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo.', literal: 'MB'},
-     {indicador: 'Maicol data dinamica hahah', literal: 'MB'},
+     {indicador: ' Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo.', literal: 'B'},
+     {indicador: 'Maicol data dinamica hahah', literal: 'B'},
      {indicador: 'Clasificó las palabras en agudas, graves y esdrújulas.', literal: 'E'},
      {indicador: 'Identificó apropiadamente los elementos de la oración: sujeto, verbo y predicado.', literal: 'RN'},
      {indicador: 'Por medio de imágenes reconoció y aplicó la ampliación del sujeto.', literal: 'E'}, 
-     {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'MB'},
+     {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'B'},
      {indicador: 'Conjugó y completó en elaboración de cuadro los verbos: en pasado, presente y futuro.', literal: 'RN'},
      {indicador: ' En actividad de completación clasificó los artículos en determinados e indeterminados. ', literal: 'RN'},
-     {indicador: 'Con ayuda de ejemplos resaltó el sustantivo en cada oración. ', literal: 'MB'},
+     {indicador: 'Con ayuda de ejemplos resaltó el sustantivo en cada oración. ', literal: 'B'},
      {indicador: 'Mostró interés por aprender y comparar los adjetivos de los adverbios', literal: 'E'},
      {indicador: 'Con ayuda de ejemplos resaltó el sustantivo en cada oración. ', literal: 'E'},
 ]
 
 let indicadores3ByPage = [
-     {indicador: 'MODELO DE 3 indicadores by hoja de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogación, signos de admiración.', E: true},
-     {indicador: 'Comprendió y estableció comparaciones entre la silaba tónica y átona. ', E: true},
-     {indicador: 'Distinguió las palabras que llevan acento ortográfico. ', RN: true},
-     {indicador: 'Subrayó y utilizó eficazmente el acento prosódico.', MB: true},
-     {indicador: ' Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo.', E: true},
-     {indicador: 'Maicol data dinamica hahah', E: true},
-     {indicador: 'Clasificó las palabras en agudas, graves y esdrújulas.', RN: true},
-     {indicador: 'Identificó apropiadamente los elementos de la oración: sujeto, verbo y predicado.', E: true},
-     {indicador: 'Por medio de imágenes reconoció y aplicó la ampliación del sujeto.', RN: true},
-     {indicador: 'Evidenció en oraciones la ampliación del predicado.',MB: true},
-     {indicador: 'Conjugó y completó en elaboración de cuadro los verbos: en pasado, presente y futuro.', RN: true}
+     {indicador: 'MODELO DE 3 indicadores by hoja de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogación, signos de admiración.', literal: 'E'},
+     {indicador: 'Comprendió y estableció comparaciones entre la silaba tónica y átona. ', literal: 'B'},
+     {indicador: 'Distinguió las palabras que llevan acento ortográfico. ',  literal: 'B'},
+     {indicador: 'Subrayó y utilizó eficazmente el acento prosódico.',  literal: 'B'},
+     {indicador: ' Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo.', literal: 'E'},
+     {indicador: 'Maicol data dinamica hahah', literal: 'B'},
+     {indicador: 'Clasificó las palabras en agudas, graves y esdrújulas.', literal: 'RN'},
+     {indicador: 'Identificó apropiadamente los elementos de la oración: sujeto, verbo y predicado.', literal: 'B'},
+     {indicador: 'Por medio de imágenes reconoció y aplicó la ampliación del sujeto.',  literal: 'E'},
+     {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'B'},
+     {indicador: 'Conjugó y completó en elaboración de cuadro los verbos: en pasado, presente y futuro.',  literal: 'RN'}
 ]
 
 
 const creacionBoleta = async(req, res) => {
    try {
-     const { alumno } = req.params;
+     const { alumno } = req.params; //Dalimilet Herrera
 
      let modelThreeIndicadores = [{ area: 'Carros y motos', indicadores3ByPage }, { area: 'Cocina y bebidas', indicadores3ByPage }, { area: 'Phone and Tablets', indicadores3ByPage }   ]
 
      let esto = [{area: 'Turimos y viajes', indicadores}, {area: 'Musica y canto', indicadores}];
 
-     dataToBuildPDF = { alumno, docente: 'Delia Maria Bastidas', esto, modelThreeIndicadores};
+     dataToBuildPDF = { grado: '5to', seccion: 'B',alumno, docente: 'Maria Sofia Perez Nuñes', serYConvivir,esto, modelThreeIndicadores, especialistas, directora: 'Mgtr. Petronila Carreño', coordinadoraFirma: 'Mgtr. Ivanna Domínguez',
+     prueba: 'casota',
+     };
      console.log('llego')
 
      const options = { 

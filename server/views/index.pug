@@ -93,7 +93,7 @@ head
     .msg1 { font-size: 13px; }
     .msg2 { font-size: 13.6px; margin-top: 1rem; }
     /*Cuerpo del segundo modelo*/
-    .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 23rem; height: 650px;}
+    .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 25rem; height: 650px;}
     .titleEspecialidades { text-align: center; border: 1px solid #000; font-size: 23px;}
     .nombreEspecialidad { display: flex; }
     /*Imagen estrealla especialidades  border: 1px solid #000; */
@@ -105,7 +105,7 @@ head
     .area { padding-left: 4px; width: 65px; border-right: 1px solid #000;  border-left: 1px solid #000; font-size: 15px; font-weight: bold; }
 
     .tipo { margin-left: 1rem;  font-size: 15px; font-weight: bold; border-right: 1px solid #000; width: calc(100% - 65px);}
-    .descIndEspecialista { padding: 3px 4px; text-align: justify; font-size: 11.4px; border:  1px solid #000;}
+    .descIndEspecialista { padding: 3px 4px; text-align: justify; font-size: 11.6px; border:  1px solid #000;}
 
     /*Modificaciones ultimas generales*/
     #IndHojaCompleta { height: 800px !important; border: none; }
@@ -129,7 +129,7 @@ header#header
       p.membreteCenterBold A&ntilde;o Escolar 2020-2021
     .membreteBottom
       p.membreteBottomParrafos
-        b SEGUNDO MOMENTO.
+        b SEGUNDO MOMENTO. &nbsp;
         b Desde: 07/01/2021 
       p.membreteBottomParrafos.separacion
         b Hasta: 26/03/2.021
@@ -141,15 +141,15 @@ header#header
       b.estudiante #{alumno}
   .cabeceraDatosInfo
     p.cabeceraInfoTitle.borde
-      b GRADO: &nbsp;4to
+      b GRADO: &nbsp;#{grado}
     p.cabeceraInfoTitle.borde
-      b SECCI&Oacute;N: &nbsp;&ldquo;A&rdquo;
+      b SECCI&Oacute;N: &nbsp;&ldquo;#{seccion}&rdquo;
     p.cabeceraInfoTitle
       b DOCENTE: &nbsp; #{docente}
   .cabeceraDatosTextArea
     p.cabeceraTextAreaDescrip
       b SER Y CONVIVIR:
-      |  Durante el desarrollo del segundo momento a trav&eacute;s del plan de atenci&oacute;n a distancia, se  evidenci&oacute; que el estudiante fue responsable, entusiasta, constante y dedicado. Cumpli&oacute; con el compromiso esperado, las pr&aacute;cticas se evidenciaron de una manera adecuada, cualquier percance para hacer llegar las actividades lo manifest&oacute; por audio. En el proceso l&oacute;gico matem&aacute;tico demostr&oacute; habilidad en operaciones b&aacute;sicas tales como: adici&oacute;n, sustracci&oacute;n y divisi&oacute;n de n&uacute;meros naturales y decimales
+      |  #{serYConvivir}
 .contentCabeceraLiterales
   p.literalesTop LEYENDA: &nbsp; &nbsp;E= EXCELENTE
   p.literalesTop B= BIEN
@@ -176,7 +176,7 @@ header#header
                         span.cabeceraLiterales.no-borde-bottom &check;
                         span.cabeceraLiterales.no-borde-bottom  
                         span.cabeceraLiterales.no-borde-bottom
-                    else if item.literal === 'MB'    
+                    else if item.literal === 'B'    
                         span.cabeceraLiterales.no-borde-bottom 
                         span.cabeceraLiterales.no-borde-bottom  &check;
                         span.cabeceraLiterales.no-borde-bottom
@@ -287,7 +287,7 @@ header#header
 //-     h3.cabeceraAreaTitle &Aacute;REA: MATEM&Aacute;TICA 
 //-     h3.cabeceraLiterales E
 //-     h3.cabeceraLiterales B
-//-     h3.cabeceraLiterales.no-borde-right RN
+//-     h3.cabeceraLiterales.no-borde-right RN        modelThreeIndicadores
 //-   .contenidoIndicadores
 //-     .rotateParrafo
 //-       p INDICADORES
@@ -358,175 +358,68 @@ header#header
 
 
 #IndHojaCompleta.contentIndicadorDocentes
-  .cabeceraAreas.putBorde
-    h3.cabeceraAreaTitle &Aacute;REA: LENGUA Y LITERATURA
-    h3.cabeceraSecondModel E
-    h3.cabeceraSecondModel B
-    h3.cabeceraSecondModel.prueba RN
-  .contenidoIndicadores
-    .rotateParrafo.bordeLeft
-      p INDICADORES
-    .allIndicadores
-      .contentDescripcion
-        p.descHojaCompleta
-          | Identific&oacute; de manera acorde los signos de puntuaci&oacute;n tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogaci&oacute;n, signos de admiraci&oacute;n.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Comprendi&oacute; y estableci&oacute; comparaciones entre la silaba t&oacute;nica y &aacute;tona.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-      .contentDescripcion
-        p.descHojaCompleta
-          | Distingui&oacute; las palabras que llevan acento ortogr&aacute;fico.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Subray&oacute; y utiliz&oacute; eficazmente el acento pros&oacute;dico.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Con ayuda de ejemplos diferenci&oacute; las reglas del hiato con la del diptongo y triptongo.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom 
-
-      .contentDescripcion
-        p.descHojaCompleta
-          | Separ&oacute; correctamente palabras en silabas. Conoci&oacute; cabalmente el nombre seg&uacute;n el n&uacute;mero de silabas: monos&iacute;labas, bis&iacute;labas, tris&iacute;labas, polis&iacute;labas y pentas&iacute;labas.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Clasific&oacute; las palabras en agudas, graves y esdr&uacute;julas.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Identific&oacute; apropiadamente los elementos de la oraci&oacute;n: sujeto, verbo y predicado.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Por medio de im&aacute;genes reconoci&oacute; y aplic&oacute; la ampliaci&oacute;n del sujeto.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Evidenci&oacute; en oraciones la ampliaci&oacute;n del predicado
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Conjug&oacute; y complet&oacute; en elaboraci&oacute;n de cuadro los verbos: en pasado, presente y futuro.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | En actividad de completaci&oacute;n clasific&oacute; los art&iacute;culos en determinados e indeterminados.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Con ayuda de ejemplos resalt&oacute; el sustantivo en cada oraci&oacute;n.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Mostr&oacute; inter&eacute;s por aprender y comparar los adjetivos de los adverbios
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
+    each model3 in modelThreeIndicadores
+        .cabeceraAreas.putBorde
+            h3.cabeceraAreaTitle &Aacute;REA: #{model3.area}
+            h3.cabeceraSecondModel E
+            h3.cabeceraSecondModel B
+            h3.cabeceraSecondModel.prueba RN
+        .contenidoIndicadores
+            .rotateParrafo.bordeLeft
+                p INDICADORES
+            .allIndicadores
+                each value in model3.indicadores3ByPage 
+                    .contentDescripcion
+                        p.descHojaCompleta
+                          | #{value.indicador}
+                        if value.literal === 'E'
+                            span.cabeceraLiterales.no-borde-bottom &check;
+                            span.cabeceraLiterales.no-borde-bottom  
+                            span.cabeceraLiterales.no-borde-bottom
+                        else if value.literal === 'B'    
+                            span.cabeceraLiterales.no-borde-bottom 
+                            span.cabeceraLiterales.no-borde-bottom  &check;
+                            span.cabeceraLiterales.no-borde-bottom
+                        else 
+                            span.cabeceraLiterales.no-borde-bottom 
+                            span.cabeceraLiterales.no-borde-bottom  
+                            span.cabeceraLiterales.no-borde-bottom &check;
+if prueba.length > 15
+    #IndHojaCompleta.contentIndicadorDocentes
+        each model3 in modelThreeIndicadores
+            .cabeceraAreas.putBorde
+                h3.cabeceraAreaTitle &Aacute;REA: #{model3.area}
+                h3.cabeceraSecondModel E
+                h3.cabeceraSecondModel B
+                h3.cabeceraSecondModel.prueba RN
+            .contenidoIndicadores
+                .rotateParrafo.bordeLeft
+                    p INDICADORES
+                .allIndicadores
+                    each value in model3.indicadores3ByPage 
+                        .contentDescripcion
+                            p.descHojaCompleta
+                              | #{value.indicador}
+                            if value.literal === 'E'
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom
+                            else if value.literal === 'B'    
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  &check;
+                                span.cabeceraLiterales.no-borde-bottom
+                            else 
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                      
+       
+    
   
-  
-  
-  .cabeceraAreas.putBorde
-    h3.cabeceraAreaTitle &Aacute;REA: MATEM&Aacute;TICA 
-    h3.cabeceraSecondModel E
-    h3.cabeceraSecondModel B
-    h3.cabeceraSecondModel.prueba RN
-  .contenidoIndicadores
-    .rotateParrafo.bordeLeft
-      p INDICADORES
-    .allIndicadores
-      .contentDescripcion
-        p.descHojaCompleta
-          | Ubic&oacute; en el cartel de valor posicional cantidades con decimales hasta diezmil&eacute;simas.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Realiz&oacute; descomposici&oacute;n de cantidades con decimales hasta diezmil&eacute;simas
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-      .contentDescripcion
-        p.descHojaCompleta
-          | Realiz&oacute; lectura y escribi&oacute; correctamente cantidades con decimales hasta diezmil&eacute;simas.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Por medio de im&aacute;genes estableci&oacute; el orden de los n&uacute;meros decimales: mayor a menor o viceversa.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Con ayuda de ejemplos orden&oacute; y resolvi&oacute; de manera posicional las adiciones con decimales.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Orden&oacute; y resolvi&oacute; de manera posicional las sustracciones con decimales.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Manifest&oacute; de manera oral (audio) los resultados de las tablas de multiplicar.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Determin&oacute; los elementos de la divisi&oacute;n.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Con material de apoyo desarroll&oacute; el proceso de las divisiones de dos cifras con n&uacute;meros naturales.
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom
-      .contentDescripcion
-        p.descHojaCompleta
-          | Por medio de explicaciones descHojaLiteral apropiado, seg&uacute;n sea el caso en divisiones de n&uacute;meros con decimales.
-        span.descHojaLiteral.no-borde-bottom
-        span.descHojaLiteral.no-borde-bottom &check;
-        span.descHojaLiteral.no-borde-bottom
 
+     
 
-//- Segundo modelo
+//- Segundo modelo    repetirlo dos veces, la segunda evaluar con condicion
 .SecondModel
   .apreciacion
     p.msg1
@@ -538,63 +431,68 @@ header#header
     img.imgStartStudent(src='https://www.imageneseducativas.com/wp-content/uploads/2020/04/Stickers-Para-corregir-las-tareas-online-20.jpeg' alt='imagenBoleta')
   .contentEspecialidades
     h2.titleEspecialidades ESPECIALIDADES
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo COMPUTACI&Oacute;N
-      .contentDesc
-        p.descIndEspecialista
-          | El estudiante a trav&eacute;s del aprovechamiento de las tecnolog&iacute;as de la informaci&oacute;n y comunicaci&oacute;n, utiliz&oacute; el programa Microsoft Office Word, elaborando con constancia y responsabilidad cada una de las partes de su primer folleto informativo y explorando las herramientas b&aacute;sicas impartidas del programa como: dar formato a los textos (tipo de letra, tama&ntilde;o, color, uso de negrita, cursiva y subrayado), dar formato a los p&aacute;rrafos (interlineado, alineaci&oacute;n, uso de vi&ntilde;etas y numeraci&oacute;n), insertar WordArt, im&aacute;genes, entre descHojaLiterals, al mismo tiempo que investigaba y desarrollaba el tema de su preferencia; favoreciendo y potenciando sus habilidades en cuanto al uso positivo y educativo de dispositivos tecnol&oacute;gicos (computador, tablet o tel&eacute;fono inteligente). &iexcl;Excelente trabajo mi ni&ntilde;o! Has manifestado y demostrado tu dedicaci&oacute;n y constancia en el cumplimiento de esta especialidad.
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo INGL&Eacute;S
-      .contentDesc
-        p.descIndEspecialista
-          | El estudiante logr&oacute; alcanzar en su totalidad las competencias del &aacute;rea de formaci&oacute;n ingl&eacute;s en este segundo momento, demostr&oacute; manejo adecuado en el referente n&deg; 1 (FAMILY) &ldquo;la familia&rdquo; estudiando el vocabulario y pronunciaci&oacute;n de cada uno de sus miembros en ingl&eacute;s, us&oacute; correctamente el tema n&deg; 2 (WHO IS WHO/ &iquest;QUIEN ES QUIEN?), adivinanzas con preguntas relacionadas a los miembros de la familia; as&iacute; mismo reconoce los nombres de los problemas de salud m&aacute;s comunes en ingl&eacute;s (HEALTH PROBLEMS) usando los verbos &ldquo;HAVE= TENER Y FEEL= SENTIR&rdquo; para expresar su estados de salud; del mismo modo hizo uso notable del vocabulario relacionado con las estaciones del a&ntilde;o en ingl&eacute;s (SEASONS) con un desempe&ntilde;o sobresaliente en la adquisici&oacute;n del idioma en estos temas. El acompa&ntilde;amiento de los padres ha sido fundamental en este proceso de educaci&oacute;n a distancia para la entrega responsable de todas actividades y orientaci&oacute;n de las mismas.
-    | {{!--     
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo M&Uacute;SICA
-      .contentDesc
-        p.descIndEspecialista
-          | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
-    |  --}}
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo M&Uacute;SICA
-      .contentDesc
-        p.descIndEspecialista
-          | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo FRANC&Eacute;S
-      .contentDesc
-        p.descIndEspecialista
-          | Durante el segundo momento el estudiante logr&oacute; alcanzar en su totalidad las competencias requeridas por la especialidad, identificando el vocabulario de las frutas y las legumbres en franc&eacute;s, mediante ejercicios de completaci&oacute;n realizo conversaciones con saludos y despedidas as&iacute; como tambi&eacute;n mediante actividades l&uacute;dicas identifico profesiones u oficios, expresando su deseo en el futuro, con ayuda de recortes logro expresar de manera escrita la descripci&oacute;n f&iacute;sica de personas, cumpliendo en su totalidad con las actividades de refuerzo de los contenidos trabajados.
-    .cuerpoDescripcion
-      .nombreEspecialidad
-        p.area &Aacute;REA
-        p.tipo EDUCACI&Oacute;N F&Iacute;SICA, DEPORTE Y RECREACI&Oacute;N
-      .contentDesc
-        p.descIndEspecialista
-          | Realiz&oacute; el trabajo del f&uacute;tbol, cumpliendo con todas las pautas indicadas, adem&aacute;s aplic&oacute; sus habilidades con ejercicios sencillos de pase, recepci&oacute;n y conducci&oacute;n.
+    each value in especialistas
+        .cuerpoDescripcion
+            .nombreEspecialidad
+                p.area &Aacute;REA
+                p.tipo #{value.area}
+            .contentDesc
+                p.descIndEspecialista
+                  | #{value.indicador}
+
+
+
+
+    //- .cuerpoDescripcion
+    //-   .nombreEspecialidad
+    //-     p.area &Aacute;REA
+    //-     p.tipo INGL&Eacute;S
+    //-   .contentDesc
+    //-     p.descIndEspecialista
+    //-       | El estudiante logr&oacute; alcanzar en su totalidad las competencias del &aacute;rea de formaci&oacute;n ingl&eacute;s en este segundo momento, demostr&oacute; manejo adecuado en el referente n&deg; 1 (FAMILY) &ldquo;la familia&rdquo; estudiando el vocabulario y pronunciaci&oacute;n de cada uno de sus miembros en ingl&eacute;s, us&oacute; correctamente el tema n&deg; 2 (WHO IS WHO/ &iquest;QUIEN ES QUIEN?), adivinanzas con preguntas relacionadas a los miembros de la familia; as&iacute; mismo reconoce los nombres de los problemas de salud m&aacute;s comunes en ingl&eacute;s (HEALTH PROBLEMS) usando los verbos &ldquo;HAVE= TENER Y FEEL= SENTIR&rdquo; para expresar su estados de salud; del mismo modo hizo uso notable del vocabulario relacionado con las estaciones del a&ntilde;o en ingl&eacute;s (SEASONS) con un desempe&ntilde;o sobresaliente en la adquisici&oacute;n del idioma en estos temas. El acompa&ntilde;amiento de los padres ha sido fundamental en este proceso de educaci&oacute;n a distancia para la entrega responsable de todas actividades y orientaci&oacute;n de las mismas.
+       
+    //- .cuerpoDescripcion
+    //-   .nombreEspecialidad
+    //-     p.area &Aacute;REA
+    //-     p.tipo M&Uacute;SICA
+    //-   .contentDesc
+    //-     p.descIndEspecialista
+    //-       | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
+    
+    //- .cuerpoDescripcion
+    //-   .nombreEspecialidad
+    //-     p.area &Aacute;REA
+    //-     p.tipo M&Uacute;SICA
+    //-   .contentDesc
+    //-     p.descIndEspecialista
+    //-       | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
+    //- .cuerpoDescripcion
+    //-   .nombreEspecialidad
+    //-     p.area &Aacute;REA
+    //-     p.tipo FRANC&Eacute;S
+    //-   .contentDesc
+    //-     p.descIndEspecialista
+    //-       | Durante el segundo momento el estudiante logr&oacute; alcanzar en su totalidad las competencias requeridas por la especialidad, identificando el vocabulario de las frutas y las legumbres en franc&eacute;s, mediante ejercicios de completaci&oacute;n realizo conversaciones con saludos y despedidas as&iacute; como tambi&eacute;n mediante actividades l&uacute;dicas identifico profesiones u oficios, expresando su deseo en el futuro, con ayuda de recortes logro expresar de manera escrita la descripci&oacute;n f&iacute;sica de personas, cumpliendo en su totalidad con las actividades de refuerzo de los contenidos trabajados.
+    //- .cuerpoDescripcion
+    //-   .nombreEspecialidad
+    //-     p.area &Aacute;REA
+    //-     p.tipo EDUCACI&Oacute;N F&Iacute;SICA, DEPORTE Y RECREACI&Oacute;N
+    //-   .contentDesc
+    //-     p.descIndEspecialista
+    //-       | Realiz&oacute; el trabajo del f&uacute;tbol, cumpliendo con todas las pautas indicadas, adem&aacute;s aplic&oacute; sus habilidades con ejercicios sencillos de pase, recepci&oacute;n y conducci&oacute;n.
 
 
 
 //-  Firmas del personal
 #footer
   .firmaModel.bajar
-    p.firmaBorde.top Mgtr. Dalimilet Herrera 
+    p.firmaBorde.top #{directora}
     p.firmaMargin Directora
   .firmaCenter
     p.firmaCenterDocente.top Docente
     p.firmaCenterPadre.top Representante
   .firmaModel.bajar
     p.firmaBorde.top
-      | Mgtr. Ivanna Dom&iacute;nguez
+      | #{coordinadoraFirma}
     p.firmaMargin
       | Coordinadora Pedag&oacute;gica
