@@ -2,7 +2,7 @@ const pool = require ('../configDB/poolConfig');
 const puppeteer = require('puppeteer');
 const pupeerReport = require('puppeteer-report');
 const path = require('path');
-const { serYConvivir,especialistas } = require('../helpers/parseoDataPDF');
+const { serYConvivir,especialistas, transformarDataClient } = require('../helpers/parseoDataPDF');
 
 
 
@@ -76,25 +76,27 @@ let indicadores3ByPage = [
      {indicador: 'Distinguió las palabras que llevan acento ortográfico. ',  literal: 'B'},
      {indicador: 'Subrayó y utilizó eficazmente el acento prosódico.',  literal: 'B'},
      {indicador: ' Con ayuda de ejemplos diferenció las reglas del hiato con la del diptongo y triptongo.', literal: 'E'},
-     {indicador: 'Maicol data dinamica hahah', literal: 'B'},
+     {indicador: 'MODELO DE 3 indicadores by hoja de manera acorde los signos de puntuación tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogación, signos de admiración.', literal: 'E'},
      {indicador: 'Clasificó las palabras en agudas, graves y esdrújulas.', literal: 'RN'},
      {indicador: 'Identificó apropiadamente los elementos de la oración: sujeto, verbo y predicado.', literal: 'B'},
      {indicador: 'Por medio de imágenes reconoció y aplicó la ampliación del sujeto.',  literal: 'E'},
      {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'B'},
-     {indicador: 'Conjugó y completó en elaboración de cuadro los verbos: en pasado, presente y futuro.',  literal: 'RN'}
+     {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'RN'},
 ]
-
 
 const creacionBoleta = async(req, res) => {
    try {
-     const { alumno } = req.params; //Dalimilet Herrera
+     const { alumno } = req.params; //Dalimilet Herrera directora
 
-     let modelThreeIndicadores = [{ area: 'Carros y motos', indicadores3ByPage }, { area: 'Cocina y bebidas', indicadores3ByPage }, { area: 'Phone and Tablets', indicadores3ByPage }   ]
+     let modelThreeIndicadores = [{ area: 'Turimos y viajes ',indicadores: indicadores3ByPage }, { area: 'matematicas',indicadores: indicadores3ByPage },  { area: 'fisica ',indicadores: indicadores3ByPage },];
 
-     let esto = [{area: 'Turimos y viajes', indicadores}, {area: 'Musica y canto', indicadores}];
+     let esto = [{area: 'Lengua y literatura', indicadores}, {area: 'Musica y canto', indicadores: indicadores3ByPage}, { area: 'EXPERIMENTO CIENTÍFICO ',indicadores: [ {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'},] } ];
+
+     // let mezcla = [ ...esto, ...modelThreeIndicadores ];
+     // transformarDataClient(mezcla);
 
      dataToBuildPDF = { grado: '5to', seccion: 'B',alumno, docente: 'Maria Sofia Perez Nuñes', serYConvivir,esto, modelThreeIndicadores, especialistas, directora: 'Mgtr. Petronila Carreño', coordinadoraFirma: 'Mgtr. Ivanna Domínguez',
-     prueba: 'casota',
+     prueba: 'casota', 
      };
      console.log('llego')
 
@@ -115,10 +117,12 @@ const creacionBoleta = async(req, res) => {
      
      dataToBuildPDF = {}; // reiniciar la variable.
      res.sendFile(path.join(__dirname, `../pdf/Boleta${alumno}.pdf`));
+     // res.send('revisa hecho')
    } catch (err) {
         console.log(err.message)
    }
- }
+}
+
 
 
 module.exports = {

@@ -55,7 +55,7 @@ head
     }
     .CabeceraLiterales, .literalesTop  { font-size: 14px;}
     /* Indicadores docentes esitlos */
-    .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 0.7rem; margin-bottom: 17rem; margin-left: 3rem;}  /*margin abajo de 17rem, para que tire el contenido sobrante para abajo, genere una nueva hoja y no vaya a mostrarse cortado.  height: 657px;*/
+    .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 0.7rem; margin-bottom: 19rem; margin-left: 3rem;}  /*margin abajo de 17rem, para que tire el contenido sobrante para abajo, genere una nueva hoja y no vaya a mostrarse cortado.  height: 657px;*/
     .cabeceraAreas { display: flex; }
     .cabeceraAreaTitle, .cabeceraLiterales, .cabeceraSecondModel{ width: 600px; border-bottom: 1px solid #000;  border-right: 1px solid #000; display: flex;justify-content: center; align-items: center; padding: 1px 0;}
 
@@ -93,7 +93,7 @@ head
     .msg1 { font-size: 13px; }
     .msg2 { font-size: 13.6px; margin-top: 1rem; }
     /*Cuerpo del segundo modelo*/
-    .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 25rem; height: 650px;}
+    .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 27rem; height: 650px;}
     .titleEspecialidades { text-align: center; border: 1px solid #000; font-size: 23px;}
     .nombreEspecialidad { display: flex; }
     /*Imagen estrealla especialidades  border: 1px solid #000; */
@@ -368,7 +368,7 @@ header#header
             .rotateParrafo.bordeLeft
                 p INDICADORES
             .allIndicadores
-                each value in model3.indicadores3ByPage 
+                each value in model3.indicadores
                     .contentDescripcion
                         p.descHojaCompleta
                           | #{value.indicador}
@@ -384,9 +384,9 @@ header#header
                             span.cabeceraLiterales.no-borde-bottom 
                             span.cabeceraLiterales.no-borde-bottom  
                             span.cabeceraLiterales.no-borde-bottom &check;
-if prueba.length > 15
+if prueba.length > 14
     #IndHojaCompleta.contentIndicadorDocentes
-        each model3 in modelThreeIndicadores
+        each model3 in modelThreeIndicadores 
             .cabeceraAreas.putBorde
                 h3.cabeceraAreaTitle &Aacute;REA: #{model3.area}
                 h3.cabeceraSecondModel E
@@ -396,7 +396,7 @@ if prueba.length > 15
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
-                    each value in model3.indicadores3ByPage 
+                    each value in model3.indicadores 
                         .contentDescripcion
                             p.descHojaCompleta
                               | #{value.indicador}
