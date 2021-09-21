@@ -11,12 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "7.4.4",
-    "cors": "^2.8.5",
+    "cors": "2.8.5",
     "express": "4.17.1",
     "pg": "^8.6.0",
     "pug": "^3.0.2",
-    "puppeteer": "^10.2.0",
-    "puppeteer-report": "^3.0.1"
+    "puppeteer": "10.2.0",
+    "puppeteer-report": "3.0.1"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

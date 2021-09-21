@@ -26,14 +26,17 @@ app.set("views", __dirname + "/views");
 app.get('/image', (req, res) => { // logo del colegio
     res.sendFile(path.join(__dirname, 'static/colegioLogo.png'));
 });
+app.get('/insignia', (req, res) => { // logo del colegio
+    res.sendFile(path.join(__dirname, 'static/startStudent.jpeg'));
+});
 app.use('/api', routesConfiguracion);
 app.use('/api', personalRoutes); 
 app.use('/api', indicadoresRoutes);
 app.use('/api', routesCrearBoleta);
 app.use('/api', routesRegistros);
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'static/boleta.html'))
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'static/boleta.html'))
+// })
 
 
 // app.get('/pug', (req, res) => {

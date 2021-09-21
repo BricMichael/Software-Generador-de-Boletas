@@ -84,20 +84,20 @@ let indicadores3ByPage = [
      {indicador: 'Evidenció en oraciones la ampliación del predicado.', literal: 'RN'},
 ]
 
-const creacionBoleta = async(req, res) => {
+const creacionBoleta = async(req, res) => { //5 cortos 3 largos
    try {
      const { alumno } = req.params; //Dalimilet Herrera directora
 
-     let modelThreeIndicadores = [{ area: 'Turimos y viajes ',indicadores: indicadores3ByPage }, { area: 'matematicas',indicadores: indicadores3ByPage },  { area: 'fisica ',indicadores: indicadores3ByPage },];
+     let modelThreeIndicadores = [{ area: 'Turimos y viajes ',indicadores: indicadores3ByPage }, { area: 'matematicas',indicadores: indicadores3ByPage }, { area: 'fisica ',indicadores: indicadores3ByPage }, { area: 'cuarto corto ',indicadores: indicadores3ByPage }];
 
-     let esto = [{area: 'Lengua y literatura', indicadores}, {area: 'Musica y canto', indicadores: indicadores3ByPage}, { area: 'EXPERIMENTO CIENTÍFICO ',indicadores: [ {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'},] } ];
+     let esto = [{area: 'Lengua y literatura', indicadores}, {area: 'Computacioni', indicadores: indicadores3ByPage },
+     { area: 'EXPERIMENTO CIENTÍFICO ',indicadores: [ {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, ]}
+     ];
 
-     // let mezcla = [ ...esto, ...modelThreeIndicadores ];
-     // transformarDataClient(mezcla);
+     let resp = transformarDataClient([...esto ]);
 
-     dataToBuildPDF = { grado: '5to', seccion: 'B',alumno, docente: 'Maria Sofia Perez Nuñes', serYConvivir,esto, modelThreeIndicadores, especialistas, directora: 'Mgtr. Petronila Carreño', coordinadoraFirma: 'Mgtr. Ivanna Domínguez',
-     prueba: 'casota', 
-     };
+     dataToBuildPDF = { grado: '5to', seccion: 'B',alumno, docente: 'Maria Sofia Perez Nuñes', resp, directora: 'Mgtr. Petronila Carreño', coordinadoraFirma: 'Mgtr. Ivanna Domínguez', prueba: 'casota1', };
+
      console.log('llego')
 
      const options = { 
@@ -120,6 +120,7 @@ const creacionBoleta = async(req, res) => {
      // res.send('revisa hecho')
    } catch (err) {
         console.log(err.message)
+        await naveg.close();
    }
 }
 
@@ -133,16 +134,21 @@ module.exports = {
     modelFinalPagePdf
 }
 
-/*Helps
-      // const pathHtmlFile = path.join(__dirname, '../static/boleta.html');
-     // await page.setContent(``);
-     // await page.pdf(options);
-     // res.contentType('application/pdf');
+// /*Helps
+//       // const pathHtmlFile = path.join(__dirname, '../static/boleta.html');
+//      // await page.setContent(``);
+//      // await page.pdf(options);
+//      // res.contentType('application/pdf');
 
-      // await page.setContent(htmlContent({saludo: 'hola', data: ['daooots']}))
-     // await page.goto(path.join(__dirname, '../static/boleta.html'), {waitUntil: 'networkidle2' });
-     // let pdf = await page.pdf(options);
+//       // await page.setContent(htmlContent({saludo: 'hola', data: ['daooots']}))
+//      // await page.goto(path.join(__dirname, '../static/boleta.html'), {waitUntil: 'networkidle2' });
+//      // let pdf = await page.pdf(options);
 
-     // const page = await naveg.newPage();
+//      // const page = await naveg.newPage();
 
-*/
+
+//         // { area: 'EXPERIMENTO CIENTÍFICO ',indicadores: [ {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, {indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E'}, ]}
+//      // let mezcla = [ ...esto];
+//      // transformarDataClient(mezcla);
+
+// */

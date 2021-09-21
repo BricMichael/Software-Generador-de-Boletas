@@ -149,7 +149,7 @@ header#header
   .cabeceraDatosTextArea
     p.cabeceraTextAreaDescrip
       b SER Y CONVIVIR:
-      |  #{serYConvivir}
+      |  #{resp.infoStudent_Docente.serYConvivir}
 .contentCabeceraLiterales
   p.literalesTop LEYENDA: &nbsp; &nbsp;E= EXCELENTE
   p.literalesTop B= BIEN
@@ -158,7 +158,7 @@ header#header
 
 //-  Indicadores docentes 29 indicadores max a la hoja principal
 .contentIndicadorDocentes
-    each general in esto
+    each general in resp.indHojaPrincipal[0]
       .cabeceraAreas
         h3.cabeceraAreaTitle &Aacute;REA: #{general.area}
         h3.cabeceraLiterales E
@@ -184,211 +184,69 @@ header#header
                         span.cabeceraLiterales.no-borde-bottom 
                         span.cabeceraLiterales.no-borde-bottom  
                         span.cabeceraLiterales.no-borde-bottom &check;
+    if resp.indHojaPrincipal[1].length === 1
+        .cabeceraAreas
+            h3.cabeceraAreaTitle &Aacute;REA: #{resp.indHojaPrincipal[1][0].area}
+            h3.cabeceraLiterales E
+            h3.cabeceraLiterales B
+            h3.cabeceraLiterales.no-borde-right RN
+        each item in resp.indHojaPrincipal[1][0].indicadores 
+            .contentDescripcion
+                p.descripcionexperimentoC    
+                    |  #{item.indicador}   
+                if item.literal === 'E'     
+                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  &check;
+                    span.literalesExperimentoC.no-borde-bottom
+                    span.literalesExperimentoC.no-borde-bottom
+                else if item.literal === 'B'     
+                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  
+                    span.literalesExperimentoC.no-borde-bottom &check;
+                    span.literalesExperimentoC.no-borde-bottom
+                else 
+                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  
+                    span.literalesExperimentoC.no-borde-bottom
+                    span.literalesExperimentoC.no-borde-bottom  &check;
+
+          
 
 
 
+//- segundo modelo hoja max 34 indicadores 
+if resp.tresIndByHoja_1.length >= 1
+  #IndHojaCompleta.contentIndicadorDocentes
+      each hojaUno in resp.tresIndByHoja_1
+          .cabeceraAreas.putBorde
+              h3.cabeceraAreaTitle &Aacute;REA: #{hojaUno.area}
+              h3.cabeceraSecondModel E
+              h3.cabeceraSecondModel B
+              h3.cabeceraSecondModel.prueba RN
+          .contenidoIndicadores
+              .rotateParrafo.bordeLeft
+                  p INDICADORES
+              .allIndicadores
+                  each value in hojaUno.indicadores
+                      .contentDescripcion
+                          p.descHojaCompleta
+                            | #{value.indicador}
+                          if value.literal === 'E'
+                              span.cabeceraLiterales.no-borde-bottom &check;
+                              span.cabeceraLiterales.no-borde-bottom  
+                              span.cabeceraLiterales.no-borde-bottom
+                          else if value.literal === 'B'    
+                              span.cabeceraLiterales.no-borde-bottom 
+                              span.cabeceraLiterales.no-borde-bottom  &check;
+                              span.cabeceraLiterales.no-borde-bottom
+                          else 
+                              span.cabeceraLiterales.no-borde-bottom 
+                              span.cabeceraLiterales.no-borde-bottom  
+                              span.cabeceraLiterales.no-borde-bottom &check;
 
 
-//-   .cabeceraAreas
-//-     h3.cabeceraAreaTitle &Aacute;REA: LENGUA Y LITERATURA
-//-     h3.cabeceraLiterales E
-//-     h3.cabeceraLiterales B
-//-     h3.cabeceraLiterales.no-borde-right RN
-//-   .contenidoIndicadores
-//-     .rotateParrafo
-//-       p INDICADORES
-//-     .allIndicadores
-      .contentDescripcion
-        p.descripcion
-          | Identific&oacute; de manera acorde los signos de puntuaci&oacute;n tales como: el punto, los dos puntos, la coma, las comillas, signos de interrogaci&oacute;n, signos de admiraci&oacute;n.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Comprendi&oacute; y estableci&oacute; comparaciones entre la silaba t&oacute;nica y &aacute;tona.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right &check;
-      .contentDescripcion
-        p.descripcion
-          | Distingui&oacute; las palabras que llevan acento ortogr&aacute;fico.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Subray&oacute; y utiliz&oacute; eficazmente el acento pros&oacute;dico.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Con ayuda de ejemplos diferenci&oacute; las reglas del hiato con la del diptongo y triptongo.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Separ&oacute; correctamente palabras en silabas. Conoci&oacute; cabalmente el nombre seg&uacute;n el n&uacute;mero de silabas: monos&iacute;labas, bis&iacute;labas, tris&iacute;labas, polis&iacute;labas y pentas&iacute;labas.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Clasific&oacute; las palabras en agudas, graves y esdr&uacute;julas.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Identific&oacute; apropiadamente los elementos de la oraci&oacute;n: sujeto, verbo y predicado.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Por medio de im&aacute;genes reconoci&oacute; y aplic&oacute; la ampliaci&oacute;n del sujeto.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Evidenci&oacute; en oraciones la ampliaci&oacute;n del predicado
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Conjug&oacute; y complet&oacute; en elaboraci&oacute;n de cuadro los verbos: en pasado, presente y futuro.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | En actividad de completaci&oacute;n clasific&oacute; los art&iacute;culos en determinados e indeterminados.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Con ayuda de ejemplos resalt&oacute; el sustantivo en cada oraci&oacute;n.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Mostr&oacute; inter&eacute;s por aprender y comparar los adjetivos de los adverbios
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-  
-//-   .cabeceraAreas
-//-     h3.cabeceraAreaTitle &Aacute;REA: MATEM&Aacute;TICA 
-//-     h3.cabeceraLiterales E
-//-     h3.cabeceraLiterales B
-//-     h3.cabeceraLiterales.no-borde-right RN        modelThreeIndicadores
-//-   .contenidoIndicadores
-//-     .rotateParrafo
-//-       p INDICADORES
-//-     .allIndicadores
-      .contentDescripcion
-        p.descripcion
-          | Ubic&oacute; en el cartel de valor posicional cantidades con decimales hasta diezmil&eacute;simas.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Realiz&oacute; descomposici&oacute;n de cantidades con decimales hasta diezmil&eacute;simas
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right &check;
-      .contentDescripcion
-        p.descripcion
-          | Realiz&oacute; lectura y escribi&oacute; correctamente cantidades con decimales hasta diezmil&eacute;simas.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Por medio de im&aacute;genes estableci&oacute; el orden de los n&uacute;meros decimales: mayor a menor o viceversa.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Con ayuda de ejemplos orden&oacute; y resolvi&oacute; de manera posicional las adiciones con decimales.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Orden&oacute; y resolvi&oacute; de manera posicional las sustracciones con decimales.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Manifest&oacute; de manera oral (audio) los resultados de las tablas de multiplicar.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Determin&oacute; los elementos de la divisi&oacute;n.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Con material de apoyo desarroll&oacute; el proceso de las divisiones de dos cifras con n&uacute;meros naturales.
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-      .contentDescripcion
-        p.descripcion
-          | Por medio de explicaciones utiliz&oacute; el m&eacute;todo apropiado, seg&uacute;n sea el caso en divisiones de n&uacute;meros con decimales.
-        span.cabeceraLiterales.no-borde-bottom
-        span.cabeceraLiterales.no-borde-bottom &check;
-        span.cabeceraLiterales.no-borde-bottom.no-borde-right
-
-
-    //- segundo modelo hoja max 34 indicadores 
-
-
-#IndHojaCompleta.contentIndicadorDocentes
-    each model3 in modelThreeIndicadores
-        .cabeceraAreas.putBorde
-            h3.cabeceraAreaTitle &Aacute;REA: #{model3.area}
-            h3.cabeceraSecondModel E
-            h3.cabeceraSecondModel B
-            h3.cabeceraSecondModel.prueba RN
-        .contenidoIndicadores
-            .rotateParrafo.bordeLeft
-                p INDICADORES
-            .allIndicadores
-                each value in model3.indicadores
-                    .contentDescripcion
-                        p.descHojaCompleta
-                          | #{value.indicador}
-                        if value.literal === 'E'
-                            span.cabeceraLiterales.no-borde-bottom &check;
-                            span.cabeceraLiterales.no-borde-bottom  
-                            span.cabeceraLiterales.no-borde-bottom
-                        else if value.literal === 'B'    
-                            span.cabeceraLiterales.no-borde-bottom 
-                            span.cabeceraLiterales.no-borde-bottom  &check;
-                            span.cabeceraLiterales.no-borde-bottom
-                        else 
-                            span.cabeceraLiterales.no-borde-bottom 
-                            span.cabeceraLiterales.no-borde-bottom  
-                            span.cabeceraLiterales.no-borde-bottom &check;
-if prueba.length > 14
+if resp.tresIndByHoja_2.length >= 1
     #IndHojaCompleta.contentIndicadorDocentes
-        each model3 in modelThreeIndicadores 
+        each hojaDos in resp.tresIndByHoja_2
             .cabeceraAreas.putBorde
-                h3.cabeceraAreaTitle &Aacute;REA: #{model3.area}
+                h3.cabeceraAreaTitle &Aacute;REA: #{hojaDos.area}
                 h3.cabeceraSecondModel E
                 h3.cabeceraSecondModel B
                 h3.cabeceraSecondModel.prueba RN
@@ -396,7 +254,37 @@ if prueba.length > 14
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
-                    each value in model3.indicadores 
+                    each value in hojaDos.indicadores 
+                        .contentDescripcion
+                            p.descHojaCompleta
+                              | #{value.indicador}
+                            if value.literal === 'E'
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom
+                            else if value.literal === 'B'    
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  &check;
+                                span.cabeceraLiterales.no-borde-bottom
+                            else 
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom &check;
+
+
+if resp.dosIndLargosByHoja_1.length >= 1
+    #IndHojaCompleta.contentIndicadorDocentes
+        each firstPage in resp.dosIndLargosByHoja_1
+            .cabeceraAreas.putBorde
+                h3.cabeceraAreaTitle &Aacute;REA: #{firstPage.area}
+                h3.cabeceraSecondModel E
+                h3.cabeceraSecondModel B
+                h3.cabeceraSecondModel.prueba RN
+            .contenidoIndicadores
+                .rotateParrafo.bordeLeft
+                    p INDICADORES
+                .allIndicadores
+                    each value in firstPage.indicadores 
                         .contentDescripcion
                             p.descHojaCompleta
                               | #{value.indicador}
@@ -414,12 +302,67 @@ if prueba.length > 14
                                 span.cabeceraLiterales.no-borde-bottom &check;
                       
        
-    
+if resp.dosIndLargosByHoja_2.length >= 1
+    #IndHojaCompleta.contentIndicadorDocentes
+        each secondPage in resp.dosIndLargosByHoja_2
+            .cabeceraAreas.putBorde
+                h3.cabeceraAreaTitle &Aacute;REA: #{secondPage.area}
+                h3.cabeceraSecondModel E
+                h3.cabeceraSecondModel B
+                h3.cabeceraSecondModel.prueba RN
+            .contenidoIndicadores
+                .rotateParrafo.bordeLeft
+                    p INDICADORES
+                .allIndicadores
+                    each value in secondPage.indicadores 
+                        .contentDescripcion
+                            p.descHojaCompleta
+                              | #{value.indicador}
+                            if value.literal === 'E'
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom
+                            else if value.literal === 'B'    
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  &check;
+                                span.cabeceraLiterales.no-borde-bottom
+                            else 
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                      
   
-
+if resp.dosIndLargosByHoja_3.length >= 1
+    #IndHojaCompleta.contentIndicadorDocentes
+        each threePage in resp.dosIndLargosByHoja_3
+            .cabeceraAreas.putBorde
+                h3.cabeceraAreaTitle &Aacute;REA: #{threePage.area}
+                h3.cabeceraSecondModel E
+                h3.cabeceraSecondModel B
+                h3.cabeceraSecondModel.prueba RN
+            .contenidoIndicadores
+                .rotateParrafo.bordeLeft
+                    p INDICADORES
+                .allIndicadores
+                    each value in threePage.indicadores 
+                        .contentDescripcion
+                            p.descHojaCompleta
+                              | #{value.indicador}
+                            if value.literal === 'E'
+                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom
+                            else if value.literal === 'B'    
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  &check;
+                                span.cabeceraLiterales.no-borde-bottom
+                            else 
+                                span.cabeceraLiterales.no-borde-bottom 
+                                span.cabeceraLiterales.no-borde-bottom  
+                                span.cabeceraLiterales.no-borde-bottom &check;
      
 
-//- Segundo modelo    repetirlo dos veces, la segunda evaluar con condicion
+//- Segundo modelo 
 .SecondModel
   .apreciacion
     p.msg1
@@ -428,10 +371,10 @@ if prueba.length > 14
     p.msg2
       | &ldquo;Estoy orgullosa de ti y de tus logros, no olvides que las excelentes personas como t&uacute; germinan en el coraz&oacute;n, crecen d&iacute;a a d&iacute;a en el alma y pase lo que pase jam&aacute;s se olvidan.&rdquo;
   .contentImgStartStudent
-    img.imgStartStudent(src='https://www.imageneseducativas.com/wp-content/uploads/2020/04/Stickers-Para-corregir-las-tareas-online-20.jpeg' alt='imagenBoleta')
+    img.imgStartStudent(src='http://localhost:4000/insignia' alt='imagenBoleta')
   .contentEspecialidades
     h2.titleEspecialidades ESPECIALIDADES
-    each value in especialistas
+    each value in resp.indEspecialistas_1
         .cuerpoDescripcion
             .nombreEspecialidad
                 p.area &Aacute;REA
@@ -441,38 +384,27 @@ if prueba.length > 14
                   | #{value.indicador}
 
 
+if resp.indEspecialistas_2.length >= 1
+    .SecondModel
+      .apreciacion
+          p.msg1
+            b Apreciaci&oacute;n de la docente:
+            |  seguir manteniendo comunicaci&oacute;n regular entre el hogar y la escuela.
+          p.msg2
+            | &ldquo;Estoy orgullosa de ti y de tus logros, no olvides que las excelentes personas como t&uacute; germinan en el coraz&oacute;n, crecen d&iacute;a a d&iacute;a en el alma y pase lo que pase jam&aacute;s se olvidan.&rdquo;
+      .contentImgStartStudent
+          img.imgStartStudent(src='http://localhost:4000/insignia' alt='imagenBoleta')
+      .contentEspecialidades
+          h2.titleEspecialidades ESPECIALIDADES
+          each value in resp.indEspecialistas_2
+              .cuerpoDescripcion
+                  .nombreEspecialidad
+                      p.area &Aacute;REA
+                      p.tipo #{value.area}
+                  .contentDesc
+                      p.descIndEspecialista
+                        | #{value.indicador}
 
-
-    //- .cuerpoDescripcion
-    //-   .nombreEspecialidad
-    //-     p.area &Aacute;REA
-    //-     p.tipo INGL&Eacute;S
-    //-   .contentDesc
-    //-     p.descIndEspecialista
-    //-       | El estudiante logr&oacute; alcanzar en su totalidad las competencias del &aacute;rea de formaci&oacute;n ingl&eacute;s en este segundo momento, demostr&oacute; manejo adecuado en el referente n&deg; 1 (FAMILY) &ldquo;la familia&rdquo; estudiando el vocabulario y pronunciaci&oacute;n de cada uno de sus miembros en ingl&eacute;s, us&oacute; correctamente el tema n&deg; 2 (WHO IS WHO/ &iquest;QUIEN ES QUIEN?), adivinanzas con preguntas relacionadas a los miembros de la familia; as&iacute; mismo reconoce los nombres de los problemas de salud m&aacute;s comunes en ingl&eacute;s (HEALTH PROBLEMS) usando los verbos &ldquo;HAVE= TENER Y FEEL= SENTIR&rdquo; para expresar su estados de salud; del mismo modo hizo uso notable del vocabulario relacionado con las estaciones del a&ntilde;o en ingl&eacute;s (SEASONS) con un desempe&ntilde;o sobresaliente en la adquisici&oacute;n del idioma en estos temas. El acompa&ntilde;amiento de los padres ha sido fundamental en este proceso de educaci&oacute;n a distancia para la entrega responsable de todas actividades y orientaci&oacute;n de las mismas.
-       
-    //- .cuerpoDescripcion
-    //-   .nombreEspecialidad
-    //-     p.area &Aacute;REA
-    //-     p.tipo M&Uacute;SICA
-    //-   .contentDesc
-    //-     p.descIndEspecialista
-    //-       | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
-    
-    //- .cuerpoDescripcion
-    //-   .nombreEspecialidad
-    //-     p.area &Aacute;REA
-    //-     p.tipo M&Uacute;SICA
-    //-   .contentDesc
-    //-     p.descIndEspecialista
-    //-       | El estudiante durante el segundo momento realiz&oacute; de manera &oacute;ptima las actividades planificadas en el &aacute;rea de m&uacute;sica, reconociendo cualidades importantes de la m&uacute;sica como: el sonido, melod&iacute;a, ritmo, y lenguaje musical; adicionalmente identifica la estructura de un comp&aacute;s y sus tipos, de igual manera reconoce personajes musicales venezolanos como Aldemaro Romero, mostrando inter&eacute;s en cumplir con todas las actividades asignadas a distancia.
-    //- .cuerpoDescripcion
-    //-   .nombreEspecialidad
-    //-     p.area &Aacute;REA
-    //-     p.tipo FRANC&Eacute;S
-    //-   .contentDesc
-    //-     p.descIndEspecialista
-    //-       | Durante el segundo momento el estudiante logr&oacute; alcanzar en su totalidad las competencias requeridas por la especialidad, identificando el vocabulario de las frutas y las legumbres en franc&eacute;s, mediante ejercicios de completaci&oacute;n realizo conversaciones con saludos y despedidas as&iacute; como tambi&eacute;n mediante actividades l&uacute;dicas identifico profesiones u oficios, expresando su deseo en el futuro, con ayuda de recortes logro expresar de manera escrita la descripci&oacute;n f&iacute;sica de personas, cumpliendo en su totalidad con las actividades de refuerzo de los contenidos trabajados.
     //- .cuerpoDescripcion
     //-   .nombreEspecialidad
     //-     p.area &Aacute;REA
@@ -480,7 +412,6 @@ if prueba.length > 14
     //-   .contentDesc
     //-     p.descIndEspecialista
     //-       | Realiz&oacute; el trabajo del f&uacute;tbol, cumpliendo con todas las pautas indicadas, adem&aacute;s aplic&oacute; sus habilidades con ejercicios sencillos de pase, recepci&oacute;n y conducci&oacute;n.
-
 
 
 //-  Firmas del personal
