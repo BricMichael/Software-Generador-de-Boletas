@@ -17,6 +17,7 @@ const types = {
     studentSelected: '[BOLETA] StudentSelected',
     allIndicadoresOfUser: '[BOLETA] IndicadoresBoleta',
     updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
+    setLiteralEspecialista: '[BOLETA] setLiteralEspecialista',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
 
 }

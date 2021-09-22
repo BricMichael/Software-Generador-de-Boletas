@@ -62,10 +62,20 @@ export const indicadorEspecialistaByArea = ( gradoState, area,setLiteralIndicado
     setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} }); 
 }  
 
-export const updateLiteralOfIndicador = (indicador, literal) => ({
+
+export const updateLiteralOfIndicador = (id, literal) => ({
         type: types.updateLiteralDocente,
-        payload: { indicador, literal }
+        payload: { id, literal }
 })
+
+
+export const setLiteralEspecialista = (indicador) => {
+   return { 
+        type: types.setLiteralEspecialista,
+        payload: { indicador } 
+    }
+}
+
 
 export const guardarBoletaAction = () => async( dispatch, getState ) => {
     const  { indicadoresByUser:data } = getState().indicador;

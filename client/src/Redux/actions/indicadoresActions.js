@@ -3,20 +3,22 @@ import types from '../types';
 import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
 
 
-export const filtroBusqueda = ( momento, vista ) => async( dispatch, getState ) => {
-    try {
+export const filtroBusqueda = ( momento, vista ) => async( dispatch ) => { 
+    try {  // param vista, saber que componente esta haciendo la llamada para saber que estado actualizar con la data.
         const { id } = JSON.parse( localStorage.getItem('userActive') );
         let { data } = await api.indicadoresUserActivo({ momento, id });
 
-        if ( vista === 'Indicador' ) dispatch({ type: types.momentoAndYear, payload:{ data, momento }})
-        else {
-            dispatch({ type: types.momentoAndYear, payload: { data, momento : '' } })   // estado vista ListaIndicadores.
-            dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } });  // estado vista Boleta
-        } 
+        if (vista === 'Indicador') {
+            dispatch({ type: types.momentoAndYear, payload:{ data, momento }}) // estado vista indicador
+        }else { // la vista crear boleta al momento de generar una vuelve a pedir los indicadores para ser llenados de nuevo.
+            dispatch({ type: types.momentoAndYear, payload:{ data, momento: '' }}) // estado vista indicador
+            dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
+        }                    
     } catch (err) {
         console.log( err.message );
     }
 }
+
 
 export const allIndicadorOfUser = () => async( dispatch, getState ) => {
     try {
@@ -27,6 +29,10 @@ export const allIndicadorOfUser = () => async( dispatch, getState ) => {
         
     } catch (err) { console.log(err.message) }
 }
+
+
+export const limpiarFormAlActualizar = () => ( {type: types.limpiarInputsForm} )
+
 
 export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
 
@@ -43,9 +49,6 @@ export const indicadorActivo = (values) => ({
     type: types.indicadorActive,
     payload: values
 })
-
-
-export const limpiarFormAlActualizar = () => ( {type: types.limpiarInputsForm} )
 
 
 export const deleteIndicador = ( id ) => {

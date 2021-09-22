@@ -4,13 +4,12 @@ import { useDispatch } from 'react-redux'
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
 
 
-const Options = ({ cabecera = 'Seleccione momento actual', btnText = 'Buscar', vista = 'Indicador'}) => {
+const Options = ({ vista }) => {
     
-    let condition = btnText === 'Buscar';
     const dispatch = useDispatch();
 
-    const [ values, handleInputChange ] = useForm({ momento: '', cedula: '' })
-    const { momento, cedula } = values;
+    const [ values, handleInputChange ] = useForm({ momento: ''  })
+    const { momento } = values;
 
     const handleStateData = (e) => {
         e.preventDefault();
@@ -19,24 +18,21 @@ const Options = ({ cabecera = 'Seleccione momento actual', btnText = 'Buscar', v
 
     return (
         <div>  
-            <p className={style.parrafInformative}>{ cabecera }</p>
-            <form onSubmit={ handleStateData } className={ condition ? style.optionsFormCont : style.conditions}>    
-               {
-                    !condition && <input type='text' name='cedula' autoComplete='off'
-                    value={ cedula } onChange={ handleInputChange } 
-                    placeholder={ 'Ingrese la cédula del estudiante' } />
-               }
+            <p className={style.parrafInformative}>Seleccione momento actual</p>
+            <form onSubmit={ handleStateData } className={ style.optionsFormCont }>      
+                <select 
+                    name='momento' 
+                    value={momento} 
+                    onChange={handleInputChange} 
+                    className={style.optionsForm_Select}
+                >
+                    <option>Momento</option>
+                    <option value="Momento 1">Momento 1</option>
+                    <option value="Momento 2">Momento 2</option>
+                    <option value="Momento 3">Momento 3</option>
+                </select>  
 
-                {
-                    condition &&
-                    <select name='momento' value={momento} onChange={handleInputChange} className={style.optionsForm_Select}>
-                        <option>Momento</option>
-                        <option value="Momento 1">Momento 1</option>
-                        <option value="Momento 2">Momento 2</option>
-                        <option value="Momento 3">Momento 3</option>
-                    </select>
-                }
-            <button type="submit">{ btnText }</button>
+                <button type="submit">Buscar</button>
             </form>
         </div>
     )

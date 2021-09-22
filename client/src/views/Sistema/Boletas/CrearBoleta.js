@@ -1,10 +1,10 @@
-import style from './crearBoleta.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as Scroll } from 'react-scroll';
+import style from './crearBoleta.module.css';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
 import { roles } from '../../../helpers/roles';
-import { Link as Scroll } from 'react-scroll';
-import { useDispatch, useSelector } from 'react-redux';
 import materiaConIndicadores from '../../../helpers/IndicaDocenteBoleta';
 import BuscarEstudiantes from '../../../components/Crear Boleta/BuscarEstudiantes';
 import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosAlumno';
@@ -22,15 +22,16 @@ const CrearBoleta = () => {
     const dispatch = useDispatch();
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
   
-    const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
-    const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
+    const indicadoresByUser = useSelector( state => state.indicador.indicadoresByUser );
+    const { materiasDocente, materiasEspecialista } = useSelector( state => state.indicador.materias );
  
-    const arrayOfMateriasIndicadores =  rol === roles.docente && materiaConIndicadores(materiasDocente, indicadoresByUser);
+    const materiasWithIndic =  rol === roles.docente && materiaConIndicadores(materiasDocente, indicadoresByUser);
 
     const savedBoleta = () => {
         dispatch( guardarBoletaAction() )       
     }
-
+  
+    
     return (
         <>
             <BotonHome />
@@ -50,12 +51,15 @@ const CrearBoleta = () => {
                     <p className={ style.leyendaTitulos }><b>RN:</b> Requiere nivelaci&oacute;n</p>
                 </div>
                <div className={style.derechita}>
-                   <>
+                    <>
                     {   indicadoresByUser.length !== 0
-                            && 
-                            arrayOfMateriasIndicadores.map( materiaDB => (
-                                <IndicadoresAreas allIndicadores={ materiaDB} area={materiaDB[0]} key={ materiaDB[0]} />
-                            )
+                            &&  materiasWithIndic.map( materia => (
+                                    <IndicadoresAreas 
+                                        key={ materia.area} 
+                                        allIndicadores={ materia.indicadores} 
+                                        area={ materia.area }    
+                                    />
+                                )
                         )
                     } 
                     </>

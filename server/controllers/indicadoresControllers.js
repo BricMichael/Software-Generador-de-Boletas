@@ -48,9 +48,10 @@ const updateIndicador = async (req, res) => {
         await pool.query(
             `UPDATE indicador SET indicador = $1, literal = $2, area = $3, condicion_especial = $4,
             grado = $5, momento = $6 WHERE id = $7`, [indicador, literal, area, condicion_especial,  
-                 grado, momento, id] );
+                 grado, momento, id] 
+        );
         
-            res.status(201).send('Los datos han sido actualizados');
+        res.status(201).send('Los datos han sido actualizados');
 
     } catch (err) {
         console.log(err.message);

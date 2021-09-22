@@ -5,11 +5,10 @@ import style from './indicadoresAreas.module.css';
 
 
 const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
-    allIndicadores.shift();
     const dispatch = useDispatch();
 
-    const literalSeleccionado = ( descIndicador, {target} ) => {
-       dispatch( updateLiteralOfIndicador( descIndicador, target.value ) )
+    const literalSeleccionado = ( id, {target} ) => {
+       dispatch( updateLiteralOfIndicador( id, target.value ) );
     } 
  
 
@@ -26,21 +25,21 @@ const IndicadoresAreas = ({ allIndicadores, area ,num = 1}) => {
             </thead>
             <tbody className={ style.tableBody }>
             {
-                allIndicadores.map( indicador => (
-                    <tr className={`${style.tableTrBody} animate__animated animate__fadeIn`} key={ indicador}>
+                allIndicadores.map( value => (
+                    <tr className={`${style.tableTrBody} animate__animated animate__fadeIn`} key={ value.id }>
                         <td className={ style.childrenTwo }><b>#{num++}</b></td>
-                        <td className={ style.childrenTwo }>{ indicador }</td>
+                        <td className={ style.childrenTwo }>{ value.indicador}</td>
                         <td>
-                            <input name={indicador} type="radio"value="E" 
-                            onChange={ (e) => literalSeleccionado(indicador, e) } />
+                            <input name={value.id} type="radio" value="E" 
+                            onChange={ (e) => literalSeleccionado(value.id, e) } />
                         </td>
                         <td>
-                            <input name={indicador} type="radio"value="B" 
-                            onChange={ (e) => literalSeleccionado(indicador, e) } />
+                            <input name={value.id} type="radio" value="B" 
+                            onChange={ (e) => literalSeleccionado(value.id, e)} />
                         </td>
                         <td>
-                            <input name={indicador} type="radio"value="RN" 
-                            onChange={ (e) => literalSeleccionado(indicador, e) } />
+                            <input name={value.id} type="radio" value="RN" 
+                            onChange={ (e) => literalSeleccionado(value.id, e) } />
                         </td>
                     </tr>     
                 ))

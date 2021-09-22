@@ -4,6 +4,7 @@ import style from './UpdateIndicador.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "../../helpers/useForm";
 import { actualizarIndicadorBD, limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
+import { roles } from "../../helpers/roles";
 
 
 
@@ -37,14 +38,14 @@ const UpdateIndicador = ({ closeModal }) => {
         dispatch( limpiarFormAlActualizar() );
     }
 
-    const recorrerArray = rolUser === 'especialista' ? materiasEspecialista : materiasDocente;
+    const recorrerArray = rolUser === roles.especialista ? materiasEspecialista : materiasDocente;
 
     return (
         <Modal closeModal={ closeModal }>
             <form className={ style.formModal }>
                 <h2 className={ style.titleFormModal }>Actualizando Indicador</h2>
                 <textarea 
-                    className={`${style.ModaltextArea} ${ rolUser === 'especialista' && style.Height}`}  name="indicador" value={ indicador }
+                    className={`${style.ModaltextArea} ${ rolUser === roles.especialista && style.Height}`}  name="indicador" value={ indicador }
                     onChange={ handleInputChange }
                     placeholder="Editando indicador">
                 </textarea>
@@ -79,7 +80,7 @@ const UpdateIndicador = ({ closeModal }) => {
                     <option value="Momento 3">Momento 3</option>                      
                 </select>
                 {
-                    rolUser === 'especialista' &&
+                    rolUser === roles.especialista &&
                     <>
                         <select className={`${style.Modalselect}`} name="grado" value={grado}
                             onChange={ handleInputChange  }

@@ -4,10 +4,11 @@ import types from "../types";
 
 const initialState = {
     listFiveStudents: [],
-    studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
+    studentSelected: { nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
     setLiteralIndicadores: [],
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
+    literalesEspecialistas: [],
     reset: 0
 }
 
@@ -46,10 +47,17 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.updateLiteralDocente:
             return {
                 ...state,
-                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.indicador === action.payload.indicador 
+                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.id === action.payload.id 
                     ? { ...prop, literal: action.payload.literal } 
                     : prop )
             } 
+
+        case types.setLiteralEspecialista:
+            
+            return {
+                ...state,
+                literalesEspecialistas: [ ...state.literalesEspecialistas, action.payload.indicador ]
+            }    
             
         case types.savedBoletaTypes:
             return {

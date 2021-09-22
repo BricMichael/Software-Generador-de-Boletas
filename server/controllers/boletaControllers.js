@@ -44,6 +44,7 @@ const indicadorEspecialistaByArea = async (req, res) => {
      }
 }
    
+//BOLETA FUNCIONES
 
 let dataToBuildPDF = {};
 const modelFinalPagePdf = (req, res) => {

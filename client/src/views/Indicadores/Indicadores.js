@@ -33,7 +33,7 @@ const Indicadores = () => {
         { rol !== roles.coordinador && 
             <>
                 <CreaIndicador />
-                <Options />
+                <Options vista='Indicador' />
             </>
         }
 

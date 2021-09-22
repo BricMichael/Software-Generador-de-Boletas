@@ -3,6 +3,7 @@ import style from './listIndicadores.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteIndicador, indicadorActivo } from '../../Redux/actions/indicadoresActions';
 import UpdateIndicador from '../../components/Modal/UpdateIndicador';
+import { roles } from '../../helpers/roles';
 
 const ListaIndicadores = ({ count = 1 }) => {
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ListaIndicadores = ({ count = 1 }) => {
     const { materiasDocente, materiasEspecialista } = materias;
     const { rol } = JSON.parse( localStorage.getItem('userActive') );
 
-    const materiasShowOptions = rol === 'especialista' ? materiasEspecialista : materiasDocente;
+    const materiasShowOptions = rol === roles.especialista ? materiasEspecialista : materiasDocente;
     const indicadoresOfUser = handleMaterias.length !== 0 ? handleMaterias : indicadoresByUser;
 
     useEffect(() => {  
@@ -43,7 +44,7 @@ const ListaIndicadores = ({ count = 1 }) => {
                             <th className={ style.th2 }>&Aacute;rea</th>
                             <th className={ style.th2 }>Momento</th>
                             <th className={ style.th2 }>C.E</th>         
-                            {    rol === 'especialista' &&
+                            {    rol === roles.especialista &&
                                     <>
                                         <th className={ style.th2 }>Literal</th>
                                         <th className={ style.th2 }>Grado</th>
@@ -62,7 +63,7 @@ const ListaIndicadores = ({ count = 1 }) => {
                                     <th className={ style.padding }>{ indicador.momento }</th>
                                     <th className={ style.padding }>{ indicador.condicion_especial }</th>
                                     {
-                                        rol === 'especialista' &&
+                                        rol === roles.especialista &&
                                         <>
                                         <th className={ style.padding }>{ indicador.literal }</th>
                                         <th className={ style.padding }>{ indicador.grado }</th>

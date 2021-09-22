@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import style from './indicadoresAreas.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { indicadorEspecialistaByArea } from '../../Redux/actions/boletaActions';
+import { indicadorEspecialistaByArea, setLiteralEspecialista } from '../../Redux/actions/boletaActions';
 
 
 
@@ -24,7 +24,8 @@ export const IndicadoresEspecialista = ({ area }) => {
 
     const handleLiteral = ({target}) => {
         const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
-        mostrar !== undefined  &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar }); 
+        dispatch( setLiteralEspecialista(mostrar));
+        mostrar !== undefined && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar });  
     }
 
     return (
