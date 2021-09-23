@@ -4,7 +4,8 @@ import types from "../types";
 
 const initialState = {
     listFiveStudents: [],
-    studentSelected: { nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
+    studentSelected: { nombres: '', grado: '', seccion: '', docente: '' },
+    textArea: '',
     setLiteralIndicadores: [],
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
@@ -34,8 +35,15 @@ const boletaReducer = ( state = initialState, action ) => {
         case types.studentSelected:
             return {
                 ...state,
-                studentSelected: { ...action.payload, textArea:'' }    
+                studentSelected: { ...action.payload }    
             }
+
+        case types.serConvivirBoleta:
+            return {
+                ...state,
+                textArea: action.payload
+            }
+
 
         case types.allIndicadoresOfUser:
             return{
@@ -53,11 +61,22 @@ const boletaReducer = ( state = initialState, action ) => {
             } 
 
         case types.setLiteralEspecialista:
+            const check = state.literalesEspecialistas.find( value => value.area === action.payload.indicador.area );
             
-            return {
-                ...state,
-                literalesEspecialistas: [ ...state.literalesEspecialistas, action.payload.indicador ]
-            }    
+            if( check) {
+                return {
+                    ...state,
+                    literalesEspecialistas: state.literalesEspecialistas.map( value => value.area === check.area 
+                        ? action.payload.indicador 
+                        : value 
+                    )
+                }
+            } else{
+                return {
+                    ...state,
+                    literalesEspecialistas: [ ...state.literalesEspecialistas, action.payload.indicador ]
+                } 
+            }
             
         case types.savedBoletaTypes:
             return {

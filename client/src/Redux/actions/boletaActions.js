@@ -2,9 +2,11 @@ import * as api from '../../api/api';
 import types from '../types';
 import Swal from 'sweetalert2';
 import { validarCampos } from '../../helpers/validarRegistros';
+import { roles } from '../../helpers/roles';
+
+
 
 let count = 5;
-
 
 export const listFiveStudents = ({seccion, grado}) => async ( dispatch ) => {
 
@@ -41,13 +43,15 @@ export const nextFiveStudents = ( ) => async(dispatch, getState) => {
 
 export const estudianteSelected = ( estudiante ) => ({ type: types.studentSelected, payload: estudiante });
 
+export const parrafoTextArea = ( serYConvivir ) => ({ type: types.serConvivirBoleta, payload: serYConvivir })
+
 
 export const materiasExistentes = () => async(dispatch) => {
     try {
         const { data } = await api.apiMateriasExistentes();
         
-        const materiasDocente = data.filter( materia => materia.tipo === 'Docente' );
-        const materiasEspecialista = data.filter( materia => materia.tipo === 'Especialista' );
+        const materiasDocente = data.filter( materia => materia.tipo === roles.docente );
+        const materiasEspecialista = data.filter( materia => materia.tipo === roles.especialista );
 
         dispatch({ type: types.materiasTypes, payload: { materiasDocente, materiasEspecialista } }); 
     } catch (err) {
@@ -56,9 +60,10 @@ export const materiasExistentes = () => async(dispatch) => {
 }
 
 
-export const indicadorEspecialistaByArea = ( gradoState, area,setLiteralIndicadorByArea ) => async( dispatch, getState ) => {
+export const indicadorEspecialistaByArea = ( grado, area, setLiteralIndicadorByArea ) => async( dispatch, getState ) => {
     const { momento } = getState().boleta;
-    const { data } = await api.apiIndicadorlEspecialista({grado: gradoState, area, momento}); 
+    const { data } = await api.apiIndicadorlEspecialista({grado, area, momento}); 
+
     setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} }); 
 }  
 

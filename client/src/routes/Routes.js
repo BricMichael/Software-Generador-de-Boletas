@@ -22,7 +22,7 @@ const Routes = () => {
 
                 <PrivateRoute path="/menu-principal/registros" isAuthenticated={isAuthenticated}  component={ Usuarios} /> 
 
-                <PrivateRoute exact path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} component={ CrearBoleta } /> 
+                <PrivateRoute path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} component={ CrearBoleta } /> 
 
                 <PrivateRoute exact  path="/menu-principal" isAuthenticated={isAuthenticated}  
                     component={ Dashboard } />

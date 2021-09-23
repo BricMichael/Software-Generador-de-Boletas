@@ -274,7 +274,7 @@
 
 
 @media screen and ( max-width: 936px) { 
-    .contentForm {  margin-left: 2rem; width: 31%;} 
+    .contentForm {  margin-left: 2rem; width: 33%;} 
     .FormSearchStudents { margin-right: 0rem }
     .listaEstudiantes { width: 520px; margin-right: 0rem; }
     .Cboleta_input { font-size: 16px; }

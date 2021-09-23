@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import style from './indicadoresAreas.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+import style from './indicadoresAreas.module.css';
 import { indicadorEspecialistaByArea, setLiteralEspecialista } from '../../Redux/actions/boletaActions';
+
 
 
 
@@ -12,6 +13,7 @@ export const IndicadoresEspecialista = ({ area }) => {
     const gradoState = useSelector( state => state.boleta.gradoSeccion.grado );
  
     const [ literalIndicadorByArea, setLiteralIndicadorByArea ] = useState({ IndicadorByArea: [], literalSelected: {} });
+   
 
     useEffect(() => {
         dispatch( indicadorEspecialistaByArea( gradoState, area, setLiteralIndicadorByArea ) ); 
@@ -19,14 +21,20 @@ export const IndicadoresEspecialista = ({ area }) => {
 
 
     useEffect(() => {
-       resetData !== 0 && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} })
+       resetData !== 0 &&  setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: {} })
+     
     }, [resetData])
 
+
     const handleLiteral = ({target}) => {
-        const mostrar = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
-        dispatch( setLiteralEspecialista(mostrar));
-        mostrar !== undefined && setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: mostrar });  
+        const indSelected = literalIndicadorByArea.IndicadorByArea.find( indicador => indicador.literal === target.value);
+
+        if ( indSelected ){
+            setLiteralIndicadorByArea({ ...literalIndicadorByArea, literalSelected: indSelected});  
+            dispatch( setLiteralEspecialista(indSelected));
+        }
     }
+        
 
     return (
         <>
@@ -50,13 +58,13 @@ export const IndicadoresEspecialista = ({ area }) => {
                             }               
                         </td>
                         <td>
-                            <input name={area} type="radio"value="E" onChange={handleLiteral} />
+                            <input name={area} type="radio" value='E' onChange={handleLiteral} />
                         </td>
                         <td>
-                            <input name={area} type="radio"value="B" onChange={handleLiteral} />
+                            <input name={area} type="radio" value='B' onChange={handleLiteral} />
                         </td>
                         <td>
-                            <input name={area} type="radio"value="RN" onChange={handleLiteral} />
+                            <input name={area} type="radio" value='RN' onChange={handleLiteral} />
                         </td>
                     </tr>                    
                 </tbody>
