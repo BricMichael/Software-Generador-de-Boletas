@@ -4,7 +4,7 @@ import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
 
 
 export const filtroBusqueda = ( momento, vista ) => async( dispatch ) => { 
-    try {  // param vista, saber que componente esta haciendo la llamada para saber que estado actualizar con la data.
+    try {  // param vista, saber que componente esta haciendo la llamada para saber que estadoReducer actualizar con la data.
         const { id } = JSON.parse( localStorage.getItem('userActive') );
         let { data } = await api.indicadoresUserActivo({ momento, id });
 
@@ -13,7 +13,8 @@ export const filtroBusqueda = ( momento, vista ) => async( dispatch ) => {
         }else { // la vista crear boleta al momento de generar una vuelve a pedir los indicadores para ser llenados de nuevo.
             dispatch({ type: types.momentoAndYear, payload:{ data, momento: '' }}) // estado vista indicador
             dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
-        }                    
+        }              
+        return data;   
     } catch (err) {
         console.log( err.message );
     }

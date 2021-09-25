@@ -1,6 +1,6 @@
-import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
+import style from './membrete.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { estudianteSelected, nextFiveStudents} from '../../Redux/actions/boletaActions';
+import { estudianteSelected, nextFiveStudents} from '../../../Redux/actions/boletaActions';
 
 
 

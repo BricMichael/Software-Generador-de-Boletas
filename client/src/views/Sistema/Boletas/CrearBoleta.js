@@ -1,44 +1,27 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Link as Scroll } from 'react-scroll';
-import style from './crearBoleta.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouteMatch, Switch, Route }from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
-// import { roles } from '../../../helpers/roles';
-// import materiaConIndicadores from '../../../helpers/IndicaDocenteBoleta';
-// import BuscarEstudiantes from '../../../components/Crear Boleta/BuscarEstudiantes';
-// import CabeceraDatosAlumno from '../../../components/Crear Boleta/CabeceraDatosAlumno';
-// import Options from '../../../components/Options&Links/Options';
-// import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresAreas';
-// import IndicadoresEspecialista from '../../../components/Crear Boleta/IndicadoresEspecialista';
-// import { guardarBoletaAction } from '../../../Redux/actions/boletaActions';
-
-import { useRouteMatch, Switch, Route }from 'react-router-dom';
-import Cabecera from '../../../components/Crear Boleta/Cabecera';
 import NavbarBoleta from '../../../components/Crear Boleta/NavbarBoleta';
+import Cabecera from '../../../components/Crear Boleta/Cabecera';
 import CuerpoBoleta from '../../../components/Crear Boleta/CuerpoBoleta';
+import { botonCleanData } from '../../../Redux/actions/boletaActions';
 
 
 const CrearBoleta = () => {
+    const dispatch = useDispatch();
     backgroundColorPage('#4169e1');
     document.title = 'Crear Boleta';
     const { path } = useRouteMatch();
-    // const dispatch = useDispatch();
-    // const { rol } = JSON.parse( localStorage.getItem('userActive') );
-  
-    // const indicadoresByUser = useSelector( state => state.indicador.indicadoresByUser );
-    // const { materiasDocente, materiasEspecialista } = useSelector( state => state.indicador.materias );
- 
-    // const materiasWithIndic =  rol === roles.docente && materiaConIndicadores(materiasDocente, indicadoresByUser);
 
-    // const savedBoleta = () => {
-    //     dispatch( guardarBoletaAction() )       
-    // }
-  
-    
+    const resetDataBoletaReducer = () => {
+        dispatch( botonCleanData() );
+    }
+ 
     return (
         <>
-            <BotonHome />
+            <BotonHome resetState={resetDataBoletaReducer} />
             <Header title="Creación de Boleta" marginTop='-4.4rem' />
             <NavbarBoleta />
 
@@ -49,7 +32,7 @@ const CrearBoleta = () => {
         </>
     );
 }
-//
+
 export default CrearBoleta;
 
 

@@ -1,8 +1,9 @@
-import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
-import ListaEstudiantes from './ListaEstudiantes';
-import {useDispatch} from 'react-redux';
-import { listFiveStudents } from '../../Redux/actions/boletaActions';
 import { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { listFiveStudents } from '../../../Redux/actions/boletaActions';
+import style from './membrete.module.css';
+import ListaEstudiantes from './ListaEstudiantes';
+
 
 
 
@@ -24,7 +25,7 @@ const BuscarEstudiantes = () => {
     }
     
     return (
-        <div>
+        <div className={style.parte1}>
             <form className={style.FormSearchStudents} onSubmit={subtmiForm}>
                 <label className={style.searchStudents}>Buscar estudiantes</label>
 
@@ -52,7 +53,6 @@ const BuscarEstudiantes = () => {
             </form>
 
             <ListaEstudiantes />
-
         </div>
     )
 }

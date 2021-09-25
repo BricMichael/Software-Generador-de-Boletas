@@ -43,7 +43,10 @@ export const nextFiveStudents = ( ) => async(dispatch, getState) => {
 
 export const estudianteSelected = ( estudiante ) => ({ type: types.studentSelected, payload: estudiante });
 
-export const parrafoTextArea = ( serYConvivir ) => ({ type: types.serConvivirBoleta, payload: serYConvivir })
+export const parrafoTextArea = ( serYConvivir ) => ({ type: types.serConvivirBoleta, payload: serYConvivir });
+
+export const fechasBoleta = ( fechas ) => ({ type: types.fechasTypes, payload: fechas });
+
 
 
 export const materiasExistentes = () => async(dispatch) => {
@@ -81,6 +84,8 @@ export const setLiteralEspecialista = (indicador) => {
     }
 }
 
+
+export const botonCleanData = () => ({ type: types.botonResetState })
 
 export const guardarBoletaAction = () => async( dispatch, getState ) => {
     const  { indicadoresByUser:data } = getState().indicador;

@@ -1,15 +1,14 @@
-import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
-import BuscarEstudiantes from "./BuscarEstudiantes";
-import CabeceraDatosAlumno from "./CabeceraDatosAlumno";
+import BuscarEstudiantes from './Membrete/BuscarEstudiantes';
+import StudentSelected from './Membrete/StudentSelected';
 
 
 
 const Cabecera = () => {
     return (
-        <div className={style.firstComponents}  id="topOfPage">
+        <>
             <BuscarEstudiantes />
-            <CabeceraDatosAlumno />
-        </div>
+            <StudentSelected /> 
+        </>
     )
 }
 

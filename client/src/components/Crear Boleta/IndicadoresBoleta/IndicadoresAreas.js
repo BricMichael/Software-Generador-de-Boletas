@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { updateLiteralOfIndicador } from '../../Redux/actions/boletaActions';
+import { updateLiteralOfIndicador } from '../../../Redux/actions/boletaActions';
 import style from './indicadoresAreas.module.css';
 
 

@@ -1,19 +1,31 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import style from './options.module.css';
 import { useForm } from "../../helpers/useForm";
-import { useDispatch } from 'react-redux'
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
+
 
 
 const Options = ({ vista }) => {
     
     const dispatch = useDispatch();
 
+    const [respData, setRespData] = useState({status: false, msgAviso: ''});
+
     const [ values, handleInputChange ] = useForm({ momento: ''  })
     const { momento } = values;
 
-    const handleStateData = (e) => {
+    const handleStateData = async(e) => {
         e.preventDefault();
-        dispatch( filtroBusqueda( momento, vista ));
+        const resp = await dispatch( filtroBusqueda( momento, vista ));
+        
+        if ( resp.length === 0 ) {
+            setRespData({ status: true, msgAviso: '0 resultados, no se han creado indicadores en el ' + momento })
+
+            setTimeout(() => {
+                setRespData({ status: false, msgAviso: '' })
+            }, 4200);
+        }
     }
 
     return (
@@ -34,6 +46,12 @@ const Options = ({ vista }) => {
 
                 <button type="submit">Buscar</button>
             </form>
+
+            {
+                respData.status && <p className={style.optionsMsg0results}>
+                    { respData.msgAviso }
+                </p>
+            }
         </div>
     )
 }

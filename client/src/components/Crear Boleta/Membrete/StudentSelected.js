@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
-import style from '../../views/Sistema/Boletas/crearBoleta.module.css';
-import { useForm } from '../../helpers/useForm';
-import { parrafoTextArea } from '../../Redux/actions/boletaActions';
+import FechasBoleta from './FechasBoleta';
+import style from './membrete.module.css';
+import { useForm } from '../../../helpers/useForm';
+import { parrafoTextArea } from '../../../Redux/actions/boletaActions';
 
 
-const CabeceraDatosAlumno = () => {
+
+
+const StudentSelected = () => {
     const dispatch = useDispatch();
     const studentSelected = useSelector( state => state.boleta.studentSelected );
 
@@ -27,10 +30,10 @@ const CabeceraDatosAlumno = () => {
     }, [textArea ,dispatch])
 
     return (
-        <>
+        <div className={style.parte2}>
             <form className={ style.contentForm } >
                 <div className={ style.group }>
-                    <label>Estudiante</label>
+                    <label>Estudiante seleccionado</label>
                     <input placeholder="Nombre del estudiante" type="text" className={style.Cboleta_input} value={ nombres } name="nombres" autoComplete='off' disabled={true}
                     onChange={handleInputChange}
                     />
@@ -63,8 +66,10 @@ const CabeceraDatosAlumno = () => {
                     ></textarea>
                 </div>    
             </form>
-        </>
+
+            <FechasBoleta />
+        </div>
     )
 }
 
-export default CabeceraDatosAlumno;
+export default StudentSelected;

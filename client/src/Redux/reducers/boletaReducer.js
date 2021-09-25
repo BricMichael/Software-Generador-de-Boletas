@@ -6,9 +6,10 @@ const initialState = {
     listFiveStudents: [],
     studentSelected: { nombres: '', grado: '', seccion: '', docente: '' },
     textArea: '',
-    setLiteralIndicadores: [],
+    fechaBoleta: { inicioMomento: '', finMomento: '', anioEscolar: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
+    setLiteralIndicadores: [],
     literalesEspecialistas: [],
     reset: 0
 }
@@ -44,6 +45,11 @@ const boletaReducer = ( state = initialState, action ) => {
                 textArea: action.payload
             }
 
+        case types.fechasTypes:
+            return{
+                ...state,
+                fechaBoleta: action.payload
+            }
 
         case types.allIndicadoresOfUser:
             return{
@@ -76,7 +82,7 @@ const boletaReducer = ( state = initialState, action ) => {
                     ...state,
                     literalesEspecialistas: [ ...state.literalesEspecialistas, action.payload.indicador ]
                 } 
-            }
+            }    
             
         case types.savedBoletaTypes:
             return {
@@ -84,6 +90,11 @@ const boletaReducer = ( state = initialState, action ) => {
                 studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
                 setLiteralIndicadores: [ ...action.payload ],
                 reset: state.reset + 1
+            }  
+            
+        case types.botonResetState:
+            return {
+                ...initialState
             }    
         
 

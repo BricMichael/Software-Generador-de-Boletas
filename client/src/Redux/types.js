@@ -16,9 +16,11 @@ const types = {
     nextFiveStudents: '[BOLETA] NextFiveStudents',
     studentSelected: '[BOLETA] StudentSelected',
     serConvivirBoleta: '[BOLETA] SetDescripcion',
+    fechasTypes: '[BOLETA] fechasEstado',
     allIndicadoresOfUser: '[BOLETA] IndicadoresBoleta',
     updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
     setLiteralEspecialista: '[BOLETA] setLiteralEspecialista',
+    botonResetState: '[BOLETA] BotonResetData',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
 
 }

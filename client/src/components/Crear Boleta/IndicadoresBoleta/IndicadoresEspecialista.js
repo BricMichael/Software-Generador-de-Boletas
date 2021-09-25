@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './indicadoresAreas.module.css';
-import { indicadorEspecialistaByArea, setLiteralEspecialista } from '../../Redux/actions/boletaActions';
+import { indicadorEspecialistaByArea, setLiteralEspecialista } from '../../../Redux/actions/boletaActions';
 
 
 
@@ -17,7 +17,7 @@ export const IndicadoresEspecialista = ({ area }) => {
 
     useEffect(() => {
         dispatch( indicadorEspecialistaByArea( gradoState, area, setLiteralIndicadorByArea ) ); 
-    }, [gradoState])
+    }, [gradoState, dispatch, area])
 
 
     useEffect(() => {

@@ -9,8 +9,8 @@ const Principal = () => {
 
     return (
         <div>
-            <Header/>
-            <CuerpoHome/>
+            <Header />
+            <CuerpoHome />
         </div>
     )
 }
