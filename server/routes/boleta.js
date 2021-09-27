@@ -1,16 +1,16 @@
 const { Router } = require('express');
 const router = Router();
 
-const {  
+const {
     InitialsFiveStudents,
-    nextFiveStudents, 
+    nextFiveStudents,
     indicadorEspecialistaByArea,
     creacionBoleta,
-    modelFinalPagePdf, 
+    modelFinalPagePdf,
 } = require('../controllers/boletaControllers');
 
 
-router.get('/crearBoleta/:alumno', creacionBoleta);
+router.post('/boleta/crearBoleta', creacionBoleta);
 router.get('/boleta/modelPDF', modelFinalPagePdf);
 router.post('/boletaEstudiantes', InitialsFiveStudents);
 router.post('/boletaNextEstudiantes', nextFiveStudents);

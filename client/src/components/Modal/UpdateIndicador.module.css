@@ -42,13 +42,17 @@
     border-bottom: 2px solid #012c66;
 }
 
+.labelInputs { color: #012c66; text-align: left; margin-left: 1.2rem; font-size: 17px;}
+
 .Modalselect {
     border: none;
     border-bottom: 2px solid #012c66;
-    border-radius: 3px;
+    border-radius: 0;
     margin-left: 1rem;
     margin-bottom: 0.6rem;
+    padding: 6px 0;
 }
+
 
 .formModalButtons {
     background: #012c66;
@@ -56,7 +60,7 @@
     border-radius: 4px;
     margin-top: .5rem;
     width: 60%;
-    font-size: 17px;
+    font-size: 16px;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -75,3 +79,4 @@
 .buttonCancel:hover {
     background: #ac1b38;
 }
+

@@ -126,30 +126,30 @@ header#header
       h2.membreteCenterTitle UNIDAD EDUCATIVA COLEGIO &ldquo;REP&Uacute;BLICA DE VENEZUELA&rdquo; 
       h2.membreteCenterTitle VALERA, ESTADO TRUJILLO
       p.membreteCenterParrafo.msg &ldquo;Mi actuaci&oacute;n y avance escolar&rdquo;
-      p.membreteCenterBold A&ntilde;o Escolar 2020-2021
+      p.membreteCenterBold A&ntilde;o Escolar #{anioEscolar}
     .membreteBottom
       p.membreteBottomParrafos
         b SEGUNDO MOMENTO. &nbsp;
-        b Desde: 07/01/2021 
+        b Desde: #{fechaInicio} 
       p.membreteBottomParrafos.separacion
-        b Hasta: 26/03/2.021
+        b Hasta: #{fechaFin}
 .contentCabeceraDatos
   .cabeceraDatosEstudiante
     p.cabeceraEstudianteParrafo.borde
       b ESTUDIANTE
     p.cabeceraEstudianteParrafo
-      b.estudiante #{alumno}
+      b.estudiante #{infoStudent_Docente.nombres}
   .cabeceraDatosInfo
     p.cabeceraInfoTitle.borde
-      b GRADO: &nbsp;#{grado}
+      b GRADO: &nbsp;#{infoStudent_Docente.grado}
     p.cabeceraInfoTitle.borde
-      b SECCI&Oacute;N: &nbsp;&ldquo;#{seccion}&rdquo;
+      b SECCI&Oacute;N: &nbsp;&ldquo;#{infoStudent_Docente.seccion}&rdquo;
     p.cabeceraInfoTitle
-      b DOCENTE: &nbsp; #{docente}
+      b DOCENTE: &nbsp; #{infoStudent_Docente.docente}
   .cabeceraDatosTextArea
     p.cabeceraTextAreaDescrip
       b SER Y CONVIVIR:
-      |  #{resp.infoStudent_Docente.serYConvivir}
+      |  #{serYConvivir}
 .contentCabeceraLiterales
   p.literalesTop LEYENDA: &nbsp; &nbsp;E= EXCELENTE
   p.literalesTop B= BIEN
@@ -157,64 +157,65 @@ header#header
 
 
 //-  Indicadores docentes 29 indicadores max a la hoja principal
-.contentIndicadorDocentes
-    each general in resp.indHojaPrincipal[0]
-      .cabeceraAreas
-        h3.cabeceraAreaTitle &Aacute;REA: #{general.area}
-        h3.cabeceraLiterales E
-        h3.cabeceraLiterales B
-        h3.cabeceraLiterales.no-borde-right RN
-      .contenidoIndicadores
-        .rotateParrafo
-            p INDICADORES
-        .allIndicadores
-             each item in general.indicadores
-               .contentDescripcion
-                    p.descripcion
-                        | #{item.indicador}
-                    if item.literal === 'E'
-                        span.cabeceraLiterales.no-borde-bottom &check;
-                        span.cabeceraLiterales.no-borde-bottom  
-                        span.cabeceraLiterales.no-borde-bottom
-                    else if item.literal === 'B'    
-                        span.cabeceraLiterales.no-borde-bottom 
-                        span.cabeceraLiterales.no-borde-bottom  &check;
-                        span.cabeceraLiterales.no-borde-bottom
-                    else 
-                        span.cabeceraLiterales.no-borde-bottom 
-                        span.cabeceraLiterales.no-borde-bottom  
-                        span.cabeceraLiterales.no-borde-bottom &check;
-    if resp.indHojaPrincipal[1].length === 1
+if indHojaPrincipal[0].length >= 1
+  .contentIndicadorDocentes
+      each general in indHojaPrincipal[0]
         .cabeceraAreas
-            h3.cabeceraAreaTitle &Aacute;REA: #{resp.indHojaPrincipal[1][0].area}
-            h3.cabeceraLiterales E
-            h3.cabeceraLiterales B
-            h3.cabeceraLiterales.no-borde-right RN
-        each item in resp.indHojaPrincipal[1][0].indicadores 
-            .contentDescripcion
-                p.descripcionexperimentoC    
-                    |  #{item.indicador}   
-                if item.literal === 'E'     
-                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  &check;
-                    span.literalesExperimentoC.no-borde-bottom
-                    span.literalesExperimentoC.no-borde-bottom
-                else if item.literal === 'B'     
-                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  
-                    span.literalesExperimentoC.no-borde-bottom &check;
-                    span.literalesExperimentoC.no-borde-bottom
-                else 
-                    span.literalesExperimentoC.no-borde-bottom.no-borde-right  
-                    span.literalesExperimentoC.no-borde-bottom
-                    span.literalesExperimentoC.no-borde-bottom  &check;
+          h3.cabeceraAreaTitle &Aacute;REA: #{general.area}
+          h3.cabeceraLiterales E
+          h3.cabeceraLiterales B
+          h3.cabeceraLiterales.no-borde-right RN
+        .contenidoIndicadores
+          .rotateParrafo
+              p INDICADORES
+          .allIndicadores
+              each item in general.indicadores
+                .contentDescripcion
+                      p.descripcion
+                          | #{item.indicador}
+                      if item.literal === 'E'
+                          span.cabeceraLiterales.no-borde-bottom &check;
+                          span.cabeceraLiterales.no-borde-bottom  
+                          span.cabeceraLiterales.no-borde-bottom
+                      else if item.literal === 'B'    
+                          span.cabeceraLiterales.no-borde-bottom 
+                          span.cabeceraLiterales.no-borde-bottom  &check;
+                          span.cabeceraLiterales.no-borde-bottom
+                      else 
+                          span.cabeceraLiterales.no-borde-bottom 
+                          span.cabeceraLiterales.no-borde-bottom  
+                          span.cabeceraLiterales.no-borde-bottom &check;
+      if indHojaPrincipal[1].length === 1
+          .cabeceraAreas
+              h3.cabeceraAreaTitle &Aacute;REA: #{indHojaPrincipal[1][0].area}
+              h3.cabeceraLiterales E
+              h3.cabeceraLiterales B
+              h3.cabeceraLiterales.no-borde-right RN
+          each item in indHojaPrincipal[1][0].indicadores 
+              .contentDescripcion
+                  p.descripcionexperimentoC    
+                      |  #{item.indicador}   
+                  if item.literal === 'E'     
+                      span.literalesExperimentoC.no-borde-bottom.no-borde-right  &check;
+                      span.literalesExperimentoC.no-borde-bottom
+                      span.literalesExperimentoC.no-borde-bottom
+                  else if item.literal === 'B'     
+                      span.literalesExperimentoC.no-borde-bottom.no-borde-right  
+                      span.literalesExperimentoC.no-borde-bottom &check;
+                      span.literalesExperimentoC.no-borde-bottom
+                  else 
+                      span.literalesExperimentoC.no-borde-bottom.no-borde-right  
+                      span.literalesExperimentoC.no-borde-bottom
+                      span.literalesExperimentoC.no-borde-bottom  &check;
 
           
 
 
 
 //- segundo modelo hoja max 34 indicadores 
-if resp.tresIndByHoja_1.length >= 1
+if tresIndByHoja_1.length >= 1
   #IndHojaCompleta.contentIndicadorDocentes
-      each hojaUno in resp.tresIndByHoja_1
+      each hojaUno in tresIndByHoja_1
           .cabeceraAreas.putBorde
               h3.cabeceraAreaTitle &Aacute;REA: #{hojaUno.area}
               h3.cabeceraSecondModel E
@@ -242,9 +243,9 @@ if resp.tresIndByHoja_1.length >= 1
                               span.cabeceraLiterales.no-borde-bottom &check;
 
 
-if resp.tresIndByHoja_2.length >= 1
+if tresIndByHoja_2.length >= 1
     #IndHojaCompleta.contentIndicadorDocentes
-        each hojaDos in resp.tresIndByHoja_2
+        each hojaDos in tresIndByHoja_2
             .cabeceraAreas.putBorde
                 h3.cabeceraAreaTitle &Aacute;REA: #{hojaDos.area}
                 h3.cabeceraSecondModel E
@@ -272,9 +273,9 @@ if resp.tresIndByHoja_2.length >= 1
                                 span.cabeceraLiterales.no-borde-bottom &check;
 
 
-if resp.dosIndLargosByHoja_1.length >= 1
+if dosIndLargosByHoja_1.length >= 1
     #IndHojaCompleta.contentIndicadorDocentes
-        each firstPage in resp.dosIndLargosByHoja_1
+        each firstPage in dosIndLargosByHoja_1
             .cabeceraAreas.putBorde
                 h3.cabeceraAreaTitle &Aacute;REA: #{firstPage.area}
                 h3.cabeceraSecondModel E
@@ -302,9 +303,9 @@ if resp.dosIndLargosByHoja_1.length >= 1
                                 span.cabeceraLiterales.no-borde-bottom &check;
                       
        
-if resp.dosIndLargosByHoja_2.length >= 1
+if dosIndLargosByHoja_2.length >= 1
     #IndHojaCompleta.contentIndicadorDocentes
-        each secondPage in resp.dosIndLargosByHoja_2
+        each secondPage in dosIndLargosByHoja_2
             .cabeceraAreas.putBorde
                 h3.cabeceraAreaTitle &Aacute;REA: #{secondPage.area}
                 h3.cabeceraSecondModel E
@@ -332,9 +333,9 @@ if resp.dosIndLargosByHoja_2.length >= 1
                                 span.cabeceraLiterales.no-borde-bottom &check;
                       
   
-if resp.dosIndLargosByHoja_3.length >= 1
+if dosIndLargosByHoja_3.length >= 1
     #IndHojaCompleta.contentIndicadorDocentes
-        each threePage in resp.dosIndLargosByHoja_3
+        each threePage in dosIndLargosByHoja_3
             .cabeceraAreas.putBorde
                 h3.cabeceraAreaTitle &Aacute;REA: #{threePage.area}
                 h3.cabeceraSecondModel E
@@ -374,7 +375,7 @@ if resp.dosIndLargosByHoja_3.length >= 1
     img.imgStartStudent(src='http://localhost:4000/insignia' alt='imagenBoleta')
   .contentEspecialidades
     h2.titleEspecialidades ESPECIALIDADES
-    each value in resp.indEspecialistas_1
+    each value in indEspecialistas_1
         .cuerpoDescripcion
             .nombreEspecialidad
                 p.area &Aacute;REA
@@ -384,7 +385,7 @@ if resp.dosIndLargosByHoja_3.length >= 1
                   | #{value.indicador}
 
 
-if resp.indEspecialistas_2.length >= 1
+if indEspecialistas_2.length >= 1
     .SecondModel
       .apreciacion
           p.msg1
@@ -424,6 +425,6 @@ if resp.indEspecialistas_2.length >= 1
     p.firmaCenterPadre.top Representante
   .firmaModel.bajar
     p.firmaBorde.top
-      | #{coordinadoraFirma}
+      | #{coordinadora}
     p.firmaMargin
       | Coordinadora Pedag&oacute;gica

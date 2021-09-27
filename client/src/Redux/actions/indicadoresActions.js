@@ -1,46 +1,46 @@
 import * as api from '../../api/api';
 import types from '../types';
 import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
+import { validarCampos } from '../../helpers/validarRegistros';
 
 
-export const filtroBusqueda = ( momento, vista ) => async( dispatch ) => { 
+export const filtroBusqueda = (momento, vista) => async (dispatch) => {
     try {  // param vista, saber que componente esta haciendo la llamada para saber que estadoReducer actualizar con la data.
-        const { id } = JSON.parse( localStorage.getItem('userActive') );
+        const { id } = JSON.parse(localStorage.getItem('userActive'));
         let { data } = await api.indicadoresUserActivo({ momento, id });
 
         if (vista === 'Indicador') {
-            dispatch({ type: types.momentoAndYear, payload:{ data, momento }}) // estado vista indicador
-        }else { // la vista crear boleta al momento de generar una vuelve a pedir los indicadores para ser llenados de nuevo.
-            dispatch({ type: types.momentoAndYear, payload:{ data, momento: '' }}) // estado vista indicador
+            dispatch({ type: types.momentoAndYear, payload: { data, momento } }) // estado vista indicador
+        } else { // la vista crear boleta al momento de generar una vuelve a pedir los indicadores para ser llenados de nuevo.
+            dispatch({ type: types.momentoAndYear, payload: { data, momento: '' } }) // estado vista indicador
             dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
-        }              
-        return data;   
+        }
+        return data;
     } catch (err) {
-        console.log( err.message );
+        console.log(err.message);
     }
 }
 
 
-export const allIndicadorOfUser = () => async( dispatch, getState ) => {
+export const allIndicadorOfUser = () => async (dispatch, getState) => {
     try {
         const { momento } = getState().indicador
-        const { id } = JSON.parse( localStorage.getItem('userActive') );
+        const { id } = JSON.parse(localStorage.getItem('userActive'));
         let { data } = await api.indicadoresUserActivo({ momento, id });
         dispatch({ type: types.indicadoresByUser, payload: data });
-        
+
     } catch (err) { console.log(err.message) }
 }
 
 
-export const limpiarFormAlActualizar = () => ( {type: types.limpiarInputsForm} )
+export const limpiarFormAlActualizar = () => ({ type: types.limpiarInputsForm })
 
 
-export const actualizarIndicadorBD = ( id, dataForUpdate ) => async( dispatch ) => {
+export const actualizarIndicadorBD = (dataForUpdate) => async (dispatch) => {
+    await api.updateIndicadorActivo(dataForUpdate.id, dataForUpdate);
 
-    await api.updateIndicadorActivo( id, dataForUpdate );
-
-    dispatch({ type: types.refreshData, payload: { id, dataForUpdate } });
-    dispatch( limpiarFormAlActualizar() );
+    dispatch({ type: types.refreshData, payload: { id: dataForUpdate.id, dataForUpdate } });
+    dispatch(limpiarFormAlActualizar());
 
     alertSuccess('Tus modificaciones han sido realizadas');
 }
@@ -52,11 +52,11 @@ export const indicadorActivo = (values) => ({
 })
 
 
-export const deleteIndicador = ( id ) => {
-    return async(dispatch) => {
+export const deleteIndicador = (id) => {
+    return async (dispatch) => {
         const resp = await alertDeleteItems('¿Eliminar indicador?');
-        
-        if ( resp ) {
+
+        if (resp) {
             await api.eliminarIndicadorDB(id);
             dispatch({ type: types.deleteAnIndicador, payload: id });
             alertSuccess('La acción ha sido completada');

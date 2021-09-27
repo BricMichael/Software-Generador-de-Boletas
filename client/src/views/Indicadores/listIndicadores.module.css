@@ -35,7 +35,7 @@
 
 .padding {
     padding: 7px 4px;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 200;
 }
 .indIndividual > .padding:nth-child(1){ font-weight: 700; }
@@ -79,6 +79,8 @@
     top: 15px;
     right: 5px;
 }
+
+.noResults { margin-bottom: 13px; }
 
 @media screen and ( max-width: 1125px ) { .solucion { width: 90%; } }
 
