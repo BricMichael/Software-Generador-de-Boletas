@@ -1,13 +1,13 @@
 import * as api from '../../api/api';
 import types from '../types';
 import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
-import { validarCampos } from '../../helpers/validarRegistros';
 
 
-export const filtroBusqueda = (momento, vista) => async (dispatch) => {
+
+export const filtroBusqueda = (momento, vista, idUser) => async (dispatch) => {
     try {  // param vista, saber que componente esta haciendo la llamada para saber que estadoReducer actualizar con la data.
         const { id } = JSON.parse(localStorage.getItem('userActive'));
-        let { data } = await api.indicadoresUserActivo({ momento, id });
+        let { data } = await api.indicadoresUserActivo({ momento, id: !idUser ? id : idUser });
 
         if (vista === 'Indicador') {
             dispatch({ type: types.momentoAndYear, payload: { data, momento } }) // estado vista indicador
@@ -26,7 +26,7 @@ export const allIndicadorOfUser = () => async (dispatch, getState) => {
     try {
         const { momento } = getState().indicador
         const { id } = JSON.parse(localStorage.getItem('userActive'));
-        let { data } = await api.indicadoresUserActivo({ momento, id });
+        const { data } = await api.indicadoresUserActivo({ momento, id });
         dispatch({ type: types.indicadoresByUser, payload: data });
 
     } catch (err) { console.log(err.message) }

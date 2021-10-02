@@ -7,7 +7,7 @@ const urlRegistro = 'http://localhost:4000/api/registro';
 const urlConfiguracion = 'http://localhost:4000/api';
 
 /*Peticiones a la Api usuarios*/
-export const apiGetUserByCedula = (cedula) => axios.get(`${urlPersonal}/${cedula}`);
+export const apiGetUsers = (component) => axios.get(`${urlPersonal}/${component}`);
 export const validarLogin = (datos) => axios.post(`${urlPersonal}Validar`, datos);
 export const updateRegisterPersonal = (id, newData) => axios.put(`${urlPersonal}/${id}`, newData);
 export const updatePasswordPersonal = (id, newPassword) => axios.put(`${urlPersonal}Password/${id}`, newPassword);

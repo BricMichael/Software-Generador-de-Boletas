@@ -152,7 +152,7 @@
 }
 
 .user > p{
-    font-size: 2rem;
+    font-size: 1.9rem;
     background: #2255a4;
     padding: 15px 15px;
     border-radius: 3px;
@@ -171,7 +171,7 @@
 }
 
 
-@media screen and ( max-width:860px) {
+@media screen and ( max-width:890px) {
 
     .Dashheader  {
         padding: 18px 10px 0px 10px;;

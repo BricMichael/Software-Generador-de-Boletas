@@ -1,7 +1,7 @@
 .estilosCoordinador {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-around;
   
 }
 
@@ -13,7 +13,7 @@
     width: 350px;
     padding: 10px;
     border-radius: 4px;
-    margin: 2rem 0px 0.9rem 10rem;
+    margin-top: 2rem;
 }
 
 /*ESITLOS DE LOS COMENTARIOS*/
@@ -22,6 +22,7 @@
     font-weight: bold;
     text-align: left;
     margin-bottom: 0.6rem;
+    color: #012c66;
 }
 .comentsObservaciones {
     resize: none;
@@ -33,7 +34,7 @@
     font-family: arial;
     font-size: 17px;
     border-radius: 3px;
-    border: 2px solid #447bc4;
+    border: 2px solid #0a3368;
 }
 
 .comentsCorreo {
@@ -48,7 +49,7 @@
 .comentsEnviarBtn {
     border: none;
     color: rgb(233, 221, 221);
-    background: #447bc4;
+    background: #012c66;
     border-radius: 5px;
     width: 100%;
     padding: 5px;
@@ -62,11 +63,11 @@
 }
 .comentsObservaciones:focus {
     outline: none;
-    border: 2px solid #447bc4;
+    border: 2px solid #012c66;
 }
 
 .comentsCorreo:focus {
-    border-bottom: 2px solid #447bc4;
+    border-bottom: 2px solid #012c66;
     outline: none;
 }
 

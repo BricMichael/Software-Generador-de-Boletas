@@ -6,7 +6,7 @@
 .contentSearchForm {
     background: #fff;
     padding: 10px 5px;
-    width: 380px;
+    width: 390px;
     margin: auto;
     border-radius: 6px;
     margin-bottom: 0.8rem;
@@ -24,11 +24,11 @@
 
 .SearchFormInput {
     border: none;
-    border-bottom: 2px solid #808080;
+    border-bottom: 2px solid #afa8a8;
     padding: 7px 3px;
-    font-size: 17px;
+    font-size: 15.7px;
     color: #000;
-    width: 245px;
+    width: 250px;
     transition: border-bottom .3s ease;
 }
 

@@ -1,7 +1,11 @@
+.contentOptionsSearch {
+    width: 400px;
+}
+
 .coordinador {
     font-size: 19px;
     margin-left: 2rem;
-    text-align: center;
+    margin: auto;
     margin-top: 2rem;
 }
 
@@ -11,9 +15,9 @@
     width: 280px;
     display: flex;
     flex-direction: column;
+    margin: auto;
     padding: 10px;
     border-radius: 3px;
-    margin-left: 2rem;
     margin-top: 0.6rem;
 }
 
@@ -23,7 +27,7 @@
     border-bottom: 2px solid #b1acac;
     color: #363636;
     padding: 8px 7px;
-    margin: 0.3rem 0px;
+    margin: 1rem 0;
     /* width: 230px; */
     transition: border-bottom .3s ease;
 }
@@ -37,6 +41,7 @@
     color: #363636;
     margin: 0.3rem 0px;
     border-bottom: 2px solid #b1acac;
+    border-radius: 0;
 }
 
 .optionsCoordinador > button {
@@ -47,7 +52,7 @@
     padding: 7px;
     font-size: 19px;
     width: 100%;
-    background: #447bc4;
+    background: #012c66;
     color: #eee;
     transition: background .3s ease;
 }
@@ -62,5 +67,15 @@
 }
 
 .optionsCoordinador > button:hover {
-    background: #3877c9;
+    background: #093670;
+}
+
+.labelCoordinador {
+    padding-left: 7px;
+    text-align: left;
+    font-size: 18.5px;
+    color: #000;
+}
+.msgNotIndicadores {
+    margin-top: 1.5rem;  
 }

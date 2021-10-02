@@ -10,42 +10,50 @@ import BotonHome from "../../components/BotonVolverYSubir/BotonHome";
 import Options from "../../components/Options/Options";
 import OptionsCoordinador from "../../components/Options/OptionsCoordinador";
 import { roles } from "../../helpers/roles";
+import { useState } from 'react';
 
 
 
-const Indicadores = () => { 
-    backgroundColorPage('#012c66'); 
+const Indicadores = () => {
+    backgroundColorPage('#012c66');
     document.title = 'Crear Indicador';
 
     const dispatch = useDispatch();
-    const { rol } = JSON.parse( localStorage.getItem('userActive') ); 
-     
-    const limpiarState = () => dispatch( limpiarIndicadores() );
-    
+    const [loadingData, setLoadindData] = useState(false);
+    const [userSelectedByCoordinador, setUserSelectedByCoordinador] = useState({ rolUserSelected: '', nameUser: '' }); //rol del usuario que seleccione el coordinador en optionsCoordinador
+
+    const { rol } = JSON.parse(localStorage.getItem('userActive'));
+
+    const limpiarState = () => dispatch(limpiarIndicadores());
+
     return (
         <>
-            <BotonHome resetState={ limpiarState } />
-            <Header 
-            title={ rol === roles.coordinador 
-                ? 'Observación de Indicadores' 
-                : 'Creación de Indicadores' } 
-            marginTop='-4.4rem' 
-            /> 
+            <BotonHome resetState={limpiarState} />
+            <Header
+                title={rol === roles.coordinador
+                    ? 'Observación de Indicadores'
+                    : 'Creación de Indicadores'}
+                marginTop='-4.4rem'
+            />
 
-            { rol !== roles.coordinador && 
+            {rol !== roles.coordinador &&
                 <>
                     <CreaIndicador />
-                    <Options vista='Indicador' />
+                    <Options vista='Indicador' loadingData={setLoadindData} />
                 </>
             }
 
-            { rol === roles.coordinador && 
+            {rol === roles.coordinador &&
                 <div className={style.estilosCoordinador}>
-                    <OptionsCoordinador />
+                    <OptionsCoordinador loadingData={setLoadindData} setRolUser={setUserSelectedByCoordinador} />
                     <ComentariosEmail />
                 </div>
             }
-            <ListaIndicadores />
+            {
+                loadingData && <p className='loadingMsg'>Cargando...</p>
+            }
+            <ListaIndicadores userSelected={userSelectedByCoordinador} />
+
         </>
     );
 }

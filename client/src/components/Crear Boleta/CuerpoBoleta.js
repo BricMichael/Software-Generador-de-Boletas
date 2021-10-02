@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import materiaConIndicadores from "../../helpers/IndicaDocenteBoleta";
@@ -16,6 +17,7 @@ const CuerpoBoleta = () => {
     const history = useHistory();
     const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
+    const [loadingData, setLoadingData] = useState(false);
 
     let comprobacion = indicadoresByUser.length > 0;
 
@@ -28,7 +30,8 @@ const CuerpoBoleta = () => {
 
     return (
         <>
-            <Options vista='Boleta' />
+            <Options vista='Boleta' loadingData={setLoadingData} />
+            {loadingData && <p className='loadingMsg'>Cargando...</p>}
             {
                 comprobacion &&
                 <div className={style.display}>
@@ -67,11 +70,12 @@ const CuerpoBoleta = () => {
                 </div>
             }
 
-            <div>
-                <button onClick={ejecutar} className={style.juepa} >
-                    Guardar Boleta
-                </button>
-            </div>
+            {comprobacion &&
+                <div>
+                    <button onClick={ejecutar} className={style.juepa} >
+                        Guardar Boleta
+                    </button>
+                </div>}
         </>
     )
 }

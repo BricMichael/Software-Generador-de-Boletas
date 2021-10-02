@@ -14,3 +14,11 @@ body{
 a{
   text-decoration: none;
 }
+
+.loadingMsg {
+  margin: auto;
+  width: 40%;
+  color: rgb(218, 210, 196);
+  font-size: 18px;
+  margin-top: 1.2rem;
+}
