@@ -1,6 +1,7 @@
 import Modal from "./Modal";
-import style from './UpdateIndicador.module.css';
+import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import style from './UpdateIndicador.module.css';
 import { useForm } from "../../helpers/useForm";
 import { actualizarIndicadorBD, limpiarFormAlActualizar } from "../../Redux/actions/indicadoresActions";
 import { roles } from "../../helpers/roles";
@@ -14,8 +15,14 @@ const UpdateIndicador = ({ closeModal }) => {
 
     const rolUser = JSON.parse(localStorage.getItem('userActive')).rol
 
-    const [values, handleInputChange] = useForm(dataIndicador);
+    const [values, handleInputChange, reset] = useForm(dataIndicador);
     const { indicador, literal, area, condicion_especial, grado, momento } = values;
+
+    useEffect(() => {
+        return () => {
+            reset();
+        }
+    }, [])
 
 
     const updateNewData = (e) => {
@@ -36,7 +43,9 @@ const UpdateIndicador = ({ closeModal }) => {
             <form className={style.formModal}>
                 <h2 className={style.titleFormModal}>Actualizando Indicador</h2>
                 <textarea
-                    className={`${style.ModaltextArea} ${rolUser === roles.especialista && style.Height}`} name="indicador" value={indicador}
+                    className={`${style.ModaltextArea} ${rolUser === roles.especialista && style.Height}`}
+                    name="indicador"
+                    value={indicador}
                     onChange={handleInputChange}
                     placeholder="Editando indicador">
                 </textarea>

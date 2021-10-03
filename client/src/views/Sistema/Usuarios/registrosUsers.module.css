@@ -1,4 +1,4 @@
-.contentInitial{
+.contentInitial {
     display: flex;
     width: 100%;
     align-items: flex-start;
@@ -41,17 +41,19 @@
     border: none;
     border-bottom: 2px solid #d8d8d8;
     font-size: 16px;
+    padding-left: 3px;
     margin-bottom: 16px;
     height: 25px;
-    padding: 0px 8px;
     width: 100%;
     transition: border-bottom .5s ease;
 }
 
 .optionsRegister { 
     color: #363636;
+    padding-left: 0;
     border: none;
     border-bottom: 2px solid #d8d8d8;
+    border-radius: 0;
     font-size: 16px;
     margin-bottom: 16px;
     width: 100%;
