@@ -20,7 +20,7 @@ const Indicadores = () => {
 
     const dispatch = useDispatch();
     const [loadingData, setLoadindData] = useState(false);
-    const [userSelectedByCoordinador, setUserSelectedByCoordinador] = useState({ rolUserSelected: '', nameUser: '' }); //rol del usuario que seleccione el coordinador en optionsCoordinador
+    const [userSelectedByCoordinador, setUserSelectedByCoordinador] = useState({ rolUserSelected: '', nameUser: '' }); //rol y nombre del usuario que seleccione el coordinador en optionsCoordinador
 
     const { rol } = JSON.parse(localStorage.getItem('userActive'));
 

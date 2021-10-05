@@ -23,6 +23,11 @@ const types = {
     botonResetState: '[BOLETA] BotonResetData',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
 
+
+    setDataUser: '[CONFIG] Set10Users',
+    existeRolDirector: '[CONFIG] Existe registro',
+    existeRolCoordinador: '[CONFIG] Existe registro',
+
 }
 
 

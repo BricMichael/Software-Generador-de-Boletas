@@ -4,7 +4,7 @@ const urlPersonal = 'http://localhost:4000/api/personal';
 const urlIndicador = 'http://localhost:4000/api/indicadores';
 const urlBoleta = 'http://localhost:4000/api/boleta';
 const urlRegistro = 'http://localhost:4000/api/registro';
-const urlConfiguracion = 'http://localhost:4000/api';
+const urlConfiguracion = 'http://localhost:4000/api/config/';
 
 /*Peticiones a la Api usuarios*/
 export const apiGetUsers = (component) => axios.get(`${urlPersonal}/${component}`);
@@ -33,16 +33,17 @@ export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearB
 export const apiRegisterStudent = (datos) => axios.post(`${urlRegistro}Estudiante`, datos);
 export const apiRegisterPersonal = (datos) => axios.post(`${urlRegistro}Usuario`, datos);
 export const apiGetAllRegisters = (param) => axios.get(`${urlRegistro}Usuarios`, { params: { param } });
-export const getStudentByCedula = (cedula) => axios.post(`${urlRegistro}Unico`, cedula);
+export const getStudentByCedula = (cedula) => axios.post(`${urlRegistro}Student`, cedula);
 export const apiUpdateStudent = (id, dataNew) => axios.put(`${urlRegistro}/${id}`, dataNew);
 export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}Eliminar/${id}`, { params: { tabla: nameTable } });
 
 
 /* Peticiones configuración del sistema */
 
-export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}/allMaterias`);  //Materias en la Bd.
-export const apiAllStudents = () => axios.get(`${urlConfiguracion}/allStudents`);
-export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}/savedMateria`, datos);
-export const apiDeleteStudentsByGrado = (grado) => axios.delete(`${urlConfiguracion}/deleteByGrado/${grado}`);
-export const apiDeleteAllStudents = () => axios.delete(`${urlConfiguracion}/truncateData`);
+export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}allMaterias`);  //Materias en la Bd.
+export const apiTotalUsersByRol = () => axios.get(`${urlConfiguracion}totalUserByRol`);
+export const apiAllStudents = () => axios.get(`${urlConfiguracion}allStudents`);
+export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}savedMateria`, datos);
+export const apiDeleteStudentsByGrado = (grado) => axios.delete(`${urlConfiguracion}deleteByGrado/${grado}`);
+export const apiDeleteAllStudents = () => axios.delete(`${urlConfiguracion}truncateData`);
 

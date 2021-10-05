@@ -9,20 +9,20 @@ import { backBtn, handleAreaSelected, nextBtn, validacionUseEffect } from '../..
 
 const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser } }) => { //userSelected por coordinador.
     const dispatch = useDispatch();
+
     const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
     const momentoState = useSelector(state => state.indicador.momento);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
 
     const [handleOpenModal, setHandleOpenModal] = useState(false);
-    const [handleMaterias, setHandleMaterias] = useState({ dataSelected: [], allData: [], indice: 0 });
     const [msgData, setMsgData] = useState(''); // mensaje de aviso, cuando un área no tiene indicadores.
+    const [handleMaterias, setHandleMaterias] = useState({ dataSelected: [], allData: [], indice: 0 });
 
     const { allData, indice, dataSelected } = handleMaterias;
     const { rol } = JSON.parse(localStorage.getItem('userActive'));
     const materiasShowOptions = (rolUserSelected === roles.especialista || rol === roles.especialista)
         ? materiasEspecialista
         : materiasDocente
-
 
     const momentoRef = useRef(momentoState);
     const nameUserRef = useRef(nameUser);

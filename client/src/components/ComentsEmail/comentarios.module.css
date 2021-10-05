@@ -73,36 +73,18 @@
 
 
 @media screen and ( max-width: 1250px ){ 
-    .active > p {
-        font-size: 1.2rem;
-    }
-    .active {
-        width: 30%;
-    }
-}
-
-
-
-   
-@media screen and ( max-width: 915px ){ 
-    .comentsForm {
-        margin: 2rem 0px 0.9rem 7rem;
-    }
+    .active > p { font-size: 1.2rem; }
+    .active { width: 30%;}
 }
 
 @media screen and ( max-width: 860px ){
     .active > p {  font-size: 1.1rem; }
 }
 
-
-
 @media screen and ( max-width: 829px ) {
      .active { width: 35% }
      .active > p {  font-size: 1rem; font-weight: 100;}
-     .comentsForm {margin: 0rem 0px 0.9rem 3rem; }
-}
-@media screen and ( max-width: 750px ) { 
-    .comentsForm {margin: 0rem 0px 0.9rem 1.3rem; }
+     .comentsForm { margin-right: 1rem; }
 }
 
 

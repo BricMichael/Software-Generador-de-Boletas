@@ -3,11 +3,11 @@ CREATE DATABASE sistema_boletas;
 CREATE TABLE personal (
     id SERIAL NOT NULL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
+    email VARCHAR(150) UNIQUE,
     rol VARCHAR(50) NOT NULL,
     cedula VARCHAR(14) NOT NULL;
-    area_personal VARCHAR(50) NOT NULL,
-    claveuser VARCHAR(100) NOT NULL,
+    area_personal VARCHAR(50),
+    claveuser VARCHAR(100),
     fecha_reg DATE NOT NULL
 );
 

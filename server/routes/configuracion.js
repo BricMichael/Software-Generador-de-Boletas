@@ -1,15 +1,16 @@
 const { Router } = require('express');
 const router = Router();
 
-const { guardarNuevaMateria, deleteAllStudents, obtenerMaterias, 
-    consultaTotalStudents, deleteStudentsByGrado} = require('../controllers/configControllers');
+const { guardarNuevaMateria, deleteAllStudents, obtenerMaterias,
+    consultaTotalStudents, deleteStudentsByGrado, totalUsersByRol } = require('../controllers/configControllers');
 
 
-router.get('/allMaterias', obtenerMaterias );
-router.get('/allStudents', consultaTotalStudents);
-router.post('/savedMateria', guardarNuevaMateria);
-router.delete('/deleteByGrado/:grado', deleteStudentsByGrado);
-router.delete('/truncateData', deleteAllStudents);
+router.get('/config/allMaterias', obtenerMaterias);
+router.get('/config/allStudents', consultaTotalStudents);
+router.get('/config/totalUserByRol', totalUsersByRol);
+router.post('/config/savedMateria', guardarNuevaMateria);
+router.delete('/config/deleteByGrado/:grado', deleteStudentsByGrado);
+router.delete('/config/truncateData', deleteAllStudents);
 
 
 module.exports = router;

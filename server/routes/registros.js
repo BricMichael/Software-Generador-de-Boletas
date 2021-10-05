@@ -5,7 +5,7 @@ const { registroEstudiante, registroUsuario, allUsuariosRegistrados, getEstudian
 router.get('/registroUsuarios', allUsuariosRegistrados);
 router.post('/registroEstudiante', registroEstudiante);
 router.post('/registroUsuario', registroUsuario);
-router.post('/registroUnico', getEstudiantebyCedula);
+router.post('/registroStudent', getEstudiantebyCedula);
 router.put('/registro/:id', updateEstudiante);
 router.delete('/registroEliminar/:id', eliminarRegistro);
 

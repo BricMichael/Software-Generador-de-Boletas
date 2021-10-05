@@ -12,10 +12,4 @@ router.put('/personalPassword/:id', updatePassword);
 
 
 
-
-
-
-
-
-
 module.exports = router;

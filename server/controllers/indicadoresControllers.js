@@ -49,7 +49,7 @@ const updateIndicador = async (req, res) => {
     }
 }
 
-const comentariosEmail = (req, res) => {
+const comentariosEmail = async (req, res) => {
     sgMail.setApiKey('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');
     const { comentario, nameUser, emailDestinatario } = req.body;
 
@@ -63,13 +63,14 @@ const comentariosEmail = (req, res) => {
             <span style='color:black'>${comentario}</span>         
          `
     }
-    sgMail.send(msg, (err) => {
+    const ver = await sgMail.send(msg, (err) => {
         if (err) {
             console.log(err.message)
         } else {
             res.send(`Correo enviado a ${msg.to}`)
         }
     })
+    console.log(ver)
 }
 
 const eliminarIndicador = async (req, res) => {

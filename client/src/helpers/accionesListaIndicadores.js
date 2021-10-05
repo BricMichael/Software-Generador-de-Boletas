@@ -7,7 +7,7 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
 
         setTimeout(() => {
             setMsgData('');
-        }, 3100);
+        }, 3000);
     } else {
         const indiceMateria = materias.map(item => item.materia).indexOf(targetInput.value);
         const dataSelected = areaFiltrada.indicadores;
@@ -67,3 +67,7 @@ export const validacionUseEffect = (momentoRef, nameUserRef, momentoState, nameU
         })
     }
 }
+// else => un especialista solo da una area, por ende indice 0
+// si accede a su area por el menu el indice cambiará
+// el acceso a una propiedad de ese indice dará error, por eso mostrar la posicion 0.
+// en caso de ser docente se muestra la propiedad del indice que se este accediendo.

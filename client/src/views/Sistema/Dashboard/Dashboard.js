@@ -15,8 +15,8 @@ const Dashboard = () => {
     document.title = 'Menú Principal';
     const dispatch = useDispatch();
 
-    const handle = useSelector(state => state.indicador.materias.materiasDocente)
-    handle.length === 0 && dispatch(materiasExistentes());
+    const materias = useSelector(state => state.indicador.materias.materiasDocente)
+    materias.length === 0 && dispatch(materiasExistentes());
 
     const logoutUser = () => {
         dispatch(usuarioLogeado(false));
