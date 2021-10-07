@@ -13,6 +13,6 @@ export const setDataUser = (data) => ({
 })
 
 
-export const existeRolDirector = () => ({ type: types.existeRolDirector });
+export const existeRolDirectorAction = (value = true) => ({ type: types.existeRolDirector, payload: value });
 
-export const existeRolCoordinador = () => ({ type: types.existeRolCoordinador });
+export const existeRolCoordinadorAction = (value = true) => ({ type: types.existeRolCoordinador, payload: value });

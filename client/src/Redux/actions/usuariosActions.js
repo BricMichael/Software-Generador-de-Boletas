@@ -1,7 +1,9 @@
 import * as api from '../../api/api';
 import { alertSuccess } from '../../helpers/alerts';
+import { roles } from '../../helpers/roles';
 import { validarCampos } from '../../helpers/validarRegistros';
 import types from '../types';
+import { existeRolCoordinadorAction, existeRolDirectorAction } from './configuracionActions';
 
 
 
@@ -27,8 +29,9 @@ export const registroEstudianteAction = async (values, reset, statusRegistro) =>
     }
 }
 
-export const registroPersonalAction = async (values, reset, statusRegistro) => {
+export const registroPersonalAction = (values, reset, statusRegistro) => async (dispatch) => {
     const { email, password } = values;
+    values.area = values.area === '' ? 'null' : values.area; // poner en null para el registro de coordinador
     const respErrors = validarCampos(values);
 
     if (email.length < 14) statusRegistro({ status: true, msg: 'Error: El correo electrónico debe ser mayor a 13 caracteres', type: 'error' });
@@ -42,6 +45,7 @@ export const registroPersonalAction = async (values, reset, statusRegistro) => {
         let verificacionTipo = msg === 'Usuario registrado exitosamente';
         verificacionTipo && reset();
         statusRegistro({ status: true, msg, type: verificacionTipo ? 'exito' : 'error' })
+        values.rol === roles.coordinador && dispatch(existeRolCoordinadorAction());
     }
     limpiarMsgEstado(statusRegistro);
 }
@@ -58,7 +62,7 @@ const twoNamesOfUsers = (data) => {
 
 let count = 0;
 export const allUsuarios = async () => {
-    const { data } = await api.apiGetAllRegisters();
+    const { data } = await api.apiGetAllRegisters(0);
     const names = twoNamesOfUsers(data);
 
     count = 0; // reiniciar el contador cada que se renderice el component
@@ -68,7 +72,8 @@ export const allUsuarios = async () => {
 }
 
 export const siguientes_AnterioresUsuarios = async (accion) => { // accion = next or back 
-
+    let btnBack = document.getElementById('backBtn'); // ocultar el boton de anteriores
+    let btnNext = document.getElementById('nextBtn'); // ocultar el boton de siguientes
     let newData = []
 
     if (accion === 'next') {
@@ -76,23 +81,23 @@ export const siguientes_AnterioresUsuarios = async (accion) => { // accion = nex
 
         const { data } = await api.apiGetAllRegisters(count);
         const names = twoNamesOfUsers(data);
-
         newData.push(data, names);
-        if (data[0].aviso) {
-            let btn = document.getElementById('deshabilitar')
-            btn.style.display = 'none';
-        }
+
+        if (count >= 4) btnBack.style.display = 'initial';
+
+        if (data[0].aviso) btnNext.style.display = 'none';
 
     } else {
         count = count <= 0 ? count = 0 : count - 4;
         const { data } = await api.apiGetAllRegisters(count);
         const names = twoNamesOfUsers(data);
-
         newData.push(data, names);
-        if (!data[0].aviso) {
-            let btn = document.getElementById('deshabilitar');
-            btn.style.display = 'initial';
-        }
+
+        count <= 0
+            ? btnBack.style.display = 'none'
+            : btnBack.style.display = 'initial'
+
+        if (!data[0].aviso) btnNext.style.display = 'initial';  // volver a mostrar el boton siguientes    
     }
 
     return new Promise((resolve, reject) => {
@@ -126,4 +131,7 @@ export const eliminaRegistroAction = (user, state, updateState) => async (dispat
     updateState({ datos: newData, nombres: nameFilters });
     dispatch({ type: types.setDataUser, payload: nameFilters })
     alertSuccess('El usuario ha sido eliminado', 'center');
+
+    if (user.rol === roles.coordinador) dispatch(existeRolCoordinadorAction(false))
+    else if (user.rol === 'Director') dispatch(existeRolDirectorAction(false))
 }

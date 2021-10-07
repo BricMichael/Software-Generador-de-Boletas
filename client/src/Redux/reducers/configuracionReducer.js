@@ -17,12 +17,12 @@ const configReducer = (state = initialState, action) => {
         case types.existeRolDirector:
             return {
                 ...state,
-                existeRolDirector: true
+                existeRolDirector: action.payload
             }
         case types.existeRolCoordinador:
             return {
                 ...state,
-                existeRolCoordinador: true
+                existeRolCoordinador: action.payload
             }
 
         default:

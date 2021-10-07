@@ -62,6 +62,7 @@ const updateEstudiante = async (req, res) => {
 const allUsuariosRegistrados = async (req, res) => {
     let longitudOfRegistros = await pool.query('SELECT * FROM personal ORDER BY nombre');
     let lastUser = longitudOfRegistros.rows[longitudOfRegistros.rows.length - 1].id // Obtener el ultimo usuario de la tabla BD.
+
     try {
         let valorInicial = +req.query.param;
 

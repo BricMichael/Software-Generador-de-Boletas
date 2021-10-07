@@ -25,8 +25,8 @@ const types = {
 
 
     setDataUser: '[CONFIG] Set10Users',
-    existeRolDirector: '[CONFIG] Existe registro',
-    existeRolCoordinador: '[CONFIG] Existe registro',
+    existeRolDirector: '[CONFIG] Existe rol Director',
+    existeRolCoordinador: '[CONFIG] Existe rol Coordinador',
 
 }
 

@@ -20,10 +20,7 @@ const InfoRegistros = () => {
     }
 
     useEffect(() => {
-        if (datos.length !== 0) {
-            getTotalUsers();
-            console.log('effect ejecutandose')
-        }
+        datos.length !== 0 && getTotalUsers();
 
         return () => {
             setTotales({ data: {}, totalUser: 0 });
@@ -45,7 +42,7 @@ const InfoRegistros = () => {
                         <p>Especialistas: <small>{!data.Especialista ? 0 : data.Especialista}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Coordinadores: <small>{!data.Coordinador ? 0 : data.Coordinador}</small></p>
+                        <p>Coordinador: <small>{!data.Coordinador ? 0 : data.Coordinador}</small></p>
                     </div>
                     <div className={style.dataMenu}>
                         <p>Admin: <small>{!data.Admin ? 0 : data.Admin}</small></p>
