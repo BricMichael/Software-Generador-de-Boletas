@@ -67,6 +67,18 @@
     outline: none;
     border-bottom: 2px solid #012c66;
 }
+.linkToIndicadores {
+    border: none;
+    cursor: pointer;
+    background-color: #4169e1;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    padding: 8px;
+    border-radius: 3px;
+    margin-top: 1rem;
+    align-self: flex-end;
+}
 
 /*-----*/
 
@@ -200,39 +212,6 @@
 
 .listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #3052b8; }
 
-/*----*/
-
-/*FechasBoleta */
-.titleFechas {
-    color: #012c66;
-    text-align: left;
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-}
-
-.inputsFechas{
-    padding: 5px 0;
-    margin: 0.5rem 0;
-    border: none;
-    border-bottom: 2px solid rgb(219, 217, 217);
-    font-size: 15.5px;
-    transition: border-bottom .3s ease;
-}
-
-.inputsFechas:focus {
-    outline: none;
-    border-bottom: 2px solid #012c66;
-}
-
-.linkToIndicadores {
-    background-color: #4169e1;
-    color: #fff;
-    padding: 6px;
-    border-radius: 3px;
-    margin-top: 1rem;
-    align-self: flex-end;
-}
 
 /*-----*/
 

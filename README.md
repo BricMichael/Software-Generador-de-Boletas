@@ -26,17 +26,16 @@
 
 ![screenshot](https://raw.githubusercontent.com/BricMichael/Images-Projects/master/ProyectoGeneradorBoletas.png)
 
+Proyecto para una Institución privada. Generador de Boletas Colegio República de Venezuela.
+Generación de PDFs
+Correos empresariales
+JavaScript | React | NodeJs | Postgres | CSS | Express | BBDD.
 
- Proyecto para una Institución privada. Generador de Boletas Colegio República de Venezuela. 
- Software automatizado. 
- JavaScript | React | NodeJs | Postgres | CSS | Express | BBDD.
+Alberto Graterol: Creador de la base de datos.
 
-Alberto Graterol: Programador en PHP y Javascript, a cargo de la creación del Backend, encargado de los permisos que tendrá cada usuario y creador de la base de datos.  
-
-Michael Briceño: Programador web, React en el Frontend y  Nodejs en el Backend, encargado de crear las vistas con React y las consultas del Backend.
+Michael Briceño: Programador web, encargado de crear las vistas y componentes con React, creador del Backend con Nodejs y la conexión entre el cliente y servidor.
 
 Yulianny Mendez: Programadora, diseñadora y creadora de los estilos en Figma.
-
 
 ## Contacto Devs
 

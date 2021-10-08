@@ -5,8 +5,7 @@ import types from "../types";
 const initialState = {
     listFiveStudents: [],
     studentSelected: { nombres: '', grado: '', seccion: '', docente: '' },
-    textArea: '',
-    fechaBoleta: { inicioMomento: '', finMomento: '', anioEscolar: '' },
+    descripAndDate: { textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
     setLiteralIndicadores: [],
@@ -14,7 +13,7 @@ const initialState = {
     reset: 0
 }
 
-const boletaReducer = ( state = initialState, action ) => {
+const boletaReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case types.fiveStudents:
@@ -25,78 +24,69 @@ const boletaReducer = ( state = initialState, action ) => {
                     grado: action.payload.grado,
                     seccion: action.payload.seccion,
                 }
-            };   
-        
+            };
+
         case types.nextFiveStudents:
             return {
                 ...state,
-                listFiveStudents: [...action.payload ]
+                listFiveStudents: [...action.payload]
             }
-            
+
         case types.studentSelected:
             return {
                 ...state,
-                studentSelected: { ...action.payload }    
+                studentSelected: { ...action.payload }
             }
-
-        case types.serConvivirBoleta:
+        case types.textAreaAndDate:
             return {
                 ...state,
-                textArea: action.payload
+                descripAndDate: action.payload
             }
-
-        case types.fechasTypes:
-            return{
-                ...state,
-                fechaBoleta: action.payload
-            }
-
         case types.allIndicadoresOfUser:
-            return{
+            return {
                 ...state,
-                setLiteralIndicadores: [ ...action.payload.data ],
+                setLiteralIndicadores: [...action.payload.data],
                 momento: action.payload.momento
             }
-            
+
         case types.updateLiteralDocente:
             return {
                 ...state,
-                setLiteralIndicadores: state.setLiteralIndicadores.map( prop => prop.id === action.payload.id 
-                    ? { ...prop, literal: action.payload.literal } 
-                    : prop )
-            } 
+                setLiteralIndicadores: state.setLiteralIndicadores.map(prop => prop.id === action.payload.id
+                    ? { ...prop, literal: action.payload.literal }
+                    : prop)
+            }
 
         case types.setLiteralEspecialista:
-            const check = state.literalesEspecialistas.find( value => value.area === action.payload.indicador.area );
-            
-            if( check) {
+            const check = state.literalesEspecialistas.find(value => value.area === action.payload.indicador.area);
+
+            if (check) {
                 return {
                     ...state,
-                    literalesEspecialistas: state.literalesEspecialistas.map( value => value.area === check.area 
-                        ? action.payload.indicador 
-                        : value 
+                    literalesEspecialistas: state.literalesEspecialistas.map(value => value.area === check.area
+                        ? action.payload.indicador
+                        : value
                     )
                 }
-            } else{
+            } else {
                 return {
                     ...state,
-                    literalesEspecialistas: [ ...state.literalesEspecialistas, action.payload.indicador ]
-                } 
-            }    
-            
+                    literalesEspecialistas: [...state.literalesEspecialistas, action.payload.indicador]
+                }
+            }
+
         case types.savedBoletaTypes:
             return {
                 ...state,
-                studentSelected: {nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
-                setLiteralIndicadores: [ ...action.payload ],
+                studentSelected: { nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
+                setLiteralIndicadores: [...action.payload],
                 reset: state.reset + 1
-            }  
-            
+            }
+
         case types.botonResetState:
             return {
                 ...initialState
-            }    
-        
+            }
 
         default:
             return state;

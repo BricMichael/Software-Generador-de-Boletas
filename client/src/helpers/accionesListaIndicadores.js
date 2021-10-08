@@ -10,8 +10,10 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
         }, 3000);
     } else {
         const indiceMateria = materias.map(item => item.materia).indexOf(targetInput.value);
+        const checkIndice = indiceMateria + 1 > allData.length;
+
         const dataSelected = areaFiltrada.indicadores;
-        setHandleMaterias({ ...handleMaterias, dataSelected, indice: indiceMateria + 1 });
+        setHandleMaterias({ ...handleMaterias, dataSelected, indice: checkIndice ? indiceMateria : indiceMateria + 1 });
     }
 }
 

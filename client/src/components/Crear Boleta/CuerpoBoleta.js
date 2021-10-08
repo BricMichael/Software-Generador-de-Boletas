@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import materiaConIndicadores from "../../helpers/IndicaDocenteBoleta";
 import { guardarBoletaAction } from "../../Redux/actions/boletaActions";
 import Options from "../Options/Options";
@@ -14,7 +14,7 @@ import IndicadoresEspecialista from "./IndicadoresBoleta/IndicadoresEspecialista
 const CuerpoBoleta = () => {
     // history.push('/menu-principal/creacion-de-boletas')
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const indicadoresByUser = useSelector(state => state.indicador.indicadoresByUser);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
     const [loadingData, setLoadingData] = useState(false);
@@ -27,7 +27,7 @@ const CuerpoBoleta = () => {
         dispatch(guardarBoletaAction(materiasDocente))
 
     }
-
+    console.log('hola llegó')
     return (
         <>
             <Options vista='Boleta' loadingData={setLoadingData} />
@@ -55,8 +55,7 @@ const CuerpoBoleta = () => {
                                 ))
                             }
                         </>
-                        {/* componentes de especialistas */}
-                        <>
+                        <> {/* componentes de especialistas */}
                             {comprobacion &&
                                 materiasEspecialista.map(value => (
                                     <IndicadoresEspecialista
@@ -75,7 +74,8 @@ const CuerpoBoleta = () => {
                     <button onClick={ejecutar} className={style.juepa} >
                         Guardar Boleta
                     </button>
-                </div>}
+                </div>
+            }
         </>
     )
 }
