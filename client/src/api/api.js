@@ -22,8 +22,8 @@ export const eliminarIndicadorDB = (id) => axios.delete(`${urlIndicador}/${id}`)
 
 /*Peticiones a la Api boleta*/
 
-export const apiFiveStudents = (datos) => axios.post(`${urlBoleta}Estudiantes`, datos);
-export const apiNextFiveStudents = (datos) => axios.post(`${urlBoleta}NextEstudiantes`, datos);
+export const apiListFiveStudents = (datos) => axios.post(`${urlBoleta}Estudiantes`, datos);
+export const apiButtonsFiveStudents = (datos) => axios.post(`${urlBoleta}ShowEstudiantes`, datos);
 export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos);
 export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta);
 

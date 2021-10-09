@@ -26,7 +26,7 @@ const boletaReducer = (state = initialState, action) => {
                 }
             };
 
-        case types.nextFiveStudents:
+        case types.nextOrBackFiveStudents:
             return {
                 ...state,
                 listFiveStudents: [...action.payload]

@@ -38,7 +38,7 @@ const getUsers = async (req, res) => {
             const respBD = await pool.query(`SELECT nombre, rol, area_personal, id, cedula FROM personal WHERE rol = $1 OR rol = $2`, ['Especialista', 'Docente']);
             res.json(respBD.rows);
         } else { // Mostrar todos los usuarios para que seleccionen a cual le quieren cambiar la contraseña.
-            const respBD = await pool.query(`SELECT nombre, rol, area_personal, id, cedula FROM personal`);
+            const respBD = await pool.query(`SELECT nombre, rol, area_personal, id, cedula FROM personal WHERE rol != $1`, ['Director']);
             res.json(respBD.rows);
         }
 

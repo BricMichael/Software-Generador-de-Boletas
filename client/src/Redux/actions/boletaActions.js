@@ -1,43 +1,72 @@
 import * as api from '../../api/api';
 import types from '../types';
-import Swal from 'sweetalert2';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
 
 
 
-let count = 5;
+let count = 0;
+let studentsBySeccion = 0;
+
+const eachRender = () => { // esta funcion se ejecuta cada que se cambie de grado o seccion.
+    count = 0;  // inicializar el contador en 0 cada que se cambie de grado o seccion.
+    document.getElementById('backStudents').style.display = 'none';
+    document.getElementById('nextStudents').style.display = 'initial';
+}
 
 export const listFiveStudents = ({ seccion, grado }) => async (dispatch, getState) => {
-
+    const respError = validarCampos({ seccion, grado })
     try {
-        const respError = validarCampos({ seccion, grado })
         if (respError === 'excelente') {
-            const sendSearch = { seccionSelected: seccion, gradoSelected: grado, } //data parametros.
-            const { data } = await api.apiFiveStudents(sendSearch);
-            dispatch({ type: types.fiveStudents, payload: { data, grado, seccion } });
+            const { data } = await api.apiListFiveStudents({ seccionSelected: seccion, gradoSelected: grado, });
+            dispatch({ type: types.fiveStudents, payload: { data: data[0], grado, seccion } });
+            eachRender();
+            studentsBySeccion = data[1]; // total de estuidantes por seccion.
 
             const nameDatos = getState().boleta.studentSelected.nombres;
             if (nameDatos !== '') {// reset data del estudiante seleccionado y las fechas,al cambiar de grado o seccion
                 dispatch(textAreaAndFecha({ textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' }));
                 dispatch(estudianteSelected({ nombres: '', grado: '', seccion: '', docente: '' }));
             }
-            count = 5; // reinicia la variable nuevamente a 5 cada que se busque estudiantes.
         }
 
     } catch (err) { console.log(err.message) }
 }
 
+const conditionByCountAndButton = (btn) => {
+    const nextBtn = document.getElementById('nextStudents');
+    const backBtn = document.getElementById('backStudents');
 
-export const nextFiveStudents = () => async (dispatch, getState) => {
+    if (btn === 'next') {
+        count += 5
+        backBtn.style.display = 'initial';
+        if (count + 5 >= studentsBySeccion) nextBtn.style.display = 'none';
+
+    } else {
+        count = count <= 5 ? 0 : count - 5;
+        if (nextBtn.style.display === 'none') nextBtn.style.display = 'initial';  // condiciones individules
+        if (count === 0) backBtn.style.display = 'none'; // condiciones individules
+    }
+}
+
+
+export const actionFiveStudentsButtons = (btn) => async (dispatch, getState) => { // btn => next or back
     try {
+        conditionByCountAndButton(btn);
+
         const { grado, seccion } = getState().boleta.gradoSeccion;
         const sendSearch = { valorInicial: count, seccionSelected: seccion, gradoSelected: grado, }; //data de los parametros.
-        const { data } = await api.apiNextFiveStudents(sendSearch);
+        let data = [];
 
-        dispatch({ type: types.nextFiveStudents, payload: data });
-        count += 5;
+        if (btn === 'next') {
+            const resp = await api.apiButtonsFiveStudents(sendSearch); // el valorInicial o contador siempre es +5
+            data = [...resp.data];
+        } else { // btn === back
+            const resp = await api.apiButtonsFiveStudents(sendSearch); // el valorInicial o contador es -5
+            data = [...resp.data];
+        }
 
+        dispatch({ type: types.nextOrBackFiveStudents, payload: data });
     } catch (err) {
         console.log(err.message);
     }

@@ -31,7 +31,8 @@ CREATE TABLE estudiante (
     nombres VARCHAR(255) NOT NULL,
     genero VARCHAR(50),
     grado VARCHAR(50) NOT NULL,
-    seccion VARCHAR(10) NOT NULL
+    seccion VARCHAR(10) NOT NULL,
+    boleta_generada VARCHAR(15)
 );
 
 CREATE TABLE indicador (

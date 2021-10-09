@@ -115,6 +115,7 @@ export const updateStudentModal = async (id, values, setState) => {
 
 
 export const updateRegistroAction = async (id, newData) => {
+    newData.area_personal = newData.area_personal === '' ? 'null' : newData.area_personal;
     await api.updateRegisterPersonal(id, newData);
     alertSuccess('Datos actualizados exitosamente', 'center');
 }

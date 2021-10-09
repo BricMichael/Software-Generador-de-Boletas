@@ -80,7 +80,7 @@ const TableUsers = ({ indice = 1, countName = 0 }) => {
                                         <td className={style.childrenBody}>V- {user.cedula}</td>
                                         <td className={style.childrenBody}>{user.email}</td>
                                         <td className={style.childrenBody}>
-                                            {user.area_personal === 'null' ? '' : user.area_personal}
+                                            {user.area_personal === 'null' ? 'No' : user.area_personal}
                                         </td>
                                         <td className={style.childrenBody}>{user.rol}</td>
                                         <td className={style.childrenEdit}>

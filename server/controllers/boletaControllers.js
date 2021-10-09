@@ -6,22 +6,28 @@ const { serYConvivir, especialistas, transformarDataClient } = require('../helpe
 
 
 
-const InitialsFiveStudents = async (req, res) => {
+const initialsFiveStudents = async (req, res) => {
      try {
           const { gradoSelected, seccionSelected } = req.body;
-          const respBD = await pool.query('SELECT id, nombres, grado, seccion FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, 0, 5]);
+          let data = [];
 
-          res.json(respBD.rows);
+          const respBD = await Promise.all([
+               pool.query('SELECT id, nombres, grado, seccion, boleta_generada FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, 0, 5]),
+               pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected])
+          ]);
+
+          data.push(respBD[0].rows, respBD[1].rowCount)
+          res.json(data);
      } catch (err) {
           console.log(err.message);
      }
 
 }
 
-const nextFiveStudents = async (req, res) => {
+const showFiveStudents = async (req, res) => {
      try {
           const { valorInicial, gradoSelected, seccionSelected } = req.body;
-          const respBD = await pool.query('SELECT id, nombres, grado, seccion FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]);
+          const respBD = await pool.query('SELECT id, nombres, grado, seccion, boleta_generada FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]);
 
           res.json(respBD.rows);
      } catch (err) {
@@ -129,8 +135,8 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
 
 
 module.exports = {
-     InitialsFiveStudents,
-     nextFiveStudents,
+     initialsFiveStudents,
+     showFiveStudents,
      indicadorEspecialistaByArea,
      creacionBoleta,
      modelFinalPagePdf
