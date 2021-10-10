@@ -56,15 +56,8 @@ export const actionFiveStudentsButtons = (btn) => async (dispatch, getState) => 
 
         const { grado, seccion } = getState().boleta.gradoSeccion;
         const sendSearch = { valorInicial: count, seccionSelected: seccion, gradoSelected: grado, }; //data de los parametros.
-        let data = [];
 
-        if (btn === 'next') {
-            const resp = await api.apiButtonsFiveStudents(sendSearch); // el valorInicial o contador siempre es +5
-            data = [...resp.data];
-        } else { // btn === back
-            const resp = await api.apiButtonsFiveStudents(sendSearch); // el valorInicial o contador es -5
-            data = [...resp.data];
-        }
+        const { data } = await api.apiButtonsFiveStudents(sendSearch);
 
         dispatch({ type: types.nextOrBackFiveStudents, payload: data });
     } catch (err) {
@@ -78,7 +71,10 @@ export const estudianteSelected = (estudiante) => ({ type: types.studentSelected
 
 export const textAreaAndFecha = (datos) => ({ type: types.textAreaAndDate, payload: datos });
 
-
+export const getAndSetFirmasPersonal = () => async (dispatch) => {
+    const { data } = await api.apiGetNameFirmasPersonal();
+    dispatch({ type: types.nameUsersFirmas, payload: data });
+}
 
 export const materiasExistentes = () => async (dispatch) => {
     try {
@@ -108,21 +104,20 @@ export const updateLiteralOfIndicador = (id, literal) => ({
 })
 
 
-export const setLiteralEspecialista = (indicador) => {
-    return {
-        type: types.setLiteralEspecialista,
-        payload: { indicador }
-    }
-}
+export const setLiteralEspecialista = (indicador) => ({
+    type: types.setLiteralEspecialista,
+    payload: { indicador }
+})
+
 
 
 export const botonCleanData = () => ({ type: types.botonResetState });
 
 
-const parsearIndDocente = (materias, indWitLiteral) => {
+const parsearIndDocente = (materias, indWithLiteral) => {
     const indicadoresByArea = materias.map(value => ({ area: value.materia, indicadores: [] }));
 
-    for (const item of indWitLiteral) {
+    for (const item of indWithLiteral) {
 
         for (const value of indicadoresByArea) {
             if (item.area === value.area) {
@@ -136,22 +131,17 @@ const parsearIndDocente = (materias, indWitLiteral) => {
 
 export const guardarBoletaAction = (materiasDocente) => async (dispatch, getState) => {
     // const { indicadoresByUser: data } = getState().indicador;
-    const {
-        gradoSeccion,
-        literalesEspecialistas,
-        momento,
-        setLiteralIndicadores,
-        studentSelected,
-    } = getState().boleta;
-    const { indicadoresByArea } = parsearIndDocente(materiasDocente, setLiteralIndicadores);
+    const dataBoleta = getState().boleta;
+    const { indicadoresByArea } = parsearIndDocente(materiasDocente, dataBoleta.setLiteralIndicadores);
 
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
-        gradoSeccion,
-        literalesEspecialistas,
         indicadoresByArea,
-        momento,
-        studentSelected,
+        literalesEspecialistas: dataBoleta.literalesEspecialistas,
+        momento: dataBoleta.momento,
+        descripAndDate: dataBoleta.descripAndDate,
+        studentSelected: dataBoleta.studentSelected,
+        personalFirmas: dataBoleta.personalFirmas
     });
 
     console.log('llegon response del backend =>>> ', data)

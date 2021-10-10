@@ -49,7 +49,7 @@ const PersonalReg = () => {
         if (nombre === '' || cedula === '') {
             setEstadoReg({ status: true, msg: 'Asegurate de haber llenado los campos', type: 'error' });
             limpiarMsgEstado(setEstadoReg);
-        } else if (!comprobacion) {
+        } else if (!comprobacion) { // registrando User director(a).
             const { data: { msg } } = await apiRegisterPersonal({ nombre, cedula, rol, password: '', email: '', area: 'null' });
             reset();
             setEstadoReg({ status: true, msg, type: 'exito' });

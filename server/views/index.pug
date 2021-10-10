@@ -126,13 +126,18 @@ header#header
       h2.membreteCenterTitle UNIDAD EDUCATIVA COLEGIO &ldquo;REP&Uacute;BLICA DE VENEZUELA&rdquo; 
       h2.membreteCenterTitle VALERA, ESTADO TRUJILLO
       p.membreteCenterParrafo.msg &ldquo;Mi actuaci&oacute;n y avance escolar&rdquo;
-      p.membreteCenterBold A&ntilde;o Escolar #{anioEscolar}
+      p.membreteCenterBold A&ntilde;o Escolar #{descripAndDate.anioEscolar}
     .membreteBottom
       p.membreteBottomParrafos
-        b SEGUNDO MOMENTO. &nbsp;
-        b Desde: #{fechaInicio} 
+        if momento === 'Momento 1'
+            b PRIMER MOMENTO. &nbsp;
+        else if momento === 'Momento 2'
+            b SEGUNDO MOMENTO. &nbsp;
+        else 
+            b TERCER MOMENTO. &nbsp;
+        b Desde: #{descripAndDate.inicioMomento} 
       p.membreteBottomParrafos.separacion
-        b Hasta: #{fechaFin}
+        b Hasta: #{descripAndDate.finMomento}
 .contentCabeceraDatos
   .cabeceraDatosEstudiante
     p.cabeceraEstudianteParrafo.borde
@@ -149,7 +154,7 @@ header#header
   .cabeceraDatosTextArea
     p.cabeceraTextAreaDescrip
       b SER Y CONVIVIR:
-      |  #{serYConvivir}
+      |  #{descripAndDate.textArea}
 .contentCabeceraLiterales
   p.literalesTop LEYENDA: &nbsp; &nbsp;E= EXCELENTE
   p.literalesTop B= BIEN
@@ -418,13 +423,13 @@ if indEspecialistas_2.length >= 1
 //-  Firmas del personal
 #footer
   .firmaModel.bajar
-    p.firmaBorde.top #{directora}
+    p.firmaBorde.top #{personalFirmas.directora}
     p.firmaMargin Directora
   .firmaCenter
     p.firmaCenterDocente.top Docente
     p.firmaCenterPadre.top Representante
   .firmaModel.bajar
     p.firmaBorde.top
-      | #{coordinadora}
+      | #{personalFirmas.coordinadora}
     p.firmaMargin
       | Coordinadora Pedag&oacute;gica

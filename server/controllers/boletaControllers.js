@@ -50,6 +50,22 @@ const indicadorEspecialistaByArea = async (req, res) => {
      }
 }
 
+const personalFirmas = async (req, res) => {
+     try {
+          const respDB = await pool.query('SELECT nombre, rol FROM personal WHERE rol = $1 OR rol = $2', ['Coordinador', 'Director']);
+
+          let sendNames = {};
+          respDB.rows.forEach(value => {
+               value.rol === 'Director' ? sendNames.directora = value.nombre : sendNames.coordinadora = value.nombre
+          });
+
+          res.json(sendNames);
+     } catch (err) {
+          console.log(err.message);
+
+     }
+}
+
 //BOLETA FUNCIONES
 
 let dataToBuildPDF = {};
@@ -104,10 +120,6 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           dataToBuildPDF = transformarDataClient(data);
 
 
-          // dataToBuildPDF = { grado: '5to', seccion: 'B', alumno, docente: 'Maria Sofia Perez Nuñes', resp, directora: 'Mgtr. Petronila Carreño', coordinadoraFirma: 'Mgtr. Ivanna Domínguez', prueba: 'casota1', };
-
-
-
           const options = {
                format: 'letter',
                path: `pdf/Boleta${data.studentSelected.nombres}.pdf`,
@@ -124,8 +136,8 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           console.log('pdf generated');
 
           dataToBuildPDF = {}; // reiniciar la variable.
-          res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
-          // res.send('Boleta generada wee')
+          // res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
+          res.send('Boleta generada wee')
      } catch (err) {
           console.log(err.message)
           await naveg.close();
@@ -137,6 +149,7 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
 module.exports = {
      initialsFiveStudents,
      showFiveStudents,
+     personalFirmas,
      indicadorEspecialistaByArea,
      creacionBoleta,
      modelFinalPagePdf

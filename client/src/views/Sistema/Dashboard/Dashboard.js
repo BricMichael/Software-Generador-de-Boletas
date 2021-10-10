@@ -1,6 +1,6 @@
 import styles from './dashboard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { materiasExistentes } from '../../../Redux/actions/boletaActions';
+import { getAndSetFirmasPersonal, materiasExistentes } from '../../../Redux/actions/boletaActions';
 import { Link } from 'react-router-dom';
 import DashBody from '../../../components/DashBody/DashBody';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
@@ -15,8 +15,11 @@ const Dashboard = () => {
     document.title = 'Menú Principal';
     const dispatch = useDispatch();
 
-    const materias = useSelector(state => state.indicador.materias.materiasDocente)
+    const firmasDirectorCoordinador = useSelector(state => state.boleta.personalFirmas.directora);
+    const materias = useSelector(state => state.indicador.materias.materiasDocente);
+
     materias.length === 0 && dispatch(materiasExistentes());
+    firmasDirectorCoordinador === '' && dispatch(getAndSetFirmasPersonal());
 
     const logoutUser = () => {
         dispatch(usuarioLogeado(false));

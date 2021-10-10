@@ -19,6 +19,7 @@ const types = {
     allIndicadoresOfUser: '[BOLETA] IndicadoresBoleta',
     updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
     setLiteralEspecialista: '[BOLETA] setLiteralEspecialista',
+    nameUsersFirmas: '[BOLETA] SetFirmasBoletas',
     botonResetState: '[BOLETA] BotonResetData',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
 

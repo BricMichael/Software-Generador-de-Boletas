@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouteMatch, Switch, Route }from 'react-router-dom';
+import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
@@ -16,9 +16,9 @@ const CrearBoleta = () => {
     const { path } = useRouteMatch();
 
     const resetDataBoletaReducer = () => {
-        dispatch( botonCleanData() );
+        dispatch(botonCleanData());
     }
- 
+    console.log('hola')
     return (
         <>
             <BotonHome resetState={resetDataBoletaReducer} />
@@ -26,9 +26,9 @@ const CrearBoleta = () => {
             <NavbarBoleta />
 
             <Switch>
-                <Route exact path={`${path}`} component={ Cabecera } />
-                <Route exact path={`${path}/indicadores-boleta`} component={ CuerpoBoleta } />        
-            </Switch>          
+                <Route exact path={`${path}`} component={Cabecera} />
+                <Route exact path={`${path}/indicadores-boleta`} component={CuerpoBoleta} />
+            </Switch>
         </>
     );
 }

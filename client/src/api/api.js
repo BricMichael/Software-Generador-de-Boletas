@@ -24,6 +24,7 @@ export const eliminarIndicadorDB = (id) => axios.delete(`${urlIndicador}/${id}`)
 
 export const apiListFiveStudents = (datos) => axios.post(`${urlBoleta}Estudiantes`, datos);
 export const apiButtonsFiveStudents = (datos) => axios.post(`${urlBoleta}ShowEstudiantes`, datos);
+export const apiGetNameFirmasPersonal = () => axios.get(`${urlBoleta}/firmasPersonal`);
 export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos);
 export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta);
 

@@ -10,6 +10,7 @@ const initialState = {
     momento: '',
     setLiteralIndicadores: [],
     literalesEspecialistas: [],
+    personalFirmas: { directora: '', coordinadora: '' },
     reset: 0
 }
 
@@ -72,6 +73,15 @@ const boletaReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     literalesEspecialistas: [...state.literalesEspecialistas, action.payload.indicador]
+                }
+            }
+
+        case types.nameUsersFirmas:
+            return {
+                ...state,
+                personalFirmas: {
+                    directora: action.payload.directora,
+                    coordinadora: action.payload.coordinadora
                 }
             }
 

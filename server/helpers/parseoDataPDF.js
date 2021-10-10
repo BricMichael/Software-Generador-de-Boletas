@@ -32,16 +32,12 @@ const filterIndicadoresByLongitud = (values) => {
 }
 
 
-const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, momento, textArea, fechaBoleta, studentSelected }) => {  // palabra clave <ind> es indicadores
+const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, momento, descripAndDate, studentSelected, personalFirmas }) => {  // palabra clave <ind> es indicadores
     let dataToGeneratePdf = {
-        infoStudent_Docente: studentSelected, // studentSelected tiene, docente, nombres 'alumno', textArea, seccion, grado.
-        serYConvivir: textArea,
-        directora: 'Dalimilet Herrera',
-        coordinadora: 'Coordinadora Nombre',
+        infoStudent_Docente: studentSelected, // studentSelected tiene, docente, nombres 'alumno', seccion, grado.
+        personalFirmas, // Director(a) - Coordinador(a)
         momento,
-        fechaInicio: fechaBoleta.inicioMomento.trim(),           // inicio fecha del momento escolar.
-        fechaFin: fechaBoleta.finMomento.trim(),          // fin fecha del momento escolar.
-        anioEscolar: fechaBoleta.anioEscolar.trim(),             // anio escolar membrete, ejemplo => 2021-2022
+        descripAndDate, // año, inicio fin fecha del momento escolar. SerYConvivir
         indHojaPrincipal: [[], []],            // array de 2 objectos! la longitud de los indicadores no debe ser mayor a 15. 
         tresIndByHoja_1: [],             // array de 3 objectos! la longitud de los indicadores no debe ser mayor a 11! 
         tresIndByHoja_2: [],               // array de 3 objectos! la longitud de los indicadores no debe ser mayor a 11! 
@@ -51,8 +47,8 @@ const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, mome
         indEspecialistas_1: [],             // array de 5 areas, indicadores de especialistas
         indEspecialistas_2: []
     }
-    // si solo hay tres areas asegurarme que la suma de sus indicadores no pase de 28 
-    // y así permitir que los tres entren en la primera hoja
+    /* si solo hay tres areas asegurarme que la suma de sus indicadores no pase de 28 
+    y así permitir que los tres entren en la primera hoja */
     let countInd = 0;
     let conditionMax28Ind = 28;
     const comprobacion = indicadoresByArea.length === 3;
@@ -71,7 +67,6 @@ const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, mome
         const existIndicadorMenor = indicadorMenor !== '';
 
         // ------------------Primer bucle reccorer el filtro de las areas <= 11 
-        const indicadoresMayores = existIndicadorMenor ? indCortos.filter(item => item.indicadores.length >= 6) : indCortos;
 
         if (existIndicadorMenor) {
             indCortos.length > 3
@@ -79,15 +74,15 @@ const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, mome
                 : dataToGeneratePdf.tresIndByHoja_1.push(indicadorMenor)
         }
 
+        const indicadoresMayores = existIndicadorMenor ? indCortos.filter(item => item.indicadores.length >= 6) : indCortos;
 
         for (let item of indicadoresMayores) {
             dataToGeneratePdf.tresIndByHoja_1.length < 3
                 ? dataToGeneratePdf.tresIndByHoja_1.unshift(item)
                 : dataToGeneratePdf.tresIndByHoja_2.unshift(item)
         }
-        // ------------------
 
-        // //------------------ segundo bucle, recorer la resp del filtro cuyas areas sus indicadores sean mayor o igual a 12.
+        // segundo bucle, recorer la resp del filtro cuyas areas sus indicadores sean mayor o igual a 12.
         for (let item of indMayorEqual_12) {   // ultima comprobacion, array donde sera guardado
             if (item.indicadores.length <= 15 && dataToGeneratePdf.indHojaPrincipal[0].length < 2) dataToGeneratePdf.indHojaPrincipal[0].push(item);
 
@@ -111,12 +106,6 @@ const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, mome
             : dataToGeneratePdf.indEspecialistas_2.push(item)
     }
 
-
-    // continua logica
-    //     const { indEspecialistas_1, indEspecialistas_2, ...rest } = dataToGeneratePdf;
-    //     console.log('array 1 ', indEspecialistas_1.length)
-    //     console.log('array2 ', indEspecialistas_2.length)
-    // console.log(dataToGeneratePdf);
     return dataToGeneratePdf;
 }
 

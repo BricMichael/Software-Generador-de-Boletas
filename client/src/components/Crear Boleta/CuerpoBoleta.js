@@ -38,7 +38,7 @@ const CuerpoBoleta = () => {
                     <h2>Indicadores</h2>
                     <div className={style.leyendaFlex}>
                         <h3 className={style.leyendaTitulos}>Leyenda:</h3>
-                        <p className={style.leyendaTitulos}><b>E:</b> Exelente</p>
+                        <p className={style.leyendaTitulos}><b>E:</b> Excelente</p>
                         <p className={style.leyendaTitulos}><b>B:</b> Bien</p>
                         <p className={style.leyendaTitulos}><b>RN:</b> Requiere nivelaci&oacute;n</p>
                     </div>
