@@ -8,10 +8,12 @@ const initialState = {
     descripAndDate: { textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
-    setLiteralIndicadores: [],
+    indicadoresByUser: [],
+    literalIndicadoresDocentes: [],
     literalesEspecialistas: [],
     personalFirmas: { directora: '', coordinadora: '' },
-    reset: 0
+    indicadoresByUserWithData: false,
+    materiasWithIndicadores: []
 }
 
 const boletaReducer = (state = initialState, action) => {
@@ -46,33 +48,47 @@ const boletaReducer = (state = initialState, action) => {
         case types.allIndicadoresOfUser:
             return {
                 ...state,
-                setLiteralIndicadores: [...action.payload.data],
-                momento: action.payload.momento
+                indicadoresByUser: [...action.payload.data],
+                momento: action.payload.momento,
+                indicadoresByUserWithData: false
             }
-
-        case types.updateLiteralDocente:
+        case types.checkLlegaronDatos:
             return {
                 ...state,
-                setLiteralIndicadores: state.setLiteralIndicadores.map(prop => prop.id === action.payload.id
-                    ? { ...prop, literal: action.payload.literal }
-                    : prop)
+                materiasWithIndicadores: action.payload,
+                indicadoresByUserWithData: true
             }
-
-        case types.setLiteralEspecialista:
-            const check = state.literalesEspecialistas.find(value => value.area === action.payload.indicador.area);
+        case types.indicadorLiteralDocente:
+            const check = state.literalIndicadoresDocentes.find(value => value.area === action.payload.area);
 
             if (check) {
                 return {
                     ...state,
-                    literalesEspecialistas: state.literalesEspecialistas.map(value => value.area === check.area
-                        ? action.payload.indicador
-                        : value
+                    literalIndicadoresDocentes: state.literalIndicadoresDocentes.map(
+                        item => item.area === check.area ? action.payload : item
                     )
                 }
             } else {
                 return {
                     ...state,
-                    literalesEspecialistas: [...state.literalesEspecialistas, action.payload.indicador]
+                    literalIndicadoresDocentes: [...state.literalIndicadoresDocentes, action.payload]
+                }
+            }
+
+        case types.setLiteralEspecialista:
+            const checkArea = state.literalesEspecialistas.find(value => value.area === action.payload.area);
+
+            if (checkArea) {
+                return {
+                    ...state,
+                    literalesEspecialistas: state.literalesEspecialistas.map(value => value.area === checkArea.area
+                        ? action.payload : value
+                    )
+                }
+            } else {
+                return {
+                    ...state,
+                    literalesEspecialistas: [...state.literalesEspecialistas, action.payload]
                 }
             }
 
@@ -90,7 +106,6 @@ const boletaReducer = (state = initialState, action) => {
                 ...state,
                 studentSelected: { nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
                 setLiteralIndicadores: [...action.payload],
-                reset: state.reset + 1
             }
 
         case types.botonResetState:

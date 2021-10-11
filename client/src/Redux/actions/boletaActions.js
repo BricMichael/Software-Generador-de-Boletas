@@ -98,45 +98,27 @@ export const indicadorEspecialistaByArea = (grado, area, setLiteralIndicadorByAr
 }
 
 
-export const updateLiteralOfIndicador = (id, literal) => ({
-    type: types.updateLiteralDocente,
-    payload: { id, literal }
-})
-
-
 export const setLiteralEspecialista = (indicador) => ({
     type: types.setLiteralEspecialista,
-    payload: { indicador }
+    payload: indicador
 })
 
-
+export const literalesByAreaDocente = (indicadoresWithLiteralByArea) => ({
+    type: types.indicadorLiteralDocente,
+    payload: indicadoresWithLiteralByArea
+});
 
 export const botonCleanData = () => ({ type: types.botonResetState });
 
 
-const parsearIndDocente = (materias, indWithLiteral) => {
-    const indicadoresByArea = materias.map(value => ({ area: value.materia, indicadores: [] }));
 
-    for (const item of indWithLiteral) {
-
-        for (const value of indicadoresByArea) {
-            if (item.area === value.area) {
-                value.indicadores.push({ indicador: item.indicador, literal: item.literal })
-            }
-        }
-    }
-    return { indicadoresByArea }
-}
-
-
-export const guardarBoletaAction = (materiasDocente) => async (dispatch, getState) => {
-    // const { indicadoresByUser: data } = getState().indicador;
+export const guardarBoletaAction = () => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
-    const { indicadoresByArea } = parsearIndDocente(materiasDocente, dataBoleta.setLiteralIndicadores);
+
 
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
-        indicadoresByArea,
+        indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
         literalesEspecialistas: dataBoleta.literalesEspecialistas,
         momento: dataBoleta.momento,
         descripAndDate: dataBoleta.descripAndDate,

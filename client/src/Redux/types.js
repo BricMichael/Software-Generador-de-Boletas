@@ -17,9 +17,10 @@ const types = {
     studentSelected: '[BOLETA] StudentSelected',
     textAreaAndDate: '[BOLETA SetTextAreaAndFecha]',
     allIndicadoresOfUser: '[BOLETA] IndicadoresBoleta',
-    updateLiteralDocente: '[BOLETA] UpdateLiteralDocente',
+    indicadorLiteralDocente: '[BOLETA] IndicadoresLiteralDocente',
     setLiteralEspecialista: '[BOLETA] setLiteralEspecialista',
     nameUsersFirmas: '[BOLETA] SetFirmasBoletas',
+    checkLlegaronDatos: '[BOLETA] materiaWithIndicadores',
     botonResetState: '[BOLETA] BotonResetData',
     savedBoletaTypes: '[BOLETA] GuardarBoleta',
 

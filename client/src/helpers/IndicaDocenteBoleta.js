@@ -8,7 +8,7 @@ const materiaConIndicadores = (materias, indicadoresOfMateria, component) => {
         for (let value of arrayMulti) {
             if (item.area === value.area) {
                 component === 'Cuerpo Boleta'
-                    ? value.indicadores.push({ id: item.id, indicador: item.indicador })
+                    ? value.indicadores.push({ id: item.id, indicador: item.indicador, literal: item.literal })
                     : value.indicadores.push(item);
             }
         }

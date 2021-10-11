@@ -9,12 +9,10 @@ export const filtroBusqueda = (momento, vista, idUser) => async (dispatch) => {
         const { id } = JSON.parse(localStorage.getItem('userActive'));
         let { data } = await api.indicadoresUserActivo({ momento, id: !idUser ? id : idUser });
 
-        if (vista === 'Indicador') {
-            dispatch({ type: types.momentoAndYear, payload: { data, momento } }) // estado vista indicador
-        } else { // la vista crear boleta al momento de generar una vuelve a pedir los indicadores para ser llenados de nuevo.
-            dispatch({ type: types.momentoAndYear, payload: { data, momento: '' } }) // estado vista indicador
-            dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
-        }
+        vista === 'Indicador'
+            ? dispatch({ type: types.momentoAndYear, payload: { data, momento } }) // estado vista indicador
+            : dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
+
         return data;
     } catch (err) {
         console.log(err.message);
