@@ -74,8 +74,6 @@ const deleteAllStudents = async (req, res) => {
 
 
 
-
-
 module.exports = {
     guardarNuevaMateria,
     consultaTotalStudents,

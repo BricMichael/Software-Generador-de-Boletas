@@ -1,26 +1,29 @@
-.parte1 {
+.componentsTopStudent {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    margin: 2rem 0;
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+    align-content: flex-start;
 }
-.parte2{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 4rem auto;
-    width: 65%;
+
+.child1 {
+    margin-left: 2rem;
 }
+.child2{
+    width: 28%; 
+    margin-left: 8rem;
+    margin-right: 1rem;
+}
+
 
 /*Student Selected*/
 .contentForm {
     display: flex;
     flex-direction: column;
     background: #fff;
-    width: 40%;
+    width: 100%;
     border-radius: 4px;
     padding: 15px;
-    margin: 0 2rem;
+    padding-bottom: 10px;
 }
 
 .group {
@@ -89,11 +92,11 @@
     background: #fff;
     border-radius: 4px;
     padding: 15px;
-    /* margin-bottom: 0.6rem; */
+    margin-bottom: 0.6rem;
 }
 
 .searchStudents {
-    color: #25272c;
+    color: #4169e1;
     font-size: 21px;
     display: flex;
     margin-bottom: 0.4rem;
@@ -143,10 +146,10 @@
 }
 
 .listaEstudiantes > h3 { 
-    color: #25272c;
+    color: #4169e1;
     text-align: left; 
     padding: 2px 1px; 
-    border-bottom: 2px solid #c0c8d3;
+    border-bottom: 1px solid #8397d3;
 }
 
 .table {
@@ -206,46 +209,65 @@
     border-radius: 4px;
     padding: 4px 3px;
     font-size: 18px;
+    margin: 3px 0;
     color: #fff;
     transition: box-shadow .2s ease;       
 }
 
 .listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #3052b8; }
 
-
+.msgListStudents { color: #3052b8; margin-top: 6px;  }
 /*-----*/
-
 
 
 @media screen and ( max-width: 1150px ) {
     .listaFiveFlex { font-size: 12px; }
-    .listaEstudiantes { width: 580px; margin-left: 2rem; }
-    .FormSearchStudents { margin-left: 1rem }
-    .parte2{
-        width: 90%;
+    .listaEstudiantes { width: 530px; }
+    .table > .th, .borderRadius {
+        border: none;
+        padding: 12px;
+    }
+ 
+    .child2{
+        width: 33%;
+        margin-left: 3.5rem;
     }
 }
 
-@media screen and ( max-width: 1055px) { .contentForm {  margin-left: 2.5rem; } }
+/* @media screen and ( max-width: 1055px) { .contentForm {  margin-left: 2.5rem; } } */
 
-@media screen and ( max-width: 1010px) { .contentForm {  margin-left: 1.6rem; } }
+@media screen and ( max-width: 970px) {
+    .FormSearchStudents { margin-right: 0rem }
+    .Cboleta_input { font-size: 14.5px; }
+    .child2{
+        margin-left: 1.7rem;
+    }
+    .linkToIndicadores {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
 
-@media screen and ( max-width: 980px) { 
-    .FormSearchStudents { margin-left: 1rem }
-    .listaEstudiantes { width: 515px;; margin-left: 2rem; }
+@media screen and ( max-width: 905px) { 
+    .child1 { margin-left: 1.3rem; }
+    .listaEstudiantes { width: 490px;  }
+    .child2{
+        margin-right: 0.7rem;
+    }
 }
 
 
 @media screen and ( max-width: 936px) { 
-    .FormSearchStudents { margin-right: 0rem }
-    .listaEstudiantes { width: 520px;  }
-    .Cboleta_input { font-size: 14.5px; }
+    
 }
 
 
  @media screen and ( max-width: 851px) {
     .listaFiveFlex { font-size: 12px; }
-    .listaEstudiantes { width: 85%;  }
+    .listaEstudiantes { width: 470px;  }
     .table > th, td { padding: 6px; }
-    .contentForm {  margin-left: 1.8rem;  width: 50%}
+    .child2{
+        margin-left: 0.8rem;
+    }
+  
 }

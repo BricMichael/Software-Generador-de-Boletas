@@ -13,6 +13,7 @@ const types = {
 
 
     fiveStudents: '[BOLETA] FiveStudents',
+    studentBoletaCreated: '[BOLETA] studentBoletaCreated',
     nextOrBackFiveStudents: '[BOLETA] nextOrBackFiveStudents',
     studentSelected: '[BOLETA] StudentSelected',
     textAreaAndDate: '[BOLETA SetTextAreaAndFecha]',

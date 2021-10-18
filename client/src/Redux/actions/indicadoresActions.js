@@ -43,7 +43,6 @@ export const actualizarIndicadorBD = (dataForUpdate) => async (dispatch) => {
     alertSuccess('Tus modificaciones han sido realizadas');
 }
 
-
 export const indicadorActivo = (values) => ({
     type: types.indicadorActive,
     payload: values

@@ -21,6 +21,7 @@ const CuerpoBoleta = () => {
     const withData = useSelector(state => state.boleta.indicadoresByUserWithData);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
 
+
     const [loadingData, setLoadingData] = useState(false);
 
 
@@ -29,7 +30,7 @@ const CuerpoBoleta = () => {
     useEffect(() => {
         if (!withData && comprobacion) {
             const data = materiaConIndicadores(materiasDocente, indicadoresByUser, 'Cuerpo Boleta');
-
+            console.log('usefect solo una')
             dispatch({ type: types.checkLlegaronDatos, payload: data });// withData se actualiza en TRUE para que la llamada a la funcion no se ejecute cada que se rendirice el componente gracias a la condicion, y en el payload se manda el retorno de la funcion y de esta manera los datos siempre seran leidos del estado global en cada render y no de una nueva llamada a la funcion.
         }
     }, [indicadoresByUser])

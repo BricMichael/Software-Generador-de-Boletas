@@ -11,7 +11,7 @@ const registroEstudiante = async (req, res) => {
             res.json({ msg: 'Error: Ya existe un estudiante con esa cédula escolar' });
         }
         else {
-            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion ) VALUES($1,$2, $3, $4, $5)', [cedulaE.trim(), nombres.toUpperCase(), genero, grado, seccion]);
+            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion, boleta_generada) VALUES($1,$2, $3, $4, $5, $6)', [cedulaE.trim(), nombres.toUpperCase(), genero, grado, seccion, 'Pendiente']);
 
             res.json({ msg: 'Estudiante registrado exitosamente' });
         }

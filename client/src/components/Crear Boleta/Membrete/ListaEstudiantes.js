@@ -4,7 +4,7 @@ import { actionFiveStudentsButtons, estudianteSelected } from '../../../Redux/ac
 
 
 
-const ListaEstudiantes = ({ num = 1 }) => {
+const ListaEstudiantes = ({ num = 1, loadindData, setLoadindData }) => {
     const dispatch = useDispatch();
     const listFiveStudents = useSelector(state => state.boleta.listFiveStudents);
 
@@ -13,7 +13,11 @@ const ListaEstudiantes = ({ num = 1 }) => {
         dispatch(estudianteSelected(dataAlumno));
     }
 
-    const verNuevosAlumnos = (btn) => dispatch(actionFiveStudentsButtons(btn));
+    const verNuevosAlumnos = async (btn) => {
+        setLoadindData(true);
+        await dispatch(actionFiveStudentsButtons(btn))
+        setLoadindData(false);
+    };
 
 
     return (
@@ -56,6 +60,13 @@ const ListaEstudiantes = ({ num = 1 }) => {
                     >Siguientes alumnos
                     </button>
                 </>
+            }
+            {
+                loadindData
+                    ? <p className={style.msgListStudents}>Cargando...</p>
+                    : listFiveStudents.length !== 0
+                        ? ''
+                        : <p className={style.msgListStudents} >Selecciona tus estudiantes, Resultados (0)</p>
             }
         </div>
     );

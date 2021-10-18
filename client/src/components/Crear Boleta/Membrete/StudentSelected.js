@@ -34,7 +34,7 @@ const StudentSelected = () => {
     }
 
     return (
-        <div className={style.parte2}>
+        <div className={style.child2}>
             <form className={style.contentForm} onSubmit={handleSubmit} >
                 <div className={style.group}>
                     <label>Estudiante seleccionado</label>

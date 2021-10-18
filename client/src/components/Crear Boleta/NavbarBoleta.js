@@ -1,17 +1,16 @@
-import { useRouteMatch, Link }from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
+import style from './cuerpoBoleta.module.css';
+
+
 
 const NavbarBoleta = () => {
     const { url } = useRouteMatch();
 
 
     return (
-        <div>
-            <Link to={ url }>
+        <div >
+            <Link to={url} className={style.linkNavBoletas}>
                 Datos Membrete
-            </Link>
-
-            <Link to={`${url}/indicadores-boleta`}>
-                Indicadores boleta
             </Link>
         </div>
     )

@@ -26,7 +26,7 @@ CREATE TABLE grado (
 
 
 CREATE TABLE estudiante (
-    id_estudiante BIGSERIAL NOT NULL PRIMARY KEY,
+    id BIGSERIAL NOT NULL PRIMARY KEY,
     cedula_escolar VARCHAR(20) NOT NULL UNIQUE,
     nombres VARCHAR(255) NOT NULL,
     genero VARCHAR(50),
@@ -49,11 +49,16 @@ CREATE TABLE indicador (
 
 
 CREATE TABLE boleta (
-    id_boleta BIGSERIAL NOT NULL PRIMARY KEY,
-    ano_escolar VARCHAR(15) NOT NULL,
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    anio_escolar VARCHAR(15) NOT NULL,
+    grado VARCHAR (10) NOT NULL,
+    seccion VARCHAR(10) NOT NULL,
+    indicadores_boleta JSON NOT NULL,
     momento VARCHAR(10) NOT NULL,
-    personalidad_estudiante text NOT NULL,
-    fecha_de_creacion DATE NOT NULL
+    nombre_estudiante VARCHAR NOT NULL,
+    nombre_docente VARCHAR NOT NULL,
+    cedula_estudiante VARCHAR NOT NULL,
+    fecha_de_creacion VARCHAR NOT NULL
 );
 
 CREATE TABLE materias (

@@ -11,13 +11,18 @@ const initialsFiveStudents = async (req, res) => {
           const { gradoSelected, seccionSelected } = req.body;
           let data = [];
 
-          const respBD = await Promise.all([
-               pool.query('SELECT id, nombres, grado, seccion, boleta_generada FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, 0, 5]),
-               pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected])
+          const respDB = await Promise.all([
+               pool.query('SELECT * FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, 0, 5]),
+               pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected]),
+               pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE grado = $1 GROUP BY boleta_generada`, [gradoSelected])
           ]);
+          const boletasPendingsByGrado = +respDB[2].rows.find(student => student.boleta_generada === 'Pendiente')?.total;
 
-          data.push(respBD[0].rows, respBD[1].rowCount)
+          data.push(respDB[0].rows, respDB[1].rowCount, { total: !boletasPendingsByGrado ? 0 : boletasPendingsByGrado });
           res.json(data);
+          /* indice [1] es total de estudiantes por seccion. indice [2] total de estudiantes por Grado, 
+          si el find arroja undefined quiere decir que todos los de ese grado tienen la boleta generada, 
+          ya que por defecto será el total de estudiantes que haya por grado. */
      } catch (err) {
           console.log(err.message);
      }
@@ -27,7 +32,7 @@ const initialsFiveStudents = async (req, res) => {
 const showFiveStudents = async (req, res) => {
      try {
           const { valorInicial, gradoSelected, seccionSelected } = req.body;
-          const respBD = await pool.query('SELECT id, nombres, grado, seccion, boleta_generada FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]);
+          const respBD = await pool.query('SELECT * FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]);
 
           res.json(respBD.rows);
      } catch (err) {
@@ -116,10 +121,10 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           // let esto = [{ area: 'Lengua y literatura', indicadores }, { area: 'Computacioni', indicadores: indicadores3ByPage },
           // { area: 'EXPERIMENTO CIENTÍFICO ', indicadores: [{ indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E' }, { indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E' },] }
           // ];
+
           console.log('llego')
           dataToBuildPDF = transformarDataClient(data);
-
-
+          console.log('lista la transformacion de la data')
           const options = {
                format: 'letter',
                path: `pdf/Boleta${data.studentSelected.nombres}.pdf`,
@@ -132,15 +137,35 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
 
           await pupeerReport.pdfPage(page, options);
           await naveg.close();
-
-          console.log('pdf generated');
-
           dataToBuildPDF = {}; // reiniciar la variable.
+
+          console.log('pdf generated, id student => ', data.studentSelected.id);
+          const indicadoresBoleta = {
+               docente: data.indicadoresByArea,
+               especialista: data.literalesEspecialistas,
+               serYConvivir: data.descripAndDate.textArea
+          }
+
+          const promisesQuerys = [pool.query(`INSERT INTO boleta( anio_escolar, grado, seccion, indicadores_boleta, momento, nombre_estudiante, nombre_docente, cedula_estudiante, fecha_de_creacion ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [data.descripAndDate.anioEscolar, data.studentSelected.grado, data.studentSelected.seccion, indicadoresBoleta, data.momento, data.studentSelected.nombres, data.studentSelected.docente, data.studentSelected.cedula_escolar, data.fecha_de_creacion]),
+          pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', data.studentSelected.id])
+          ];
+
+          if (data.boletasPendientesByGrado <= 1) {
+               promisesQuerys.push(pool.query(`UPDATE estudiante SET boleta_generada = $1 WHERE grado = $2`,
+                    ['Pendiente', data.studentSelected.grado]))
+          }
+
+          await Promise.all(promisesQuerys);
+
           // res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
-          res.send('Boleta generada wee')
+          res.send('Boleta generada weeka')
+
      } catch (err) {
-          console.log(err.message)
+          console.log(err.message);
+          dataToBuildPDF = {}; // reiniciar la variable.
           await naveg.close();
+          res.status(400).json('Ha ocurrido un error, vuelve a intentarlo');
+
      }
 }
 

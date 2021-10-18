@@ -74,5 +74,10 @@
     margin-bottom: 6px;
 }
 
-
-
+.linkNavBoletas {
+    color: #012c66;
+    background: #fff;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 17px;
+}

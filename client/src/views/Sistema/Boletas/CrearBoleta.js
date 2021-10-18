@@ -18,7 +18,7 @@ const CrearBoleta = () => {
     const resetDataBoletaReducer = () => {
         dispatch(botonCleanData());
     }
-    console.log('hola')
+
     return (
         <>
             <BotonHome resetState={resetDataBoletaReducer} />

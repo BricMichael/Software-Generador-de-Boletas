@@ -5,6 +5,7 @@ import { roles } from '../../helpers/roles';
 
 
 
+
 let count = 0;
 let studentsBySeccion = 0;
 
@@ -19,9 +20,9 @@ export const listFiveStudents = ({ seccion, grado }) => async (dispatch, getStat
     try {
         if (respError === 'excelente') {
             const { data } = await api.apiListFiveStudents({ seccionSelected: seccion, gradoSelected: grado, });
-            dispatch({ type: types.fiveStudents, payload: { data: data[0], grado, seccion } });
+            dispatch({ type: types.fiveStudents, payload: { data: data[0], grado, seccion, boletasPendientes: data[2] } });
             eachRender();
-            studentsBySeccion = data[1]; // total de estuidantes por seccion.
+            studentsBySeccion = data[1]; // total de estudiantes por seccion.
 
             const nameDatos = getState().boleta.studentSelected.nombres;
             if (nameDatos !== '') {// reset data del estudiante seleccionado y las fechas,al cambiar de grado o seccion
@@ -44,7 +45,7 @@ const conditionByCountAndButton = (btn) => {
 
     } else {
         count = count <= 5 ? 0 : count - 5;
-        if (nextBtn.style.display === 'none') nextBtn.style.display = 'initial';  // condiciones individules
+        if (nextBtn.style.display === 'none') nextBtn.style.display = 'initial';  // condiciones individuales
         if (count === 0) backBtn.style.display = 'none'; // condiciones individules
     }
 }
@@ -66,6 +67,7 @@ export const actionFiveStudentsButtons = (btn) => async (dispatch, getState) => 
 
 }
 
+export const studentBoletaGenerada = (id) => ({ type: types.studentBoletaCreated, payload: { id } });
 
 export const estudianteSelected = (estudiante) => ({ type: types.studentSelected, payload: estudiante });
 
@@ -115,7 +117,6 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 export const guardarBoletaAction = () => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
 
-
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
         indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
@@ -123,11 +124,15 @@ export const guardarBoletaAction = () => async (dispatch, getState) => {
         momento: dataBoleta.momento,
         descripAndDate: dataBoleta.descripAndDate,
         studentSelected: dataBoleta.studentSelected,
-        personalFirmas: dataBoleta.personalFirmas
+        personalFirmas: dataBoleta.personalFirmas,
+        fecha_de_creacion: new Date().toLocaleDateString(),
+        boletasPendientesByGrado: dataBoleta.boletasPendientesByGrado
     });
 
+    dispatch(studentBoletaGenerada(dataBoleta.studentSelected.id));
     console.log('llegon response del backend =>>> ', data)
 
+    // literalIndicadoresDocentes vaciar el array en el reducer cada que se genere una boleta
 }
 
 

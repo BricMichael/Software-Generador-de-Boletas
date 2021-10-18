@@ -13,7 +13,8 @@ const initialState = {
     literalesEspecialistas: [],
     personalFirmas: { directora: '', coordinadora: '' },
     indicadoresByUserWithData: false,
-    materiasWithIndicadores: []
+    materiasWithIndicadores: [],
+    boletasPendientesByGrado: 0
 }
 
 const boletaReducer = (state = initialState, action) => {
@@ -26,8 +27,15 @@ const boletaReducer = (state = initialState, action) => {
                 gradoSeccion: {
                     grado: action.payload.grado,
                     seccion: action.payload.seccion,
-                }
-            };
+                },
+                boletasPendientesByGrado: action.payload.boletasPendientes.total
+            }
+        case types.studentBoletaCreated:
+            return {
+                ...state,
+                listFiveStudents: state.listFiveStudents.map(
+                    item => item.id === action.payload.id ? { ...item, boleta_generada: 'Generada' } : item)
+            }
 
         case types.nextOrBackFiveStudents:
             return {

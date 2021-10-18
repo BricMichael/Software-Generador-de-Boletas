@@ -20,7 +20,6 @@ const Options = ({ vista, loadingData }) => {
         loadingData(true);
 
         const resp = await dispatch(filtroBusqueda(momento, vista));
-
         loadingData(false);
 
         if (resp.length === 0) {
