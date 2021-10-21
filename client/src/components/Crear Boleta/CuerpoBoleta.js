@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import materiaConIndicadores from "../../helpers/IndicaDocenteBoleta";
 import { guardarBoletaAction } from "../../Redux/actions/boletaActions";
 import types from "../../Redux/types";
@@ -13,32 +13,26 @@ import IndicadoresEspecialista from "./IndicadoresBoleta/IndicadoresEspecialista
 
 
 const CuerpoBoleta = () => {
-    // history.push('/menu-principal/creacion-de-boletas')
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     const indicadoresByUser = useSelector(state => state.boleta.indicadoresByUser);
     const materiasWithIndic = useSelector(state => state.boleta.materiasWithIndicadores);
     const withData = useSelector(state => state.boleta.indicadoresByUserWithData);
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
 
-
     const [loadingData, setLoadingData] = useState(false);
-
-
     let comprobacion = indicadoresByUser.length > 0;
 
     useEffect(() => {
         if (!withData && comprobacion) {
             const data = materiaConIndicadores(materiasDocente, indicadoresByUser, 'Cuerpo Boleta');
-            console.log('usefect solo una')
             dispatch({ type: types.checkLlegaronDatos, payload: data });// withData se actualiza en TRUE para que la llamada a la funcion no se ejecute cada que se rendirice el componente gracias a la condicion, y en el payload se manda el retorno de la funcion y de esta manera los datos siempre seran leidos del estado global en cada render y no de una nueva llamada a la funcion.
         }
     }, [indicadoresByUser])
 
 
-
     const ejecutar = () => {
-        dispatch(guardarBoletaAction());
+        dispatch(guardarBoletaAction(history));
     }
 
     return (

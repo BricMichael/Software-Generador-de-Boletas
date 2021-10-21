@@ -2,7 +2,7 @@ import * as api from '../../api/api';
 import types from '../types';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -60,14 +60,13 @@ export const actionFiveStudentsButtons = (btn) => async (dispatch, getState) => 
 
         const { data } = await api.apiButtonsFiveStudents(sendSearch);
 
-        dispatch({ type: types.nextOrBackFiveStudents, payload: data });
+        dispatch({ type: types.nextOrBackFiveStudents, payload: { data: data[0], boletasPendientes: data[1] } });
     } catch (err) {
         console.log(err.message);
     }
 
 }
 
-export const studentBoletaGenerada = (id) => ({ type: types.studentBoletaCreated, payload: { id } });
 
 export const estudianteSelected = (estudiante) => ({ type: types.studentSelected, payload: estudiante });
 
@@ -114,8 +113,15 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 
 
 
-export const guardarBoletaAction = () => async (dispatch, getState) => {
+export const guardarBoletaAction = (historyPush) => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
+
+    Swal.fire({
+        title: 'Generando Boleta',
+        html: 'La boleta se está generando, por favor espere un momento...',
+        timerProgressBar: true,
+        didOpen: () => Swal.showLoading()
+    })
 
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
@@ -129,25 +135,21 @@ export const guardarBoletaAction = () => async (dispatch, getState) => {
         boletasPendientesByGrado: dataBoleta.boletasPendientesByGrado
     });
 
-    dispatch(studentBoletaGenerada(dataBoleta.studentSelected.id));
-    console.log('llegon response del backend =>>> ', data)
+    dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } })
 
-    // literalIndicadoresDocentes vaciar el array en el reducer cada que se genere una boleta
+    console.log('llego response del backend =>>> ', data)
+
+    Swal.fire({
+        title: 'Boleta generada',
+        icon: 'success',
+        html: data.aviso,
+        confirmButtonColor: '#4169e1',
+        confirmButtonText: dataBoleta.boletasPendientesByGrado > 1 ? 'Continuar' : 'Entendido',
+    })
+    historyPush.push('/menu-principal/creacion-de-boletas');
 }
-
 
 
 //const uidUser = getState().auth.uid 
 
-//  dispatch({
-//         type: types.savedBoletaTypes,
-//         payload: data
-//     })
-//     Swal.fire({ title: 'La boleta ha sido creada',
-//     text: 'Espere unos segundos...',
-//     icon: 'success',
-//     showConfirmButton: false,
-//     timer: 1600,
-//     timerProgressBar: true,
-//     })
-//     Swal.showLoading()
+

@@ -30,17 +30,12 @@ const boletaReducer = (state = initialState, action) => {
                 },
                 boletasPendientesByGrado: action.payload.boletasPendientes.total
             }
-        case types.studentBoletaCreated:
-            return {
-                ...state,
-                listFiveStudents: state.listFiveStudents.map(
-                    item => item.id === action.payload.id ? { ...item, boleta_generada: 'Generada' } : item)
-            }
 
         case types.nextOrBackFiveStudents:
             return {
                 ...state,
-                listFiveStudents: [...action.payload]
+                listFiveStudents: [...action.payload.data],
+                boletasPendientesByGrado: action.payload.boletasPendientes.total
             }
 
         case types.studentSelected:
@@ -112,15 +107,25 @@ const boletaReducer = (state = initialState, action) => {
         case types.savedBoletaTypes:
             return {
                 ...state,
-                studentSelected: { nombres: '', grado: '', seccion: '', docente: '', textArea: '' },
-                setLiteralIndicadores: [...action.payload],
+                studentSelected: { nombres: '', grado: '', seccion: '', docente: state.studentSelected.docente },
+                literalIndicadoresDocentes: [],
+                literalesEspecialistas: [],
+                boletasPendientesByGrado: state.boletasPendientesByGrado - 1,
+                listFiveStudents: state.boletasPendientesByGrado === 1
+                    ? state.listFiveStudents.map(students => ({ ...students, boleta_generada: 'Pendiente' }))
+                    : state.listFiveStudents.map(item => item.id === action.payload.id
+                        ? { ...item, boleta_generada: 'Generada' }
+                        : item
+                    ),
+                descripAndDate: state.boletasPendientesByGrado === 1
+                    ? initialState.descripAndDate
+                    : state.descripAndDate
             }
 
         case types.botonResetState:
             return {
                 ...initialState
             }
-
         default:
             return state;
     }

@@ -37,3 +37,4 @@ export const alertErrors = (msg, color = '#538fca') => {
         width: '440px',
     })
 }
+

@@ -14,7 +14,7 @@ const initialsFiveStudents = async (req, res) => {
           const respDB = await Promise.all([
                pool.query('SELECT * FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, 0, 5]),
                pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected]),
-               pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE grado = $1 GROUP BY boleta_generada`, [gradoSelected])
+               pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
           ]);
           const boletasPendingsByGrado = +respDB[2].rows.find(student => student.boleta_generada === 'Pendiente')?.total;
 
@@ -32,9 +32,16 @@ const initialsFiveStudents = async (req, res) => {
 const showFiveStudents = async (req, res) => {
      try {
           const { valorInicial, gradoSelected, seccionSelected } = req.body;
-          const respBD = await pool.query('SELECT * FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]);
+          const data = [];
 
-          res.json(respBD.rows);
+          const respDB = await Promise.all([pool.query('SELECT * FROM estudiante WHERE (grado = $1) and (seccion = $2) OFFSET $3 LIMIT $4', [gradoSelected, seccionSelected, valorInicial, 5]),
+          pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
+          ]);
+
+          const boletasPendingsByGrado = +respDB[1].rows.find(student => student.boleta_generada === 'Pendiente')?.total;
+
+          data.push(respDB[0].rows, { total: !boletasPendingsByGrado ? 0 : boletasPendingsByGrado });
+          res.json(data);
      } catch (err) {
           console.log(err.message);
      }
@@ -116,12 +123,6 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
      try {
           const data = req.body; //Dalimilet Herrera directora
 
-          // let modelThreeIndicadores = [{ area: 'Turimos y viajes ', indicadores: indicadores3ByPage }, { area: 'matematicas', indicadores: indicadores3ByPage }, { area: 'fisica ', indicadores: indicadores3ByPage }, { area: 'cuarto corto ', indicadores: indicadores3ByPage }];
-
-          // let esto = [{ area: 'Lengua y literatura', indicadores }, { area: 'Computacioni', indicadores: indicadores3ByPage },
-          // { area: 'EXPERIMENTO CIENTÍFICO ', indicadores: [{ indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E' }, { indicador: 'Elaboró un collage en la presentación de experimento científico. elaboro', literal: 'E' },] }
-          // ];
-
           console.log('llego')
           dataToBuildPDF = transformarDataClient(data);
           console.log('lista la transformacion de la data')
@@ -146,26 +147,34 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
                serYConvivir: data.descripAndDate.textArea
           }
 
-          const promisesQuerys = [pool.query(`INSERT INTO boleta( anio_escolar, grado, seccion, indicadores_boleta, momento, nombre_estudiante, nombre_docente, cedula_estudiante, fecha_de_creacion ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [data.descripAndDate.anioEscolar, data.studentSelected.grado, data.studentSelected.seccion, indicadoresBoleta, data.momento, data.studentSelected.nombres, data.studentSelected.docente, data.studentSelected.cedula_escolar, data.fecha_de_creacion]),
-          pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', data.studentSelected.id])
+          const promisesQuerys = [pool.query(`INSERT INTO boleta( anio_escolar, grado, seccion, indicadores_boleta, momento, nombre_estudiante, nombre_docente, cedula_estudiante, fecha_de_creacion ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+               [data.descripAndDate.anioEscolar, data.studentSelected.grado, data.studentSelected.seccion, indicadoresBoleta, data.momento, data.studentSelected.nombres, data.studentSelected.docente, data.studentSelected.cedula_escolar, data.fecha_de_creacion
+               ])
           ];
 
+          if (data.boletasPendientesByGrado > 1) {
+               promisesQuerys.push(pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', data.studentSelected.id]));
+          }
+
           if (data.boletasPendientesByGrado <= 1) {
-               promisesQuerys.push(pool.query(`UPDATE estudiante SET boleta_generada = $1 WHERE grado = $2`,
-                    ['Pendiente', data.studentSelected.grado]))
+               promisesQuerys.push(pool.query(`UPDATE estudiante SET boleta_generada = $1 WHERE grado = $2 AND seccion = $3`,
+                    ['Pendiente', data.studentSelected.grado, data.studentSelected.seccion]))
           }
 
           await Promise.all(promisesQuerys);
 
           // res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
-          res.send('Boleta generada weeka')
+          res.json({
+               aviso: data.boletasPendientesByGrado <= 1
+                    ? `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`
+                    : 'La boleta fue generada exitosamente, continúa con el siguiente alumno.'
+          })
 
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable.
           await naveg.close();
           res.status(400).json('Ha ocurrido un error, vuelve a intentarlo');
-
      }
 }
 
