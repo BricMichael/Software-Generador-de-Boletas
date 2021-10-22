@@ -82,7 +82,6 @@ const personalFirmas = async (req, res) => {
 
 let dataToBuildPDF = {};
 const modelFinalPagePdf = (req, res) => {
-     // console.log(dataToBuildPDF)
      res.setHeader('Content-Type', 'text/html');
      res.render('index', dataToBuildPDF);
 }
@@ -123,9 +122,8 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
      try {
           const data = req.body; //Dalimilet Herrera directora
 
-          console.log('llego')
           dataToBuildPDF = transformarDataClient(data);
-          console.log('lista la transformacion de la data')
+          console.log('Llegó, lista la transformacion de la data');
           const options = {
                format: 'letter',
                path: `pdf/Boleta${data.studentSelected.nombres}.pdf`,
@@ -137,39 +135,38 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           await page.goto('http://localhost:4000/api/boleta/modelPDF');
 
           await pupeerReport.pdfPage(page, options);
-          await naveg.close();
+          await naveg.close(); // A este punto el pdf ya ha sido generado.    
           dataToBuildPDF = {}; // reiniciar la variable.
 
-          console.log('pdf generated, id student => ', data.studentSelected.id);
+
+          const { studentSelected, descripAndDate } = data;
+          console.log('pdf generated, id student => ', studentSelected.id);
           const indicadoresBoleta = {
                docente: data.indicadoresByArea,
                especialista: data.literalesEspecialistas,
-               serYConvivir: data.descripAndDate.textArea
+               serYConvivir: descripAndDate.textArea
           }
 
-          const promisesQuerys = [pool.query(`INSERT INTO boleta( anio_escolar, grado, seccion, indicadores_boleta, momento, nombre_estudiante, nombre_docente, cedula_estudiante, fecha_de_creacion ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-               [data.descripAndDate.anioEscolar, data.studentSelected.grado, data.studentSelected.seccion, indicadoresBoleta, data.momento, data.studentSelected.nombres, data.studentSelected.docente, data.studentSelected.cedula_escolar, data.fecha_de_creacion
-               ])
+          const promisesQuerys = [pool.query(`INSERT INTO boleta( anio_escolar, grado, seccion, indicadores_boleta, momento, nombre_estudiante, nombre_docente, cedula_estudiante, inicio_momemnto, fin_momento, fecha_de_creacion ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`, [descripAndDate.anioEscolar, studentSelected.grado, studentSelected.seccion, indicadoresBoleta, data.momento, studentSelected.nombres, studentSelected.docente, studentSelected.cedula_escolar, descripAndDate.inicioMomento, descripAndDate.finMomento, data.fecha_de_creacion])
           ];
 
           if (data.boletasPendientesByGrado > 1) {
-               promisesQuerys.push(pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', data.studentSelected.id]));
+               const query = pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', studentSelected.id])
+               promisesQuerys.push(query);
           }
 
           if (data.boletasPendientesByGrado <= 1) {
-               promisesQuerys.push(pool.query(`UPDATE estudiante SET boleta_generada = $1 WHERE grado = $2 AND seccion = $3`,
-                    ['Pendiente', data.studentSelected.grado, data.studentSelected.seccion]))
+               const query = pool.query(`UPDATE estudiante SET boleta_generada = $1 WHERE grado = $2 AND seccion = $3`,
+                    ['Pendiente', studentSelected.grado, studentSelected.seccion]);
+               promisesQuerys.push(query);
           }
-
           await Promise.all(promisesQuerys);
 
           // res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
-          res.json({
-               aviso: data.boletasPendientesByGrado <= 1
-                    ? `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`
-                    : 'La boleta fue generada exitosamente, continúa con el siguiente alumno.'
-          })
+          const msgBoletasCompletedBySection = `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`;
+          const msgBoletaCreated = 'La boleta fue generada exitosamente, continúa con el siguiente alumno.';
 
+          res.json({ aviso: data.boletasPendientesByGrado <= 1 ? msgBoletasCompletedBySection : msgBoletaCreated })
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable.

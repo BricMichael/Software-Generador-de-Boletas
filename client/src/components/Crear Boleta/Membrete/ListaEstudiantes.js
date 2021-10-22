@@ -4,7 +4,7 @@ import { actionFiveStudentsButtons, estudianteSelected } from '../../../Redux/ac
 
 
 
-const ListaEstudiantes = ({ num = 1, loadindData, setLoadindData }) => {
+const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
     const dispatch = useDispatch();
     const listFiveStudents = useSelector(state => state.boleta.listFiveStudents);
 
@@ -26,11 +26,9 @@ const ListaEstudiantes = ({ num = 1, loadindData, setLoadindData }) => {
             {
                 listFiveStudents.length !== 0 &&
                 <>
-
                     <table className={style.table}>
                         <thead className={style.tableThead} >
                             <tr className={style.tableTr}>
-                                <th className={style.th} >#</th>
                                 <th className={style.th} >Nombre</th>
                                 <th className={style.th} >Grado</th>
                                 <th className={style.th} >Secci&oacute;n</th>
@@ -42,7 +40,6 @@ const ListaEstudiantes = ({ num = 1, loadindData, setLoadindData }) => {
                                 listFiveStudents.map(alumno => (
                                     <tr className={`${style.listaFiveFlex} animate__animated animate__fadeIn`}
                                         onClick={() => handleStudent(alumno)} key={alumno.id}>
-                                        <td className={style.indicee}>#{num++}</td>
                                         <td className={style.borderRadius}>{alumno.nombres}</td>
                                         <td className={style.borderRadius}>{alumno.grado}</td>
                                         <td className={style.borderRadius}>{alumno.seccion}</td>
@@ -53,7 +50,7 @@ const ListaEstudiantes = ({ num = 1, loadindData, setLoadindData }) => {
                         </tbody>
                     </table>
 
-                    <button type="submit" onClick={() => verNuevosAlumnos('back')} id='backStudents'>
+                    <button type="submit" onClick={() => verNuevosAlumnos('back')} id='backStudents' style={{ display: 'none' }}>
                         Anteriores alumnos
                     </button>
                     <button type="submit" onClick={() => verNuevosAlumnos('next')} id='nextStudents'

@@ -38,3 +38,23 @@ export const alertErrors = (msg, color = '#538fca') => {
     })
 }
 
+export const BoletaEnProcesoAlert = () => {
+    Swal.fire({
+        title: 'Generando Boleta',
+        html: 'La boleta se está generando, por favor espere un momento...',
+        timerProgressBar: true,
+        didOpen: () => Swal.showLoading()
+    })
+}
+
+export const boletaGeneradaAlert = (msgSucces, boletasPendientesByGrado) => {
+    Swal.fire({
+        title: 'Boleta generada',
+        icon: 'success',
+        html: msgSucces,
+        confirmButtonColor: '#4169e1',
+        confirmButtonText: boletasPendientesByGrado > 1 ? 'Continuar' : 'Entendido',
+    })
+
+
+}

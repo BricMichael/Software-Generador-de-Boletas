@@ -101,7 +101,7 @@ const PersonalReg = () => {
                     comprobacion &&
                     <>
                         <input type="email" className={style.registerInputs} required autoComplete='off' value={email}
-                            placeholder="Correo electrónico" name="email" onChange={handleInputChange}
+                            placeholder="Correo electrónico (único)*" name="email" onChange={handleInputChange}
                         />
 
                         <input type="password" className={style.registerInputs} required autoComplete='off' value={password}

@@ -105,21 +105,21 @@ const boletaReducer = (state = initialState, action) => {
             }
 
         case types.savedBoletaTypes:
+            const condition = state.boletasPendientesByGrado === 1;
+
             return {
                 ...state,
-                studentSelected: { nombres: '', grado: '', seccion: '', docente: state.studentSelected.docente },
+                studentSelected: { nombres: '', grado: '', seccion: '', docente: condition ? '' : state.studentSelected.docente },
                 literalIndicadoresDocentes: [],
                 literalesEspecialistas: [],
                 boletasPendientesByGrado: state.boletasPendientesByGrado - 1,
-                listFiveStudents: state.boletasPendientesByGrado === 1
+                listFiveStudents: condition
                     ? state.listFiveStudents.map(students => ({ ...students, boleta_generada: 'Pendiente' }))
                     : state.listFiveStudents.map(item => item.id === action.payload.id
                         ? { ...item, boleta_generada: 'Generada' }
                         : item
                     ),
-                descripAndDate: state.boletasPendientesByGrado === 1
-                    ? initialState.descripAndDate
-                    : state.descripAndDate
+                descripAndDate: condition ? initialState.descripAndDate : state.descripAndDate
             }
 
         case types.botonResetState:

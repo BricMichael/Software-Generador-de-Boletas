@@ -58,6 +58,8 @@ CREATE TABLE boleta (
     nombre_estudiante VARCHAR NOT NULL,
     nombre_docente VARCHAR NOT NULL,
     cedula_estudiante VARCHAR NOT NULL,
+    inicio_momemnto VARCHAR NOT NULL,
+    fin_momento VARCHAR NOT NULL,
     fecha_de_creacion VARCHAR NOT NULL
 );
 

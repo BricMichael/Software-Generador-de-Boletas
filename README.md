@@ -35,7 +35,7 @@ Alberto Graterol: Creador de la base de datos.
 
 Michael Briceño: Programador web, encargado de crear las vistas y componentes con React, creador del Backend con Nodejs y la conexión entre el cliente y servidor.
 
-Yulianny Mendez: Programadora, diseñadora y creadora de los estilos en Figma.
+Yulianny Mendez: Diseñadora y creadora de los estilos en Figma.
 
 ## Contacto Devs
 
