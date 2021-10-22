@@ -3,7 +3,7 @@ import types from '../types';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
 import { BoletaEnProcesoAlert, boletaGeneradaAlert } from '../../helpers/alerts';
-
+import { saveAs } from 'file-saver';
 
 
 let count = 0;
@@ -116,6 +116,7 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 export const guardarBoletaAction = (historyPush) => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
     BoletaEnProcesoAlert();
+    const check = dataBoleta.boletasPendientesByGrado <= 1;
 
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
@@ -130,7 +131,15 @@ export const guardarBoletaAction = (historyPush) => async (dispatch, getState) =
     });
 
     dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
-    boletaGeneradaAlert(data.aviso, dataBoleta.boletasPendientesByGrado);
+
+    const msgBoletasCompletedBySection = `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`;
+    const msgBoletaCreated = 'La boleta fue generada exitosamente, continúa con el siguiente alumno.';
+
+    boletaGeneradaAlert(check ? msgBoletasCompletedBySection : msgBoletaCreated, check);
+
+    const pdfBlob = new Blob([data], { type: 'application/pdf' });
+    saveAs(pdfBlob, `Boleta ${dataBoleta.studentSelected.nombres}`);
+
 
     historyPush.push('/menu-principal/creacion-de-boletas');
 }

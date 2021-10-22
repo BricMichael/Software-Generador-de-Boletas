@@ -26,7 +26,7 @@ export const apiListFiveStudents = (datos) => axios.post(`${urlBoleta}Estudiante
 export const apiButtonsFiveStudents = (datos) => axios.post(`${urlBoleta}ShowEstudiantes`, datos);
 export const apiGetNameFirmasPersonal = () => axios.get(`${urlBoleta}/firmasPersonal`);
 export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos);
-export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta);
+export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta, { responseType: 'blob' });
 
 
 /* Peticiones Registros de usuarios y estudiantes.  */

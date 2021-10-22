@@ -1,5 +1,6 @@
 const pool = require('../configDB/poolConfig');
 const puppeteer = require('puppeteer');
+const fs = require('fs').promises
 const pupeerReport = require('puppeteer-report');
 const path = require('path');
 const { serYConvivir, especialistas, transformarDataClient } = require('../helpers/parseoDataPDF');
@@ -162,11 +163,13 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           }
           await Promise.all(promisesQuerys);
 
-          // res.sendFile(path.join(__dirname, `../pdf/Boleta${data.studentSelected.nombres}.pdf`));
-          const msgBoletasCompletedBySection = `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`;
-          const msgBoletaCreated = 'La boleta fue generada exitosamente, continúa con el siguiente alumno.';
+          res.sendFile(path.join(__dirname, `../pdf/Boleta${studentSelected.nombres}.pdf`));
 
-          res.json({ aviso: data.boletasPendientesByGrado <= 1 ? msgBoletasCompletedBySection : msgBoletaCreated })
+          setTimeout(() => {
+               fs.unlink(path.join(__dirname, `../pdf/Boleta${studentSelected.nombres}.pdf`))
+                    .then(() => console.log('me ejecuto despues de enviar el pdf y lo elimino'))
+          }, 450);
+
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable.

@@ -53,7 +53,7 @@ export const boletaGeneradaAlert = (msgSucces, boletasPendientesByGrado) => {
         icon: 'success',
         html: msgSucces,
         confirmButtonColor: '#4169e1',
-        confirmButtonText: boletasPendientesByGrado > 1 ? 'Continuar' : 'Entendido',
+        confirmButtonText: boletasPendientesByGrado ? 'Entendido' : 'Continuar',
     })
 
 
