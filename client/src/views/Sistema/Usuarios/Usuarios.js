@@ -2,7 +2,6 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import Header from '../../../components/Header/Header';
 import style from './registrosUsers.module.css';
-import image from '../../../assets/img/registro.svg';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import EstudianteReg from '../../../components/Registros/EstudianteReg';
@@ -26,7 +25,7 @@ const Usuarios = () => {
             <Header title="Registros" marginTop='-4.4rem' />
             <div className={style.contentInitial}>
                 <Sidebar />
-                <img src={image} alt='cargando imagen' className={style.imageSvg}></img>
+                <img src='/registro.svg' alt='cargando imagen' className={style.imageSvg}></img>
             </div>
 
             <Switch>

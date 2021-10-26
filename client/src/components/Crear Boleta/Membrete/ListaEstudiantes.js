@@ -1,5 +1,5 @@
-import style from './membrete.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+import style from './membrete.module.css';
 import { actionFiveStudentsButtons, estudianteSelected } from '../../../Redux/actions/boletaActions';
 
 
@@ -50,12 +50,14 @@ const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
                         </tbody>
                     </table>
 
-                    <button type="submit" onClick={() => verNuevosAlumnos('back')} id='backStudents' style={{ display: 'none' }}>
-                        Anteriores alumnos
-                    </button>
-                    <button type="submit" onClick={() => verNuevosAlumnos('next')} id='nextStudents'
-                    >Siguientes alumnos
-                    </button>
+                    <div className={style.listaStudens__Buttons}>
+                        <button type="submit" onClick={() => verNuevosAlumnos('back')} id='backStudents' style={{ display: 'none' }}>
+                            Anteriores alumnos
+                        </button>
+                        <button type="submit" onClick={() => verNuevosAlumnos('next')} id='nextStudents'>
+                            Siguientes alumnos
+                        </button>
+                    </div>
                 </>
             }
             {

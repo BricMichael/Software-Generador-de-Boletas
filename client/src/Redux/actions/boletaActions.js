@@ -2,8 +2,9 @@ import * as api from '../../api/api';
 import types from '../types';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
-import { BoletaEnProcesoAlert, boletaGeneradaAlert } from '../../helpers/alerts';
-import { saveAs } from 'file-saver';
+import { BoletaEnProcesoAlert } from '../../helpers/alerts';
+import { downloandBoletaAndMsgSuccess } from '../../helpers/creacionBoleta';
+
 
 
 let count = 0;
@@ -132,18 +133,11 @@ export const guardarBoletaAction = (historyPush) => async (dispatch, getState) =
 
     dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
 
-    const msgBoletasCompletedBySection = `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`;
-    const msgBoletaCreated = 'La boleta fue generada exitosamente, continúa con el siguiente alumno.';
-
-    boletaGeneradaAlert(check ? msgBoletasCompletedBySection : msgBoletaCreated, check);
-
-    const pdfBlob = new Blob([data], { type: 'application/pdf' });
-    saveAs(pdfBlob, `Boleta ${dataBoleta.studentSelected.nombres}`);
-
+    downloandBoletaAndMsgSuccess(check, data, dataBoleta.studentSelected.nombres);
 
     historyPush.push('/menu-principal/creacion-de-boletas');
 }
 
 
-//const uidUser = getState().auth.uid 
+//const uidUser = getState().auth.uid   
 

@@ -10,7 +10,7 @@ import UpdatePersonal from '../Modal/UpdatePersonal';
 
 
 
-const TableUsers = ({ indice = 1, countName = 0 }) => {
+const TableUsers = ({ countName = 0 }) => {
     const dispatch = useDispatch();
     const [handleOpenModal, setHandleOpenModal] = useState({ status: false, userSelected: {} });
     const [usersRegistrados, setUsersRegistrados] = useState({ datos: [], nombres: [] })
@@ -62,7 +62,6 @@ const TableUsers = ({ indice = 1, countName = 0 }) => {
                     <table className={style.registersTable}>
                         <thead className={style.registersTableThead} >
                             <tr className={style.registersTableTr}>
-                                <th className={style.registersTh} ><b>#</b></th>
                                 <th className={style.registersTh} >Nombre</th>
                                 <th className={style.registersTh} >C&eacute;dula</th>
                                 <th className={style.registersTh} >Correo</th>
@@ -75,7 +74,6 @@ const TableUsers = ({ indice = 1, countName = 0 }) => {
                             {
                                 usersRegistrados.datos.map(user => (
                                     <tr className={`${style.registerTrBody} animate__animated animate__fadeIn`} key={user.id}>
-                                        <td className={style.childrenBody}><b>#{indice++}</b></td>
                                         <td className={style.childrenBody}>{usersRegistrados.nombres[countName++]}</td>
                                         <td className={style.childrenBody}>V- {user.cedula}</td>
                                         <td className={style.childrenBody}>{user.email}</td>
@@ -83,7 +81,7 @@ const TableUsers = ({ indice = 1, countName = 0 }) => {
                                             {user.area_personal === 'null' ? 'No' : user.area_personal}
                                         </td>
                                         <td className={style.childrenBody}>{user.rol}</td>
-                                        <td className={style.childrenEdit}>
+                                        <td className={style.childrenBody}>
                                             <button
                                                 className={`${style.edit} ${style.botones}`}
                                                 onClick={() => setHandleOpenModal({ status: true, userSelected: user })}
@@ -102,14 +100,16 @@ const TableUsers = ({ indice = 1, countName = 0 }) => {
                             }
                         </tbody>
                     </table>
-                    <button className={style.nextPersonal} onClick={botonAtras} id='backBtn'
-                        style={{ display: 'none' }} >
-                        Atrás
-                    </button>
-                    <button className={style.nextPersonal} onClick={botonVerMas} id='nextBtn'>
-                        Siguientes
-                    </button>
-                </div>}
+                    <div className={style.tableUser__buttons}>
+                        <button className={style.nextPersonal} onClick={botonAtras} id='backBtn' type='button' style={{ display: 'none' }} >
+                            Anteriores
+                        </button>
+                        <button className={style.nextPersonal} onClick={botonVerMas} id='nextBtn' type='button'>
+                            Siguientes
+                        </button>
+                    </div>
+                </div>
+            }
         </>
     )
 }

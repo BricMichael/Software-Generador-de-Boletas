@@ -124,8 +124,7 @@
 .infoAndComponent{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
 }
 
 .registersTable {
@@ -143,8 +142,6 @@
 .registersTableTr > .registersTh  {
     padding: 10px 17px;
     font-size: 17px;
-    text-align: left;
-    
 }
 
 
@@ -162,50 +159,46 @@
 .childrenBody {
     font-size: 15px;
     font-weight: 200;
-    padding: 14px 0px;
-    text-align: left;
+    padding: 8px 0px;
 }
 
+.childrenBody:nth-child(1),.registersTh:nth-child(1), .childrenBody:nth-child(3){ text-align: left;}
+.childrenBody:nth-child(1) { padding-left: 17px; }
 
-.childrenBody:nth-child(1){ padding-left: 14px;}
-.registersTh:nth-child(3){ padding-right: 8px; }
-.childrenBody:nth-child(4){ padding-left: 6px; }
-.registersTh:nth-child(4){ padding-left:35px;}
-.childrenBody:nth-child(5){ padding-left: 3px;}
-.childrenBody:nth-child(6){ padding-left: 4px;}
-
-
-.botones {
+.botones, .nextPersonal {
     padding: 5px;
     color: #fff;
     cursor: pointer;
     border: none;
     font-size: 16px;
-    transition: background .3s ease;
     border-radius: 6px;
     margin-top: 0.1rem;
+    transition: background .3s ease;
 }
 
 .edit { background: #447bc4; margin-right: 0.3rem;}
 
 .delete { background: rgb(158, 25, 52);}
 
-.nextPersonal {
-    padding: 5px;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    font-size: 17px;
-    background: #447bc4;
-    border-radius: 6px;
-    margin-top: 1.4rem;
-    align-self: flex-end;
-    width: 120px;
-    margin-right: 13%;
+.tableUser__buttons {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
 }
 
- /* Estilos modal de update estudiante */
+.nextPersonal {
+    font-size: 17px;
+    background: #447bc4;
+    width: 120px;
+    margin-left: 1rem;
+}
 
+.nextPersonal:hover { background: #1a5fb9; }
+
+
+ /* Estilos modal de update estudiante */
 .formModalEstudianteButtons{
     background: #012c66;
     padding: 6px;
@@ -237,22 +230,9 @@
  /* FIN Estilos modal de update estudiante */
 
 @media screen and ( min-width: 1140px) { 
-    .registersTable {
+    .registersTable,.tableUser__buttons  {
         width: 75%;
-    }
-    .nextPersonal {
-        margin-right: 13%;
-    }
-
-}
-
-
-@media screen and ( max-width: 1128px) { 
-    .nextPersonal { margin-right: 8%; }
-}
-
-@media screen and ( max-width: 890px) { 
-    .nextPersonal { margin-right: 2rem; }
+    }  
 }
 
 @media screen and ( max-width: 980px) {
@@ -263,7 +243,7 @@
     .botones{
         font-size: 16px;
     }
-    .registersTable {
+    .registersTable, .tableUser__buttons  {
         width: 800px;
     }
     .registrosUsers_edit{
@@ -281,14 +261,8 @@
     
 }
 
-@media screen and ( max-width: 950px) {
-    .nextPersonal { margin-right: 6%; }
-}
-
 @media screen and ( max-width: 860px) {
-    .registersTable {
+    .registersTable, .tableUser__buttons  {
         width: 750px;   
     }
-
-    .nextPersonal { margin-right: 2.8rem; }
 }

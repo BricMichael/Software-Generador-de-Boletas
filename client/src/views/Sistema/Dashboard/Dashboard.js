@@ -50,7 +50,12 @@ const Dashboard = () => {
                     </Link>
                     <li className={styles.ul_items}><a href="#" className={styles.links}><i className="fas fa-pen-alt"></i>&nbsp;&nbsp;Editor de Boletas</a></li>
                     <li className={styles.ul_items}><a href="#" className={styles.links}><i className="far fa-newspaper"></i>&nbsp;&nbsp;Revisar Boleta</a></li>
-                    <li className={styles.ul_items}><a href="#" className={styles.links}><i className="fas fa-print"></i>&nbsp;&nbsp; Zona de Descargas</a></li>
+
+                    <Link to="/menu-principal/descargar-boleta">
+                        <li className={`${styles.ul_items}`}><span className={styles.links}>
+                            <i className="fas fa-print"></i>&nbsp;&nbsp; Zona de Descargas</span>
+                        </li>
+                    </Link>
 
                     <Link to="/menu-principal/registros">
                         <li className={`${styles.ul_items}`}><span className={styles.links}><i className="fas fa-users"></i>&nbsp; Usuarios</span>

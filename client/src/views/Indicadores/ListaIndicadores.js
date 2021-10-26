@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteIndicador, indicadorActivo } from '../../Redux/actions/indicadoresActions';
 import UpdateIndicador from '../../components/Modal/UpdateIndicador';
 import { roles } from '../../helpers/roles';
-import materiaConIndicadores from '../../helpers/IndicaDocenteBoleta';
+import materiaConIndicadores from '../../helpers/creacionBoleta';
 import { backBtn, handleAreaSelected, nextBtn, validacionUseEffect } from '../../helpers/accionesListaIndicadores';
+
 
 const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser } }) => { //userSelected por coordinador.
     const dispatch = useDispatch();

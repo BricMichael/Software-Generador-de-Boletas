@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import materiaConIndicadores from "../../helpers/IndicaDocenteBoleta";
+import materiaConIndicadores from "../../helpers/creacionBoleta";
 import { guardarBoletaAction } from "../../Redux/actions/boletaActions";
 import types from "../../Redux/types";
 import Options from "../Options/Options";

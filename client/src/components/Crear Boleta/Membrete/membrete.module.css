@@ -199,21 +199,27 @@
     background: #012d6683 !important;
 }
 
-
-.listaEstudiantes > button {
+.listaStudens__Buttons{
+    width: 95%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+.listaStudens__Buttons > button {
     background: #4169e1;
-    width: 40%;
+    width: 170px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     padding: 4px 3px;
-    font-size: 18px;
+    font-size: 16.5px;
     margin: 3px 0;
+    margin-right: 1em;
     color: #fff;
     transition: box-shadow .2s ease;       
 }
 
-.listaEstudiantes > button:hover { box-shadow: 2px 0px 4px #3052b8; }
+.listaStudens__Buttons > button:hover { box-shadow: 2px 0px 4px #3052b8; }
 
 .msgListStudents { color: #3052b8; margin-top: 6px;  }
 /*-----*/

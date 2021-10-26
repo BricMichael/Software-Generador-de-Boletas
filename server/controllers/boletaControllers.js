@@ -168,7 +168,7 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           setTimeout(() => {
                fs.unlink(path.join(__dirname, `../pdf/Boleta${studentSelected.nombres}.pdf`))
                     .then(() => console.log('me ejecuto despues de enviar el pdf y lo elimino'))
-          }, 450);
+          }, 1000);
 
      } catch (err) {
           console.log(err.message);
