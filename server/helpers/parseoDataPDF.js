@@ -115,6 +115,4 @@ const transformarDataClient = ({ indicadoresByArea, literalesEspecialistas, mome
 
 module.exports = {
     transformarDataClient,
-    especialistas,
-    serYConvivir,
 }

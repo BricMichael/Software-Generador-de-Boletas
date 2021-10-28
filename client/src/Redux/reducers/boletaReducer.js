@@ -133,13 +133,4 @@ const boletaReducer = (state = initialState, action) => {
 
 
 
-
-
-
-
-
-
-
-
-
 export default boletaReducer;

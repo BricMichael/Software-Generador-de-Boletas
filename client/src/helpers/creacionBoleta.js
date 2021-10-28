@@ -15,7 +15,6 @@ const materiaConIndicadores = (materias, indicadoresOfMateria, component) => {
             }
         }
     }
-
     return arrayMulti;
 }
 
@@ -24,10 +23,15 @@ export default materiaConIndicadores;
 
 
 export const downloandBoletaAndMsgSuccess = (checkBoletasBySeccion, data, nameStudentBoleta) => {
+    //checkBoletasBySeccion variable booleana. Total de estudiantes pendientes por boleta <= 1 ?
+    // O si esta funcion la usa el metodo <generarBoletaExistente> le pasará siempre false.
     const msgBoletasCompletedBySection = `Todos tus estudiantes tienen la boleta de clasificación 'Completada', por ende serán actualizados a "Pendiente" para el proximo Momento.`;
-    const msgBoletaCreated = 'La boleta fue generada exitosamente, continúa con el siguiente alumno.';
+    const msgBoletaCreated = checkBoletasBySeccion
+        ? 'La boleta fue generada exitosamente, continúa con el siguiente alumno.' // boleta creada por primera vez
+        : 'La boleta fue generada exitosamente'  // boleta generada despues de semanas, meses o años.
 
     boletaGeneradaAlert(checkBoletasBySeccion ? msgBoletasCompletedBySection : msgBoletaCreated, checkBoletasBySeccion);
+
     const pdfBlob = new Blob([data], { type: 'application/pdf' });
-    saveAs(pdfBlob, `Boleta ${nameStudentBoleta}`);
+    saveAs(pdfBlob, `${nameStudentBoleta}boleta`);
 }

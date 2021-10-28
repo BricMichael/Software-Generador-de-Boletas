@@ -1,10 +1,8 @@
 const pool = require('../configDB/poolConfig');
-const puppeteer = require('puppeteer');
 const fs = require('fs').promises
-const pupeerReport = require('puppeteer-report');
 const path = require('path');
-const { serYConvivir, especialistas, transformarDataClient } = require('../helpers/parseoDataPDF');
-
+const { transformarDataClient } = require('../helpers/parseoDataPDF');
+const generarPdfWithPuppeter = require('../helpers/generarPDF');
 
 
 const initialsFiveStudents = async (req, res) => {
@@ -122,26 +120,14 @@ let indicadores3ByPage = [
 const creacionBoleta = async (req, res) => { //5 cortos 3 largos
      try {
           const data = req.body; //Dalimilet Herrera directora
+          const { studentSelected, descripAndDate } = data;
 
           dataToBuildPDF = transformarDataClient(data);
-          console.log('Llegó, lista la transformacion de la data');
-          const options = {
-               format: 'letter',
-               path: `pdf/Boleta${data.studentSelected.nombres}.pdf`,
-               margin: { bottom: '12px', top: '6px' }
-          };
+          await generarPdfWithPuppeter(data.studentSelected.nombres);
+          dataToBuildPDF = {}; // reiniciar la data de la variable al generar la boleta.
 
-          const naveg = await puppeteer.launch();
-          const page = await naveg.newPage();
-          await page.goto('http://localhost:4000/api/boleta/modelPDF');
-
-          await pupeerReport.pdfPage(page, options);
-          await naveg.close(); // A este punto el pdf ya ha sido generado.    
-          dataToBuildPDF = {}; // reiniciar la variable.
-
-
-          const { studentSelected, descripAndDate } = data;
           console.log('pdf generated, id student => ', studentSelected.id);
+
           const indicadoresBoleta = {
                docente: data.indicadoresByArea,
                especialista: data.literalesEspecialistas,
@@ -163,18 +149,48 @@ const creacionBoleta = async (req, res) => { //5 cortos 3 largos
           }
           await Promise.all(promisesQuerys);
 
-          res.sendFile(path.join(__dirname, `../pdf/Boleta${studentSelected.nombres}.pdf`));
+          res.sendFile(path.join(__dirname, `../pdf/${studentSelected.nombres}boleta.pdf`));
 
           setTimeout(() => {
-               fs.unlink(path.join(__dirname, `../pdf/Boleta${studentSelected.nombres}.pdf`))
-                    .then(() => console.log('me ejecuto despues de enviar el pdf y lo elimino'))
+               fs.unlink(path.join(__dirname, `../pdf/${studentSelected.nombres}boleta.pdf`))
+                    .then(() => console.log('Elimino el PDF generado después de 1 segundo'))
           }, 1000);
-
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable.
-          await naveg.close();
           res.status(400).json('Ha ocurrido un error, vuelve a intentarlo');
+     }
+}
+
+const getBoletaByStudentAndId = async (req, res) => {
+     try {
+          const { cedula, momento, anio_escolar } = req.body;
+          const respDB = await pool.query(`SELECT * FROM boleta WHERE cedula_estudiante = $1 
+          AND momento = $2 AND anio_escolar = $3`, [cedula.trim(), momento, anio_escolar]);
+
+          res.json(respDB.rows);
+     } catch (err) {
+          console.log(err.message);
+     }
+}
+
+
+const generarBoletaExistente = async (req, res) => { // Generar boleta existente, creada hace semanas, meses o años atrás.
+     try {
+          const data = req.body;
+          dataToBuildPDF = transformarDataClient(data);
+          await generarPdfWithPuppeter(data.studentSelected.nombres);
+          dataToBuildPDF = {};
+
+          res.sendFile(path.join(__dirname, `../pdf/${data.studentSelected.nombres}boleta.pdf`));
+
+          setTimeout(() => {
+               fs.unlink(path.join(__dirname, `../pdf/${data.studentSelected.nombres}boleta.pdf`))
+                    .then(() => console.log('Elimino el PDF generado después de 1 segundo'))
+          }, 1000);
+     } catch (err) {
+          console.log(err.message);
+          dataToBuildPDF = {}; // reiniciar la variable.
      }
 }
 
@@ -186,7 +202,9 @@ module.exports = {
      personalFirmas,
      indicadorEspecialistaByArea,
      creacionBoleta,
-     modelFinalPagePdf
+     modelFinalPagePdf,
+     getBoletaByStudentAndId,
+     generarBoletaExistente
 }
 
 // /*Helps

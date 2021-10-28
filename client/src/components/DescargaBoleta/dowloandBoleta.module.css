@@ -48,4 +48,6 @@
     background: #012c66;
     color: #fff;
     font-size: 15px;
+    transition: background .3s ease;
 }
+.contentBtnSubmit__input:hover { background: #0e4a99; }

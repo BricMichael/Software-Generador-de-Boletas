@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import loginReducer from '../reducers/loginReducer';
 import indicadorReducer from '../reducers/IndicadorReducer';
 import boletaReducer from '../reducers/boletaReducer';
+import zonaDescargasBoleta from '../reducers/descargaBoletaReducer';
 import configReducer from '../reducers/configuracionReducer';
 
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     indicador: indicadorReducer,
     boleta: boletaReducer,
     config: configReducer,
+    descarga: zonaDescargasBoleta
 })
 
 export const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));

@@ -1,0 +1,40 @@
+.datosBoletaStudent {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 400px;
+    color: #012c66;
+    margin-left: 1rem;
+    border-radius: 2px;
+    margin-top: 1.6rem;
+    padding: 6px;
+}
+
+.datosBoleta {
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.datosBoleta__dato {
+    padding: 3px 0;
+}
+
+.btnGenerarBoleata {
+    align-self: flex-end;
+    margin-right: 0.5rem;
+}
+
+.btnGenerarBoleata__button {
+    background: #012c66;
+    color: #fff;
+    padding: 7px;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 140px;
+    transition: background .3s ease;
+}
+
+.btnGenerarBoleata__button:hover { background: #0e4a99; }

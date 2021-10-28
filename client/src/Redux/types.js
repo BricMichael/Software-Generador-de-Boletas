@@ -29,6 +29,9 @@ const types = {
     existeRolDirector: '[CONFIG] Existe rol Director',
     existeRolCoordinador: '[CONFIG] Existe rol Coordinador',
 
+    dataBoletaByStudent: '[Descarga] DataBoletaAGenerar',
+    resetDataState: '[Descarga] ResetDataAlGenerarBoleta'
+
 }
 
 

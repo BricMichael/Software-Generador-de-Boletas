@@ -38,6 +38,15 @@ export const alertErrors = (msg, color = '#538fca') => {
     })
 }
 
+export const alertNoResults = () => {
+    Swal.fire({
+        html: 'No se han encontrado resultados',
+        icon: 'info',
+        width: '440px',
+        confirmButtonColor: '#4169e1',
+    })
+}
+
 export const BoletaEnProcesoAlert = () => {
     Swal.fire({
         title: 'Generando Boleta',
