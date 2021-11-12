@@ -11,7 +11,7 @@ let count = 0;
 let studentsBySeccion = 0;
 
 const eachRender = () => { // esta funcion se ejecuta cada que se cambie de grado o seccion.
-    count = 0;  // inicializar el contador en 0 cada que se cambie de grado o seccion.
+    count = 0;  // inicializar el contador en 0 al cmbiar de grado o seccion.
     document.getElementById('backStudents').style.display = 'none';
     document.getElementById('nextStudents').style.display = 'initial';
 }
@@ -117,7 +117,7 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 export const guardarBoletaAction = (historyPush) => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
     BoletaEnProcesoAlert();
-    const check = dataBoleta.boletasPendientesByGrado <= 1;
+    const check = dataBoleta.boletasPendientesBySeccion <= 1;
 
     console.log('se fue la data al backend')
     const { data } = await api.apiGenerarBoleta({
@@ -128,7 +128,7 @@ export const guardarBoletaAction = (historyPush) => async (dispatch, getState) =
         studentSelected: dataBoleta.studentSelected,
         personalFirmas: dataBoleta.personalFirmas,
         fecha_de_creacion: new Date().toLocaleDateString(),
-        boletasPendientesByGrado: dataBoleta.boletasPendientesByGrado
+        boletasPendientesBySeccion: dataBoleta.boletasPendientesBySeccion
     });
 
     dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });

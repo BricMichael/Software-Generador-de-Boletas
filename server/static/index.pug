@@ -11,7 +11,6 @@ head
     --font-s-normal: 10pt;
     --font-s-mid: 12pt;
     --font-s-large: 14pt;
-    /* Kerning */
     --ltr-spc-200: 0.2em;
     --ltr-spc-100: 0.1em;
     --ltr-spc-020: 0.02em;
@@ -25,9 +24,7 @@ head
     padding: 1px;
     text-align: center;
     }
-    /*Fin Header*/
-    /*Estilos membrete --------------------------------- background: rgb(13, 13, 59); }*/
-    /* LogoImg  inline block both*/
+    /*Estilos membrete ¿*/
     .LogoImg { margin-right: 1rem; display: inline-block; }
     .content-inline {display: inline-block;}
     /*Estilos membreteTop*/
@@ -54,18 +51,22 @@ head
     font-weight: bold; display: flex; justify-content: space-evenly;
     }
     .CabeceraLiterales, .literalesTop  { font-size: 14px;}
+
     /* Indicadores docentes esitlos */
-    .contentIndicadorDocentes { width: 710px; margin: auto; border: 1px solid #000; margin-top: 0.7rem; margin-bottom: 19rem; margin-left: 3rem;}  /*margin abajo de 17rem, para que tire el contenido sobrante para abajo, genere una nueva hoja y no vaya a mostrarse cortado.  height: 657px;*/
-    .cabeceraAreas { display: flex; }
-    .cabeceraAreaTitle, .cabeceraLiterales, .cabeceraSecondModel{ width: 600px; border-bottom: 1px solid #000;  border-right: 1px solid #000; display: flex;justify-content: center; align-items: center; padding: 1px 0;}
+    .contentIndicadorDocentes, #IndHojaCompleta { 
+      width: 710px; 
+      margin: auto; 
+      border: 1px solid #000; 
+      margin-top: 0.7rem; 
+      margin-bottom: 19rem; 
+      margin-left: 3rem;
+    }  /*margin abajo de 19rem, para que tire el contenido sobrante a una nueva hoja, y no vaya a mostrarse cortado. */
+
+    .cabeceraAreas, .cabeceraAreasSecondModel { display: flex; }
+    .cabeceraAreaTitle, .cabeceraLiterales,.cabeceraTitleSecondModel, .cabeceraLiteralSecondModel { width: 600px; border-bottom: 1px solid #000; border-right: 1px solid #000; display: flex;justify-content: center; align-items: center; padding: 1px 0;}
 
     .cabeceraAreaTitle{ font-size: 15px; }
-
     .cabeceraLiterales { width: 36px; font-size: 13px; }
-    .cabeceraSecondModel { width: 36px; font-size: 13px; overflow: hidden; }
-
-    .no-borde-right { border-right: none; }
-    .no-borde-bottom { border-bottom:none; }
 
     /* cuerpo del contenido  */
     .contenidoIndicadores { display: flex; }
@@ -74,19 +75,22 @@ head
     .contentDescripcion { display: flex; border-bottom: 1px solid #000; }
     .descripcion, .descHojaCompleta {  width: 570px;  border-right: 1px solid #000; font-size: 11.4px; text-align: justify; padding: 1px 4px; }
     .descHojaCompleta { width: 568px; }
+
     /*Indicador experimento cientifico*/
     .descripcionexperimentoC, .literalesExperimentoC  { display: flex; align-items: center; }
     .literalesExperimentoC { width: 36.4px; border-left: 1px solid #000; justify-content: center;}
     .descripcionexperimentoC { border-left: 1px solid #000;  margin-left: 20px; width: 578px; font-size: 11px; text-align: justify; padding: 1px 4px; }
+
     /* Firmas del personal */
     #footer { width: 620px; margin: auto; display: flex !important; justify-content: space-between !important; margin-left: 6rem; } /*margin-top: 2.8rem;*/
     .firmaModel, .firmaCenterDocente, .firmaCenterPadre {
     font-size: 13px; width: 170px; text-align: center
     }
-    .bajar { margin-top: 1.1rem; }/* dejar mas espacio superior en las firmas laterales. */
+    .bajar { margin-top: 1.1rem; }
     .top { border-top: 1px solid #000; }
     .firmaMargin { margin-top: 0.5rem; text-align: center;}
-    .firmaCenterDocente { margin-bottom: 1.7rem;}
+    .firmaCenterDocente { margin-bottom: 1.3rem;}
+
     /*Estilos segundo modelo*/
     .SecondModel {  margin-left: 2.6rem;}
     .apreciacion { width: 700px; margin: auto; text-align: justify; height: 70px;}
@@ -96,9 +100,8 @@ head
     .contentEspecialidades { width: 720px; margin: auto; margin-bottom: 27rem; height: 650px;}
     .titleEspecialidades { text-align: center; border: 1px solid #000; font-size: 23px;}
     .nombreEspecialidad { display: flex; }
-    /*Imagen estrealla especialidades  border: 1px solid #000; */
 
-    .contentImgStartStudent{ width: 720px; margin: 0.3rem auto; display: flex; justify-content: flex-end !important; padding: 3px 0; margin-top: -1rem;}
+    .contentImgStartStudent{ width: 720px; margin: 0.3rem auto; display: flex; justify-content: flex-end; padding: 3px 0; margin-top: -1rem;}
 
     .imgStartStudent { width: 80px; height: 80px;}
 
@@ -107,14 +110,45 @@ head
     .tipo { margin-left: 1rem;  font-size: 15px; font-weight: bold; border-right: 1px solid #000; width: calc(100% - 65px);}
     .descIndEspecialista { padding: 3px 4px; text-align: justify; font-size: 11.6px; border:  1px solid #000;}
 
-    /*Modificaciones ultimas generales*/
-    #IndHojaCompleta { height: 800px !important; border: none; }
-    .putBorde { border-top: 1px solid #000; border-left: 1px solid #000;  }
-    .bordeLeft {border-left: 1px solid #000; }
-    .descHojaLiteral{ width: 36px; border-right: 1px solid #000; overflow: hidden !important; text-align: center;}
-    .prueba{ width: 35.9px }
+    .bordeLeft {border-left: 1px solid #000; } /*border a la palabra indicador lateral */
 
+    #IndHojaCompleta {
+      height: 800px;
+      border: none;
+      border-top: 1px solid #000;
+    }
 
+    .cabeceraTitleSecondModel { font-size: 15px; border-left: 1px solid #000;  width: 599px;}
+
+    .cabeceraLiteralSecondModel{ width: 37.5px; font-size: 13px; }
+
+    .contentDescripcionSecondModel {
+      display: flex;
+      border-bottom: 1px solid #000;
+    }
+    .indicadorSecondModel {
+      width: 564.8px;
+      border-right: 1 px solid #000;
+      font-size: 11.4px;
+      text-align: justify;
+      padding: 1px 4px;
+    }
+    .indicadorLiteralSecondModel {
+      width: 37.2px;
+      border-right: none;
+      border-bottom: none;
+      border-left: 1px solid #000;
+      font-size: 13px;
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      padding: 1px 0;
+    }
+
+    .no-borde-right { border-right: none; }
+    .no-borde-bottom { border-bottom:none; }
+    .bordeRight { border-right: 1px solid #000; }
+    
 
 header#header
   img.LogoImg(src='http://localhost:4000/image')
@@ -215,160 +249,158 @@ if indHojaPrincipal[0].length >= 1
 
           
 
-
-
 //- segundo modelo hoja max 34 indicadores 
 if tresIndByHoja_1.length >= 1
-  #IndHojaCompleta.contentIndicadorDocentes
+  #IndHojaCompleta
       each hojaUno in tresIndByHoja_1
-          .cabeceraAreas.putBorde
-              h3.cabeceraAreaTitle &Aacute;REA: #{hojaUno.area}
-              h3.cabeceraSecondModel E
-              h3.cabeceraSecondModel B
-              h3.cabeceraSecondModel.prueba RN
+          .cabeceraAreasSecondModel
+              h3.cabeceraTitleSecondModel &Aacute;REA: #{hojaUno.area}
+              h3.cabeceraLiteralSecondModel E
+              h3.cabeceraLiteralSecondModel B
+              h3.cabeceraLiteralSecondModel RN
           .contenidoIndicadores
               .rotateParrafo.bordeLeft
                   p INDICADORES
               .allIndicadores
                   each value in hojaUno.indicadores
-                      .contentDescripcion
-                          p.descHojaCompleta
+                      .contentDescripcionSecondModel
+                          p.indicadorSecondModel
                             | #{value.indicador}
                           if value.literal === 'E'
-                              span.cabeceraLiterales.no-borde-bottom &check;
-                              span.cabeceraLiterales.no-borde-bottom  
-                              span.cabeceraLiterales.no-borde-bottom
+                              span.indicadorLiteralSecondModel &check;
+                              span.indicadorLiteralSecondModel
+                              span.indicadorLiteralSecondModel.bordeRight
                           else if value.literal === 'B'    
-                              span.cabeceraLiterales.no-borde-bottom 
-                              span.cabeceraLiterales.no-borde-bottom  &check;
-                              span.cabeceraLiterales.no-borde-bottom
+                              span.indicadorLiteralSecondModel
+                              span.indicadorLiteralSecondModel &check;
+                              span.indicadorLiteralSecondModel.bordeRight
                           else 
-                              span.cabeceraLiterales.no-borde-bottom 
-                              span.cabeceraLiterales.no-borde-bottom  
-                              span.cabeceraLiterales.no-borde-bottom &check;
+                              span.indicadorLiteralSecondModel
+                              span.indicadorLiteralSecondModel
+                              span.indicadorLiteralSecondModel.bordeRight &check;
 
 
 if tresIndByHoja_2.length >= 1
-    #IndHojaCompleta.contentIndicadorDocentes
+    #IndHojaCompleta
         each hojaDos in tresIndByHoja_2
-            .cabeceraAreas.putBorde
-                h3.cabeceraAreaTitle &Aacute;REA: #{hojaDos.area}
-                h3.cabeceraSecondModel E
-                h3.cabeceraSecondModel B
-                h3.cabeceraSecondModel.prueba RN
+            .cabeceraAreasSecondModel
+                h3.cabeceraTitleSecondModel &Aacute;REA: #{hojaDos.area}
+                h3.cabeceraLiteralSecondModel E
+                h3.cabeceraLiteralSecondModel B
+                h3.cabeceraLiteralSecondModel RN
             .contenidoIndicadores
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
                     each value in hojaDos.indicadores 
-                        .contentDescripcion
-                            p.descHojaCompleta
+                        .contentDescripcionSecondModel
+                            p.indicadorSecondModel
                               | #{value.indicador}
                             if value.literal === 'E'
-                                span.cabeceraLiterales.no-borde-bottom &check;
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight
                             else if value.literal === 'B'    
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  &check;
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel.bordeRight
                             else 
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel.bordeRight &check;
 
 
 if dosIndLargosByHoja_1.length >= 1
-    #IndHojaCompleta.contentIndicadorDocentes
+    #IndHojaCompleta
         each firstPage in dosIndLargosByHoja_1
-            .cabeceraAreas.putBorde
-                h3.cabeceraAreaTitle &Aacute;REA: #{firstPage.area}
-                h3.cabeceraSecondModel E
-                h3.cabeceraSecondModel B
-                h3.cabeceraSecondModel.prueba RN
+            .cabeceraAreasSecondModel
+                h3.cabeceraTitleSecondModel &Aacute;REA: #{firstPage.area}
+                h3.cabeceraLiteralSecondModel E
+                h3.cabeceraLiteralSecondModel B
+                h3.cabeceraLiteralSecondModel RN
             .contenidoIndicadores
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
                     each value in firstPage.indicadores 
-                        .contentDescripcion
-                            p.descHojaCompleta
+                        .contentDescripcionSecondModel
+                            p.indicadorSecondModel
                               | #{value.indicador}
                             if value.literal === 'E'
-                                span.cabeceraLiterales.no-borde-bottom &check;
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight
                             else if value.literal === 'B'    
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  &check;
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel.bordeRight
                             else 
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight &check;
                       
        
 if dosIndLargosByHoja_2.length >= 1
-    #IndHojaCompleta.contentIndicadorDocentes
+    #IndHojaCompleta
         each secondPage in dosIndLargosByHoja_2
-            .cabeceraAreas.putBorde
-                h3.cabeceraAreaTitle &Aacute;REA: #{secondPage.area}
-                h3.cabeceraSecondModel E
-                h3.cabeceraSecondModel B
-                h3.cabeceraSecondModel.prueba RN
+            .cabeceraAreasSecondModel
+                h3.cabeceraTitleSecondModel &Aacute;REA: #{secondPage.area}
+                h3.cabeceraLiteralSecondModel E
+                h3.cabeceraLiteralSecondModel B
+                h3.cabeceraLiteralSecondModel RN
             .contenidoIndicadores
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
                     each value in secondPage.indicadores 
-                        .contentDescripcion
-                            p.descHojaCompleta
+                        .contentDescripcionSecondModel
+                            p.indicadorSecondModel
                               | #{value.indicador}
                             if value.literal === 'E'
-                                span.cabeceraLiterales.no-borde-bottom &check;
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight
                             else if value.literal === 'B'    
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  &check;
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel.bordeRight
                             else 
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight &check;
                       
   
 if dosIndLargosByHoja_3.length >= 1
-    #IndHojaCompleta.contentIndicadorDocentes
+    #IndHojaCompleta
         each threePage in dosIndLargosByHoja_3
-            .cabeceraAreas.putBorde
-                h3.cabeceraAreaTitle &Aacute;REA: #{threePage.area}
-                h3.cabeceraSecondModel E
-                h3.cabeceraSecondModel B
-                h3.cabeceraSecondModel.prueba RN
+            .cabeceraAreasSecondModel
+                h3.cabeceraTitleSecondModel &Aacute;REA: #{threePage.area}
+                h3.cabeceraLiteralSecondModel E
+                h3.cabeceraLiteralSecondModel B
+                h3.cabeceraLiteralSecondModel RN
             .contenidoIndicadores
                 .rotateParrafo.bordeLeft
                     p INDICADORES
                 .allIndicadores
                     each value in threePage.indicadores 
-                        .contentDescripcion
-                            p.descHojaCompleta
+                        .contentDescripcionSecondModel
+                            p.indicadorSecondModel
                               | #{value.indicador}
                             if value.literal === 'E'
-                                span.cabeceraLiterales.no-borde-bottom &check;
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight
                             else if value.literal === 'B'    
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  &check;
-                                span.cabeceraLiterales.no-borde-bottom
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel &check;
+                                span.indicadorLiteralSecondModel.bordeRight
                             else 
-                                span.cabeceraLiterales.no-borde-bottom 
-                                span.cabeceraLiterales.no-borde-bottom  
-                                span.cabeceraLiterales.no-borde-bottom &check;
+                                span.indicadorLiteralSecondModel 
+                                span.indicadorLiteralSecondModel
+                                span.indicadorLiteralSecondModel.bordeRight &check;
      
 
-//- Segundo modelo 
+//- Areas especialistas.
 .SecondModel
   .apreciacion
     p.msg1
@@ -377,7 +409,7 @@ if dosIndLargosByHoja_3.length >= 1
     p.msg2
       | &ldquo;Estoy orgullosa de ti y de tus logros, no olvides que las excelentes personas como t&uacute; germinan en el coraz&oacute;n, crecen d&iacute;a a d&iacute;a en el alma y pase lo que pase jam&aacute;s se olvidan.&rdquo;
   .contentImgStartStudent
-    img.imgStartStudent(src='http://localhost:4000/insignia' alt='imagenBoleta')
+    img.imgStartStudent(src='http://localhost:4000/insignia' alt='insigniaBoleta')
   .contentEspecialidades
     h2.titleEspecialidades ESPECIALIDADES
     each value in indEspecialistas_1
@@ -402,7 +434,7 @@ if indEspecialistas_2.length >= 1
           img.imgStartStudent(src='http://localhost:4000/insignia' alt='imagenBoleta')
       .contentEspecialidades
           h2.titleEspecialidades ESPECIALIDADES
-          each value in resp.indEspecialistas_2
+          each value in indEspecialistas_2
               .cuerpoDescripcion
                   .nombreEspecialidad
                       p.area &Aacute;REA
@@ -410,14 +442,6 @@ if indEspecialistas_2.length >= 1
                   .contentDesc
                       p.descIndEspecialista
                         | #{value.indicador}
-
-    //- .cuerpoDescripcion
-    //-   .nombreEspecialidad
-    //-     p.area &Aacute;REA
-    //-     p.tipo EDUCACI&Oacute;N F&Iacute;SICA, DEPORTE Y RECREACI&Oacute;N
-    //-   .contentDesc
-    //-     p.descIndEspecialista
-    //-       | Realiz&oacute; el trabajo del f&uacute;tbol, cumpliendo con todas las pautas indicadas, adem&aacute;s aplic&oacute; sus habilidades con ejercicios sencillos de pase, recepci&oacute;n y conducci&oacute;n.
 
 
 //-  Firmas del personal

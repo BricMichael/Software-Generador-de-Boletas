@@ -14,7 +14,7 @@ const initialState = {
     personalFirmas: { directora: '', coordinadora: '' },
     indicadoresByUserWithData: false,
     materiasWithIndicadores: [],
-    boletasPendientesByGrado: 0
+    boletasPendientesBySeccion: 0
 }
 
 const boletaReducer = (state = initialState, action) => {
@@ -28,14 +28,14 @@ const boletaReducer = (state = initialState, action) => {
                     grado: action.payload.grado,
                     seccion: action.payload.seccion,
                 },
-                boletasPendientesByGrado: action.payload.boletasPendientes.total
+                boletasPendientesBySeccion: action.payload.boletasPendientes.total
             }
 
         case types.nextOrBackFiveStudents:
             return {
                 ...state,
                 listFiveStudents: [...action.payload.data],
-                boletasPendientesByGrado: action.payload.boletasPendientes.total
+                boletasPendientesBySeccion: action.payload.boletasPendientes.total
             }
 
         case types.studentSelected:
@@ -105,14 +105,14 @@ const boletaReducer = (state = initialState, action) => {
             }
 
         case types.savedBoletaTypes:
-            const condition = state.boletasPendientesByGrado === 1;
+            const condition = state.boletasPendientesBySeccion === 1;
 
             return {
                 ...state,
                 studentSelected: { nombres: '', grado: '', seccion: '', docente: condition ? '' : state.studentSelected.docente },
                 literalIndicadoresDocentes: [],
                 literalesEspecialistas: [],
-                boletasPendientesByGrado: state.boletasPendientesByGrado - 1,
+                boletasPendientesBySeccion: state.boletasPendientesBySeccion - 1,
                 listFiveStudents: condition
                     ? state.listFiveStudents.map(students => ({ ...students, boleta_generada: 'Pendiente' }))
                     : state.listFiveStudents.map(item => item.id === action.payload.id

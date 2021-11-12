@@ -4,7 +4,6 @@ const app = express();
 const path = require('path'); // saber en que S.O nos encontramos y poner las barras direccionales correctas => / O \.
 
 
-
 // rutas
 const personalRoutes = require('./routes/personal');
 const indicadoresRoutes = require('./routes/indicadores');
@@ -19,7 +18,7 @@ app.use(express.urlencoded({ extended: false })) // => entender datos que vienen
 app.use(cors())
 
 app.set('view engine', 'pug');
-app.set("views", __dirname + "/views");
+app.set("static", __dirname + "/static");
 
 
 //routes 
@@ -34,16 +33,6 @@ app.use('/api', personalRoutes);
 app.use('/api', indicadoresRoutes);
 app.use('/api', routesCrearBoleta);
 app.use('/api', routesRegistros);
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'static/boleta.html'))
-// })
-
-
-// app.get('/pug', (req, res) => {
-//     res.setHeader('Content-Type', 'text/html')
-//     res.render('index', {docente: 'Gabriela Mejia Suarez Perez', alumno: 'Jose Felipe Uchearega'})
-// })
-
 
 
 
