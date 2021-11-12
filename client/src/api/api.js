@@ -29,8 +29,9 @@ export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Lite
 export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta, { responseType: 'blob' });
 export const apiGetBoletaByCedulaAndMomento = (datos) => axios.post(`${urlBoleta}/getById`, datos);
 export const apiGenerarBoletaExistente = (datos) => axios.post(`${urlBoleta}/existente`, datos, { responseType: 'blob' });
-/* Peticiones Registros de usuarios y estudiantes.  */
 
+
+/* Peticiones Registros de usuarios y estudiantes.  */
 export const apiRegisterStudent = (datos) => axios.post(`${urlRegistro}Estudiante`, datos);
 export const apiRegisterPersonal = (datos) => axios.post(`${urlRegistro}Usuario`, datos);
 export const apiGetAllRegisters = (param) => axios.get(`${urlRegistro}Usuarios`, { params: { param } });
@@ -40,7 +41,6 @@ export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}
 
 
 /* Peticiones configuración del sistema */
-
 export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}allMaterias`);  //Materias en la Bd.
 export const apiTotalUsersByRol = () => axios.get(`${urlConfiguracion}totalUserByRol`);
 export const apiAllStudents = () => axios.get(`${urlConfiguracion}allStudents`);

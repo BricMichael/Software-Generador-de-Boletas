@@ -66,7 +66,7 @@ const personalFirmas = async (req, res) => {
 
           let sendNamesFirmas = {};
           respDB.rows.forEach(value => {
-               value.rol === 'Director' ? sendNames.directora = value.nombre : sendNames.coordinadora = value.nombre
+               value.rol === 'Director' ? sendNamesFirmas.directora = value.nombre : sendNamesFirmas.coordinadora = value.nombre
           });
 
           res.json(sendNamesFirmas);

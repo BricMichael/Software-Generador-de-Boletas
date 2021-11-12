@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false })) // => entender datos que vienen
 app.use(cors())
 
 app.set('view engine', 'pug');
-app.set("static", __dirname + "/static");
+app.set("views", __dirname + "/static");
 
 
 //routes 

@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const pool = require('../configDB/poolConfig');;
 const puppeterReport = require('puppeteer-report');
 
 

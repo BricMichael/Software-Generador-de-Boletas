@@ -28,13 +28,15 @@ const registroUsuario = async (req, res) => {
         const dateToday = new Date().toDateString();
         const { nombre, area, cedula, email, password, rol } = req.body;
 
-        const respBD = await pool.query(`SELECT * FROM personal WHERE cedula = $1 OR email = $2`, [cedula, email])
+        const saveEmailToLowerCase = email.toLowerCase();
+
+        const respBD = await pool.query(`SELECT * FROM personal WHERE cedula = $1 OR email = $2`, [cedula, saveEmailToLowerCase.trim()]);
 
         if (respBD.rowCount === 1) {
             res.json({ msg: 'Error: Ya existe un usuario con ese correo electrónico o cédula' })
         }
         else {
-            await pool.query('INSERT INTO personal( nombre, email, rol, cedula, area_personal, claveuser, fecha_reg ) VALUES($1,$2, $3, $4, $5, $6, $7)', [nombre.trim(), email.trim(), rol, cedula.trim(), area, password, dateToday]);
+            await pool.query('INSERT INTO personal( nombre, email, rol, cedula, area_personal, claveuser, fecha_reg ) VALUES($1,$2, $3, $4, $5, $6, $7)', [nombre.trim(), saveEmailToLowerCase.trim(), rol, cedula.trim(), area, password, dateToday]);
 
             res.json({ msg: 'Usuario registrado exitosamente' });
         }

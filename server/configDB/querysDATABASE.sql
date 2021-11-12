@@ -17,14 +17,6 @@ VALUES('Alberto Jesus Graterol Flores','algcmusic18@gmail.com','departamento de 
 
 
 
-CREATE TABLE grado (
-  id_grado SERIAL NOT NULL PRIMARY KEY,
-  nombre VARCHAR(15) NOT NULL,
-  seccion VARCHAR(5) NOT NULL
-  );
-  
-
-
 CREATE TABLE estudiante (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     cedula_escolar VARCHAR(20) NOT NULL UNIQUE,
@@ -38,7 +30,7 @@ CREATE TABLE estudiante (
 CREATE TABLE indicador (
     id SERIAL NOT NULL PRIMARY KEY,
     indicador VARCHAR(1200) NOT NULL,
-    momento VARCHAR(17) NOT NULL,,
+    momento VARCHAR(17) NOT NULL,
     area VARCHAR(50) NOT NULL,
     condicion_especial VARCHAR(10),
     id_creador VARCHAR(6) NOT NULL,
@@ -69,6 +61,3 @@ CREATE TABLE materias (
     tipo VARCHAR(18) NOT NULL,
 );
 
-
-
-select jsonb_pretty(data::jsonb) from jsoon where data ->> 'edad' = '15' and data ->> 'ciudad' = 'trujillito';   -----.
