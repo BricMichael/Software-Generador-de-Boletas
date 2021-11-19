@@ -2,7 +2,7 @@ import * as api from '../../api/api';
 import types from '../types';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
-import { BoletaEnProcesoAlert } from '../../helpers/alerts';
+import { alertAvisos, BoletaEnProcesoAlert } from '../../helpers/alerts';
 import { downloandBoletaAndMsgSuccess } from '../../helpers/creacionBoleta';
 
 
@@ -116,26 +116,33 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 
 export const guardarBoletaAction = (historyPush) => async (dispatch, getState) => {
     const dataBoleta = getState().boleta;
-    BoletaEnProcesoAlert();
-    const check = dataBoleta.boletasPendientesBySeccion <= 1;
+    const totalMateriasByGrado = dataBoleta.materiasWithIndicadores.filter(area => area.indicadores.length >= 1);
+    /*De todas las materias de tipo Docente, filtrar solo las que el docente está usando, 
+   ya que los docentes de grados diferentes no usarán las mismas materias. */
+    if (dataBoleta.literalIndicadoresDocentes.length < totalMateriasByGrado.length) {
+        alertAvisos('Faltan áreas de docente* por completar');
 
-    console.log('se fue la data al backend')
-    const { data } = await api.apiGenerarBoleta({
-        indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
-        literalesEspecialistas: dataBoleta.literalesEspecialistas,
-        momento: dataBoleta.momento,
-        descripAndDate: dataBoleta.descripAndDate,
-        studentSelected: dataBoleta.studentSelected,
-        personalFirmas: dataBoleta.personalFirmas,
-        fecha_de_creacion: new Date().toLocaleDateString(),
-        boletasPendientesBySeccion: dataBoleta.boletasPendientesBySeccion
-    });
+    } else {
+        BoletaEnProcesoAlert();
+        const check = dataBoleta.boletasPendientesBySeccion <= 1;
 
-    dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
+        console.log('se fue la data al backend')
+        const { data } = await api.apiGenerarBoleta({
+            indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
+            literalesEspecialistas: dataBoleta.literalesEspecialistas,
+            momento: dataBoleta.momento,
+            descripAndDate: dataBoleta.descripAndDate,
+            studentSelected: dataBoleta.studentSelected,
+            personalFirmas: dataBoleta.personalFirmas,
+            fecha_de_creacion: new Date().toLocaleDateString(),
+            boletasPendientesBySeccion: dataBoleta.boletasPendientesBySeccion
+        });
 
-    downloandBoletaAndMsgSuccess(check, data, dataBoleta.studentSelected.nombres);
+        dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
 
-    historyPush.push('/menu-principal/creacion-de-boletas');
+        downloandBoletaAndMsgSuccess(check, data, dataBoleta.studentSelected.nombres);
+        historyPush.push('/menu-principal/creacion-de-boletas');
+    }
 }
 
 

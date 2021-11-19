@@ -2,12 +2,13 @@ import style from './sidebar.module.css';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useState } from 'react';
 import ModalDeleteStudents from '../Modal/ModalDeleteStudents';
-
+import { roles } from '../../helpers/roles';
 
 const Sidebar = () => {
     let { url } = useRouteMatch();
     const [openModal, setOpenModal] = useState(false);
 
+    const rolUser = JSON.parse(localStorage.getItem('userActive')).rol;
 
     return (
         <>
@@ -18,19 +19,23 @@ const Sidebar = () => {
                     <Link to={`${url}/regEstudiante`}>Registrar Estudiante</Link>
                     <Link to={`${url}/ActualizarDatos`}>Actualizar datos</Link>
                 </ul>
+                {
+                    (rolUser !== roles.docente && rolUser !== roles.especialista)
+                    && <>
+                        <span className={style.sidebarTitle}>Registros Personal</span>
+                        <ul className={style.sidebarContentUl}>
+                            <Link to={`${url}/regUsuario`}>Registrar Usuario</Link>
+                            <Link to={`${url}/ListaUsuarios`}>Lista de Usuarios</Link>
+                            <Link to={`${url}/cambioClave`}>Cambiar contraseña</Link>
+                        </ul>
 
-                <span className={style.sidebarTitle}>Registros Personal</span>
-                <ul className={style.sidebarContentUl}>
-                    <Link to={`${url}/regUsuario`}>Registrar Usuario</Link>
-                    <Link to={`${url}/ListaUsuarios`}>Lista de Usuarios</Link>
-                    <Link to={`${url}/cambioClave`}>Cambiar contraseña</Link>
-                </ul>
-
-                <span className={style.sidebarTitle}>Configuración</span>
-                <ul className={style.sidebarContentUl}>
-                    <Link to={`${url}/materias`}>Agregar Materias</Link>
-                    <li onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} >Eliminar Estudiantes</li>
-                </ul>
+                        <span className={style.sidebarTitle}>Configuración</span>
+                        <ul className={style.sidebarContentUl}>
+                            <Link to={`${url}/materias`}>Agregar Materias</Link>
+                            <li onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} >Eliminar Estudiantes</li>
+                        </ul>
+                    </>
+                }
             </div>
         </>
     )

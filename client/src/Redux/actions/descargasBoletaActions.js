@@ -1,5 +1,5 @@
 import { apiGenerarBoletaExistente, apiGetBoletaByCedulaAndMomento } from "../../api/api"
-import { alertNoResults, BoletaEnProcesoAlert } from "../../helpers/alerts";
+import { alertAvisos, BoletaEnProcesoAlert } from "../../helpers/alerts";
 import { downloandBoletaAndMsgSuccess } from "../../helpers/creacionBoleta";
 import types from "../types";
 
@@ -17,7 +17,7 @@ export const getDataBoletaByStudent = (datos, resetState, setLoading) => async (
         if (data.length >= 1) resetState()
         else {
             resetState(datos); // si no hay data, dejar los campos del formulario igual.
-            alertNoResults();
+            alertAvisos('No se han encontrado resultados');
         }
     } catch (err) {
         console.log(err);

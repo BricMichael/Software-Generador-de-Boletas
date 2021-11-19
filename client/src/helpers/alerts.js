@@ -38,9 +38,9 @@ export const alertErrors = (msg, color = '#538fca') => {
     })
 }
 
-export const alertNoResults = () => {
+export const alertAvisos = (msg) => {
     Swal.fire({
-        html: 'No se han encontrado resultados',
+        html: msg,
         icon: 'info',
         width: '440px',
         confirmButtonColor: '#4169e1',
@@ -64,6 +64,4 @@ export const boletaGeneradaAlert = (msgSucces, boletasPendientesByGrado) => {
         confirmButtonColor: '#4169e1',
         confirmButtonText: boletasPendientesByGrado ? 'Entendido' : 'Continuar',
     })
-
-
 }

@@ -13,7 +13,6 @@ const FormBusqueda = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         setLoading(true);
         dispatch(getDataBoletaByStudent(values, reset, setLoading));
     }

@@ -4,6 +4,7 @@ import style from './membrete.module.css';
 import { useForm } from '../../../helpers/useForm';
 import { textAreaAndFecha } from '../../../Redux/actions/boletaActions';
 import { useHistory } from 'react-router-dom';
+import { alertAvisos } from '../../../helpers/alerts';
 
 
 
@@ -29,8 +30,11 @@ const StudentSelected = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
-        dispatch(textAreaAndFecha({ textArea, inicioMomento, finMomento, anioEscolar }));
+        if (!nombres) alertAvisos('Selecciona un estudiante para continuar')
+        else {
+            history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
+            dispatch(textAreaAndFecha({ textArea, inicioMomento, finMomento, anioEscolar }));
+        }
     }
 
     return (
