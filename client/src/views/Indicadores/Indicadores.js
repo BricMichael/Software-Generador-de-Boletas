@@ -49,9 +49,8 @@ const Indicadores = () => {
                     <ComentariosEmail />
                 </div>
             }
-            {
-                loadingData && <p className='loadingMsg'>Cargando...</p>
-            }
+            {loadingData && <p className='loadingMsg'>Cargando...</p>}
+
             <ListaIndicadores userSelected={userSelectedByCoordinador} />
 
         </>

@@ -9,7 +9,9 @@ const {
     showFiveStudents,
     personalFirmas,
     getBoletaByStudentAndId,
-    generarBoletaExistente
+    generarBoletaExistente,
+    eliminarBoleta,
+    eliminarAllBoletas
 } = require('../controllers/boletaControllers');
 
 
@@ -21,7 +23,8 @@ router.get('/boleta/firmasPersonal', personalFirmas);
 router.post('/boletaEstudiantes', initialsFiveStudents);
 router.post('/boletaShowEstudiantes', showFiveStudents);
 router.post('/boletaLiteral', indicadorEspecialistaByArea);
-
+router.post('/boleta/deleteBoleta', eliminarBoleta);
+router.post('/boleta/deleteBoletas', eliminarAllBoletas);;
 
 
 module.exports = router;

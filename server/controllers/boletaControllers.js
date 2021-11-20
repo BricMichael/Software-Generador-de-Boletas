@@ -138,6 +138,33 @@ const generarBoletaExistente = async (req, res) => { // Generar boleta existente
      }
 }
 
+const eliminarBoleta = async (req, res) => {
+     try {
+          const { cedulaEscolar, momento, anio_escolar } = req.body
+
+          await pool.query('DELETE FROM boleta WHERE cedula_estudiante = $1 AND momento = $2 AND anio_escolar = $3', [cedulaEscolar.trim(), momento, anio_escolar]);
+
+          res.json({ msg: 'Boleta eliminada exitosamente' });
+     } catch (err) {
+          console.log(err.message);
+     }
+}
+
+const eliminarAllBoletas = async (req, res) => {
+     try {
+          const { claveAdmin, emailAdmin } = req.body;
+          // consultar si ese administrador existe mediante su correo y password.
+          const checkUsuario = await pool.query('SELECT * FROM personal WHERE claveuser = $1 AND email = $2', [claveAdmin.trim(), emailAdmin]);
+          if (!checkUsuario.rowCount) return res.json({ error: 'La contraseña no coincide, operación rechazada' });
+          if (checkUsuario.rows[0].rol !== 'Admin') return res.json({ error: 'Solo los administradores pueden realizar esta operación' });
+
+          await pool.query('TRUNCATE TABLE boleta RESTART IDENTITY');
+          res.json({ res: 'La acción fue ejecutada exitosamente' });
+     } catch (err) {
+          console.log(err.message);
+     }
+}
+
 
 module.exports = {
      initialsFiveStudents,
@@ -147,5 +174,7 @@ module.exports = {
      creacionBoleta,
      modelFinalPagePdf,
      getBoletaByStudentAndId,
-     generarBoletaExistente
+     generarBoletaExistente,
+     eliminarBoleta,
+     eliminarAllBoletas
 }

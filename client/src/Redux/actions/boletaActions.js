@@ -126,7 +126,6 @@ export const guardarBoletaAction = (historyPush) => async (dispatch, getState) =
         BoletaEnProcesoAlert();
         const check = dataBoleta.boletasPendientesBySeccion <= 1;
 
-        console.log('se fue la data al backend')
         const { data } = await api.apiGenerarBoleta({
             indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
             literalesEspecialistas: dataBoleta.literalesEspecialistas,

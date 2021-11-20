@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';

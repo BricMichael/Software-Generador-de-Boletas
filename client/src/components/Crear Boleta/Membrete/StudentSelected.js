@@ -32,8 +32,20 @@ const StudentSelected = () => {
         e.preventDefault();
         if (!nombres) alertAvisos('Selecciona un estudiante para continuar')
         else {
+            const character = anioEscolar.indexOf('-');
+            let convertAnioEscolar = '';
+
+            if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
+                convertAnioEscolar = `${anioEscolar.slice(0, 4)}-${anioEscolar.slice(5, 9)}`; // conver to 2021-2022
+            }
+
             history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
-            dispatch(textAreaAndFecha({ textArea, inicioMomento, finMomento, anioEscolar }));
+            dispatch(textAreaAndFecha({
+                textArea,
+                inicioMomento,
+                finMomento,
+                anioEscolar: convertAnioEscolar ? convertAnioEscolar : anioEscolar
+            }));
         }
     }
 
@@ -71,7 +83,7 @@ const StudentSelected = () => {
                     <label htmlFor='anio'>Año escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 2021-2022'
+                        placeholder='Ejemplo 2021-2022,  2022-2023'
                         autoComplete='off'
                         name='anioEscolar'
                         value={anioEscolar}

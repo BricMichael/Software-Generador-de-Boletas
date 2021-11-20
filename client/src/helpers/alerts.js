@@ -20,7 +20,7 @@ export const alertDeleteItems = async (msgTitle) => {
 
 export const alertSuccess = (msg, position = 'top-end') => {
     Swal.fire({
-        position: position,
+        position,
         icon: 'success',
         text: msg,
         showConfirmButton: false,
@@ -28,10 +28,10 @@ export const alertSuccess = (msg, position = 'top-end') => {
     })
 }
 
-export const alertErrors = (msg, color = '#538fca') => {
+export const alertErrors = (msg, color = '#538fca', title = 'Datos incorrectos') => {
     Swal.fire({
         icon: 'error',
-        title: 'Datos incorrectos',
+        title,
         confirmButtonColor: color,
         text: msg,
         width: '440px',

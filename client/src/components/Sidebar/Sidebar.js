@@ -1,18 +1,25 @@
-import style from './sidebar.module.css';
-import { Link, useRouteMatch } from 'react-router-dom';
 import { useState } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
+import style from './sidebar.module.css';
 import ModalDeleteStudents from '../Modal/ModalDeleteStudents';
 import { roles } from '../../helpers/roles';
+import DeleteBoleta from '../Modal/DeleteBoleta';
+import DeleteAllBoletas from '../Modal/DeleteAllBoletas';
 
 const Sidebar = () => {
     let { url } = useRouteMatch();
-    const [openModal, setOpenModal] = useState(false);
+    const [modalStudents, setModalStudents] = useState(false);
+    const [modalDeleteBoleta, setModalDeleteBoleta] = useState(false);
+    const [modalDeleteAllBoletas, setModalDeleteAllBoletas] = useState(false);
 
     const rolUser = JSON.parse(localStorage.getItem('userActive')).rol;
 
     return (
         <>
-            {openModal && <ModalDeleteStudents closeModal={setOpenModal} />}
+            {modalStudents && <ModalDeleteStudents closeModal={setModalStudents} />}
+            {modalDeleteBoleta && <DeleteBoleta closeModal={setModalDeleteBoleta} />}
+            {modalDeleteAllBoletas && <DeleteAllBoletas closeModal={setModalDeleteAllBoletas} />}
+
             <div className={style.sidebarContent}>
                 <span className={style.sidebarTitle}>Registro Estudiante</span>
                 <ul className={style.sidebarContentUl}>
@@ -32,7 +39,18 @@ const Sidebar = () => {
                         <span className={style.sidebarTitle}>Configuración</span>
                         <ul className={style.sidebarContentUl}>
                             <Link to={`${url}/materias`}>Agregar Materias</Link>
-                            <li onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }} >Eliminar Estudiantes</li>
+                            <li onClick={() => setModalStudents(true)} style={{ cursor: 'pointer' }} >Eliminar Estudiantes</li>
+                            {
+                                rolUser === roles.admin &&
+                                <>
+                                    <li onClick={() => setModalDeleteBoleta(true)} style={{ cursor: 'pointer' }} >
+                                        Eliminar Boleta
+                                    </li>
+                                    <li onClick={() => setModalDeleteAllBoletas(true)} style={{ cursor: 'pointer' }}>
+                                        Eliminar Boletas
+                                    </li>
+                                </>
+                            }
                         </ul>
                     </>
                 }

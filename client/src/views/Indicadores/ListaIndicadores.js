@@ -120,7 +120,7 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                         </tbody>
                     </table>
 
-                    {dataSelected.length >= 1 &&
+                    {dataSelected.length >= 1 && rol !== roles.especialista &&
                         <div>
                             <button
                                 type='button'
@@ -147,12 +147,15 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                         </div>
                     }
 
-                    <select className={style.showOptionsOfMaterias} onChange={handleDisplay}>
-                        <option value={materiasShowOptions[0].materia}>Áreas</option>
-                        {materiasShowOptions.map(value => (
-                            <option key={value.materia} value={value.materia}>{value.materia}</option>
-                        ))}
-                    </select>
+                    {
+                        rol !== roles.especialista &&
+                        <select className={style.showOptionsOfMaterias} onChange={handleDisplay}>
+                            <option value={materiasShowOptions[0].materia}>Áreas</option>
+                            {materiasShowOptions.map(value => (
+                                <option key={value.materia} value={value.materia}>{value.materia}</option>
+                            ))}
+                        </select>
+                    }
                 </div>
             }
             {msgData.length > 4 && <p className={style.noResults} >{msgData}</p>}

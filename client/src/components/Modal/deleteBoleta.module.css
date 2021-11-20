@@ -1,0 +1,59 @@
+/* Estilos eliminar boleta de manera individual */
+.formDeleteBoleta {
+    background: #fff;
+    width: 400px;
+    border-radius: 4px;
+    text-align: left;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titleDeleteBoleta {
+    font-size: 21px;
+    color: #012c66;
+    margin-bottom: 1.2em;
+}
+
+.deleteBoleta_groupForm {
+    margin: .4em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteBoleta_groupForm > label { margin-right: 10px; }
+
+
+.deleteBoleta_groupForm > input, .deleteBoleta_groupForm > select  { 
+    border: none;
+    padding: 5px 2px;
+    width: 240px;
+    font-size: 15px;
+    border-bottom: 2px solid #9ea1a3;
+    transition: border-bottom .3s ease;
+ }
+
+
+.deleteBoleta_groupForm > input:focus {
+    outline: none;
+    border-bottom: 2px solid #012c66;
+}
+.buttons {
+    align-self: flex-end;
+    margin-top: 1.5em;
+}
+
+.btnBoletaDelete {
+    padding: 8px;
+    cursor: pointer;
+    margin-left: 1em;
+    border: none;
+    border-radius: 3px;
+    background: #8f9192;
+}
+
+.success {
+    background: #012c66;
+    color: #fff;
+}/* frin de los estilos, eliminar boleta de manera individual */

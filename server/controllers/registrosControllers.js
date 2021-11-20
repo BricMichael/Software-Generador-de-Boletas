@@ -4,22 +4,19 @@ const pool = require('../configDB/poolConfig');
 const registroEstudiante = async (req, res) => {
     try {
         const { nombres, cedulaE, genero, grado, seccion } = req.body;
-
         const respBD = await pool.query('SELECT cedula_escolar FROM estudiante WHERE cedula_escolar = $1', [cedulaE.trim()])
 
         if (respBD.rowCount === 1) {
             res.json({ msg: 'Error: Ya existe un estudiante con esa cédula escolar' });
         }
         else {
-            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion, boleta_generada) VALUES($1,$2, $3, $4, $5, $6)', [cedulaE.trim(), nombres.toUpperCase(), genero, grado, seccion, 'Pendiente']);
+            await pool.query('INSERT INTO estudiante( cedula_escolar, nombres, genero, grado, seccion, boleta_generada) VALUES( $1, $2, $3, $4, $5, $6)', [cedulaE.trim(), nombres.toUpperCase(), genero, grado, seccion, 'Pendiente']);
 
             res.json({ msg: 'Estudiante registrado exitosamente' });
         }
-
     } catch (err) {
         console.log(err.message);
     }
-
 }
 
 

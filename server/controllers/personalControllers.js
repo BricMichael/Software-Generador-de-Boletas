@@ -6,7 +6,7 @@ const validarUsuario = async (req, res) => {
     try {
         const { password, email } = req.body;
 
-        const resDB = await pool.query('SELECT  id, nombre, email, rol, area_personal  FROM personal WHERE (email = $1) and (claveuser = $2)', [email.toLowerCase(), password]);
+        const resDB = await pool.query('SELECT  id, nombre, email, rol, area_personal FROM personal WHERE (email = $1) and (claveuser = $2)', [email.toLowerCase(), password]);
 
         if (resDB.rowCount === 0) return res.json('undefined');
         if (resDB.rowCount === 1) return res.json(resDB.rows[0]);
