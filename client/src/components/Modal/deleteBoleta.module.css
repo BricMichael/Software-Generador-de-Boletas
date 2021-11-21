@@ -25,7 +25,7 @@
 .deleteBoleta_groupForm > label { margin-right: 10px; }
 
 
-.deleteBoleta_groupForm > input, .deleteBoleta_groupForm > select  { 
+.deleteBoleta_groupForm > input, .deleteBoleta_groupForm > select, .formGroupEliminarAllBoletas > input { 
     border: none;
     padding: 5px 2px;
     width: 240px;
@@ -35,7 +35,7 @@
  }
 
 
-.deleteBoleta_groupForm > input:focus {
+.deleteBoleta_groupForm > input:focus, .formGroupEliminarAllBoletas > input:focus  {
     outline: none;
     border-bottom: 2px solid #012c66;
 }
@@ -57,3 +57,26 @@
     background: #012c66;
     color: #fff;
 }/* frin de los estilos, eliminar boleta de manera individual */
+
+
+
+/* Estilos, eliminar todas las boleta */
+.eliminarAllBoletas {
+    background: #fff;
+    width: 400px;
+    border-radius: 3px;
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.titleEliminarAllBoletas {
+    font-size: 21px;
+    color: #012c66;
+    margin-bottom: 1.2em;
+}
+
+.formGroupEliminarAllBoletas > input {
+    margin-top: .8em;
+}

@@ -1,16 +1,16 @@
-
 .Dashheader {
     background-color: #05264c;
     color: #d0d0d1;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     height: 3.5rem;
     box-shadow: 2px 2px 5px rgba(20, 20, 20, 0.979);
     padding: 12px 10px;
 }
 
 .header_txt {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .fa_phone{
@@ -59,7 +59,7 @@
 }
 
 .bg_red {
-    background-color: hsla(0, 66%, 50%, 0.824);
+    background-color: #d42b2bd2;
 }
 .bg_red:hover {
     background-color: rgba(156, 53, 53, 0.822);
@@ -133,7 +133,10 @@
     background: #da542e;
     border-radius: 3px;
 }
-
+.cl_red {
+    background: #cf1919d2;
+    border-radius: 3px;
+}
 
 .opciones{
     color: #fff !important;
@@ -148,11 +151,11 @@
 
 .user {
     grid-column: 1/4;
-    margin-top: 2rem;
+    margin-top: 3.7em;
 }
 
 .user > p{
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     background: #2255a4;
     padding: 15px 15px;
     border-radius: 3px;
@@ -172,11 +175,6 @@
 
 
 @media screen and ( max-width:890px) {
-
-    .Dashheader  {
-        padding: 18px 10px 0px 10px;;
-    }
-
     .user > p{ font-size: 1.6rem;}
 
     .header_txt {

@@ -1,5 +1,4 @@
 /node_modules
-/pdf
 /server/package-lock.json
 /client/package-lock.json
 /server/.env

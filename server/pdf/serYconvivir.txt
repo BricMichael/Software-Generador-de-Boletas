@@ -1,0 +1,6 @@
+Durante el desarrollo del segundo momento a través del plan de atención a distancia, se  evidenció; que el estudiante fue responsable, entusiasta, constante y dedicado. Cumplió; con el compromiso esperado, las prácticas se evidenciaron de una manera adecuada, cualquier percance para hacer llegar las actividades lo manifestó por audio. En el proceso lógico matemático demostró; habilidad en operaciones básicas tales como: adición, sustracción y división de números naturales y decimales
+
+***En esta carpeta llamada (pdf) se guarda el pdf generado y una vez que es enviado al frontend, para que el usario lo descargue, se elimina.
+
+
+

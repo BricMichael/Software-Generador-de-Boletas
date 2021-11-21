@@ -33,23 +33,28 @@ const DeleteAllBoletas = ({ closeModal }) => {
 
     return (
         <Modal closeModal={closeModal} >
-            <div className="eliminarBoletas">
-                <p>Eliminar todas las boletas</p>
+            <div className={style.eliminarAllBoletas}>
+                <p className={style.titleEliminarAllBoletas}>Eliminando todas las boletas</p>
 
-                <div>
-                    <label htmlFor="">Ingrese su contraseña para continuar</label>
+                <div className={style.formGroupEliminarAllBoletas}>
+                    <label htmlFor="">Ingrese su contraseña para continuar.</label>
                     <input
                         type="password"
                         required
                         autoComplete='off'
-                        placeholder='*********'
+                        placeholder='Ingrese su contraseña..'
                         name='claveAdmin'
                         value={password.claveAdmin}
                         onChange={({ target }) => setPassword({ claveAdmin: target.value })}
                     />
-
-                    <button type='submit' onClick={methodDeleteBoletas}>Eliminar Boletas</button>
-                    <button type='button' onClick={() => closeModal(false)}>Cancelar</button>
+                </div>
+                <div className={style.buttons}>
+                    <button type='submit' onClick={methodDeleteBoletas} className={style.btnBoletaDelete} style={{ color: '#fff', background: '#012c66' }} >
+                        Eliminar todas las Boletas
+                    </button>
+                    <button type='button' onClick={() => closeModal(false)} className={style.btnBoletaDelete}>
+                        Cancelar
+                    </button>
                 </div>
             </div>
         </Modal>

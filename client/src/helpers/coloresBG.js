@@ -21,17 +21,10 @@ export const links = [
         pStyle: styles.opciones
     },
     {
-        to: '/menu-principal',
+        to: '/menu-principal/registros',
         className: `${styles.cl_amarillo} ${styles.grupo}`,
-        styleIcon: `${styles.bg} fas fa-pen-alt`,
-        p: 'Editor de Boletas',
-        pStyle: styles.opciones
-    },
-    {
-        to: '/menu-principal',
-        className: `${styles.cl_naranja} ${styles.grupo}`,
-        styleIcon: `${styles.bg} far fa-newspaper`,
-        p: 'Revisar Boleta',
+        styleIcon: `${styles.bg} fas fa-tools`,
+        p: 'Configuración (admin)',
         pStyle: styles.opciones
     },
     {

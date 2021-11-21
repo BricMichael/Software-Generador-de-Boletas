@@ -10,7 +10,7 @@
     height: auto;
 }
 
-.header__title { font-size: 2.2rem; font-weight: 700; }
+.header__title { font-size: 2.2rem; }
 
 @media screen and ( max-width:860px) { .header__title { font-size: 1.6em; } }
 
