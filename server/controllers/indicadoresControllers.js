@@ -17,11 +17,10 @@ const guardarIndicador = async (req, res) => {
 }
 
 const obtenerIndicadoresPorUsuario = async (req, res) => {
-    const year = new Date().getFullYear();
     try {
-        const { momento, id } = req.body;
+        const { momento, id, anioIndicadores } = req.body;
 
-        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, year]);
+        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, anioIndicadores.trim()]);
 
         res.status(200).json(indicadoresUsuario.rows);
 

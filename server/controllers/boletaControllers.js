@@ -15,9 +15,9 @@ const initialsFiveStudents = async (req, res) => {
                pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected]),
                pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
           ]);
-          const boletasPendingsBySeccion = +respDB[2].rows.find(student => student.boleta_generada === 'Pendiente')?.total;
+          const boletasPendingsBySeccion = +respDB[2].rows.find(student => student.boleta_generada === 'Pendiente');
 
-          data.push(respDB[0].rows, respDB[1].rowCount, { total: !boletasPendingsBySeccion ? 0 : boletasPendingsBySeccion });
+          data.push(respDB[0].rows, respDB[1].rowCount, { total: !boletasPendingsBySeccion.total ? 0 : boletasPendingsBySeccion.total });
           res.json(data);
           /* indice [1] es total de estudiantes por seccion. indice [2] total de estudiantes pendiente por boleta por seccion, 
           si el find arroja undefined quiere decir que todos los de ese grado tienen la boleta generada, 
@@ -36,9 +36,9 @@ const showFiveStudents = async (req, res) => {
           pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
           ]);
 
-          const boletasPendingsBySeccion = +respDB[1].rows.find(student => student.boleta_generada === 'Pendiente')?.total;
+          const boletasPendingsBySeccion = +respDB[1].rows.find(student => student.boleta_generada === 'Pendiente');
 
-          data.push(respDB[0].rows, { total: !boletasPendingsBySeccion ? 0 : boletasPendingsBySeccion });
+          data.push(respDB[0].rows, { total: !boletasPendingsBySeccion.total ? 0 : boletasPendingsBySeccion.total });
           res.json(data);
      } catch (err) {
           console.log(err.message);

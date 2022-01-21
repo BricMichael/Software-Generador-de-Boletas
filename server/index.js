@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors');
 const app = express();
+// const dotenv = require('dotenv');
 const path = require('path'); // saber en que S.O nos encontramos y poner las barras direccionales correctas => / O \.
-
+// dotenv.config();
 
 // rutas
 const personalRoutes = require('./routes/personal');
@@ -34,6 +35,6 @@ app.use('/api', indicadoresRoutes);
 app.use('/api', routesCrearBoleta);
 app.use('/api', routesRegistros);
 
-
+// const port = process.env.PORT;
 
 app.listen(4000, () => console.log('Servidor corriendo en el puerto 4000'));

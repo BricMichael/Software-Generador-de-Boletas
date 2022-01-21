@@ -4,13 +4,13 @@ import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
 
 
 
-export const filtroBusqueda = (momento, vista, idUser) => async (dispatch) => {
+export const filtroBusqueda = (momento, vista, idUser, anioIndicadores) => async (dispatch) => {
     try {  // param vista, saber que componente esta haciendo la llamada para saber que estadoReducer actualizar con la data.
         const { id } = JSON.parse(localStorage.getItem('userActive'));
-        let { data } = await api.indicadoresUserActivo({ momento, id: !idUser ? id : idUser });
+        let { data } = await api.indicadoresUserActivo({ momento, id: !idUser ? id : idUser, anioIndicadores });
 
         vista === 'Indicador'
-            ? dispatch({ type: types.momentoAndYear, payload: { data, momento } }) // estado vista indicador
+            ? dispatch({ type: types.momentoAndYear, payload: { data, momento, anioIndicadores } }) // estado vista indicador
             : dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento } })  // estado vista Boleta
 
         return data;
@@ -22,9 +22,9 @@ export const filtroBusqueda = (momento, vista, idUser) => async (dispatch) => {
 
 export const allIndicadorOfUser = () => async (dispatch, getState) => {
     try {
-        const { momento } = getState().indicador
+        const { momento, anioIndicadores } = getState().indicador
         const { id } = JSON.parse(localStorage.getItem('userActive'));
-        const { data } = await api.indicadoresUserActivo({ momento, id });
+        const { data } = await api.indicadoresUserActivo({ momento, id, anioIndicadores });
         dispatch({ type: types.indicadoresByUser, payload: data });
 
     } catch (err) { console.log(err.message) }

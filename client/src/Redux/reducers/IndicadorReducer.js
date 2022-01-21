@@ -4,22 +4,24 @@ const initialState = {
     indicadoresByUser: [],
     updateIndicador: {
         estado: false,
-        dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
+        dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: '' },
     },
     materias: {
-         materiasDocente: [],
+        materiasDocente: [],
         materiasEspecialista: [],
     },
-    momento: ''
-}   
+    momento: '',
+    anioIndicadores: ''
+}
 
-const indicadorReducer = ( state = initialState, action ) => {
+const indicadorReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.momentoAndYear:
             return {
-                ...state,  
-                indicadoresByUser: [ ...action.payload.data ],
-                momento: action.payload.momento
+                ...state,
+                indicadoresByUser: [...action.payload.data],
+                momento: action.payload.momento,
+                anioIndicadores: action.payload.anioIndicadores
             }
 
         case types.materiasTypes:
@@ -34,7 +36,7 @@ const indicadorReducer = ( state = initialState, action ) => {
         case types.indicadoresByUser:
             return {
                 ...state,
-                indicadoresByUser: [...action.payload]           
+                indicadoresByUser: [...action.payload]
             };
 
         case types.indicadorActive:
@@ -42,40 +44,40 @@ const indicadorReducer = ( state = initialState, action ) => {
                 ...state,
                 updateIndicador: {
                     estado: true,
-                    dataIndicador: {...action.payload}
+                    dataIndicador: { ...action.payload }
                 }
             };
         case types.refreshData:
-            return { 
+            return {
                 ...state,
-                indicadoresByUser: state.indicadoresByUser.map( 
-                    (newValue) => newValue.id === action.payload.id 
-                        ? action.payload.dataForUpdate 
+                indicadoresByUser: state.indicadoresByUser.map(
+                    (newValue) => newValue.id === action.payload.id
+                        ? action.payload.dataForUpdate
                         : newValue
-                    )
-            }    
+                )
+            }
 
         case types.limpiarInputsForm:
             return {
                 ...state,
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: ''},
+                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: '' },
                 }
-            }    
+            }
 
         case types.deleteAnIndicador:
             return {
                 ...state,
-                indicadoresByUser: state.indicadoresByUser.filter( idIteration =>  idIteration.id !== action.payload)
-            }; 
+                indicadoresByUser: state.indicadoresByUser.filter(idIteration => idIteration.id !== action.payload)
+            };
 
-        case types.limpiezaLogout:      
+        case types.limpiezaLogout:
             return {
-               ...initialState,
-               materias: state.materias,
-            };    
-    
+                ...initialState,
+                materias: state.materias,
+            };
+
         default:
             return state;
     }
