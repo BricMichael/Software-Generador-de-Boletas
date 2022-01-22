@@ -83,7 +83,7 @@ const StudentSelected = () => {
                     <label htmlFor='anio'>Año escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 2021-2022,  2022-2023'
+                        placeholder='Ejemplo, 2022-2023, 2023-2024'
                         autoComplete='off'
                         name='anioEscolar'
                         value={anioEscolar}
@@ -96,7 +96,7 @@ const StudentSelected = () => {
                     <label htmlFor='inicio'>Inicio del Momento escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 07/01/2021'
+                        placeholder='Ejemplo 07/01/2022'
                         autoComplete='off'
                         name='inicioMomento'
                         value={inicioMomento}
@@ -109,7 +109,7 @@ const StudentSelected = () => {
                     <label htmlFor='fin'>Fin del Momento escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 26/03/2021'
+                        placeholder='Ejemplo 26/03/2022'
                         autoComplete='off'
                         name='finMomento'
                         value={finMomento}

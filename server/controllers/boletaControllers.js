@@ -15,9 +15,13 @@ const initialsFiveStudents = async (req, res) => {
                pool.query('SELECT id FROM estudiante WHERE (grado = $1) and (seccion = $2)', [gradoSelected, seccionSelected]),
                pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
           ]);
-          const boletasPendingsBySeccion = +respDB[2].rows.find(student => student.boleta_generada === 'Pendiente');
+          const boletasPendingsBySeccion = respDB[2].rows.find(student => student.boleta_generada === 'Pendiente');
 
-          data.push(respDB[0].rows, respDB[1].rowCount, { total: !boletasPendingsBySeccion.total ? 0 : boletasPendingsBySeccion.total });
+          if (!boletasPendingsBySeccion) {
+               data.push(respDB[0].rows, respDB[1].rowCount, { total: 0 });
+          } else {
+               data.push(respDB[0].rows, respDB[1].rowCount, { total: +boletasPendingsBySeccion.total });
+          }
           res.json(data);
           /* indice [1] es total de estudiantes por seccion. indice [2] total de estudiantes pendiente por boleta por seccion, 
           si el find arroja undefined quiere decir que todos los de ese grado tienen la boleta generada, 
@@ -36,9 +40,14 @@ const showFiveStudents = async (req, res) => {
           pool.query(`SELECT boleta_generada, count(*) as total FROM estudiante WHERE (grado = $1) and (seccion = $2) GROUP BY boleta_generada`, [gradoSelected, seccionSelected])
           ]);
 
-          const boletasPendingsBySeccion = +respDB[1].rows.find(student => student.boleta_generada === 'Pendiente');
+          const boletasPendingsBySeccion = respDB[1].rows.find(student => student.boleta_generada === 'Pendiente');
 
-          data.push(respDB[0].rows, { total: !boletasPendingsBySeccion.total ? 0 : boletasPendingsBySeccion.total });
+          if (!boletasPendingsBySeccion) {
+               data.push(respDB[0].rows, { total: 0 });
+          } else {
+               data.push(respDB[0].rows, { total: +boletasPendingsBySeccion.total });
+          }
+
           res.json(data);
      } catch (err) {
           console.log(err.message);
@@ -48,11 +57,10 @@ const showFiveStudents = async (req, res) => {
 
 
 const indicadorEspecialistaByArea = async (req, res) => {
-     const anio = new Date().getFullYear();
      try {
-          const { grado, area, momento } = req.body;
+          const { grado, area, momento, anioIndicadores } = req.body;
 
-          const respBD = await pool.query("SELECT indicador, area, literal FROM indicador WHERE grado = $1 and area = $2 and momento = $3 and fecha_creacion = $4", [grado, area, momento, anio]);
+          const respBD = await pool.query("SELECT indicador, area, literal FROM indicador WHERE grado = $1 and area = $2 and momento = $3 and fecha_creacion = $4", [grado, area, momento, anioIndicadores]);
 
           res.json(respBD.rows);
      } catch (err) {
@@ -83,7 +91,6 @@ const modelFinalPagePdf = (req, res) => {
      res.render('index', dataToBuildPDF);
 }
 
-
 const creacionBoleta = async (req, res) => {
      try {
           const data = req.body; //Dalimilet Herrera directora
@@ -99,7 +106,7 @@ const creacionBoleta = async (req, res) => {
 
           setTimeout(() => {
                fs.unlink(path.join(__dirname, `../pdf/${studentSelected.nombres}boleta.pdf`))
-          }, 1000);
+          }, 2000);
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable.
@@ -131,7 +138,7 @@ const generarBoletaExistente = async (req, res) => { // Generar boleta existente
 
           setTimeout(() => {
                fs.unlink(path.join(__dirname, `../pdf/${data.studentSelected.nombres}boleta.pdf`))
-          }, 1000);
+          }, 2000);
      } catch (err) {
           console.log(err.message);
           dataToBuildPDF = {}; // reiniciar la variable en caso de error.
@@ -142,9 +149,11 @@ const eliminarBoleta = async (req, res) => {
      try {
           const { cedulaEscolar, momento, anio_escolar } = req.body
 
-          await pool.query('DELETE FROM boleta WHERE cedula_estudiante = $1 AND momento = $2 AND anio_escolar = $3', [cedulaEscolar.trim(), momento, anio_escolar]);
+          const response = await pool.query('DELETE FROM boleta WHERE cedula_estudiante = $1 AND momento = $2 AND anio_escolar = $3', [cedulaEscolar.trim(), momento, anio_escolar]);
 
-          res.json({ msg: 'Boleta eliminada exitosamente' });
+          if (!response.rowCount) return res.json({ error: true, msg: 'Algo ha ido mal, vuelve a intentarlo.' });
+
+          res.json({ error: false, msg: 'Boleta eliminada exitosamente.' });
      } catch (err) {
           console.log(err.message);
      }

@@ -39,11 +39,11 @@ const FormBusqueda = () => {
                     </select>
                     <input
                         type="number"
-                        placeholder='Año escolar ejemplo 2021'
+                        placeholder='Año escolar ejemplo, 2022'
                         onChange={handleInputChange}
                         name='anioEscolar'
                         value={values.anioEscolar}
-                        min='2020'
+                        min='2021'
                         className={style.formSearchBoleta__inputs}
                     />
                 </div>

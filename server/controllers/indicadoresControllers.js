@@ -6,9 +6,9 @@ const sgMail = require('@sendgrid/mail');
 const guardarIndicador = async (req, res) => {
     try {
         const { indicador, literal, area, momento, condicion_especial,
-            grado, anio, idUser } = req.body;
+            grado, anioIndicador, idUser } = req.body;
 
-        await pool.query(`INSERT INTO indicador (indicador, momento, area, condicion_especial, id_creador, grado, literal, fecha_creacion) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 )`, [indicador, momento, area, condicion_especial, idUser, grado, literal, anio]);
+        await pool.query(`INSERT INTO indicador (indicador, momento, area, condicion_especial, id_creador, grado, literal, fecha_creacion) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 )`, [indicador, momento, area, condicion_especial, idUser, grado, literal, anioIndicador]);
 
         res.status(201).send('Indicador guardado exitosamente');
     } catch (err) {
@@ -20,7 +20,7 @@ const obtenerIndicadoresPorUsuario = async (req, res) => {
     try {
         const { momento, id, anioIndicadores } = req.body;
 
-        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, anioIndicadores.trim()]);
+        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, anioIndicadores]);
 
         res.status(200).json(indicadoresUsuario.rows);
 

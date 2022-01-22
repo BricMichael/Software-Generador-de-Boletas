@@ -59,18 +59,15 @@ const Options = ({ vista, loadingData }) => {
                     style={{ margin: '0 1.5rem' }}
                 >
                     <option value="2022">Año de los indicadores</option>
+                    <option value="2021">2021</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
-
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
-
                     <option value="2026">2026</option>
                     <option value="2027">2027</option>
-
                     <option value="2028">2028</option>
                     <option value="2029">2029</option>
-
                     <option value="2030">2030</option>
                     <option value="2031">2031</option>
                     <option value="2032">2032</option>
@@ -79,9 +76,8 @@ const Options = ({ vista, loadingData }) => {
                     <option value="2035">2035</option>
                     <option value="2036">2036</option>
                     <option value="2037">2037</option>
+                    <option value="2038">2038</option>
                 </select>
-
-                {/* <input type="text" name='anioIndicadores' value={anioIndicadores} onChange={handleInputChange} placeholder='Escriba el año de los indicadores' /> */}
 
                 <button type="submit">Buscar</button>
             </form>

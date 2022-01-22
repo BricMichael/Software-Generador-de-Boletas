@@ -8,6 +8,7 @@ const initialState = {
     descripAndDate: { textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
+    anioIndicadores: '',
     indicadoresByUser: [],
     literalIndicadoresDocentes: [],
     literalesEspecialistas: [],
@@ -53,7 +54,8 @@ const boletaReducer = (state = initialState, action) => {
                 ...state,
                 indicadoresByUser: [...action.payload.data],
                 momento: action.payload.momento,
-                indicadoresByUserWithData: false
+                indicadoresByUserWithData: false,
+                anioIndicadores: action.payload.anioIndicadores
             }
         case types.checkLlegaronDatos:
             return {
@@ -106,13 +108,14 @@ const boletaReducer = (state = initialState, action) => {
 
         case types.savedBoletaTypes:
             const condition = state.boletasPendientesBySeccion === 1;
+            const checkIfUserHasBoletaCreated = state.studentSelected.boleta_generada === 'Generada';
 
             return {
                 ...state,
                 studentSelected: { nombres: '', grado: '', seccion: '', docente: condition ? '' : state.studentSelected.docente },
                 literalIndicadoresDocentes: [],
                 literalesEspecialistas: [],
-                boletasPendientesBySeccion: state.boletasPendientesBySeccion - 1,
+                boletasPendientesBySeccion: checkIfUserHasBoletaCreated ? state.boletasPendientesBySeccion : state.boletasPendientesBySeccion - 1,
                 listFiveStudents: condition
                     ? state.listFiveStudents.map(students => ({ ...students, boleta_generada: 'Pendiente' }))
                     : state.listFiveStudents.map(item => item.id === action.payload.id

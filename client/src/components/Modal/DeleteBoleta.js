@@ -27,7 +27,9 @@ const DeleteBoleta = ({ closeModal }) => {
                 anio_escolar: convertAnio_escolar ? convertAnio_escolar : anio_escolar
             });
             reset();
-            alertSuccess(data.msg, 'center');
+            data.error
+                ? alertAvisos(data.msg)
+                : alertSuccess(data.msg, 'center')
         }
     }
 

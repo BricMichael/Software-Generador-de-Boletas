@@ -24,7 +24,6 @@ export const listFiveStudents = ({ seccion, grado }) => async (dispatch, getStat
             dispatch({ type: types.fiveStudents, payload: { data: data[0], grado, seccion, boletasPendientes: data[2] } });
             eachRender();
             studentsBySeccion = data[1]; // total de estudiantes por seccion.
-
             const nameDatos = getState().boleta.studentSelected.nombres;
             if (nameDatos !== '') {// reset data del estudiante seleccionado y las fechas,al cambiar de grado o seccion
                 dispatch(textAreaAndFecha({ textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' }));
@@ -93,8 +92,8 @@ export const materiasExistentes = () => async (dispatch) => {
 
 
 export const indicadorEspecialistaByArea = (grado, area, setLiteralIndicadorByArea) => async (dispatch, getState) => {
-    const { momento } = getState().boleta;
-    const { data } = await api.apiIndicadorlEspecialista({ grado, area, momento });
+    const { momento, anioIndicadores } = getState().boleta;
+    const { data } = await api.apiIndicadorlEspecialista({ grado, area, momento, anioIndicadores });
 
     setLiteralIndicadorByArea({ IndicadorByArea: data, literalSelected: {} });
 }

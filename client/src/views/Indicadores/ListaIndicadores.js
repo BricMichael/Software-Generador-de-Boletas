@@ -121,22 +121,15 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                     </table>
 
                     {dataSelected.length >= 1 && rol !== roles.especialista &&
-                        <div>
-                            <button
-                                type='button'
-                                onClick={siguienteArea}
-                                style={{ display: indice >= allData.length && 'none' }}
-                            >
-                                Siguiente area:
-                                {
-                                    indice >= allData.length
-                                        ? ''
-                                        : allData[indice].area
-                                }
-                            </button>
+                        <div className={style.wrapperButtons}>
                             {allData[indice <= 1 ? 0 : indice - 2]?.area &&
-                                <button type='button' onClick={areaAnterior} style={{ display: indice <= 1 && 'none' }} >
-                                    Area anterior:
+                                <button
+                                    type='button'
+                                    className={style.nextBackButtons}
+                                    onClick={areaAnterior}
+                                    style={{ display: indice <= 1 && 'none' }}
+                                >
+                                    Area anterior: &nbsp;
                                     {
                                         indice <= 2
                                             ? allData[0]?.area
@@ -144,6 +137,19 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                                     }
                                 </button>
                             }
+                            <button
+                                type='button'
+                                onClick={siguienteArea}
+                                style={{ display: indice >= allData.length && 'none' }}
+                                className={style.nextBackButtons}
+                            >
+                                Siguiente area: &nbsp;
+                                {
+                                    indice >= allData.length
+                                        ? ''
+                                        : allData[indice].area
+                                }
+                            </button>
                         </div>
                     }
 

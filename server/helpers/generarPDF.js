@@ -37,7 +37,7 @@ const guardarDatosBoleta = async (datos) => {
         ];
 
         if (datos.boletasPendientesBySeccion > 1) {
-            const query = pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', studentSelected.id])
+            const query = pool.query('UPDATE estudiante SET boleta_generada = $1 WHERE id = $2', ['Generada', studentSelected.id]);
             promisesQuerys.push(query);
         }
 

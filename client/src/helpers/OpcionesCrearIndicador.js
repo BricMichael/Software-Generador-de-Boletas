@@ -19,9 +19,7 @@ export const enviarData = (values, resetForm) => async (dispatch) => {
     if (respErrors === 'error') return Swal.fire('¡Vaya!', 'Asegurate de haber llenado todos los campos', 'warning');
     if (indicador.length < 35) return Swal.fire('¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning');
 
-
     values.idUser = id;
-    values.anio = new Date().getFullYear();
 
     await guardarIndicador(values);
     dispatch(allIndicadorOfUser());
