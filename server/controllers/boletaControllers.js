@@ -116,9 +116,9 @@ const creacionBoleta = async (req, res) => {
 
 const getBoletaByStudentAndId = async (req, res) => {
      try {
-          const { cedula, momento, anio_escolar } = req.body;
-          const respDB = await pool.query(`SELECT * FROM boleta WHERE cedula_estudiante = $1 
-          AND momento = $2 AND anio_escolar = $3`, [cedula.trim(), momento, anio_escolar]);
+          const { fullName, momento, anio_escolar } = req.body;
+          const respDB = await pool.query(`SELECT * FROM boleta WHERE nombre_estudiante = $1 
+          AND momento = $2 AND anio_escolar = $3`, [fullName.trim(), momento, anio_escolar]);
 
           res.json(respDB.rows);
      } catch (err) {

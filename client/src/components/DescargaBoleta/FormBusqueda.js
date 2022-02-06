@@ -8,7 +8,7 @@ import { getDataBoletaByStudent } from '../../Redux/actions/descargasBoletaActio
 const FormBusqueda = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [values, handleInputChange, reset] = useForm({ cedula: '', momento: 'Momento 1', anioEscolar: '' });
+    const [values, handleInputChange, reset] = useForm({ fullName: '', momento: 'Momento 1', anioEscolar: '' });
 
 
     const handleSubmit = (e) => {
@@ -24,9 +24,9 @@ const FormBusqueda = () => {
                 <div>
                     <input
                         type="text"
-                        placeholder='Cédula escolar'
-                        name='cedula'
-                        value={values.cedula}
+                        placeholder='Nombre completo'
+                        name='fullName'
+                        value={values.fullName}
                         onChange={handleInputChange}
                         autoComplete='off'
                         className={style.formSearchBoleta__inputs}
