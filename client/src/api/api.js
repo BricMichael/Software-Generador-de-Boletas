@@ -1,10 +1,11 @@
 import axios from 'axios';
-//
-const urlPersonal = 'http://localhost:4000/api/personal';
-const urlIndicador = 'http://localhost:4000/api/indicadores';
-const urlBoleta = 'http://localhost:4000/api/boleta';
-const urlRegistro = 'http://localhost:4000/api/registro';
-const urlConfiguracion = 'http://localhost:4000/api/config/';
+
+const API_URL = 'http://localhost:4000/';
+const urlPersonal = `${API_URL}api/personal`;
+const urlIndicador = `${API_URL}api/indicadores`;
+const urlBoleta = `${API_URL}api/boleta`;
+const urlRegistro = `${API_URL}api/registro`;
+const urlConfiguracion = `${API_URL}api/config/`;
 
 /*Peticiones a la Api usuarios*/
 export const apiGetUsers = (component) => axios.get(`${urlPersonal}/${component}`);
