@@ -5,8 +5,7 @@
 
 .welcomeHome_img {
     max-width: 100%;
-    height: 250px; 
-    border-radius: 10px;
+    height: 300px; 
     object-fit: cover;
  }
 

@@ -8,7 +8,7 @@ const CuerpoHome = () => {
         <>
             <div >
                 <h1 className={estilos.welcome_title} >BIENVENIDOS A</h1>
-                <img src='/logoDevs.jpg' className={estilos.welcomeHome_img} alt='logo de los desarrolladores del sistema' />
+                <img src='/logo-amy.jpg' className={estilos.welcomeHome_img} alt='logo Amy' />
             </div>
 
             <div className={estilos.Homebuttons}>
