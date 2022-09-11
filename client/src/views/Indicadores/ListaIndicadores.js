@@ -28,10 +28,10 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
     const momentoRef = useRef(momentoState);
     const nameUserRef = useRef(nameUser);
 
-    const comprobacion = indicadoresByUser.length !== 0;
+    const checkLengthData = indicadoresByUser.length > 0;
 
     useEffect(() => {
-        if (comprobacion) {
+        if (checkLengthData) {
             const datos = materiaConIndicadores(materiasShowOptions, indicadoresByUser, 'Lista Indicadores');
             let result = datos.filter(item => item.indicadores.length >= 1);
 
@@ -64,7 +64,7 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
         <>
             {handleOpenModal && <UpdateIndicador closeModal={setHandleOpenModal} />}
 
-            {comprobacion &&
+            {/* {comprobacion &&
                 <div className={style.solucion}>
 
                     <table id={style.tablaViewIndicadores}>
@@ -163,8 +163,40 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                         </select>
                     }
                 </div>
+            } */}
+            {
+                checkLengthData && 
+                <div className={style.wrapper_cards}>
+                    {
+                        dataSelected?.map(card => (    
+                            <>                   
+                                <div className={style.single_card} key={card.id}>
+                                    <div className={style.top_card}>
+                                        <b className={style.index_card}>#{count++}</b>
+                                        <div style={{display: 'flex'}}>
+                                            <button className={style.btn_card} onClick={() => editIndicador(card)}>
+                                                Editar
+                                            </button>
+                                            <button className={`${style.btn_card} ${style.delete_btn}`} onClick={() => eliminarIndicador(card.id)}>
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className={style.description_card}>
+                                        <p className={style.materia_card}>{card.area}:</p>
+                                        <p className={style.indicador_card}>{card.indicador}</p>
+                                    </div>
+                                    <div className={style.footer_card}>
+                                        <p className={style.momento_card}>{card.momento}</p>
+                                        <p className={style.CE_card}>C.E: {card.condicion_especial}</p>
+                                    </div>
+                                </div>
+                            </>    
+                        )) 
+                    } 
+                </div>                  
             }
-            {msgData.length > 4 && <p className={style.noResults} >{msgData}</p>}
+            {msgData.length > 4 && <p className={style.noResults}>{msgData}</p>}
         </>
     );
 }

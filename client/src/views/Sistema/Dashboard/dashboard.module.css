@@ -110,32 +110,32 @@
 
 .cl_azul {
     background: #27a9e3;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .cl_verde {
     background: #28b779;
-    border-radius: 3px;
+    border-radius: 10px;
 
 }
 
 .cl_amarillo {
     background: #ffb848;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .cl_azulOscuro {
     background: #2255a4;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .cl_naranja {
     background: #da542e;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 .cl_red {
     background: #cf1919d2;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .opciones{
@@ -153,14 +153,26 @@
     grid-column: 1/4;
     margin-top: 3.7em;
 }
-
-.user > p{
-    font-size: 1.8rem;
+.avatar_name_footer { 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #2255a4;
-    padding: 15px 15px;
-    border-radius: 3px;
+    padding: 10px 5px;
+    border-radius: 10px;
+ }
+.avatar_name_footer > img {
+    width: 2.6rem;
+    height: 2.6rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1.1rem;
+}
+
+.avatar_name_footer > p{
+    font-size: 1.8rem;
     color: #ffffffb3;
-    text-align: left;
 }
 
 @media screen and ( max-width:1150px) {
@@ -175,7 +187,7 @@
 
 
 @media screen and ( max-width:890px) {
-    .user > p{ font-size: 1.6rem;}
+    .avatar_name_footer > p{ font-size: 1.6rem;}
 
     .header_txt {
         font-size: 0.9rem;
@@ -184,7 +196,7 @@
 
 @media screen and ( max-width:768px) {
     .opciones{ font-size: .8rem; }
-    .user > p{ font-size: 1rem;}
+    .avatar_name_footer > p{ font-size: 1rem;}
 }
 
 @media screen and ( max-width:710px) {

@@ -35,7 +35,7 @@ const InicioSesion = () => {
         <>
             <Header />
             <form className={style.form} onSubmit={handleSubmit}>
-                <h3 className={style.auth__title}>Ingresar al sistema</h3>
+                <h3 className={style.auth__title}>Inicio de Sesi&oacute;n</h3>
 
                 <input type="email" className={style.auth__input}
                     autoComplete="off"
@@ -49,7 +49,7 @@ const InicioSesion = () => {
                 />
 
                 <button type="submit" className={style.buttonWidth}>
-                    Iniciar Sesi&oacute;n
+                    Ingresar
                 </button>
             </form>
         </>

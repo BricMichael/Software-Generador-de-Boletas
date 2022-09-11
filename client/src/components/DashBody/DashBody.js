@@ -21,6 +21,7 @@ const DashBody = () => {
             <Header color='#2255a4' />
             <section className={styles.accesos}>
                 <div className={styles.all_links}>
+    
 
                     {
                         links.map(enlace => (
@@ -37,7 +38,10 @@ const DashBody = () => {
                     </button>
 
                     <div className={styles.user}>
-                        <p>{`Usuario: ${nombreUser ? nombreUser : ''}`}</p>
+                        <div className={styles.avatar_name_footer}>
+                            <img src='/avatar-hombre.png' alt='Avatar Perfil' />
+                            <p>{nombreUser ? nombreUser : ''}</p>
+                        </div>                        
                     </div>
                 </div>
             </section>

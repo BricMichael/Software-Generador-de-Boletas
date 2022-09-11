@@ -6,6 +6,78 @@
     margin: 2rem auto;
     border-radius: 6px;
 }
+/*Editando tarjeta */
+.wrapper_cards {
+    width: 80%;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.single_card { 
+    background-color: #EEE;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+}
+
+.index_card {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.btn_card { 
+    padding: 6px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: .9rem;
+    transition: background .3s ease;
+    border-radius: 6px;
+    background: #447bc4;
+}
+
+.delete_btn { 
+    background: #9e1934;
+    margin-left: .4rem;
+ }
+
+.description_card {
+    color: #000;
+    margin-top: .5rem;
+    margin-bottom: 1.4rem;
+    text-align: left;
+}
+
+.materia_card {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: .8rem;
+}
+
+.indicador_card {
+    font-size: .9rem;
+}
+
+.footer_card { 
+    color: #447bc4;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Editando tarjeta FIN*/
 
 #tablaViewIndicadores{
     margin: 0.6rem 0px;
