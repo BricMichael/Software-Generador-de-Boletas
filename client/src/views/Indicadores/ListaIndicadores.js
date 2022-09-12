@@ -163,40 +163,89 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                         </select>
                     }
                 </div>
-            } */}
+            
+
+                    {/* {dataSelected.length >= 1 && rol !== roles.especialista &&
+                        <div className={style.wrapperButtons}>
+                            {allData[indice <= 1 ? 0 : indice - 2]?.area &&
+                                <button
+                                    type='button'
+                                    className={style.nextBackButtons}
+                                    onClick={areaAnterior}
+                                    style={{ display: indice <= 1 && 'none' }}
+                                >
+                                    Area anterior: &nbsp;
+                                    {
+                                        indice <= 2
+                                            ? allData[0]?.area
+                                            : allData[indice - 2]?.area
+                                    }
+                                </button>
+                            }
+                            <button
+                                type='button'
+                                onClick={siguienteArea}
+                                style={{ display: indice >= allData.length && 'none' }}
+                                className={style.nextBackButtons}
+                            >
+                                Siguiente area: &nbsp;
+                                {
+                                    indice >= allData.length
+                                        ? ''
+                                        : allData[indice].area
+                                }
+                            </button>
+                        </div>
+                    } */}
+
             {
-                checkLengthData && 
+                rol !== roles.especialista && allData.length > 0 &&
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '.5rem'}}>
+                    <p className={style.noResults} style={{marginRight: '1rem'}}>
+                        { msgData.length > 4 ? msgData : 'Filtrar por área' }
+                    </p>
+                    <select className={style.showOptionsOfMaterias} onChange={handleDisplay}>
+                        <option value={materiasShowOptions[0].materia}>Áreas</option>
+                        {materiasShowOptions.map(value => (
+                            <option key={value.materia} value={value.materia}>
+                                {value.materia}
+                            </option>
+                        ))}
+                    </select>
+                </div>                       
+            }
+
+
+            {
+                allData.length > 0 && 
                 <div className={style.wrapper_cards}>
                     {
-                        dataSelected?.map(card => (    
-                            <>                   
-                                <div className={style.single_card} key={card.id}>
-                                    <div className={style.top_card}>
-                                        <b className={style.index_card}>#{count++}</b>
-                                        <div style={{display: 'flex'}}>
-                                            <button className={style.btn_card} onClick={() => editIndicador(card)}>
-                                                Editar
-                                            </button>
-                                            <button className={`${style.btn_card} ${style.delete_btn}`} onClick={() => eliminarIndicador(card.id)}>
-                                                Eliminar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={style.description_card}>
-                                        <p className={style.materia_card}>{card.area}:</p>
-                                        <p className={style.indicador_card}>{card.indicador}</p>
-                                    </div>
-                                    <div className={style.footer_card}>
-                                        <p className={style.momento_card}>{card.momento}</p>
-                                        <p className={style.CE_card}>C.E: {card.condicion_especial}</p>
+                        dataSelected?.map(card => (               
+                            <div className={style.single_card} key={card.id}>
+                                <div className={style.top_card}>
+                                    <b className={style.index_card}>#{count++}</b>
+                                    <div style={{display: 'flex'}}>
+                                        <button className={style.btn_card} onClick={() => editIndicador(card)}>
+                                            Editar
+                                        </button>
+                                        <button className={`${style.btn_card} ${style.delete_btn}`} onClick={() => eliminarIndicador(card.id)}>
+                                            Eliminar
+                                        </button>
                                     </div>
                                 </div>
-                            </>    
+                                <div className={style.description_card}>
+                                    <p className={style.materia_card}>{card.area}:</p>
+                                    <p className={style.indicador_card}>{card.indicador}</p>
+                                </div>
+                                <div className={style.footer_card}>
+                                    <p className={style.momento_card}>{card.momento}</p>
+                                    <p className={style.CE_card}>C.E: {card.condicion_especial}</p>
+                                </div>
+                            </div>                            
                         )) 
                     } 
                 </div>                  
             }
-            {msgData.length > 4 && <p className={style.noResults}>{msgData}</p>}
         </>
     );
 }

@@ -10,6 +10,7 @@
 .wrapper_cards {
     width: 80%;
     margin: 2rem auto;
+    margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
@@ -142,7 +143,6 @@
 .showOptionsOfMaterias {
     width: 160px;
     margin-top: 0.6rem;
-    margin-left: 3rem;
     background: #447bc4;
     color: #f0f2f5;
     cursor: pointer;
@@ -152,7 +152,7 @@
     right: 5px;
 }
 
-.noResults { margin-bottom: 13px; }
+.noResults { margin-top: .5rem; }
 
 .wrapperButtons{
     display: flex;

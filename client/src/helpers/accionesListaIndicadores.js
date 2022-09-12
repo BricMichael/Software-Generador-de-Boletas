@@ -2,12 +2,12 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
     const areaFiltrada = allData.find(type => type.area === targetInput.value);
 
     if (!areaFiltrada) {
-        setHandleMaterias({ ...handleMaterias, dataSelected: [] });
-        setMsgData('No se han encontrado indicadores en el área: ' + targetInput.value);
+        // setHandleMaterias({ ...handleMaterias, dataSelected: [] });
+        setMsgData(`*Sin indicadores en el área: ${targetInput.value}*`);
 
         setTimeout(() => {
-            setMsgData('');
-        }, 3000);
+            setMsgData('Filtrar por área');
+        }, 3800);
     } else {
         const indiceMateria = materias.map(item => item.materia).indexOf(targetInput.value);
         const checkIndice = indiceMateria + 1 > allData.length;
