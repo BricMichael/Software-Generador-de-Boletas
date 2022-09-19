@@ -17,28 +17,6 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
     }
 }
 
-export const nextBtn = (handleMaterias, setHandleMaterias) => {
-    const { allData, indice } = handleMaterias;
-
-    let check = allData[indice === 0 ? 1 : indice];
-
-    setHandleMaterias({
-        ...handleMaterias,
-        dataSelected: check.indicadores,
-        indice: indice === 0 ? 2 : indice + 1
-    })
-}
-
-export const backBtn = (handleMaterias, setHandleMaterias) => {
-    const { allData, indice } = handleMaterias;
-
-    setHandleMaterias({
-        ...handleMaterias,
-        dataSelected: allData[indice <= 1 ? 0 : indice - 2].indicadores,
-        indice: indice <= 2 ? 1 : indice - 1
-    })
-}
-
 
 const primerItem = (setHandleMaterias, result, nameUserRef, nameUser) => {
     setHandleMaterias({// esta sirve para docentes, espcecialistas y coordinador

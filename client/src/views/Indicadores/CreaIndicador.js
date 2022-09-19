@@ -65,7 +65,7 @@ const CreaIndicador = () => {
                         onChange={handleInputChange}
                         className={style.select}
                     >
-                        <option value="2022">Año del indicador</option>
+                        <option value="2020">Año del indicador</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
@@ -84,6 +84,8 @@ const CreaIndicador = () => {
                         <option value="2036">2036</option>
                         <option value="2037">2037</option>
                         <option value="2038">2038</option>
+                        <option value="2039">2039</option>
+                        <option value="2040">2040</option>
                     </select>
 
                     <select className={`${style.select}`} name="literal" value={literal}
