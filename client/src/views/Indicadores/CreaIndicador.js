@@ -39,7 +39,7 @@ const CreaIndicador = () => {
 
                     <select className={`${style.select}`} name='area' value={area}
                         onChange={handleInputChange}>
-                        <option value="default">Área</option>
+                        <option>Área</option>
                         {
                             recorrerArray.map(area => (
                                 <option value={area.materia} key={area.materia} >{area.materia}</option>
@@ -47,13 +47,13 @@ const CreaIndicador = () => {
                         }
                     </select>
                     <select className={`${style.select}`} name="condicion_especial" value={condicion_especial} onChange={handleInputChange}>
-                        <option value="No">Cond. Especial</option>
+                        <option>Cond. Especial</option>
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                     </select>
 
                     <select className={`${style.select}`} name="momento" value={momento} onChange={handleInputChange}>
-                        <option value="default">Momento</option>
+                        <option>Momento</option>
                         <option value="Momento 1">Momento 1</option>
                         <option value="Momento 2">Momento 2</option>
                         <option value="Momento 3">Momento 3</option>
@@ -65,7 +65,7 @@ const CreaIndicador = () => {
                         onChange={handleInputChange}
                         className={style.select}
                     >
-                        <option value="2020">Año del indicador</option>
+                        <option>Año del indicador</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
@@ -90,14 +90,14 @@ const CreaIndicador = () => {
 
                     <select className={`${style.select}`} name="literal" value={literal}
                         onChange={handleInputChange} id="selectLiteral" >
-                        <option value="default">Literal</option>
+                        <option>Literal</option>
                         <option value="E">E</option>
                         <option value="B">B</option>
                         <option value="RN">RN</option>
                     </select>
 
                     <select className={`${style.select}`} name="grado" value={grado} onChange={handleInputChange} id="gradoOption">
-                        <option value="default">Grado</option>
+                        <option>Grado</option>
                         <option value="1">1er Grado</option>
                         <option value="2">2do Grado</option>
                         <option value="3">3er Grado</option>

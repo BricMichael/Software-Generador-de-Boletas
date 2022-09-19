@@ -2,7 +2,6 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
     const areaFiltrada = allData.find(type => type.area === targetInput.value);
 
     if (!areaFiltrada) {
-        // setHandleMaterias({ ...handleMaterias, dataSelected: [] });
         setMsgData(`*Sin indicadores en el área: ${targetInput.value}*`);
 
         setTimeout(() => {

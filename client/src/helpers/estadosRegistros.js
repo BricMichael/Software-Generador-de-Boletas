@@ -1,6 +1,11 @@
 export const stateCrearIndicador = {
-    indicador: '', literal: '', area: '',
-    condicion_especial: 'No', grado: '', momento: '', anioIndicador: ''
+    indicador: '', 
+    literal: '', 
+    area: '',
+    condicion_especial: '', 
+    grado: '', 
+    momento: '', 
+    anioIndicador: ''
 };
 
 

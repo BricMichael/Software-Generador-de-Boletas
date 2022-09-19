@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
+import Swal from "sweetalert2";
 import style from './options.module.css';
 import { useForm } from "../../helpers/useForm";
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
@@ -17,8 +18,9 @@ const Options = ({ vista, loadingData }) => {
 
     const handleStateData = async (e) => {
         e.preventDefault();
-        loadingData(true);
+        if( !values.anioIndicadores ) return Swal.fire('¡Vaya!', 'Seleccione el año de busqueda.', 'warning');
 
+        loadingData(true);
         const resp = await dispatch(filtroBusqueda(momento, vista, false, anioIndicadores));
         loadingData(false);
 
@@ -58,7 +60,7 @@ const Options = ({ vista, loadingData }) => {
                     className={style.optionsForm_Select}
                     style={{ margin: '0 1.5rem' }}
                 >
-                    <option value="2022">Año de los indicadores</option>
+                    <option>Año de los indicadores</option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
