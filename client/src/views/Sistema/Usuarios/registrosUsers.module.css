@@ -181,7 +181,8 @@
 .delete { background: rgb(158, 25, 52);}
 
 .tableUser__buttons {
-    width: 85%;
+    width: 100%;
+    /* border: 1px solid red; */
     margin: auto;
     display: flex;
     justify-content: flex-end;
@@ -193,6 +194,7 @@
     background: #447bc4;
     width: 120px;
     margin-left: 1rem;
+    border-radius: 25px;
 }
 
 .nextPersonal:hover { background: #1a5fb9; }
@@ -228,6 +230,70 @@
 .registrosUsers_ocultar { background: red; color: aqua; }
 
  /* FIN Estilos modal de update estudiante */
+
+
+ /* Estilos CARD */
+.containerCards {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.singleCard {
+    background: #fff;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.singleCard_top {
+    display: flex;
+    color: #012c66;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.singleCard_nombreUser {
+    margin-left: .4rem;
+}
+
+.singleCard_body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.singleCard_role {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.singleCard_educacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8rem;
+}
+
+.educacion_child {
+    margin-right: .8rem;
+}
+
+.singleCard_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8rem;
+}
+
+ /* FIN Estilos CARD */
 
 @media screen and ( min-width: 1140px) { 
     .registersTable,.tableUser__buttons  {

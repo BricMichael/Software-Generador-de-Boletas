@@ -7,16 +7,12 @@
 }
 
 .dataMenu {
-    background: #fff;
-    color: #012c66;
-    padding: 6px;
-    border-radius: 6px;
+    background: #447BC4;
+    color: #fff;
+    padding: 11px;
+    border-radius: 25px;
     margin-right: 0.6rem;
-    transition: background .3s ease;
-}
-
-.dataMenu:hover {
-    background: #ddd;
+    text-shadow: 2px 2px 3px rgb(87, 84, 84);
 }
 
 .dataMenu > p > small {

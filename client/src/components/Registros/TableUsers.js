@@ -59,7 +59,147 @@ const TableUsers = ({ countName = 0 }) => {
                 : <div className={style.infoAndComponent}>
                     <InfoRegistros />
 
-                    <table className={style.registersTable}>
+
+                    <div className={style.containerCards}>
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.educacion_child}>Grado: 3ero</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                        <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                           <div className={style.singleCard}>
+                            <div className={style.singleCard_top}>
+                                <b className={style.singleCard_indice}>#1</b>
+                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
+                            </div>
+
+                            <div className={style.singleCard_body}>
+                                <p className={style.singleCard_role}>Especialista</p>
+                                <div className={style.singleCard_educacion}>
+                                    <p className={style.educacion_child}>Preescolar</p>
+                                    <p>Primaria</p>
+                                </div>
+                            </div>
+
+                            <div className={style.singleCard_footer}>
+                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
+                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    {/* <table className={style.registersTable}>
                         <thead className={style.registersTableThead} >
                             <tr className={style.registersTableTr}>
                                 <th className={style.registersTh} >Nombre</th>
@@ -99,7 +239,7 @@ const TableUsers = ({ countName = 0 }) => {
                                 ))
                             }
                         </tbody>
-                    </table>
+                    </table> */}
                     <div className={style.tableUser__buttons}>
                         <button className={style.nextPersonal} onClick={botonAtras} id='backBtn' type='button' style={{ display: 'none' }} >
                             Anteriores
