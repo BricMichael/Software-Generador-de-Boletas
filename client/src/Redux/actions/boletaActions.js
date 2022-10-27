@@ -81,8 +81,8 @@ export const materiasExistentes = () => async (dispatch) => {
     try {
         const { data } = await api.apiMateriasExistentes();
 
-        const materiasDocente = data.filter(materia => materia.tipo === roles.docente);
-        const materiasEspecialista = data.filter(materia => materia.tipo === roles.especialista);
+        const materiasDocente = data.filter(materia => materia.tipo.toLowerCase() === roles.docente);
+        const materiasEspecialista = data.filter(materia => materia.tipo.toLowerCase() === roles.especialista);
 
         dispatch({ type: types.materiasTypes, payload: { materiasDocente, materiasEspecialista } });
     } catch (err) {

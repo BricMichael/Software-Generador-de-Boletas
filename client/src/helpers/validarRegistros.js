@@ -1,7 +1,7 @@
 export const validarCampos = (data) => {
-    let valores = Object.values(data);
-
-    for ( let campo of valores ) if( !campo ) return 'error'; 
+    for (const key in data) {
+        if ( !data[key] && key !== 'especialidad' ) return 'error';
+    } 
     return 'excelente'; 
 }
 

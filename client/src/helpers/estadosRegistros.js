@@ -12,4 +12,4 @@ export const stateCrearIndicador = {
 export const stateRegistroEstudiante = { nombres: '', cedulaE: '', genero: '', grado: '', seccion: '' };
 
 
-export const stateRegistroUsuario = { nombre: '', area: '', cedula: '', email: '', password: '', rol: '' };
+export const stateRegistroUsuario = { nombre: '', especialidad: '', cedula: '', email: '', password: '', rol: '' };

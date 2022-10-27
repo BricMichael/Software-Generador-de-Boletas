@@ -1,6 +1,6 @@
 export const roles = {
-    admin: 'Admin',
-    coordinador: 'Coordinador',
-    docente: 'Docente',
-    especialista: 'Especialista',
+    admin: 'admin',
+    coordinador: 'coordinador',
+    docente: 'docente',
+    especialista: 'especialista',
 }

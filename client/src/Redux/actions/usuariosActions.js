@@ -31,7 +31,7 @@ export const registroEstudianteAction = async (values, reset, statusRegistro) =>
 
 export const registroPersonalAction = (values, reset, statusRegistro) => async (dispatch) => {
     const { email, password } = values;
-    values.area = values.area === '' ? 'null' : values.area; // poner en null para el registro de coordinador
+    values.especialidad = !values.especialidad ? null : values.especialidad;
     const respErrors = validarCampos(values);
 
     if (email.length < 14) statusRegistro({ status: true, msg: 'Error: El correo electrónico debe ser mayor a 13 caracteres', type: 'error' });

@@ -6,9 +6,6 @@ import { stateRegistroUsuario } from '../../helpers/estadosRegistros';
 import { limpiarMsgEstado, registroPersonalAction } from '../../Redux/actions/usuariosActions';
 import { apiRegisterPersonal, apiTotalUsersByRol } from '../../api/api';
 import { existeRolCoordinadorAction, existeRolDirectorAction } from '../../Redux/actions/configuracionActions';
-import { roles } from '../../helpers/roles';
-
-
 
 
 const PersonalReg = () => {
@@ -16,20 +13,19 @@ const PersonalReg = () => {
     const [estadoReg, setEstadoReg] = useState({ status: false, msg: '', type: '' })
 
     const { existeRolCoordinador, existeRolDirector } = useSelector(state => state.config);
-    const { materiasEspecialista, materiasDocente } = useSelector(state => state.indicador.materias);
-    const allMaterias = [...materiasDocente, ...materiasEspecialista];
+    const { materiasEspecialista } = useSelector(state => state.indicador.materias);
 
     const [values, handleInputChange, reset] = useForm(stateRegistroUsuario);
-    const { nombre, area, cedula, email, password, rol } = values;
+    const { nombre, especialidad, cedula, email, password, rol } = values;
 
     useEffect(() => {
         const askRoles = async () => {
             const { data } = await apiTotalUsersByRol();
 
             for (const item of data) {
-                if (item.rol === 'Coordinador' && +item.total === 1) dispatch(existeRolCoordinadorAction())
+                if (item.rol === 'coordinador' && +item.total === 1) dispatch(existeRolCoordinadorAction())
 
-                else if (item.rol === 'Director' && +item.total === 1) dispatch(existeRolDirectorAction())
+                else if (item.rol === 'director' && +item.total === 1) dispatch(existeRolDirectorAction())
             }
         }
 
@@ -41,7 +37,7 @@ const PersonalReg = () => {
         }
     }, [])
 
-    let comprobacion = rol !== 'Director';
+    let comprobacion = rol !== 'director';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,7 +46,7 @@ const PersonalReg = () => {
             setEstadoReg({ status: true, msg: 'Asegurate de haber llenado los campos', type: 'error' });
             limpiarMsgEstado(setEstadoReg);
         } else if (!comprobacion) { // registrando User director(a).
-            const { data: { msg } } = await apiRegisterPersonal({ nombre, cedula, rol, password: '', email: '', area: 'null' });
+            const { data: { msg } } = await apiRegisterPersonal({ nombre, cedula, rol, password: '', email: '', especialidad: null });
             reset();
             setEstadoReg({ status: true, msg, type: 'exito' });
             limpiarMsgEstado(setEstadoReg);
@@ -90,11 +86,11 @@ const PersonalReg = () => {
 
                 <select className={style.optionsRegister} onChange={handleInputChange} name='rol' value={rol}>
                     <option value="default">Rol</option>
-                    <option value="Especialista">Especialista</option>
-                    <option value="Docente">Docente</option>
-                    <option value="Admin">Administador</option>
-                    {!existeRolCoordinador && <option value="Coordinador">Coordinador</option>}
-                    {!existeRolDirector && <option value="Director">Director/a</option>}
+                    <option value="especialista">Especialista</option>
+                    <option value="docente">Docente</option>
+                    <option value="admin">Administador</option>
+                    {!existeRolCoordinador && <option value="coordinador">Coordinador</option>}
+                    {!existeRolDirector && <option value="director">Director/a</option>}
                 </select>
 
                 {
@@ -109,11 +105,11 @@ const PersonalReg = () => {
                         />
 
                         {
-                            rol !== roles.coordinador &&
-                            <select className={style.optionsRegister} onChange={handleInputChange} name='area' value={area}>
-                                <option value="default">&Aacute;rea</option>
+                            rol === 'especialista' &&
+                            <select className={style.optionsRegister} onChange={handleInputChange} name='especialidad' value={especialidad}>
+                                <option value="default">Especialidad</option>
                                 {
-                                    allMaterias.map(value => (
+                                    materiasEspecialista.map(value => (
                                         <option key={value.materia} value={value.materia}>
                                             {value.materia}
                                         </option>
