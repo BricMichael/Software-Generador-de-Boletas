@@ -4,35 +4,23 @@ export const gradoStudent = [
         desc: 'Grado'
     },
     {
-        value: '1',
-        desc: 'Primer Grado'
+        value: 'nivel 1',
+        desc: 'Nivel 1'
     },
     {
-        value: '2',
-        desc: 'Segundo Grado'
+        value: 'nivel 2',
+        desc: 'Nivel 2'
     },
     {
-        value: '3',
-        desc: 'Tercer Grado'
+        value: 'nivel 3',
+        desc: 'Nivel 3'
     },
-    {
-        value: '4',
-        desc: 'Cuarto Grado'
-    },
-    {
-        value: '5',
-        desc: 'Quinto Grado'
-    },
-    {
-        value: '6',
-        desc: 'Sexto Grado'
-    }
 ]
 
 export const seccionStudent = [
     {
-        value: 'default',
-        desc: 'Sección'
+        value: 'U',
+        desc: 'Sección (U)'
     },
     {
         value: 'A',
@@ -42,16 +30,4 @@ export const seccionStudent = [
         value: 'B',
         desc: 'B'
     },
-    {
-        value: 'C',
-        desc: 'C'
-    },
-    {
-        value: 'D',
-        desc: 'D'
-    },
-    {
-        value: 'E',
-        desc: 'E'
-    }
 ]

@@ -8,6 +8,7 @@ import { alertErrors } from '../../helpers/alerts';
 const UpdateStudents = () => {
     const [input, setInput] = useState({ cedula: '' })
     const [modalData, setModalData] = useState({ state: false, dataEstudiante: {} });
+    const nivelDelAlumno = modalData.dataEstudiante.grado;
 
     const handleInputChange = ({ target }) => {
         setInput({
@@ -59,7 +60,7 @@ const UpdateStudents = () => {
                         </div>
                         <div className={style.flexdata}>
                             <b>Grado:</b>
-                            <p>{modalData.dataEstudiante.grado}</p>
+                            <p>{ nivelDelAlumno.slice(0,1).toUpperCase() +nivelDelAlumno.slice(1) }</p>
                         </div>
                         <div className={style.flexdata}>
                             <b>Sección:</b>

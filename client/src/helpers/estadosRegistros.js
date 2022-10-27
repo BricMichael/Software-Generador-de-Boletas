@@ -9,7 +9,7 @@ export const stateCrearIndicador = {
 };
 
 
-export const stateRegistroEstudiante = { nombres: '', cedulaE: '', genero: '', grado: '', seccion: '' };
+export const stateRegistroEstudiante = { nombres: '', cedulaE: '', genero: '', grado: '', seccion: 'U' };
 
 
 export const stateRegistroUsuario = { nombre: '', especialidad: '', cedula: '', email: '', password: '', rol: '' };

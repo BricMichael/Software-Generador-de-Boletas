@@ -5,9 +5,9 @@ import style from './UpdateStudents.module.css';
 
 
 const UpdatePassword = () => {
-
     const [input, setInput] = useState({ cedula: '', clave: '' })
     const [showData, setShowData] = useState({ state: false, dataUsuario: {}, allUser: [] });
+    const roleUserFound = showData.dataUsuario.rol;
 
     const handleInputChange = ({ target }) => {
         setInput({
@@ -98,13 +98,15 @@ const UpdatePassword = () => {
                             <b>Nombre:</b>
                             <p>{showData.dataUsuario.nombre}</p>
                         </div>
-                        <div className={style.flexdata}>
-                            <b>Área:</b>
-                            <p>{showData.dataUsuario.area_personal}</p>
-                        </div>
+                        { showData.dataUsuario.rol === 'especialista' &&
+                            <div className={style.flexdata}>
+                                <b>Especialidad:</b>
+                                <p>{showData.dataUsuario.especialidad}</p>
+                            </div>
+                        }
                         <div className={style.flexdata}>
                             <b>Rol:</b>
-                            <p>{showData.dataUsuario.rol}</p>
+                            <p>{ roleUserFound.slice(0,1).toUpperCase() + roleUserFound.slice(1)}</p>
                         </div>
                         <div className={style.flexdata}>
                             <b>Nueva contraseña</b>

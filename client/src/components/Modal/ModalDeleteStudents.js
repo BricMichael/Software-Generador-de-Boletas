@@ -19,16 +19,13 @@ const ModalDeleteStudents = ({ closeModal }) => {
     }, [])
 
     const arrayTotalByGrado = [
-        'Primer grado en total:',
-        'Segundo grado en total:',
-        'Tercer grado en total:',
-        'Cuarto grado en total:',
-        'Quinto grado en total:',
-        'Sexto grado en total:'
+        'Nivel 1:',
+        'Nivel 2:',
+        'Nivel 3:',
     ];
 
     const deleteByGrado = async (grado) => {
-        let resp = await alertDeleteItems(`¿Eliminar todos los estudiantes de ${grado} grado? `);
+        let resp = await alertDeleteItems(`¿Eliminar todos los estudiantes de ${grado}? `);
         if (resp) {
             const { data } = await apiDeleteStudentsByGrado(grado);
             solicitarAllStudents(setTotalesByGrado);
@@ -58,7 +55,9 @@ const ModalDeleteStudents = ({ closeModal }) => {
                             {
                                 totalByGrado.StudentsByGrado.map(grado => (
                                     <div className={style.ModalStudentsInfo} key={grado.grado} >
-                                        <span className={style.ModalStudentsSpan}>{arrayTotalByGrado[grado.grado - 1]} <b>{grado.total}</b></span>
+                                        <span className={style.ModalStudentsSpan}>
+                                            {arrayTotalByGrado[+grado.grado.slice(-1) - 1]} <b>({grado.total})</b> {+grado.total === 1 ? 'Estudiante' : 'Estudiantes'} 
+                                        </span>
                                         <button
                                             className={style.ModalStudentsInfoButtons}
                                             type='submit'
