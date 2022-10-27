@@ -19,29 +19,21 @@ const registroEstudiante = async (req, res) => {
     }
 }
 
-
 const registroUsuario = async (req, res) => {
     try {
-        const dateToday = new Date().toDateString();
-        const { nombre, area, cedula, email, password, rol } = req.body;
-
+        const { nombre, especialidad, cedula, email, password, rol } = req.body;
         const saveEmailToLowerCase = email.toLowerCase();
 
         const respBD = await pool.query(`SELECT * FROM personal WHERE cedula = $1 OR email = $2`, [cedula, saveEmailToLowerCase.trim()]);
-
-        if (respBD.rowCount === 1) {
-            res.json({ msg: 'Error: Ya existe un usuario con ese correo electrónico o cédula' })
-        }
-        else {
-            await pool.query('INSERT INTO personal( nombre, email, rol, cedula, area_personal, claveuser, fecha_reg ) VALUES($1,$2, $3, $4, $5, $6, $7)', [nombre.trim(), saveEmailToLowerCase.trim(), rol, cedula.trim(), area, password, dateToday]);
-
-            res.json({ msg: 'Usuario registrado exitosamente' });
-        }
-
+        if (respBD.rowCount === 1) return res.json({ msg: 'Error: Ya existe un usuario con ese correo electrónico o cédula' });
+        
+        await pool.query('INSERT INTO personal( nombre, email, rol, cedula, especialidad, claveuser ) VALUES($1,$2, $3, $4, $5, $6)',
+         [ nombre.trim(), saveEmailToLowerCase.trim(), rol, cedula.trim(), especialidad, password ]
+        );
+        res.json({ msg: 'Usuario registrado exitosamente' });
     } catch (err) {
         console.log(err.message);
     }
-
 }
 
 const updateEstudiante = async (req, res) => {
@@ -62,11 +54,11 @@ const allUsuariosRegistrados = async (req, res) => {
     let longitudOfRegistros = await pool.query('SELECT * FROM personal ORDER BY nombre');
     let lastUser = longitudOfRegistros.rows[longitudOfRegistros.rows.length - 1].id // Obtener el ultimo usuario de la tabla BD.
 
-    try {
+    try { // Paginacion data personal.
         let valorInicial = +req.query.param;
 
         if (valorInicial > 0) {  // si esto es true el usuario quiere ver los siguientes o anteriores regs, segun el <<valorInicial>>
-            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [valorInicial, 4]);
+            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [valorInicial, 4]);
 
             if (resBD.rows[resBD.rows.length - 1].id === lastUser) {
                 resBD.rows[0].aviso = true; // se le notifica al front mediante esta propiedad que se estan mostrando los ultimos regs
@@ -76,12 +68,11 @@ const allUsuariosRegistrados = async (req, res) => {
                 res.json(resBD.rows);
             }
         } else { // sino mostrar los primeros 10 regs.
-            const resBD = await pool.query('SELECT claveuser, id, nombre, email, rol, cedula, area_personal FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [0, 4]);
-
+            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [0, 4]);
             res.json(resBD.rows);
         }
     } catch (err) {
-        console.log('err allUser', err.message);
+        console.log('Error en allUsuariosRegistrados', err.message);
     }
 }
 
@@ -116,9 +107,7 @@ const eliminarRegistro = async (req, res) => {
         const tablaName = req.query.tabla;
 
         await pool.query(`DELETE FROM ${tablaName} WHERE id = $1`, [id]);
-
         res.send('Registro eliminado');
-
     } catch (err) {
         console.log(err.message);
     }
