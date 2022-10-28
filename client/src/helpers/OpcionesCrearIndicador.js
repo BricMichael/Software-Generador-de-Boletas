@@ -6,20 +6,25 @@ import { validarCampos } from "./validarRegistros";
 
 
 
-export const enviarData = (values, resetForm) => async (dispatch) => {
+export const enviarData = (values, resetForm, tipoDescription) => async (dispatch) => {
     const { indicador } = values;
-    const { id, rol } = JSON.parse(localStorage.getItem('userActive'));
+    const { id, rol, nombre } = JSON.parse(localStorage.getItem('userActive'));
     let respErrors = '';
 
     if (rol === roles.docente) {
         const { literal, grado, ...rest } = values;
         respErrors = validarCampos(rest)
-    } else { respErrors = validarCampos(values) }
+    } else { 
+        const {indicador, proposito_general,...rest } = values;
+        respErrors = validarCampos(rest);
+    }
 
     if (respErrors === 'error') return Swal.fire('¡Vaya!', 'Asegurate de haber llenado todos los campos', 'warning');
-    if (indicador.length < 35) return Swal.fire('¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning');
+    if (tipoDescription === 'indicador' && indicador.length < 35) return Swal.fire('¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning');
+    if (tipoDescription === 'proposito_general' && values.proposito_general.length < 35) return Swal.fire('¡Vaya!', 'El propósito general no debe contener menos de 35 caracteres', 'warning');
 
-    values.idUser = id;
+    values.id_creador = id;
+    values.nombre_docente = nombre;       
 
     await guardarIndicador(values);
     dispatch(allIndicadorOfUser());
@@ -39,7 +44,6 @@ export const enviarData = (values, resetForm) => async (dispatch) => {
 export const ocultarOptions = (rol) => {
     if (rol !== roles.especialista) {
         document.querySelector('#selectLiteral').setAttribute('disabled', 'true');
-        document.querySelector('#gradoOption').setAttribute('disabled', 'true');
     }
     return rol;
 }

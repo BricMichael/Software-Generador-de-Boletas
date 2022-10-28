@@ -25,6 +25,7 @@ const Sidebar = () => {
                 <ul className={style.sidebarContentUl}>
                     <Link to={`${url}/regEstudiante`}>Registrar Estudiante</Link>
                     <Link to={`${url}/ActualizarDatos`}>Actualizar datos</Link>
+                    <Link to={`${url}/materias`}>Agregar Materias</Link>
                 </ul>
                 {
                     (rolUser !== roles.docente && rolUser !== roles.especialista)
@@ -37,8 +38,7 @@ const Sidebar = () => {
                         </ul>
 
                         <span className={style.sidebarTitle}>Configuración</span>
-                        <ul className={style.sidebarContentUl}>
-                            <Link to={`${url}/materias`}>Agregar Materias</Link>
+                        <ul className={style.sidebarContentUl}>                 
                             <li onClick={() => setModalStudents(true)} style={{ cursor: 'pointer' }} >Eliminar Estudiantes</li>
                             {
                                 rolUser === roles.admin &&

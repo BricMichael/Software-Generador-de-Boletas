@@ -5,7 +5,7 @@ export const stateCrearIndicador = {
     condicion_especial: '', 
     grado: '', 
     momento: '', 
-    anioIndicador: ''
+    proposito_general: ''
 };
 
 

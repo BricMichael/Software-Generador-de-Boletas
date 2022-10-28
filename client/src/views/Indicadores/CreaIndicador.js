@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import style from './crearIndicador.module.css';
 import { stateCrearIndicador } from '../../helpers/estadosRegistros';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,22 +10,29 @@ import { roles } from '../../helpers/roles';
 
 
 const CreaIndicador = () => {
-
     const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
+    const [tipoDescription, setTipoDescription] = useState('');
     const dispatch = useDispatch();
 
     const [values, handleInputChange, reset] = useForm(stateCrearIndicador);
 
-    const { indicador, literal, area, condicion_especial, grado, momento, anioIndicador } = values;
+    const { indicador, literal, area, condicion_especial, grado, momento, proposito_general } = values;
     const rolUser = useRef(JSON.parse(localStorage.getItem('userActive')).rol);
+    const isPropositoGeneral = tipoDescription === 'proposito_general';
 
     useEffect(() => {
         ocultarOptions(rolUser.current);
     }, [])
 
+    const handleTipoDescription = ( valor ) => {
+        setTipoDescription(valor);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(enviarData(values, reset));
+        if(isPropositoGeneral) values.indicador = '';
+        if(tipoDescription === 'indicador') values.proposito_general = '';
+        dispatch(enviarData(values, reset, tipoDescription));
     }
 
     const recorrerArray = rolUser.current === roles.especialista ? materiasEspecialista : materiasDocente;
@@ -33,10 +40,22 @@ const CreaIndicador = () => {
     return (
         <div className={`${style.pag_total}`}>
             <form className={`${style.form}`} onSubmit={handleSubmit}>
-                <textarea className={`${style.textArea}`} name="indicador" value={indicador} placeholder="Escribe aquí el indicador" onChange={handleInputChange}></textarea>
+                <textarea 
+                    className={`${style.textArea}`} 
+                    name={`${isPropositoGeneral ? 'proposito_general' : 'indicador'}`} 
+                    value={isPropositoGeneral ? proposito_general : indicador} 
+                    placeholder={`Escribe aquí ${ isPropositoGeneral ? 'el propósito general...' : 'el indicador...'}`} 
+                    onChange={handleInputChange}
+                >
+                </textarea>
                 <div className={`${style.all_selects}`}>
-
-
+                    { rolUser.current === 'especialista' &&
+                        <select className={`${style.select}`} name="tipoDescription" value={tipoDescription} onChange={(e) => handleTipoDescription(e.target.value)}>
+                            <option>Descripción</option>
+                            <option value="proposito_general">Proposito General</option>
+                            <option value="indicador">Indicador</option>                
+                        </select>
+                    }
                     <select className={`${style.select}`} name='area' value={area}
                         onChange={handleInputChange}>
                         <option>Área</option>
@@ -54,57 +73,26 @@ const CreaIndicador = () => {
 
                     <select className={`${style.select}`} name="momento" value={momento} onChange={handleInputChange}>
                         <option>Momento</option>
-                        <option value="Momento 1">Momento 1</option>
-                        <option value="Momento 2">Momento 2</option>
-                        <option value="Momento 3">Momento 3</option>
+                        <option value="momento 1">Momento 1</option>
+                        <option value="momento 2">Momento 2</option>
+                        <option value="momento 3">Momento 3</option>
                     </select>
 
-                    <select
-                        name='anioIndicador'
-                        value={anioIndicador}
-                        onChange={handleInputChange}
-                        className={style.select}
-                    >
-                        <option>Año del indicador</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-                        <option value="2031">2031</option>
-                        <option value="2032">2032</option>
-                        <option value="2033">2033</option>
-                        <option value="2034">2034</option>
-                        <option value="2035">2035</option>
-                        <option value="2036">2036</option>
-                        <option value="2037">2037</option>
-                        <option value="2038">2038</option>
-                        <option value="2039">2039</option>
-                        <option value="2040">2040</option>
+                    <select className={`${style.select}`} name="grado" value={grado} onChange={handleInputChange} id="gradoOption">
+                        <option>Grado</option>
+                        <option value="nivel1">Nivel 1</option>
+                        <option value="nivel2">Nivel 2</option>
+                        <option value="nivel3">Nivel 3</option>                  
                     </select>
 
                     <select className={`${style.select}`} name="literal" value={literal}
                         onChange={handleInputChange} id="selectLiteral" >
                         <option>Literal</option>
-                        <option value="E">E</option>
-                        <option value="B">B</option>
-                        <option value="RN">RN</option>
-                    </select>
-
-                    <select className={`${style.select}`} name="grado" value={grado} onChange={handleInputChange} id="gradoOption">
-                        <option>Grado</option>
-                        <option value="1">1er Grado</option>
-                        <option value="2">2do Grado</option>
-                        <option value="3">3er Grado</option>
-                        <option value="4">4to Grado</option>
-                        <option value="5">5to Grado</option>
-                        <option value="6">6to Grado</option>
-                    </select>
+                        <option value="muy bien">Muy bien</option>
+                        <option value="bien">Bien</option>
+                        <option value="en proceso">En proceso</option>
+                        <option value="requiere nivelación">Requiere nivelación</option>
+                    </select>                   
                     <button type="submit" className={`${style.button}`}>Guardar</button>
                 </div>
             </form>

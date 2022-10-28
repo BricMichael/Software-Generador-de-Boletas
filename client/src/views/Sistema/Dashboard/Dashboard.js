@@ -9,6 +9,7 @@ import { usuarioLogeado } from '../../../Redux/actions/loginActions';
 
 
 const Dashboard = () => {
+    const { rol } = JSON.parse(window.localStorage.getItem('userActive'));
     backgroundColorPage('#eee');
     document.title = 'Menú Principal';
     const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const Dashboard = () => {
         dispatch(usuarioLogeado(false));
         window.localStorage.removeItem('userActive');
     }
+
+    const conditionRole = rol !== 'docente' && rol !== 'especialista';
 
     return (
         <>
@@ -46,21 +49,21 @@ const Dashboard = () => {
                         </li>
                     </Link>
 
-                    <Link to="/menu-principal/descargar-boleta">
-                        <li className={`${styles.ul_items}`}><span className={styles.links}>
-                            <i className="fas fa-print"></i>&nbsp;&nbsp; Zona de Descargas</span>
-                        </li>
-                    </Link>
+                    {   conditionRole &&
+                        <Link to="/menu-principal/descargar-boleta">
+                            <li className={`${styles.ul_items}`}><span className={styles.links}>
+                                <i className="fas fa-print"></i>&nbsp;&nbsp; Zona de Descargas</span>
+                            </li>
+                        </Link>
+                    }
 
-                    <Link to="/menu-principal/registros">
-                        <li className={`${styles.ul_items}`}><span className={styles.links}><i className="fas fa-users"></i>&nbsp; Usuarios</span>
-                        </li>
-                    </Link>
-
+                  {
+                    rol !== 'especialista' && 
                     <Link to="/menu-principal/registros">
                         <li className={`${styles.ul_items}`}><span className={styles.links}><i className="fas fa-tools"></i>&nbsp;&nbsp; Configuraci&oacute;n</span>
                         </li>
                     </Link>
+                  }
 
                     <li className={`${styles.ul_items} ${styles.bg_red}`} onClick={logoutUser}>
                         <button className={styles.links} type="submit"><i className="fas fa-sign-in-alt">

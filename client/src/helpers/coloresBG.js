@@ -24,7 +24,7 @@ export const links = [
         to: '/menu-principal/registros',
         className: `${styles.cl_amarillo} ${styles.grupo}`,
         styleIcon: `${styles.bg} fas fa-tools`,
-        p: 'Configuración (admin)',
+        p: 'Configuración',
         pStyle: styles.opciones
     },
     {
@@ -33,12 +33,11 @@ export const links = [
         styleIcon: `${styles.bg} fas fa-print`,
         p: 'Zona de Descargas',
         pStyle: styles.opciones
-    },
-    {
-        to: '/menu-principal/registros',
-        className: `${styles.cl_naranja} ${styles.grupo}`,
-        styleIcon: `${styles.bg} fas fa-users`,
-        p: 'Usuarios',
-        pStyle: styles.opciones
-    },
+    }
 ]
+
+export const showMenuByRol = ( rol ) => {
+    if( rol === 'docente' ) return [links[0], links[1], links[2]];
+    if ( rol === 'especialista' ) return [links[0], links[1]];
+    return links;
+}
