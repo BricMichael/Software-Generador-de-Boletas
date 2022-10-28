@@ -11,7 +11,7 @@ const initialState = {
         materiasEspecialista: [],
     },
     momento: '',
-    anioIndicadores: ''
+    grado: ''
 }
 
 const indicadorReducer = (state = initialState, action) => {
@@ -21,7 +21,7 @@ const indicadorReducer = (state = initialState, action) => {
                 ...state,
                 indicadoresByUser: [...action.payload.data],
                 momento: action.payload.momento,
-                anioIndicadores: action.payload.anioIndicadores
+                grado: action.payload.grado
             }
 
         case types.materiasTypes:
@@ -62,7 +62,7 @@ const indicadorReducer = (state = initialState, action) => {
                 ...state,
                 updateIndicador: {
                     estado: false,
-                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: '' },
+                    dataIndicador: { indicador: '', literal: '', area: '', condicion_especial: '', grado: '', momento: '', proposito_general: '' },
                 }
             }
 

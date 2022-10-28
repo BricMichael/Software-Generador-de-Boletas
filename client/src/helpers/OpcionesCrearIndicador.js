@@ -12,7 +12,7 @@ export const enviarData = (values, resetForm, tipoDescription) => async (dispatc
     let respErrors = '';
 
     if (rol === roles.docente) {
-        const { literal, grado, ...rest } = values;
+        const { literal, grado, proposito_general, ...rest } = values;
         respErrors = validarCampos(rest)
     } else { 
         const {indicador, proposito_general,...rest } = values;

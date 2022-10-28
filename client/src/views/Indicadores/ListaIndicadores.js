@@ -99,7 +99,7 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                                     <p className={style.indicador_card}>{card.indicador}</p>
                                 </div>
                                 <div className={style.footer_card}>
-                                    <p className={style.momento_card}>{card.momento}</p>
+                                    <p className={style.momento_card}>{card.momento.slice(0,1).toUpperCase() + card.momento.slice(1)}</p>
                                     <p className={style.CE_card}>C.E: {card.condicion_especial}</p>
                                 </div>
                             </div>                            

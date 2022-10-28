@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
-import Swal from "sweetalert2";
 import style from './options.module.css';
 import { useForm } from "../../helpers/useForm";
 import { filtroBusqueda } from '../../Redux/actions/indicadoresActions';
@@ -13,15 +12,13 @@ const Options = ({ vista, loadingData }) => {
 
     const [respData, setRespData] = useState({ status: false, msgAviso: '' });
 
-    const [values, handleInputChange] = useForm({ momento: 'Momento 1', anioIndicadores: '' })
-    const { momento, anioIndicadores } = values;
+    const [values, handleInputChange] = useForm({ momento: 'momento 1', grado: '' })
+    const { momento, grado } = values;
 
     const handleStateData = async (e) => {
         e.preventDefault();
-        if( !values.anioIndicadores ) return Swal.fire('¡Vaya!', 'Seleccione el año de busqueda.', 'warning');
-
         loadingData(true);
-        const resp = await dispatch(filtroBusqueda(momento, vista, false, anioIndicadores));
+        const resp = await dispatch(filtroBusqueda(momento, vista, false, grado));
         loadingData(false);
 
         if (resp.length === 0) {
@@ -49,36 +46,21 @@ const Options = ({ vista, loadingData }) => {
                     onChange={handleInputChange}
                     className={style.optionsForm_Select}
                 >
-                    <option value="Momento 1">Momento 1</option>
-                    <option value="Momento 2">Momento 2</option>
-                    <option value="Momento 3">Momento 3</option>
+                    <option value="momento 1">Momento 1</option>
+                    <option value="momento 2">Momento 2</option>
+                    <option value="momento 3">Momento 3</option>
                 </select>
                 <select
-                    name='anioIndicadores'
-                    value={anioIndicadores}
+                    name='grado'
+                    value={grado}
                     onChange={handleInputChange}
                     className={style.optionsForm_Select}
                     style={{ margin: '0 1.5rem' }}
                 >
-                    <option>Año de los indicadores</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
-                    <option value="2031">2031</option>
-                    <option value="2032">2032</option>
-                    <option value="2033">2033</option>
-                    <option value="2034">2034</option>
-                    <option value="2035">2035</option>
-                    <option value="2036">2036</option>
-                    <option value="2037">2037</option>
-                    <option value="2038">2038</option>
+                    <option>Grado</option>
+                    <option value="nivel1">Nivel 1</option>
+                    <option value="nivel2">Nivel 2</option>
+                    <option value="nivel3">Nivel 3</option>
                 </select>
 
                 <button type="submit">Buscar</button>

@@ -32,7 +32,7 @@ const CreaIndicador = () => {
         e.preventDefault();
         if(isPropositoGeneral) values.indicador = '';
         if(tipoDescription === 'indicador') values.proposito_general = '';
-        dispatch(enviarData(values, reset, tipoDescription));
+        dispatch(enviarData(values, reset, tipoDescription ? tipoDescription : 'indicador'));
     }
 
     const recorrerArray = rolUser.current === roles.especialista ? materiasEspecialista : materiasDocente;
