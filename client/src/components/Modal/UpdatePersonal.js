@@ -2,18 +2,17 @@ import { useEffect } from 'react';
 import { useForm } from '../../helpers/useForm';
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css';
 import Modal from './Modal'
-import { useSelector } from 'react-redux';
 import { updateRegistroAction } from '../../Redux/actions/usuariosActions';
 import { cambioDeDatos, removerEspacios } from '../../helpers/validarRegistros';
-import { roles } from '../../helpers/roles';
+import { useSelector } from 'react-redux'
 
 
 const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
-    const { materiasEspecialista, materiasDocente } = useSelector(state => state.indicador.materias);
+    const { existeRolCoordinador, existeRolDirector } = useSelector(state => state.config);
+    const { materiasEspecialista } = useSelector(state => state.indicador.materias);
+    
     const [values, handleInputChange, reset] = useForm(datos);
-
-    const { area_personal, cedula, email, nombre, rol } = values;
-    const allMaterias = [...materiasDocente, ...materiasEspecialista];
+    const { especialidad, cedula, email, nombre, rol } = values;
 
     useEffect(() => {
         return () => {
@@ -65,7 +64,7 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
                 />
 
                 {
-                    rol !== 'Director' &&
+                    rol !== 'director' &&
                     <>
                         <input type="email"
                             className={style.registerInputs}
@@ -78,21 +77,26 @@ const UpdatePersonal = ({ closeModal, datos, dataState, updateState }) => {
                         />
 
                         <select className={style.optionsRegister} onChange={handleInputChange} name='rol' value={rol}>
-                            <option value="default">Rol</option>
-                            <option value="Especialista">Especialista</option>
-                            <option value="Docente">Docente</option>
-                            <option value="Coordinador">Coordinador</option>
-                            <option value="Admin">Administador</option>
+                            <option value="default">*Rol*</option>
+                            <option value="especialista">Especialista</option>
+                            <option value="docente">Docente</option>
+                            <option value="admin">Administador</option>
+                            {
+                                !existeRolCoordinador &&<option value="coordinador">Coordinador</option>
+                            }
+                            {
+                                !existeRolDirector && <option value="director">Director/a</option>
+                            }                            
                         </select>
                     </>
                 }
 
                 {
-                    (rol === roles.docente || rol === roles.especialista) &&
-                    <select className={style.optionsRegister} onChange={handleInputChange} name='area_personal' value={area_personal}>
-                        <option value="default" >&Aacute;rea</option>
+                    rol === 'especialista' &&
+                    <select className={style.optionsRegister} onChange={handleInputChange} name='especialidad' value={especialidad}>
+                        <option value="default">*Especialidad*</option>
                         {
-                            allMaterias.map(value => (
+                            materiasEspecialista.map(value => (
                                 <option key={value.materia} value={value.materia}>
                                     {value.materia}
                                 </option>

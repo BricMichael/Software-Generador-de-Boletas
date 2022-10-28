@@ -4,7 +4,7 @@ import types from "../types";
 export const solicitarAllStudents = async (setState) => {
     const { data } = await apiAllStudents();
     let { total } = data.pop();
-    setState({ totalStudents: total, StudentsByGrado: data })
+    setState({ totalStudents: total, StudentsByGrado: data, loading: false })
 }
 
 export const setDataUser = (data) => ({

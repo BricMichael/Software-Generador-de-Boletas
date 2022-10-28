@@ -18,7 +18,7 @@ const InfoRegistros = () => {
         for (const item of data) dataToState[item.rol] = item.total;
         setTotales({ data: dataToState, totalUsers })
     }
-
+   
     useEffect(() => {
         datos.length !== 0 && getTotalUsers();
 
@@ -36,19 +36,19 @@ const InfoRegistros = () => {
                         <p>Usuarios registrados: <small>{totalUsers}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Docentes: <small>{!data.Docente ? 0 : data.Docente}</small></p>
+                        <p>Docentes: <small>{!data.docente ? 0 : data.docente}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Especialistas: <small>{!data.Especialista ? 0 : data.Especialista}</small></p>
+                        <p>Especialistas: <small>{!data.especialista ? 0 : data.especialista}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Coordinador: <small>{!data.Coordinador ? 0 : data.Coordinador}</small></p>
+                        <p>Coordinador: <small>{!data.coordinador ? 0 : data.coordinador}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Admin: <small>{!data.Admin ? 0 : data.Admin}</small></p>
+                        <p>Admin: <small>{!data.admin ? 0 : data.admin}</small></p>
                     </div>
                     <div className={style.dataMenu}>
-                        <p>Director: <small>{!data.Director ? 0 : data.Director}</small></p>
+                        <p>Director: <small>{!data.director ? 0 : data.director}</small></p>
                     </div>
                 </div>
 

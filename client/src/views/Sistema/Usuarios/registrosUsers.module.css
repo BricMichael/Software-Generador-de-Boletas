@@ -1,8 +1,6 @@
 .contentInitial {
-    display: flex;
-    width: 100%;
-    align-items: flex-start;
     margin: 1.5rem 0px;
+    margin-left: 245px;
 }
 
 .imageSvg {
@@ -119,51 +117,13 @@
     font-size: 21px;
 }
 
-/* estilos de las tablas */
-
 .infoAndComponent{
     display: flex;
     flex-direction: column;
     margin-bottom: 1.4rem;
+    position: relative;
 }
 
-.registersTable {
-    width: 85%;
-    border-collapse: collapse; 
-    margin: auto;
-}
-
-.registersTableThead {
-    background: #447bc4;
-    color: #021e42;
-  
-}
-
-.registersTableTr > .registersTh  {
-    padding: 10px 17px;
-    font-size: 17px;
-}
-
-
-.registersTbody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, el background*/
-    background-color: #ddd;
-}
-
-
-.registerTrBody {
-    color: #012c66;
-    background: rgb(179, 172, 172);
-   
-}
-
-.childrenBody {
-    font-size: 15px;
-    font-weight: 200;
-    padding: 8px 0px;
-}
-
-.childrenBody:nth-child(1),.registersTh:nth-child(1), .childrenBody:nth-child(3){ text-align: left;}
-.childrenBody:nth-child(1) { padding-left: 17px; }
 
 .botones, .nextPersonal {
     padding: 5px;
@@ -182,9 +142,10 @@
 
 .tableUser__buttons {
     width: 100%;
-    /* border: 1px solid red; */
-    margin: auto;
     display: flex;
+    position: absolute;
+    right: 97px;
+    bottom: -45px;
     justify-content: flex-end;
     margin-top: 0.5rem;
 }
@@ -234,10 +195,10 @@
 
  /* Estilos CARD */
 .containerCards {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
 
@@ -254,8 +215,9 @@
 
 .singleCard_top {
     display: flex;
+    justify-content: space-between;
     color: #012c66;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
@@ -268,18 +230,12 @@
     justify-content: space-between;
     align-items: center;
     margin: 1rem 0;
+    font-size: .8rem;
 }
 
 .singleCard_role {
     font-size: .9rem;
     font-weight: 600;
-}
-
-.singleCard_educacion {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .8rem;
 }
 
 .educacion_child {
@@ -295,22 +251,29 @@
 
  /* FIN Estilos CARD */
 
-@media screen and ( min-width: 1140px) { 
-    .registersTable,.tableUser__buttons  {
-        width: 75%;
+@media screen and ( max-width: 1255px) { 
+    .tableUser__buttons  {
+        right: 20px !important;
     }  
+
+    .containerCards {
+        width: 95%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and ( max-width: 1030px) { 
+    .singleCard_body {
+        font-size: .6rem;
+    }
+    .singleCard_top {
+        font-size: .7rem;
+    }
 }
 
 @media screen and ( max-width: 980px) {
-    .childrenBody {
-        font-size: 13px;
-        font-weight: 200;
-    }
     .botones{
         font-size: 16px;
-    }
-    .registersTable, .tableUser__buttons  {
-        width: 800px;
     }
     .registrosUsers_edit{
         background: #447bc4;
@@ -325,10 +288,4 @@
         width: 55%;
     }
     
-}
-
-@media screen and ( max-width: 860px) {
-    .registersTable, .tableUser__buttons  {
-        width: 750px;   
-    }
 }

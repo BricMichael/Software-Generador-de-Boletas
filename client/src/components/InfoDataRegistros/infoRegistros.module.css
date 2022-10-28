@@ -19,3 +19,19 @@
     font-weight: bold;
     font-size: 17px;
 }
+
+
+@media screen and ( max-width: 1255px) { 
+    .menuInformativo {
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .dataMenu {
+        padding: 5px;
+    }
+    .dataMenu > p > small, .dataMenu > p{
+        font-weight: bold;
+        font-size: 13px;
+    }
+}

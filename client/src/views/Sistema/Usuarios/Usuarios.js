@@ -23,19 +23,17 @@ const Usuarios = () => {
         <>
             <BotonHome />
             <Header title="Registros" marginTop='-4.4rem' />
-            <div className={style.contentInitial}>
-                <Sidebar />
-                <img src='/registro.svg' alt='cargando imagen' className={style.imageSvg}></img>
+            <Sidebar />
+            <div className={style.contentInitial}>   
+                <Switch>
+                    <Route path={`${path}/materias`} exact component={TablaMaterias} />
+                    <Route path={`${path}/cambioClave`} exact component={UpdatePassword} />
+                    <Route path={`${path}/regUsuario`} exact component={PersonalReg} />
+                    <Route path={`${path}/ListaUsuarios`} exact component={TableUsers} />
+                    <Route path={`${path}/regEstudiante`} exact component={EstudianteReg} />
+                    <Route path={`${path}/ActualizarDatos`} exact component={UpdateStudents} />
+                </Switch>
             </div>
-
-            <Switch>
-                <Route path={`${path}/materias`} exact component={TablaMaterias} />
-                <Route path={`${path}/cambioClave`} exact component={UpdatePassword} />
-                <Route path={`${path}/regUsuario`} exact component={PersonalReg} />
-                <Route path={`${path}/ListaUsuarios`} exact component={TableUsers} />
-                <Route path={`${path}/regEstudiante`} exact component={EstudianteReg} />
-                <Route path={`${path}/ActualizarDatos`} exact component={UpdateStudents} />
-            </Switch>
             <i id='slideDown'></i>
         </>
     )

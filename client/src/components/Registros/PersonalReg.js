@@ -24,8 +24,7 @@ const PersonalReg = () => {
 
             for (const item of data) {
                 if (item.rol === 'coordinador' && +item.total === 1) dispatch(existeRolCoordinadorAction())
-
-                else if (item.rol === 'director' && +item.total === 1) dispatch(existeRolDirectorAction())
+                if (item.rol === 'director' && +item.total === 1) dispatch(existeRolDirectorAction())
             }
         }
 

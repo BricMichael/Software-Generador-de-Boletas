@@ -7,14 +7,15 @@ import { solicitarAllStudents } from "../../Redux/actions/configuracionActions";
 
 
 const ModalDeleteStudents = ({ closeModal }) => {
-    const [totalByGrado, setTotalesByGrado] = useState({ totalStudents: 0, StudentsByGrado: [] })
+    const [totalByGrado, setTotalesByGrado] = useState({ totalStudents: 0, StudentsByGrado: [], loading: false })
 
 
     useEffect(() => {
-        solicitarAllStudents(setTotalesByGrado)
+        setTotalesByGrado({ totalStudents: 0, StudentsByGrado: [], loading: true });
+        solicitarAllStudents(setTotalesByGrado);
 
         return () => {
-            setTotalesByGrado({ totalStudents: 0, StudentsByGrado: [] });
+            setTotalesByGrado({ totalStudents: 0, StudentsByGrado: [], loading: false });
         }
     }, [])
 
@@ -46,10 +47,11 @@ const ModalDeleteStudents = ({ closeModal }) => {
         <Modal closeModal={closeModal}>
 
             <div className={style.contentModalStudents}>
+                { totalByGrado.StudentsByGrado.length === 0 && !totalByGrado.loading && <p>No hay estudiantes registrados.</p> }
+                {  totalByGrado.loading && <p>Cargando...</p> }
                 {
-                    totalByGrado.StudentsByGrado.length === 0
-                        ? <p>Cargando...</p>
-                        : <>
+                   totalByGrado.StudentsByGrado.length > 0 &&
+                    <>
                             <h4 className={style.ModalStudentsTitle}>Datos Estudiantes</h4>
                             <p className={style.ModalStudentsTotal}>Total de Estudiantes: <b>{totalByGrado.totalStudents}</b></p>
                             {
@@ -83,7 +85,7 @@ const ModalDeleteStudents = ({ closeModal }) => {
                             >
                                 Cancelar
                             </button>
-                        </>
+                    </>
                 }
             </div>
         </Modal>

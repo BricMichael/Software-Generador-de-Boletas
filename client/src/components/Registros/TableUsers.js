@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { apiTotalUsersByRol } from '../../api/api'
 import { alertDeleteItems } from '../../helpers/alerts';
-import { setDataUser } from '../../Redux/actions/configuracionActions';
+import { existeRolCoordinadorAction, existeRolDirectorAction, setDataUser } from '../../Redux/actions/configuracionActions';
 import { allUsuarios, eliminaRegistroAction, siguientes_AnterioresUsuarios } from '../../Redux/actions/usuariosActions';
 import style from '../../views/Sistema/Usuarios/registrosUsers.module.css'
 import InfoRegistros from '../InfoDataRegistros/InfoRegistros';
@@ -16,12 +17,22 @@ const TableUsers = ({ countName = 0 }) => {
     const [usersRegistrados, setUsersRegistrados] = useState({ datos: [], nombres: [] })
 
     useEffect(() => {
+        const askRoles = async () => {
+            const { data } = await apiTotalUsersByRol();
+            for (const item of data) {
+                if (item.rol === 'coordinador' && +item.total === 1) dispatch(existeRolCoordinadorAction())    
+                if (item.rol === 'director' && +item.total === 1) dispatch(existeRolDirectorAction())
+            }
+        }    
+
         let ejectuar = async () => {
             const [data, names] = await allUsuarios();
             setUsersRegistrados({ datos: data, nombres: names });
             dispatch(setDataUser(names));
         }
+
         ejectuar();
+        askRoles();
 
         return () => {
             setUsersRegistrados({ datos: [], nombres: [] });
@@ -58,188 +69,43 @@ const TableUsers = ({ countName = 0 }) => {
                 ? <p>Cargando...</p>
                 : <div className={style.infoAndComponent}>
                     <InfoRegistros />
-
-
                     <div className={style.containerCards}>
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
+                    {   usersRegistrados.datos.length > 0 &&
+                        usersRegistrados.datos.map( (user, indice) => (               
+                            <div className={style.singleCard} key={user.id}>
+                                <div className={style.singleCard_top}>
+                                    <b className={style.singleCard_indice}>#{indice}</b>
+                                    <p className={style.singleCard_nombreUser}>
+                                        {user.nombre.split(' ')[0] + ' ' + (user.nombre.split(' ')[2] ? user.nombre.split(' ')[2] : '') }
+                                    </p>
+                                    <div>
+                                        <img 
+                                            src='/editIcon.png' 
+                                            alt='Icono editar'
+                                            style={{ width: '1.15rem', height: '1.15rem', marginRight: '4px', cursor: 'pointer' }}   
+                                            onClick={() => setHandleOpenModal({ status: true, userSelected: user })}                          
+                                        />
+                                        <img 
+                                            src='/deleteIconRed.webp' 
+                                            alt='Icono eliminar'
+                                            style={{ width: '1.15rem', height: '1.15rem', cursor: 'pointer' }}   
+                                            onClick={() => deleteUser(user)}                                    
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.educacion_child}>Grado: 3ero</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
+                                <div className={style.singleCard_body}>
+                                    <p className={style.singleCard_role}>{user.rol.slice(0,1).toUpperCase() + user.rol.slice(1)}</p>               
+                                    <p><b>V-</b>{user.cedula}</p>
                                     <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
                                 </div>
-                            </div>
 
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
+                                <div className={style.singleCard_footer}>                
+                                    <p>{user.email}</p>                               
                                 </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
-                                </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
-                                </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-                        <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
-                                </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
-                           <div className={style.singleCard}>
-                            <div className={style.singleCard_top}>
-                                <b className={style.singleCard_indice}>#1</b>
-                                <p className={style.singleCard_nombreUser}>Alberto Graterol</p>
-                            </div>
-
-                            <div className={style.singleCard_body}>
-                                <p className={style.singleCard_role}>Especialista</p>
-                                <div className={style.singleCard_educacion}>
-                                    <p className={style.educacion_child}>Preescolar</p>
-                                    <p>Primaria</p>
-                                </div>
-                            </div>
-
-                            <div className={style.singleCard_footer}>
-                                <p className={style.singleCard_nivel}>Nivel: 4to Nivel</p>
-                                <p className={style.singleCard_seccion}>Secci&oacute;n: "B"</p>
-                            </div>
-                        </div>
+                            </div>                                                   
+                        ))
+                    }
                     </div>
-
-
-
-                    {/* <table className={style.registersTable}>
-                        <thead className={style.registersTableThead} >
-                            <tr className={style.registersTableTr}>
-                                <th className={style.registersTh} >Nombre</th>
-                                <th className={style.registersTh} >C&eacute;dula</th>
-                                <th className={style.registersTh} >Correo</th>
-                                <th className={style.registersTh} >&Aacute;rea</th>
-                                <th className={style.registersTh} >Rol</th>
-                                <th className={style.registersTh} >Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody className={style.registersTbody}>
-                            {
-                                usersRegistrados.datos.map(user => (
-                                    <tr className={`${style.registerTrBody} animate__animated animate__fadeIn`} key={user.id}>
-                                        <td className={style.childrenBody}>{usersRegistrados.nombres[countName++]}</td>
-                                        <td className={style.childrenBody}>V- {user.cedula}</td>
-                                        <td className={style.childrenBody}>{user.email}</td>
-                                        <td className={style.childrenBody}>
-                                            {user.area_personal === 'null' ? 'No' : user.area_personal}
-                                        </td>
-                                        <td className={style.childrenBody}>{user.rol}</td>
-                                        <td className={style.childrenBody}>
-                                            <button
-                                                className={`${style.edit} ${style.botones}`}
-                                                onClick={() => setHandleOpenModal({ status: true, userSelected: user })}
-                                            >
-                                                Editar
-                                            </button>
-
-                                            <button className={`${style.delete} ${style.botones}`}
-                                                onClick={() => deleteUser(user)}
-                                            >
-                                                Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table> */}
                     <div className={style.tableUser__buttons}>
                         <button className={style.nextPersonal} onClick={botonAtras} id='backBtn' type='button' style={{ display: 'none' }} >
                             Anteriores
@@ -247,7 +113,7 @@ const TableUsers = ({ countName = 0 }) => {
                         <button className={style.nextPersonal} onClick={botonVerMas} id='nextBtn' type='button'>
                             Siguientes
                         </button>
-                    </div>
+                    </div>                                   
                 </div>
             }
         </>
