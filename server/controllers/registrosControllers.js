@@ -58,7 +58,7 @@ const allUsuariosRegistrados = async (req, res) => {
         let valorInicial = +req.query.param;
 
         if (valorInicial > 0) {  // si esto es true el usuario quiere ver los siguientes o anteriores regs, segun el <<valorInicial>>
-            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [valorInicial, 4]);
+            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [valorInicial, 9]);
 
             if (resBD.rows[resBD.rows.length - 1].id === lastUser) {
                 resBD.rows[0].aviso = true; // se le notifica al front mediante esta propiedad que se estan mostrando los ultimos regs
@@ -67,8 +67,8 @@ const allUsuariosRegistrados = async (req, res) => {
             } else {
                 res.json(resBD.rows);
             }
-        } else { // sino mostrar los primeros 10 regs.
-            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [0, 4]);
+        } else { // sino mostrar los primeros 9 regs.
+            const resBD = await pool.query('SELECT id, nombre, email, rol, cedula, especialidad FROM personal ORDER BY nombre OFFSET $1 LIMIT $2', [0, 9]);
             res.json(resBD.rows);
         }
     } catch (err) {

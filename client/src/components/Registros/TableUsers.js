@@ -108,10 +108,10 @@ const TableUsers = ({ countName = 0 }) => {
                     </div>
                     <div className={style.tableUser__buttons}>
                         <button className={style.nextPersonal} onClick={botonAtras} id='backBtn' type='button' style={{ display: 'none' }} >
-                            Anteriores
+                            Regresar
                         </button>
                         <button className={style.nextPersonal} onClick={botonVerMas} id='nextBtn' type='button'>
-                            Siguientes
+                            Siguiente
                         </button>
                     </div>                                   
                 </div>

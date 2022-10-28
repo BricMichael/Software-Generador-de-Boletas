@@ -77,18 +77,18 @@ export const siguientes_AnterioresUsuarios = async (accion) => { // accion = nex
     let newData = []
 
     if (accion === 'next') {
-        count += 4;
+        count += 9;
 
         const { data } = await api.apiGetAllRegisters(count);
         const names = twoNamesOfUsers(data);
         newData.push(data, names);
 
-        if (count >= 4) btnBack.style.display = 'initial';
+        if (count >= 9) btnBack.style.display = 'initial';
 
         if (data[0].aviso) btnNext.style.display = 'none';
 
     } else {
-        count = count <= 0 ? count = 0 : count - 4;
+        count = count <= 0 ? count = 0 : count - 9;
         const { data } = await api.apiGetAllRegisters(count);
         const names = twoNamesOfUsers(data);
         newData.push(data, names);
