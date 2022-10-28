@@ -27,14 +27,16 @@ CREATE TABLE estudiante (
 
 CREATE TABLE indicador (
     id SERIAL NOT NULL PRIMARY KEY,
-    indicador VARCHAR(1200) NOT NULL,
+    indicador TEXT NULL,
     momento VARCHAR(17) NOT NULL,
     area VARCHAR(50) NOT NULL,
     condicion_especial VARCHAR(10),
     nombre_docente VARCHAR(80) NOT NULL,
+    id_creador VARCHAR(40),
+    proposito_general TEXT NULL,
     grado VARCHAR(9), /* nivel 1, nivel 2  y nivel 3 */
     literal VARCHAR(10), /*  muy bien, bien, en proceso, requiere nivelación */
-    fecha_creacion VARCHAR(8) NOT NULL
+    fecha_creacion TIMESTAMPTZ DEFAULT Now()
 );
 
 
@@ -50,7 +52,7 @@ CREATE TABLE boleta (
     cedula_estudiante VARCHAR,
     mes_momento_inicio VARCHAR NOT NULL,
     mes_momento_fin  VARCHAR NOT NULL,
-    fecha_de_creacion VARCHAR NOT NULL
+    fecha_de_creacion TIMESTAMPTZ DEFAULT Now()
 );
 
 CREATE TABLE materias (

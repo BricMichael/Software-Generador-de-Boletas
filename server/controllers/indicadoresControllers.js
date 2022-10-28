@@ -2,15 +2,47 @@ const pool = require('../configDB/poolConfig');
 const sgMail = require('@sendgrid/mail');
 
 
-
 const guardarIndicador = async (req, res) => {
     try {
-        const { indicador, literal, area, momento, condicion_especial,
-            grado, anioIndicador, idUser } = req.body;
+        const { 
+            indicador, 
+            proposito_general, 
+            literal, 
+            area, // area sirve las especialidades
+            momento, 
+            condicion_especial,
+            grado, 
+            nombre_docente,
+            id_creador
+        } = req.body;
 
-        await pool.query(`INSERT INTO indicador (indicador, momento, area, condicion_especial, id_creador, grado, literal, fecha_creacion) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 )`, [indicador, momento, area, condicion_especial, idUser, grado, literal, anioIndicador]);
-
+        await pool.query(`INSERT INTO indicador (indicador, proposito_general, momento, area, condicion_especial, grado, literal, nombre_docente, id_creador ) 
+        VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9 )`, [indicador,proposito_general, momento, area, condicion_especial, grado, literal, nombre_docente, id_creador]);
         res.status(201).send('Indicador guardado exitosamente');
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+const updateIndicador = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { 
+            indicador, 
+            proposito_general, 
+            literal, 
+            area, // area sirve las especialidades
+            momento, 
+            condicion_especial,
+            grado, 
+        } = req.body;
+
+        await pool.query(
+            `UPDATE indicador SET indicador = $1, literal = $2, area = $3, condicion_especial = $4,
+            grado = $5, momento = $6, proposito_general = $7 WHERE id = $8`, [indicador, literal, area, condicion_especial,
+            grado, momento, proposito_general, id]
+        );
+        res.status(201).send('Los datos han sido actualizados');
     } catch (err) {
         console.log(err.message);
     }
@@ -18,33 +50,22 @@ const guardarIndicador = async (req, res) => {
 
 const obtenerIndicadoresPorUsuario = async (req, res) => {
     try {
-        const { momento, id, anioIndicadores } = req.body;
-
-        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND fecha_creacion = $3`, [id, momento, anioIndicadores]);
+        const { momento, id_creador, grado } = req.body;
+        const indicadoresUsuario = await pool.query(`SELECT * FROM indicador WHERE id_creador = $1 AND momento = $2 AND grado = $3`, [id_creador, momento, grado]);
 
         res.status(200).json(indicadoresUsuario.rows);
-
     } catch (err) {
         console.log(err.message);
     }
 }
 
-
-const updateIndicador = async (req, res) => {
+const eliminarIndicador = async (req, res) => {
     try {
         const { id } = req.params;
-        const { indicador, literal, area, momento, condicion_especial, grado } = req.body;
-
-        await pool.query(
-            `UPDATE indicador SET indicador = $1, literal = $2, area = $3, condicion_especial = $4,
-            grado = $5, momento = $6 WHERE id = $7`, [indicador, literal, area, condicion_especial,
-            grado, momento, id]
-        );
-
-        res.status(201).send('Los datos han sido actualizados');
-
+        await pool.query('DELETE FROM indicador WHERE id = $1', [id]);
+        res.status(201).send('Se ha eliminado exitosamente');
     } catch (err) {
-        console.log(err.message);
+        console.log(err.message)
     }
 }
 
@@ -71,19 +92,6 @@ const comentariosEmail = async (req, res) => {
     })
     console.log(ver)
 }
-
-const eliminarIndicador = async (req, res) => {
-    try {
-        const { id } = req.params;
-        await pool.query('DELETE FROM indicador WHERE id = $1', [id]);
-        res.status(201).send('Se ha eliminado exitosamente');
-
-    } catch (err) {
-        console.log(err.message)
-    }
-}
-
-
 
 
 module.exports = {
