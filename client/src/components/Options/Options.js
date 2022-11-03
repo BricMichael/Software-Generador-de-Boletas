@@ -12,7 +12,7 @@ const Options = ({ vista, loadingData }) => {
 
     const [respData, setRespData] = useState({ status: false, msgAviso: '' });
 
-    const [values, handleInputChange] = useForm({ momento: 'momento 1', grado: '' })
+    const [values, handleInputChange] = useForm({ momento: 'momento 1', grado: 'nivel1' })
     const { momento, grado } = values;
 
     const handleStateData = async (e) => {
@@ -57,7 +57,6 @@ const Options = ({ vista, loadingData }) => {
                     className={style.optionsForm_Select}
                     style={{ margin: '0 1.5rem' }}
                 >
-                    <option>Grado</option>
                     <option value="nivel1">Nivel 1</option>
                     <option value="nivel2">Nivel 2</option>
                     <option value="nivel3">Nivel 3</option>

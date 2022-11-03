@@ -3,7 +3,7 @@
     margin: 2rem auto;
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 25rem);
     gap: 1rem;
 }
 
@@ -59,6 +59,7 @@
 
 .indicador_card {
     font-size: .9rem;
+    word-wrap: break-word;
 }
 
 .footer_card { 
@@ -90,4 +91,16 @@
         margin-left: 1.2rem;
         font-size: 16px;
     }
+
+    .wrapper_cards {
+        width: 85%;
+        grid-template-columns: repeat(3, 17.5rem);
+    }
+}
+
+@media screen and ( max-width: 850px ) {   
+    .wrapper_cards {
+        grid-template-columns: repeat(3, 13.5rem);
+    }
+    .footer_card { font-size: 12px; }
 }
