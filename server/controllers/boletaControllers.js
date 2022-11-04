@@ -91,24 +91,31 @@ const modelFinalPagePdf = (req, res) => {
 }
 
 const creacionBoleta = async (req, res) => {
+     let check_especialista_boleta = null;
+     let check_docente_boleta = null;
      try {
           const {
                anio_escolar,
                grado, 
                seccion,
                cedula_estudiante,
-               docente_boleta,
                momento,
-               especialista_boleta,
                especialidad,
                nombre_estudiante,
                mes_momento_inicio,
-               mes_momento_fin
+               mes_momento_fin,
+               id_creador,
+               rolPersonal
           } = req.body;
           
-          const check_especialista_boleta = !especialista_boleta?.indicadores ? null : especialista_boleta;
-          const check_docente_boleta = !docente_boleta?.indicadores ? null : docente_boleta;
-      
+          const indicadores = await pool.query(`SELECT * FROM indicador WHERE grado = $1 AND momento = $2 AND  id_creador = $3`, [grado, momento, id_creador]);
+          
+          if ( rolPersonal === 'docente') {
+               check_docente_boleta = { indicadores: indicadores.rows };
+          } else {
+               check_especialista_boleta =  { indicadores: indicadores.rows };
+          }
+
           await pool.query(`
                INSERT INTO boleta ( anio_escolar, grado, seccion, cedula_estudiante, docente_boleta, momento, especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin ) 
                VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 )`, 

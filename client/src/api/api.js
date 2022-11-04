@@ -27,7 +27,7 @@ export const apiListFiveStudents = (datos) => axios.post(`${urlBoleta}Estudiante
 export const apiButtonsFiveStudents = (datos) => axios.post(`${urlBoleta}ShowEstudiantes`, datos);
 export const apiGetNameFirmasPersonal = () => axios.get(`${urlBoleta}/firmasPersonal`);
 export const apiIndicadorlEspecialista = (datos) => axios.post(`${urlBoleta}Literal`, datos);
-export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta, { responseType: 'blob' });
+export const apiGenerarBoleta = (datosBoleta) => axios.post(`${urlBoleta}/crearBoleta`, datosBoleta);
 export const apiGetBoletaByCedulaAndMomento = (datos) => axios.post(`${urlBoleta}/getById`, datos);
 export const apiGenerarBoletaExistente = (datos) => axios.post(`${urlBoleta}/existente`, datos, { responseType: 'blob' });
 export const apiEliminarBoleta = (datos) => axios.post(`${urlBoleta}/deleteBoleta`, datos);

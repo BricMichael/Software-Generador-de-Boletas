@@ -4,8 +4,8 @@ import types from "../types";
 
 const initialState = {
     listFiveStudents: [],
-    studentSelected: { nombres: '', grado: '', seccion: '', docente: '' },
-    descripAndDate: { inicioMomento: '', finMomento: '', anioEscolar: '' },
+    studentSelected: { nombres: '', grado: '', seccion: '', docente: '', cedula_estudiante: '' },
+    descripAndDate: { inicioMomento: '', finMomento: '', anioEscolar: '', momento: 'momento 1' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
     anioIndicadores: '',
@@ -112,7 +112,7 @@ const boletaReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                studentSelected: { nombres: '', grado: '', seccion: '', docente: condition ? '' : state.studentSelected.docente },
+                studentSelected: { nombres: '', grado: '', seccion: '', docente: condition ? '' : state.studentSelected.docente , cedula_estudiante: ''},
                 literalIndicadoresDocentes: [],
                 literalesEspecialistas: [],
                 boletasPendientesBySeccion: checkIfUserHasBoletaCreated ? state.boletasPendientesBySeccion : state.boletasPendientesBySeccion - 1,

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 import style from './membrete.module.css';
 import { useForm } from '../../../helpers/useForm';
-import { textAreaAndFecha } from '../../../Redux/actions/boletaActions';
+import { textAreaAndFecha, guardarBoletaAction } from '../../../Redux/actions/boletaActions';
 import { useHistory } from 'react-router-dom';
 import { alertAvisos } from '../../../helpers/alerts';
 
@@ -11,12 +11,13 @@ import { alertAvisos } from '../../../helpers/alerts';
 const StudentSelected = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { id: id_creador, rol } = JSON.parse(localStorage.getItem('userActive'));
 
     const studentSelected = useSelector(state => state.boleta.studentSelected);
     const date = useSelector(state => state.boleta.descripAndDate);
 
     const [values, handleInputChange, reset] = useForm({ ...studentSelected, ...date })
-    const { nombres, grado, seccion, docente, inicioMomento, finMomento, anioEscolar } = values;
+    const { nombres, grado, seccion, docente, inicioMomento, finMomento, anioEscolar, momento } = values;
 
     const nombreUser = useRef(studentSelected.nombres);
 
@@ -30,20 +31,16 @@ const StudentSelected = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!nombres) alertAvisos('Selecciona un estudiante para continuar')
+        if (!nombres) alertAvisos('Selecciona un estudiante para continuar');
         else {
-            const character = anioEscolar.indexOf('-');
-            let convertAnioEscolar = '';
-
-            if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
-                convertAnioEscolar = `${anioEscolar.slice(0, 4)}-${anioEscolar.slice(5, 9)}`; // convert to 2022-2023
-            }
+            if( rol === 'docente' ) return dispatch(guardarBoletaAction({...values, id_creador, rol}));
 
             history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
-            dispatch(textAreaAndFecha({                
+            dispatch(textAreaAndFecha({    
+                momento,            
                 inicioMomento,
                 finMomento,
-                anioEscolar: convertAnioEscolar ? convertAnioEscolar : anioEscolar
+                anioEscolar
             }));
         }
     }
@@ -116,9 +113,20 @@ const StudentSelected = () => {
                         id='fin'
                         className={style.Cboleta_input}
                     />
-                </div>            
+                </div>        
+                <div className={style.group}>
+                    <label>Momento</label>
+                    <select name='momento' value={momento} onChange={handleInputChange} style={{width: '100%', border: 'none', borderBottom: '1px solid #d8d8d8'}}>
+                        <option value="momento 1">Momento 1</option>
+                        <option value="momento 2">Momento 2</option>
+                        <option value="momento 3">Momento 3</option>
+                    </select>
+                </div>     
                 <button type='submit' className={style.linkToIndicadores}>
-                    Indicadores de la boleta &nbsp;<i className="fas fa-long-arrow-alt-right"></i>
+                    {   rol === 'docente' 
+                            ? 'Registrar Boleta'
+                            : 'Indicadores de la boleta &nbsp;<i className="fas fa-long-arrow-alt-right"></i>'
+                    }
                 </button>
             </form>
         </div>

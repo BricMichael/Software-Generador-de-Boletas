@@ -122,34 +122,29 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 
 
 
-export const guardarBoletaAction = (historyPush) => async (dispatch, getState) => {
-    const dataBoleta = getState().boleta;
-    const totalMateriasByGrado = dataBoleta.materiasWithIndicadores.filter(area => area.indicadores.length >= 1);
-    /*De todas las materias de tipo Docente, filtrar solo las que el docente está usando, 
-   ya que los docentes de grados diferentes no usarán las mismas materias. */
-    if (dataBoleta.literalIndicadoresDocentes.length < totalMateriasByGrado.length) {
-        alertAvisos('Faltan áreas de docente* por completar');
+export const guardarBoletaAction = (dataBoleta) => async (dispatch, getState) => {
+    const character = dataBoleta.anioEscolar.indexOf('-');
+    let convertAnioEscolar = '';
 
-    } else {
-        BoletaEnProcesoAlert();
-        const check = dataBoleta.boletasPendientesBySeccion <= 1;
-
-        const { data } = await api.apiGenerarBoleta({
-            indicadoresByArea: dataBoleta.literalIndicadoresDocentes,
-            literalesEspecialistas: dataBoleta.literalesEspecialistas,
-            momento: dataBoleta.momento,
-            descripAndDate: dataBoleta.descripAndDate,
-            studentSelected: dataBoleta.studentSelected,
-            personalFirmas: dataBoleta.personalFirmas,
-            fecha_de_creacion: new Date().toLocaleDateString(),
-            boletasPendientesBySeccion: dataBoleta.boletasPendientesBySeccion
-        });
-
-        dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
-
-        downloandBoletaAndMsgSuccess(check, data, dataBoleta.studentSelected.nombres);
-        historyPush.push('/menu-principal/creacion-de-boletas');
+    if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
+        convertAnioEscolar = `${dataBoleta.anioEscolar.slice(0, 4)}-${dataBoleta.anioEscolar.slice(5, 9)}`; // convert to 2022-2023
     }
+ 
+    const { data } = await api.apiGenerarBoleta({
+        anio_escolar:  convertAnioEscolar ? convertAnioEscolar : dataBoleta.anioEscolar,
+        grado: dataBoleta.grado,
+        seccion: dataBoleta.seccion,
+        cedula_estudiante: dataBoleta.cedula_escolar,
+        momento: dataBoleta.momento,
+        especialidad: null,
+        nombre_estudiante: dataBoleta.nombres,
+        mes_momento_inicio: dataBoleta.inicioMomento,
+        mes_momento_fin: dataBoleta.finMomento,
+        id_creador: dataBoleta.id_creador,
+        rolPersonal: dataBoleta.rol
+    });
+    console.log(data);
+    // dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
 }
 
 
