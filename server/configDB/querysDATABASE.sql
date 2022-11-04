@@ -43,13 +43,14 @@ CREATE TABLE indicador (
 CREATE TABLE boleta (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     anio_escolar VARCHAR(15) NOT NULL,
-    grado VARCHAR (10) NOT NULL,
-    seccion VARCHAR(10) NOT NULL,
-    indicadores_boleta JSON NOT NULL,
-    momento VARCHAR(10) NOT NULL,
-    nombre_estudiante VARCHAR NOT NULL,
-    nombre_docente VARCHAR NOT NULL,
+    grado VARCHAR (10) NOT NULL, /*Grado es el nivel*/
+    seccion VARCHAR(10) NULL,
     cedula_estudiante VARCHAR,
+    docente_boleta JSONB NULL,
+    momento VARCHAR(10) NOT NULL,
+    especialista_boleta JSONB NULL,
+    especialidad VARCHAR NULL,
+    nombre_estudiante VARCHAR NULL,
     mes_momento_inicio VARCHAR NOT NULL,
     mes_momento_fin  VARCHAR NOT NULL,
     fecha_de_creacion TIMESTAMPTZ DEFAULT Now()

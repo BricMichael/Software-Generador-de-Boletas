@@ -84,7 +84,6 @@ const personalFirmas = async (req, res) => {
      }
 }
 
-
 let dataToBuildPDF = {};
 const modelFinalPagePdf = (req, res) => {
      res.setHeader('Content-Type', 'text/html');
@@ -93,34 +92,45 @@ const modelFinalPagePdf = (req, res) => {
 
 const creacionBoleta = async (req, res) => {
      try {
-          const data = req.body; //Dalimilet Herrera directora
-          const { studentSelected, descripAndDate } = data;
-
-          dataToBuildPDF = transformarDataClient(data);
-          await generarPdfWithPuppeter(data.studentSelected.nombres);
-          dataToBuildPDF = {}; // reiniciar la data de la variable al generar la boleta.
-
-          await guardarDatosBoleta(data);
-
-          res.sendFile(path.join(__dirname, `../pdf/${studentSelected.nombres}boleta.pdf`));
-
-          setTimeout(() => {
-               fs.unlink(path.join(__dirname, `../pdf/${studentSelected.nombres}boleta.pdf`))
-          }, 2000);
+          const {
+               anio_escolar,
+               grado, 
+               seccion,
+               cedula_estudiante,
+               docente_boleta,
+               momento,
+               especialista_boleta,
+               especialidad,
+               nombre_estudiante,
+               mes_momento_inicio,
+               mes_momento_fin
+          } = req.body;
+          
+          const check_especialista_boleta = !especialista_boleta?.indicadores ? null : especialista_boleta;
+          const check_docente_boleta = !docente_boleta?.indicadores ? null : docente_boleta;
+      
+          await pool.query(`
+               INSERT INTO boleta ( anio_escolar, grado, seccion, cedula_estudiante, docente_boleta, momento, especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin ) 
+               VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 )`, 
+               [ anio_escolar, grado, seccion, cedula_estudiante, check_docente_boleta, momento, check_especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin ]
+          );
+          res.json({mensaje: 'La boleta ha sido registrada', exito: true});
      } catch (err) {
           console.log(err.message);
-          dataToBuildPDF = {}; // reiniciar la variable.
           res.status(400).json('Ha ocurrido un error, vuelve a intentarlo');
      }
 }
 
 const getBoletaByStudentAndId = async (req, res) => {
      try {
-          const { fullName, momento, anio_escolar } = req.body;
-          const respDB = await pool.query(`SELECT * FROM boleta WHERE nombre_estudiante = $1 
-          AND momento = $2 AND anio_escolar = $3`, [fullName.trim(), momento, anio_escolar]);
+          const { anio_escolar, grado, seccion, cedula_estudiante, momento } = req.body;
 
-          res.json(respDB.rows);
+          const respDB = await pool.query(`
+               SELECT * FROM boleta WHERE cedula_estudiante = $1 
+               AND anio_escolar = $2 AND grado = $3 AND momento = $4`, 
+               [cedula_estudiante, anio_escolar, grado, momento]
+          );
+          res.json({data: respDB.rows});
      } catch (err) {
           console.log(err.message);
      }
