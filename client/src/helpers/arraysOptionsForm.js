@@ -4,15 +4,15 @@ export const gradoStudent = [
         desc: 'Grado'
     },
     {
-        value: 'nivel 1',
+        value: 'nivel1',
         desc: 'Nivel 1'
     },
     {
-        value: 'nivel 2',
+        value: 'nivel2',
         desc: 'Nivel 2'
     },
     {
-        value: 'nivel 3',
+        value: 'nivel3',
         desc: 'Nivel 3'
     },
 ]

@@ -41,7 +41,7 @@ const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
                                     <tr className={`${style.listaFiveFlex} animate__animated animate__fadeIn`}
                                         onClick={() => handleStudent(alumno)} key={alumno.id}>
                                         <td className={style.borderRadius}>{alumno.nombres}</td>
-                                        <td className={style.borderRadius}>{alumno.grado}</td>
+                                        <td className={style.borderRadius}>{alumno.grado === 'nivel1' ? 'Nivel 1' : alumno.grado === 'nivel2' ? 'Nivel 2' : 'Nivel 3'}</td>
                                         <td className={style.borderRadius}>{alumno.seccion}</td>
                                         <td className={style.borderRadius}><strong>{alumno.boleta_generada}</strong></td>
                                     </tr>
@@ -56,7 +56,7 @@ const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
                         </button>
                         <button type="submit" onClick={() => verNuevosAlumnos('next')} id='nextStudents'>
                             Siguientes alumnos
-                        </button>
+                        </button>                    
                     </div>
                 </>
             }

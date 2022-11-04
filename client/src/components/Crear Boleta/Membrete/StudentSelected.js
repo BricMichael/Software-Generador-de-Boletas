@@ -13,16 +13,16 @@ const StudentSelected = () => {
     const history = useHistory();
 
     const studentSelected = useSelector(state => state.boleta.studentSelected);
-    const textAreaAndDate = useSelector(state => state.boleta.descripAndDate);
+    const date = useSelector(state => state.boleta.descripAndDate);
 
-    const [values, handleInputChange, reset] = useForm({ ...studentSelected, ...textAreaAndDate })
-    const { nombres, grado, seccion, docente, textArea, inicioMomento, finMomento, anioEscolar } = values;
+    const [values, handleInputChange, reset] = useForm({ ...studentSelected, ...date })
+    const { nombres, grado, seccion, docente, inicioMomento, finMomento, anioEscolar } = values;
 
     const nombreUser = useRef(studentSelected.nombres);
 
     useEffect(() => {
         if (studentSelected.nombres !== nombreUser.current) {
-            reset({ ...studentSelected, ...textAreaAndDate });
+            reset({ ...studentSelected, ...date });
             nombreUser.current = studentSelected.nombres;
         }
     }, [studentSelected, reset])
@@ -36,12 +36,11 @@ const StudentSelected = () => {
             let convertAnioEscolar = '';
 
             if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
-                convertAnioEscolar = `${anioEscolar.slice(0, 4)}-${anioEscolar.slice(5, 9)}`; // conver to 2021-2022
+                convertAnioEscolar = `${anioEscolar.slice(0, 4)}-${anioEscolar.slice(5, 9)}`; // convert to 2022-2023
             }
 
             history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
-            dispatch(textAreaAndFecha({
-                textArea,
+            dispatch(textAreaAndFecha({                
                 inicioMomento,
                 finMomento,
                 anioEscolar: convertAnioEscolar ? convertAnioEscolar : anioEscolar
@@ -61,7 +60,7 @@ const StudentSelected = () => {
                 <div className={style.group}>
                     <label>Grado</label>
                     <input placeholder="Grado" type="text" name="grado" disabled={true}
-                        className={style.Cboleta_input} value={grado}
+                        className={style.Cboleta_input} value={grado === 'nivel1' ? 'Nivel 1' : grado === 'nivel2' ? 'Nivel 2' : 'Nivel 3'}
                         onChange={handleInputChange} autoComplete='off'
                     />
                 </div>
@@ -96,7 +95,7 @@ const StudentSelected = () => {
                     <label htmlFor='inicio'>Inicio del Momento escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 07/01/2022'
+                        placeholder='Ejemplo: Enero'
                         autoComplete='off'
                         name='inicioMomento'
                         value={inicioMomento}
@@ -109,7 +108,7 @@ const StudentSelected = () => {
                     <label htmlFor='fin'>Fin del Momento escolar</label>
                     <input
                         type='text'
-                        placeholder='Ejemplo 26/03/2022'
+                        placeholder='Ejemplo: Marzo'
                         autoComplete='off'
                         name='finMomento'
                         value={finMomento}
@@ -117,13 +116,7 @@ const StudentSelected = () => {
                         id='fin'
                         className={style.Cboleta_input}
                     />
-                </div>
-                <div className={style.group}>
-                    <label>Ser y convivir</label>
-                    <textarea placeholder="Descripción SER Y CONVIVIR..."
-                        value={textArea} name="textArea" onChange={handleInputChange}
-                    ></textarea>
-                </div>
+                </div>            
                 <button type='submit' className={style.linkToIndicadores}>
                     Indicadores de la boleta &nbsp;<i className="fas fa-long-arrow-alt-right"></i>
                 </button>

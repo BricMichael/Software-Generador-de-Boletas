@@ -26,7 +26,7 @@ export const listFiveStudents = ({ seccion, grado }) => async (dispatch, getStat
             studentsBySeccion = data[1]; // total de estudiantes por seccion.
             const nameDatos = getState().boleta.studentSelected.nombres;
             if (nameDatos !== '') {// reset data del estudiante seleccionado y las fechas,al cambiar de grado o seccion
-                dispatch(textAreaAndFecha({ textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' }));
+                dispatch(textAreaAndFecha({ inicioMomento: '', finMomento: '', anioEscolar: '' }));
                 dispatch(estudianteSelected({ nombres: '', grado: '', seccion: '', docente: '' }));
             }
         }
@@ -34,33 +34,42 @@ export const listFiveStudents = ({ seccion, grado }) => async (dispatch, getStat
     } catch (err) { console.log(err.message) }
 }
 
-const conditionByCountAndButton = (btn) => {
+const conditionByCountAndButton = (btn, hayDatos) => {
     const nextBtn = document.getElementById('nextStudents');
     const backBtn = document.getElementById('backStudents');
 
-    if (btn === 'next') {
-        count += 5
-        backBtn.style.display = 'initial';
-        if (count + 5 >= studentsBySeccion) nextBtn.style.display = 'none';
-
+    if( hayDatos ) {
+        if (btn === 'next') {
+            count += 5;
+            backBtn.style.display = 'initial';
+            if (count + 5 >= studentsBySeccion) nextBtn.style.display = 'none';
+        } else {
+            count = count <= 5 ? 0 : count - 5;
+            if (nextBtn.style.display === 'none') nextBtn.style.display = 'initial';  // condiciones individuales
+            if (count === 0) backBtn.style.display = 'none'; // condiciones individules
+        }
     } else {
-        count = count <= 5 ? 0 : count - 5;
-        if (nextBtn.style.display === 'none') nextBtn.style.display = 'initial';  // condiciones individuales
-        if (count === 0) backBtn.style.display = 'none'; // condiciones individules
+        if (btn === 'next') {
+            count = count <= 5 ? 5 : count;
+        }
+        else {
+            count = count < 5 ? 0 : count === 5 ? 5 : count - 10;
+        }
     }
 }
 
 
 export const actionFiveStudentsButtons = (btn) => async (dispatch, getState) => { // btn => next or back
-    try {
-        conditionByCountAndButton(btn);
-
+    try {        
+        conditionByCountAndButton(btn, false);
         const { grado, seccion } = getState().boleta.gradoSeccion;
         const sendSearch = { valorInicial: count, seccionSelected: seccion, gradoSelected: grado, }; //data de los parametros.
 
         const { data } = await api.apiButtonsFiveStudents(sendSearch);
-
-        dispatch({ type: types.nextOrBackFiveStudents, payload: { data: data[0], boletasPendientes: data[1] } });
+        if ( data[0].length ) {
+            dispatch({ type: types.nextOrBackFiveStudents, payload: { data: data[0], boletasPendientes: data[1] } });
+            conditionByCountAndButton(btn, data[0].length > 0);
+        }
     } catch (err) {
         console.log(err.message);
     }

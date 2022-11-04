@@ -5,7 +5,7 @@ import types from "../types";
 const initialState = {
     listFiveStudents: [],
     studentSelected: { nombres: '', grado: '', seccion: '', docente: '' },
-    descripAndDate: { textArea: '', inicioMomento: '', finMomento: '', anioEscolar: '' },
+    descripAndDate: { inicioMomento: '', finMomento: '', anioEscolar: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
     anioIndicadores: '',

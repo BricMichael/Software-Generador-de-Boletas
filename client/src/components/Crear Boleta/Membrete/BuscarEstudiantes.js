@@ -35,21 +35,16 @@ const BuscarEstudiantes = () => {
                 <div className={style.formFlex}>
                     <select required className={style.buscarOptions} onChange={handleOptions} name="grado" value={grado}>
                         <option value="default">Grado</option>
-                        <option value="1">1er Grado</option>
-                        <option value="2">2do Grado</option>
-                        <option value="3">3er Grado</option>
-                        <option value="4">4to Grado</option>
-                        <option value="5">5to Grado</option>
-                        <option value="6">6to Grado</option>
+                        <option value="nivel1">Nivel 1</option>
+                        <option value="nivel2">Nivel 2</option>
+                        <option value="nivel3">Nivel 3</option>
                     </select>
 
                     <select className={style.buscarOptions} onChange={handleOptions} name="seccion" value={seccion}>
-                        <option value="default" >Sección</option>
+                        <option value="default">Sección</option>
+                        <option value="U">Sección (U)</option>
                         <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
+                        <option value="B">B</option>                
                     </select>
                 </div>
                 <input value="Buscar estudiantes" type="submit" className={style.submit} />
