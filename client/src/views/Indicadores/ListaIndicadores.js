@@ -63,10 +63,10 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                 rol !== roles.especialista && allData.length > 0 &&
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '.5rem'}}>
                     <p className={style.noResults} style={{marginRight: '1rem'}}>
-                        { msgData.length > 4 ? msgData : 'Filtrar por área' }
+                        { msgData.length > 4 ? msgData : 'Mostrando por el área:' }
                     </p>
                     <select className={style.showOptionsOfMaterias} onChange={handleDisplay}>
-                        <option value={materiasShowOptions[0].materia}>Áreas</option>
+                        {/* <option value={materiasShowOptions[0].materia}>Áreas</option> */}
                         {materiasShowOptions.map(value => (
                             <option key={value.materia} value={value.materia}>
                                 {value.materia}

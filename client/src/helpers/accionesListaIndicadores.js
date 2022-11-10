@@ -5,7 +5,7 @@ export const handleAreaSelected = (targetInput, allData, materias, handleMateria
         setMsgData(`*Sin indicadores en el área: ${targetInput.value}*`);
 
         setTimeout(() => {
-            setMsgData('Filtrar por área');
+            setMsgData('Mostrando por el área:');
         }, 3800);
     } else {
         const indiceMateria = materias.map(item => item.materia).indexOf(targetInput.value);
