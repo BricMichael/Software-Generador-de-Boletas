@@ -3,15 +3,15 @@ import { useDispatch, useSelector, } from 'react-redux';
 import style from './membrete.module.css';
 import { useForm } from '../../../helpers/useForm';
 import { textAreaAndFecha, guardarBoletaAction } from '../../../Redux/actions/boletaActions';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { alertAvisos } from '../../../helpers/alerts';
 
 
 
 const StudentSelected = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { id: id_creador, rol } = JSON.parse(localStorage.getItem('userActive'));
+    // const history = useHistory();
+    // const { id: id_creador, rol } = JSON.parse(localStorage.getItem('userActive'));
 
     const studentSelected = useSelector(state => state.boleta.studentSelected);
     const date = useSelector(state => state.boleta.descripAndDate);
@@ -21,21 +21,12 @@ const StudentSelected = () => {
 
     const nombreUser = useRef(studentSelected.nombres);
 
-    useEffect(() => {
-        if (studentSelected.nombres !== nombreUser.current) {
-            reset({ ...studentSelected, ...date });
-            nombreUser.current = studentSelected.nombres;
-        }
-    }, [studentSelected, reset])
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         if (!nombres) alertAvisos('Selecciona un estudiante para continuar');
         else {
-            if( rol === 'docente' ) return dispatch(guardarBoletaAction({...values, id_creador, rol}));
+            // if( rol === 'docente' ) return dispatch(guardarBoletaAction({...values, id_creador, rol}));
 
-            history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
+            // history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
             dispatch(textAreaAndFecha({    
                 momento,            
                 inicioMomento,
@@ -45,6 +36,18 @@ const StudentSelected = () => {
         }
     }
 
+    useEffect(() => {
+        if (studentSelected.nombres !== nombreUser.current) {
+            reset({ ...studentSelected, ...date });
+            nombreUser.current = studentSelected.nombres;
+        }
+    }, [studentSelected, reset])
+    
+
+    useEffect(() => {
+        if( finMomento ) handleSubmit();
+    }, [ momento, finMomento ])
+    
     return (
         <div className={style.child2}>
             <form className={style.contentForm} onSubmit={handleSubmit} >
@@ -89,6 +92,14 @@ const StudentSelected = () => {
                     />
                 </div>
                 <div className={style.group}>
+                    <label>Momento</label>
+                    <select name='momento' value={momento} onChange={handleInputChange} style={{width: '100%', border: 'none', borderBottom: '1px solid #d8d8d8'}}>
+                        <option value="momento 1">Momento 1</option>
+                        <option value="momento 2">Momento 2</option>
+                        <option value="momento 3">Momento 3</option>
+                    </select>
+                </div> 
+                <div className={style.group}>
                     <label htmlFor='inicio'>Inicio del Momento escolar</label>
                     <input
                         type='text'
@@ -113,21 +124,13 @@ const StudentSelected = () => {
                         id='fin'
                         className={style.Cboleta_input}
                     />
-                </div>        
-                <div className={style.group}>
-                    <label>Momento</label>
-                    <select name='momento' value={momento} onChange={handleInputChange} style={{width: '100%', border: 'none', borderBottom: '1px solid #d8d8d8'}}>
-                        <option value="momento 1">Momento 1</option>
-                        <option value="momento 2">Momento 2</option>
-                        <option value="momento 3">Momento 3</option>
-                    </select>
-                </div>     
-                <button type='submit' className={style.linkToIndicadores}>
+                </div>            
+                {/* <button type='submit' className={style.linkToIndicadores}>
                     {   rol === 'docente' 
                             ? 'Registrar Boleta'
                             : 'Indicadores de la boleta &nbsp;<i className="fas fa-long-arrow-alt-right"></i>'
                     }
-                </button>
+                </button> */}
             </form>
         </div>
     )

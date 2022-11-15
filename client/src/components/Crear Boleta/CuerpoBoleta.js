@@ -7,7 +7,7 @@ import types from "../../Redux/types";
 import Options from "../Options/Options";
 import style from './cuerpoBoleta.module.css';
 import IndicadoresAreas from "./IndicadoresBoleta/IndicadoresAreas";
-import IndicadoresEspecialista from "./IndicadoresBoleta/IndicadoresEspecialista";
+import IndicadoresEspecialista from "./IndicadoresBoleta/IndicadorIndividual";
 
 
 

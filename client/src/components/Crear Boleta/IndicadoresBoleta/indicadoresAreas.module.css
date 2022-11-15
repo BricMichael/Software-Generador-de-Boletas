@@ -1,94 +1,69 @@
-.tableBoleta{
-    background: #ddd;
-    margin-bottom: 1rem;
-    border-collapse: collapse;
-    color: #012c66;
-    width: 580px;
-    box-shadow: 0px 9px 20px #000813;
-    height: 110px;
+.indicadoresByArea {
+    width: 85%;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 25rem);
+    gap: 1rem;
 }
 
-.tableBoletaTh {
-    background: #4169e1;
-    color: #021e42;
+.single_card { 
+    background-color: #EEE;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.tableBoletaTh > .tableBoletaThTr > .childOne {
-    padding: 9px 16px;
-    font-size: 18px;
+.top_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
 }
 
-.tableBody {
-    color: #012c66;
-    background: rgb(179, 172, 172);
+.index_card {
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
-.tableBody > tr:nth-child(even) {  /*Le coloca estilos a una fila si y a otra no, en este el backg..*/
-    background: #ddd
-}
-
-.tableTrBody >.childrenTwo:nth-child(2) { 
-    text-align: left; 
-    word-wrap: break-word;
-    width: 60%;
-    /* background: red; */
-}
-
-.tableTrBody > .childrenTwo {
-    padding: 12px 10px;
-}
-
-.childrenTwo {
-    font-size: 16px;
-    line-height: 19px;
-}
-
-
-.buttonSubmit  {
-    background: #012c66;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
+.btn_card { 
     padding: 6px;
-    font-size: 18px;
     color: #fff;
-    transition: background .4s ease;
+    cursor: pointer;
+    border: none;
+    font-size: .9rem;
+    transition: background .3s ease;
+    border-radius: 6px;
+    background: #447bc4;
 }
 
-.buttonSubmit:hover {
-    background: #084ca5fd;
+.delete_btn { 
+    margin-left: .4rem;
+ }
+
+.description_card {
+    color: #000;
+    margin-top: .5rem;
+    margin-bottom: 1.4rem;
+    text-align: left;
 }
 
-.ocultaar {
-    visibility: collapse;
+.materia_card {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: .8rem;
 }
 
-.letterLeft { text-align: left; }
-
-
-@media screen and ( max-width: 1280px ) { 
-    .tableBoleta{ 
-        width: 530px;
-    }
+.indicador_card {
+    font-size: .9rem;
+    word-wrap: break-word;
 }
 
-@media screen and ( max-width: 1125px ) {
-    .tableBoleta{ 
-        width: 500px;
-    }
-}
-
-@media screen and ( max-width: 1080px ) {
-    .tableBoleta{ 
-        width: 460px
-    }
-}
-
-@media screen and ( max-width: 1000px ) {
-    .tableBoleta{ 
-        width: 420px;
-    }
-    .childrenTwo {
-        font-size: 15px;
-    }
+.footer_card { 
+    color: #447bc4;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

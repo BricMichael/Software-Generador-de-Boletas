@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
@@ -7,17 +8,47 @@ import NavbarBoleta from '../../../components/Crear Boleta/NavbarBoleta';
 import Cabecera from '../../../components/Crear Boleta/Cabecera';
 import CuerpoBoleta from '../../../components/Crear Boleta/CuerpoBoleta';
 import { botonCleanData } from '../../../Redux/actions/boletaActions';
+import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresBoleta/IndicadoresAreas'
+import { filtroBusqueda } from '../../../Redux/actions/indicadoresActions'
 
 
 const CrearBoleta = () => {
     const dispatch = useDispatch();
+    const date = useSelector(state => state.boleta.descripAndDate);
+    const gradoSeccion = useSelector(state => state.boleta.gradoSeccion);
+
     backgroundColorPage('#4169e1');
     document.title = 'Crear Boleta';
+    const { id } = JSON.parse(localStorage.getItem('userActive'));
     const { path } = useRouteMatch();
+
+    const [indicadoresByPersonal, setIndicadoresByPersonal] = useState({ allIndicadores: [], selectedIndicadores: [] });
 
     const resetDataBoletaReducer = () => {
         dispatch(botonCleanData());
     }
+
+    const getIndicadoresByPersonal = async () => {
+        const datos = await dispatch( filtroBusqueda(date.momento, 'Boleta', id, gradoSeccion.grado) );
+        setIndicadoresByPersonal({allIndicadores: datos, selectedIndicadores: datos});
+    };
+
+    const removerOrAgregarIndicador = ( accion, idIndicador ) => {
+        if ( accion === 'remover' ) {
+            const indicadores = indicadoresByPersonal.selectedIndicadores.filter( indicador => indicador.id !== idIndicador );
+            return setIndicadoresByPersonal({ ...indicadoresByPersonal, selectedIndicadores: indicadores });
+        }
+
+        if ( accion === 'agregar' ) {
+            const indicador = indicadoresByPersonal.allIndicadores.find( indicador => indicador.id === idIndicador );
+            setIndicadoresByPersonal({ ...indicadoresByPersonal, selectedIndicadores: [ ...indicadoresByPersonal.selectedIndicadores, indicador ] });
+        }
+    }
+
+    useEffect(() => {
+        if( date.finMomento.length > 4 ) getIndicadoresByPersonal();
+    }, [date.finMomento, date.momento])
+    
 
     return (
         <>
@@ -29,60 +60,19 @@ const CrearBoleta = () => {
                 <Route exact path={`${path}`} component={Cabecera} />
                 <Route exact path={`${path}/indicadores-boleta`} component={CuerpoBoleta} />
             </Switch>
+
+            {
+                indicadoresByPersonal.allIndicadores.length > 0 &&
+                <>
+                    <h2>Verifique Indicadores</h2>
+                    <IndicadoresAreas  
+                        indicadoresByPersonal={indicadoresByPersonal.allIndicadores} 
+                        removerOrAgregarIndicador={removerOrAgregarIndicador} 
+                    />
+                </>
+            }
         </>
     );
 }
 
 export default CrearBoleta;
-
-
-
-
-// {/* <div className={style.firstComponents} id="topOfPage">
-// <BuscarEstudiantes />
-// <CabeceraDatosAlumno />
-// </div>
-// <Options vista='Boleta' />
-
-// <div className={ style.display }>
-// <h2>Indicadores</h2>
-// <div className={ style.leyendaFlex }>
-//     <h3 className={ style.leyendaTitulos }>Leyenda:</h3>
-//     <p className={ style.leyendaTitulos }><b>E:</b> Exelente</p>
-//     <p className={ style.leyendaTitulos }><b>B:</b> Bien</p>
-//     <p className={ style.leyendaTitulos }><b>RN:</b> Requiere nivelaci&oacute;n</p>
-// </div>
-// <div className={style.derechita}>
-//     <>
-//     {   indicadoresByUser.length !== 0
-//             &&  materiasWithIndic.map( materia => (
-//                     <IndicadoresAreas 
-//                         key={ materia.area} 
-//                         allIndicadores={ materia.indicadores} 
-//                         area={ materia.area }    
-//                     />
-//                 )
-//         )
-//     } 
-//     </>
-//     {/* componentes de especialistas */}
-//      <>
-//     {   indicadoresByUser.length !== 0
-//         &&  materiasEspecialista.map( value => (
-//                 <IndicadoresEspecialista 
-//                     area={value.materia}
-//                     key={value.id} 
-//                 />
-//             ))                  
-//     }
-//     </>
-// </div>
-
-// </div>
-
-// <div>
-// <Scroll to="topOfPage" smooth="true" duration="1000" className={style.juepa}
-// onClick={ savedBoleta }
-// >Guardar Boleta
-// </Scroll>
-// </div> */}

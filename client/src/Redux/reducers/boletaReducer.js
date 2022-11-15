@@ -55,7 +55,7 @@ const boletaReducer = (state = initialState, action) => {
                 indicadoresByUser: [...action.payload.data],
                 momento: action.payload.momento,
                 indicadoresByUserWithData: false,
-                anioIndicadores: action.payload.anioIndicadores
+                // anioIndicadores: action.payload.anioIndicadores
             }
         case types.checkLlegaronDatos:
             return {
