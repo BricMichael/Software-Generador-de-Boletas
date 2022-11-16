@@ -2,7 +2,7 @@ import * as api from '../../api/api';
 import types from '../types';
 import { validarCampos } from '../../helpers/validarRegistros';
 import { roles } from '../../helpers/roles';
-import { alertAvisos, BoletaEnProcesoAlert } from '../../helpers/alerts';
+import { alertAvisos, boletaGeneradaAlert } from '../../helpers/alerts';
 import { downloandBoletaAndMsgSuccess } from '../../helpers/creacionBoleta';
 
 
@@ -122,27 +122,33 @@ export const botonCleanData = () => ({ type: types.botonResetState });
 
 
 
-export const guardarBoletaAction = (dataBoleta) => async (dispatch, getState) => {
-    const character = dataBoleta.anioEscolar.indexOf('-');
+export const guardarBoletaAction = (indicadoresBoleta) => async (dispatch, getState) => {
+    const userLogeado = JSON.parse(localStorage.getItem('userActive'));
+
+    const studentSelected = getState().boleta.studentSelected;
+    const date = getState().boleta.descripAndDate;
+
+    const character = date.anioEscolar.indexOf('-');
     let convertAnioEscolar = '';
 
     if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
-        convertAnioEscolar = `${dataBoleta.anioEscolar.slice(0, 4)}-${dataBoleta.anioEscolar.slice(5, 9)}`; // convert to 2022-2023
+        convertAnioEscolar = `${date.anioEscolar.slice(0, 4)}-${date.anioEscolar.slice(5, 9)}`; // convert to 2022-2023
     }
  
     const { data } = await api.apiGenerarBoleta({
-        anio_escolar:  convertAnioEscolar ? convertAnioEscolar : dataBoleta.anioEscolar,
-        grado: dataBoleta.grado,
-        seccion: dataBoleta.seccion,
-        cedula_estudiante: dataBoleta.cedula_escolar,
-        momento: dataBoleta.momento,
-        especialidad: null,
-        nombre_estudiante: dataBoleta.nombres,
-        mes_momento_inicio: dataBoleta.inicioMomento,
-        mes_momento_fin: dataBoleta.finMomento,
-        id_creador: dataBoleta.id_creador,
-        rolPersonal: dataBoleta.rol
+        anio_escolar:  convertAnioEscolar ? convertAnioEscolar : date.anioEscolar,
+        grado: studentSelected.grado,
+        seccion: studentSelected.seccion,
+        cedula_estudiante: studentSelected.cedula_escolar,
+        momento: date.momento,
+        especialidad: userLogeado.especialidad,
+        nombre_estudiante: studentSelected.nombres,
+        mes_momento_inicio: date.inicioMomento,
+        mes_momento_fin: date.finMomento,
+        rolPersonal: userLogeado.rol,
+        indicadores: indicadoresBoleta
     });
+    boletaGeneradaAlert(data.mensaje);
     console.log(data);
     // dispatch({ type: types.savedBoletaTypes, payload: { id: dataBoleta.studentSelected.id } });
 }

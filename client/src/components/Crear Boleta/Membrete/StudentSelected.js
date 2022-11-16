@@ -2,16 +2,13 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 import style from './membrete.module.css';
 import { useForm } from '../../../helpers/useForm';
-import { textAreaAndFecha, guardarBoletaAction } from '../../../Redux/actions/boletaActions';
-// import { useHistory } from 'react-router-dom';
+import { textAreaAndFecha } from '../../../Redux/actions/boletaActions';
 import { alertAvisos } from '../../../helpers/alerts';
 
 
 
 const StudentSelected = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
-    // const { id: id_creador, rol } = JSON.parse(localStorage.getItem('userActive'));
 
     const studentSelected = useSelector(state => state.boleta.studentSelected);
     const date = useSelector(state => state.boleta.descripAndDate);
@@ -24,9 +21,6 @@ const StudentSelected = () => {
     const handleSubmit = () => {
         if (!nombres) alertAvisos('Selecciona un estudiante para continuar');
         else {
-            // if( rol === 'docente' ) return dispatch(guardarBoletaAction({...values, id_creador, rol}));
-
-            // history.push('/menu-principal/creacion-de-boletas/indicadores-boleta');
             dispatch(textAreaAndFecha({    
                 momento,            
                 inicioMomento,
@@ -45,12 +39,12 @@ const StudentSelected = () => {
     
 
     useEffect(() => {
-        if( finMomento ) handleSubmit();
+        if( finMomento.length > 4 ) handleSubmit();
     }, [ momento, finMomento ])
     
     return (
         <div className={style.child2}>
-            <form className={style.contentForm} onSubmit={handleSubmit} >
+            <form className={style.contentForm}>
                 <div className={style.group}>
                     <label>Estudiante seleccionado</label>
                     <input placeholder="Nombre del estudiante" type="text" className={style.Cboleta_input} value={nombres} name="nombres" autoComplete='off' disabled={true}
@@ -124,13 +118,7 @@ const StudentSelected = () => {
                         id='fin'
                         className={style.Cboleta_input}
                     />
-                </div>            
-                {/* <button type='submit' className={style.linkToIndicadores}>
-                    {   rol === 'docente' 
-                            ? 'Registrar Boleta'
-                            : 'Indicadores de la boleta &nbsp;<i className="fas fa-long-arrow-alt-right"></i>'
-                    }
-                </button> */}
+                </div>                      
             </form>
         </div>
     )

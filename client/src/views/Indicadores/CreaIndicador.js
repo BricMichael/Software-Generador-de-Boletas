@@ -10,14 +10,15 @@ import { roles } from '../../helpers/roles';
 
 
 const CreaIndicador = () => {
-    const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
+    const { materiasDocente } = useSelector(state => state.indicador.materias);
     const [tipoDescription, setTipoDescription] = useState('');
     const dispatch = useDispatch();
+    const userLogeado = JSON.parse(localStorage.getItem('userActive'));
 
     const [values, handleInputChange, reset] = useForm(stateCrearIndicador);
 
     const { indicador, literal, area, condicion_especial, grado, momento, proposito_general } = values;
-    const rolUser = useRef(JSON.parse(localStorage.getItem('userActive')).rol);
+    const rolUser = useRef(userLogeado.rol);
     const isPropositoGeneral = tipoDescription === 'proposito_general';
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const CreaIndicador = () => {
         dispatch(enviarData(values, reset, tipoDescription ? tipoDescription : 'indicador'));
     }
 
-    const recorrerArray = rolUser.current === roles.especialista ? materiasEspecialista : materiasDocente;
+    const recorrerArray = rolUser.current === roles.especialista ? [{id:1, materia: userLogeado.especialidad}] : materiasDocente;
 
     return (
         <div className={`${style.pag_total}`}>

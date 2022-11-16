@@ -4,10 +4,10 @@ import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
-import NavbarBoleta from '../../../components/Crear Boleta/NavbarBoleta';
+// import NavbarBoleta from '../../../components/Crear Boleta/NavbarBoleta';
 import Cabecera from '../../../components/Crear Boleta/Cabecera';
 import CuerpoBoleta from '../../../components/Crear Boleta/CuerpoBoleta';
-import { botonCleanData } from '../../../Redux/actions/boletaActions';
+import { botonCleanData, guardarBoletaAction } from '../../../Redux/actions/boletaActions';
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresBoleta/IndicadoresAreas'
 import { filtroBusqueda } from '../../../Redux/actions/indicadoresActions'
 
@@ -23,6 +23,7 @@ const CrearBoleta = () => {
     const { path } = useRouteMatch();
 
     const [indicadoresByPersonal, setIndicadoresByPersonal] = useState({ allIndicadores: [], selectedIndicadores: [] });
+    const [boletasGeneradas, setBoletasGeneradas] = useState(0);
 
     const resetDataBoletaReducer = () => {
         dispatch(botonCleanData());
@@ -48,13 +49,18 @@ const CrearBoleta = () => {
     useEffect(() => {
         if( date.finMomento.length > 4 ) getIndicadoresByPersonal();
     }, [date.finMomento, date.momento])
-    
 
+    const registrarBoleta = () => {
+        dispatch( guardarBoletaAction(indicadoresByPersonal.selectedIndicadores) );
+        setIndicadoresByPersonal({ ...indicadoresByPersonal, selectedIndicadores: indicadoresByPersonal.allIndicadores });
+        setBoletasGeneradas(boletasGeneradas + 1);
+    };
+    
     return (
         <>
             <BotonHome resetState={resetDataBoletaReducer} />
             <Header title="Creación de Boleta" marginTop='-4.4rem' />
-            <NavbarBoleta />
+            {/* <NavbarBoleta /> */}
 
             <Switch>
                 <Route exact path={`${path}`} component={Cabecera} />
@@ -67,8 +73,24 @@ const CrearBoleta = () => {
                     <h2>Verifique Indicadores</h2>
                     <IndicadoresAreas  
                         indicadoresByPersonal={indicadoresByPersonal.allIndicadores} 
-                        removerOrAgregarIndicador={removerOrAgregarIndicador} 
+                        removerOrAgregarIndicador={removerOrAgregarIndicador}
+                        boletasGeneradas={boletasGeneradas}
                     />
+                    <button 
+                        style={{
+                            marginBottom: '1.4rem',
+                            border: 'none',
+                            cursor: 'pointer',
+                            backgroundColor:'#fff',
+                            color: '#4169e1',
+                            fontSize: '15px',
+                            padding: '8px',
+                            borderRadius: '8px'
+                        }} 
+                        onClick={registrarBoleta}
+                    >
+                        Registrar Boleta
+                    </button>
                 </>
             }
         </>

@@ -104,16 +104,14 @@ const creacionBoleta = async (req, res) => {
                nombre_estudiante,
                mes_momento_inicio,
                mes_momento_fin,
-               id_creador,
-               rolPersonal
+               rolPersonal,
+               indicadores
           } = req.body;
-          
-          const indicadores = await pool.query(`SELECT * FROM indicador WHERE grado = $1 AND momento = $2 AND  id_creador = $3`, [grado, momento, id_creador]);
-          
+                    
           if ( rolPersonal === 'docente') {
-               check_docente_boleta = { indicadores: indicadores.rows };
+               check_docente_boleta = { indicadores };
           } else {
-               check_especialista_boleta =  { indicadores: indicadores.rows };
+               check_especialista_boleta = { indicadores };
           }
 
           await pool.query(`

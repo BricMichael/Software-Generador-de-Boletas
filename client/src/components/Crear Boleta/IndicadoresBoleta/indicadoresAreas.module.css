@@ -67,3 +67,17 @@
     justify-content: space-between;
     align-items: center;
 }
+
+@media screen and ( max-width: 1280px ) {   
+    .indicadoresByArea {
+        width: 85%;
+        grid-template-columns: repeat(3, 17.5rem);
+    }
+}
+
+@media screen and ( max-width: 1000px ) {   
+    .indicadoresByArea {
+        grid-template-columns: repeat(3, 13.5rem);
+    }
+    .footer_card { font-size: 12px; }
+}

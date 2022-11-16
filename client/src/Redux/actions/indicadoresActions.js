@@ -10,7 +10,6 @@ export const filtroBusqueda = (momento, vista, idUser, grado) => async (dispatch
         let { data } = await api.indicadoresUserActivo({ momento, id_creador: !idUser ? id : idUser, grado });
 
         vista === 'Indicador' && dispatch({ type: types.momentoAndYear, payload: { data, momento, grado} }) // estado vista indicador
-        // : dispatch({ type: types.allIndicadoresOfUser, payload: { data, momento, grado } })  // estado vista Boleta
         return data;
     } catch (err) {
         console.log(err.message);

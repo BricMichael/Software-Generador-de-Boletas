@@ -16,8 +16,9 @@ const guardarIndicador = async (req, res) => {
             id_creador
         } = req.body;
 
+        const checkPropostioGeneral = proposito_general ? proposito_general : null;
         await pool.query(`INSERT INTO indicador (indicador, proposito_general, momento, area, condicion_especial, grado, literal, nombre_docente, id_creador ) 
-        VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9 )`, [indicador,proposito_general, momento, area, condicion_especial, grado, literal, nombre_docente, id_creador]);
+        VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9 )`, [indicador,checkPropostioGeneral, momento, area, condicion_especial, grado, literal, nombre_docente, id_creador]);
         res.status(201).send('Indicador guardado exitosamente');
     } catch (err) {
         console.log(err.message);

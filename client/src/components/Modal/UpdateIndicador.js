@@ -11,9 +11,9 @@ import { roles } from "../../helpers/roles";
 const UpdateIndicador = ({ closeModal }) => {
     const dispatch = useDispatch();
     const dataIndicador = useSelector(state => state.indicador.updateIndicador.dataIndicador);
-    const { materiasDocente, materiasEspecialista } = useSelector(state => state.indicador.materias);
+    const { materiasDocente } = useSelector(state => state.indicador.materias);
 
-    const rolUser = JSON.parse(localStorage.getItem('userActive')).rol
+    const userLogeado = JSON.parse(localStorage.getItem('userActive'));
 
     const [values, handleInputChange, reset] = useForm(dataIndicador);
     const { indicador, literal, area, condicion_especial, grado, momento } = values;
@@ -36,14 +36,15 @@ const UpdateIndicador = ({ closeModal }) => {
         dispatch(limpiarFormAlActualizar());
     }
 
-    const recorrerArray = rolUser === roles.especialista ? materiasEspecialista : materiasDocente;
+    const recorrerArray = userLogeado.rol === roles.especialista ? [{id:1, materia: userLogeado.especialidad}] : materiasDocente;
+
 
     return (
         <Modal closeModal={closeModal}>
             <form className={style.formModal}>
                 <h2 className={style.titleFormModal}>Actualizando Indicador</h2>
                 <textarea
-                    className={`${style.ModaltextArea} ${rolUser === roles.especialista && style.Height}`}
+                    className={`${style.ModaltextArea} ${userLogeado.rol === roles.especialista && style.Height}`}
                     name="indicador"
                     value={indicador}
                     onChange={handleInputChange}
@@ -74,32 +75,30 @@ const UpdateIndicador = ({ closeModal }) => {
                 <select className={`${style.Modalselect}`} name="momento" value={momento}
                     onChange={handleInputChange}
                 >
-                    <option value="Momento 1">Momento 1</option>
-                    <option value="Momento 2">Momento 2</option>
-                    <option value="Momento 3">Momento 3</option>
+                    <option value="momento 1">Momento 1</option>
+                    <option value="momento 2">Momento 2</option>
+                    <option value="momento 3">Momento 3</option>
                 </select>
                 {
-                    rolUser === roles.especialista &&
+                    userLogeado.rol === roles.especialista &&
                     <>
                         <label className={style.labelInputs}>Grado</label>
                         <select className={`${style.Modalselect}`} name="grado" value={grado}
                             onChange={handleInputChange}
                         >
-                            <option value="1">1er Grado</option>
-                            <option value="2">2do Grado</option>
-                            <option value="3">3er Grado</option>
-                            <option value="4">4to Grado</option>
-                            <option value="5">5to Grado</option>
-                            <option value="6">6to Grado</option>
+                            <option value="nivel1">Nivel 1</option>
+                            <option value="nivel2">Nivel 2</option>
+                            <option value="nivel3">Nivel 3</option> 
                         </select>
 
                         <label className={style.labelInputs}>Literal</label>
                         <select className={`${style.Modalselect}`} name="literal" value={literal}
                             onChange={handleInputChange}
                         >
-                            <option value="E">E</option>
-                            <option value="B">MB</option>
-                            <option value="RN">RN</option>
+                            <option value="muy bien">Muy bien</option>
+                            <option value="bien">Bien</option>
+                            <option value="en proceso">En proceso</option>
+                            <option value="requiere nivelación">Requiere nivelación</option>
                         </select>
                     </>
                 }

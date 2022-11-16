@@ -35,7 +35,7 @@ CREATE TABLE indicador (
     id_creador VARCHAR(40),
     proposito_general TEXT NULL,
     grado VARCHAR(9), /* nivel 1, nivel 2  y nivel 3 */
-    literal VARCHAR(10), /*  muy bien, bien, en proceso, requiere nivelación */
+    literal VARCHAR(30), /*  muy bien, bien, en proceso, requiere nivelación */
     fecha_creacion TIMESTAMPTZ DEFAULT Now()
 );
 

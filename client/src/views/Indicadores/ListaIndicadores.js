@@ -54,7 +54,6 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
     }
 
     const eliminarIndicador = (id) => dispatch(deleteIndicador(id));
-
     return (
         <>
             {handleOpenModal && <UpdateIndicador closeModal={setHandleOpenModal} />}
@@ -96,7 +95,7 @@ const ListaIndicadores = ({ count = 1, userSelected: { rolUserSelected, nameUser
                                 </div>
                                 <div className={style.description_card}>
                                     <p className={style.materia_card}>{card.area}:</p>
-                                    <p className={style.indicador_card}>{card.indicador}</p>
+                                    <p className={style.indicador_card}>{card.indicador ? card.indicador : card.proposito_general}</p>
                                 </div>
                                 <div className={style.footer_card}>
                                     <p className={style.momento_card}>{card.momento.slice(0,1).toUpperCase() + card.momento.slice(1)}</p>

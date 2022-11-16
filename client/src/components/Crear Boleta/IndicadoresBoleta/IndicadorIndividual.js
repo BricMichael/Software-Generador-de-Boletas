@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './indicadoresAreas.module.css';
 
 
-export const IndicadorIndividual = ({ indicador, removerOrAgregarIndicador }) => {
+export const IndicadorIndividual = ({ indicador, removerOrAgregarIndicador, boletasGeneradas }) => { //boletasGeneradas type number
   const [desmarcarIndicador, setDesmarcarIndicador] = useState(true);
 
   const handleDesmarcarIndicador = () => { // agregar o desmarcar indicador.    
     removerOrAgregarIndicador(desmarcarIndicador ? 'remover' : 'agregar', indicador.id);
     setDesmarcarIndicador(!desmarcarIndicador);
   }
+
+  useEffect(() => {
+    setDesmarcarIndicador(true);
+  }, [boletasGeneradas])
+  
 
     return (
         <div className={style.single_card} style={{background: desmarcarIndicador ? '#84c784' : '#7e3544'}} >
