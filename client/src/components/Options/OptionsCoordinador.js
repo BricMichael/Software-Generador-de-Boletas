@@ -9,7 +9,6 @@ import style from './optionsCoordinador.module.css';
 
 
 
-
 const OptionsCoordinador = ({ loadingData, setRolUser }) => {
     const dispatch = useDispatch();
     const [values, handleInputChange] = useForm({ momento: 'Momento 1', cedula: '' })
