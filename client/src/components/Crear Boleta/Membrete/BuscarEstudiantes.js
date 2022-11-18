@@ -29,8 +29,8 @@ const BuscarEstudiantes = () => {
 
     return (
         <div className={style.child1}>
+        <label className={style.searchStudents}>Buscar estudiantes</label>
             <form className={style.FormSearchStudents} onSubmit={subtmiForm}>
-                <label className={style.searchStudents}>Buscar estudiantes</label>
 
                 <div className={style.formFlex}>
                     <select required className={style.buscarOptions} onChange={handleOptions} name="grado" value={grado}>
@@ -41,13 +41,13 @@ const BuscarEstudiantes = () => {
                     </select>
 
                     <select className={style.buscarOptions} onChange={handleOptions} name="seccion" value={seccion}>
-                        <option value="default">Sección</option>
                         <option value="U">Sección (U)</option>
                         <option value="A">A</option>
-                        <option value="B">B</option>                
+                        <option value="B">B</option>
+                        <option value="C">C</option>                
                     </select>
+                    <input value="Buscar estudiantes" type="submit" className={style.submit} />
                 </div>
-                <input value="Buscar estudiantes" type="submit" className={style.submit} />
             </form>
 
             <ListaEstudiantes loadindData={loadindData} setLoadindData={setLoadindData} />
