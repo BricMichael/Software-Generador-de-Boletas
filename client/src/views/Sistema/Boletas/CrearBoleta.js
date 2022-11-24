@@ -17,7 +17,7 @@ const CrearBoleta = () => {
     const date = useSelector(state => state.boleta.descripAndDate);
     const gradoSeccion = useSelector(state => state.boleta.gradoSeccion);
 
-    backgroundColorPage('#4169e1'); // color blanco #fff
+    backgroundColorPage('#4169e1');
     document.title = 'Crear Boleta';
     const { id } = JSON.parse(localStorage.getItem('userActive'));
     const { path } = useRouteMatch();

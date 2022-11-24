@@ -16,14 +16,15 @@
 }
 
 .Home_primaryLinks{
-    background: #1da1f2cc;
+    background: #457BC5;
     color:#fff;
-    border-radius: 6px;
+    border-radius: 50px;
     padding: 12px 28px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px 2em;
     font-size: 1.3em;
     letter-spacing: 1px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.92)
 }
 
 .Home_primaryLinks:hover {
