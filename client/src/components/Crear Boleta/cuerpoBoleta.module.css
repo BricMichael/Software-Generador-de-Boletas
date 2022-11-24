@@ -1,83 +1,143 @@
-.display {
-    display:flex;
-    width: 100%;
-}
-
-.submit {
-    width: 100%;
-    background: #4169e1;
-    border: none;
-    border-radius: 4px;
-    height: 30px;
-    padding: 3px;
-    color: #fff;
+.wrapperBoleta {
+    width: 216mm; 
+    height: 300px; /* auto*/
     margin: auto;
-    margin-top: 0.5rem;
-    font-size: 18px;
-    cursor: pointer;
-    transition: box-shadow .2s ease;       
+    /* border: 1px solid green; */
+    color: #000;
+    margin-top: 4rem;
 }
 
-.submit:hover { box-shadow: 2px 0px 4px #333; }
+.headBoleta {
+    margin-bottom: 25px;
+}
 
+.headBoleta > h2 {
+    font-size: 2.4rem;
+}
 
-.leyendaFlex {
+.headBoleta > p {
+    font-size: 21px;
+}
+
+.wrapperAreasDocente {
+    height: 1020px;
+    width: 80%;
+    margin: auto;
+
+}
+
+.areasDocente {
+    margin: auto;
+    margin-top: 15px;
     display: flex;
-    justify-content: center;
-    margin: 0.4rem 0px;
+    flex-direction: column;
+    text-align: left;    
+}
+
+.areaTitulo {
+    margin-bottom: 22px;
+    font-size: 18px;
+
+}
+
+.indicadoresDocente {
+    margin-left: 22px;
+}
+.indicadoresDocente > p {
+    margin-bottom: 2px;
+    font-size: 18px;
+}
+
+.areaIndividualDocente {
+   margin-bottom: 3px;
+}
+
+.observaciones {
+    font-size: 18px;
+    margin: auto;
+    width: 80%;
+    height: 1190px; /*Tamaño de una hoja de impresion*/
+    text-align: justify;
+}
+
+/* Estilos boletas de especialista */
+
+.wrapperAreasEspecialista {
+    margin: auto;
+    width: 80%;
+}
+
+.membrete > p{ 
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.firtsData {
+    margin-bottom: 10px;
+}
+
+.topfirtsData {
+    margin-top: 2.8rem;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.leyendaTitulos {
-    margin-right: 0.6rem;
-    font-size: 17px;
+.proposito_general {
+    font-size: 19px;
+    text-align: justify;
+    line-height: 33px;
 }
 
-/*######  derecha estilos aquiiiiii ###############*/ 
-
-.display {
-    /* background: rgba(196, 188, 188, 0.384); */
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    width: 100%;
-    /* margin: auto; */
-    padding: 6px 6px 1px 6px;
-    border-radius: 4px;
-    margin-bottom: 0.8rem;
-    margin-top: 3.3rem;
-
+.nombre_estudiante {
+    margin: 2.4rem 0;
+    text-align: left;
+    font-size: 19px;
 }
 
-.display > h2 { color: #fff }
-
-
-/* ESTILOS DE LAS TABLAS DE LOS INDICADORES */
-
-.derechita {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+.wrapperIndicador {
+    border: 1px solid #000;
+    text-align: justify;
+    padding: 7px;
 }
 
+.momento {
+    padding: 3px 0;
+    background-color: #8b9ed6;
+    font-weight: 700;
+    margin: 0 -7.1px;
+    margin-top: -6.5px;
+}
 
-/*NEL*/
-.juepa {
-    color: #fff;
+.momento > p {
+    text-align: center !important;
     font-size: 20px;
-    background: #363636;
-    padding: 8px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 2rem;
-    margin-bottom: 6px;
 }
 
-.linkNavBoletas {
-    color: #012c66;
-    background: #fff;
-    padding: 5px;
-    border-radius: 6px;
-    font-size: 17px;
+.indicador_descripcion {
+    line-height: 27px;
+    font-size: 20.5px;
+}
+
+.nota_wrapper {
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.nota_wrapper > div {
+    margin-top: 2rem;
+    height: 1px;
+    border: 1px solid gray;
+}
+.firmas_wrapper { 
+    margin-top: 11rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.firmas > div{
+    height: 1px;
+    border: 1px solid gray;
+    margin-bottom: 1px;
 }

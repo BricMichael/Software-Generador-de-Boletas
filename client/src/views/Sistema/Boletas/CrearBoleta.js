@@ -17,7 +17,7 @@ const CrearBoleta = () => {
     const date = useSelector(state => state.boleta.descripAndDate);
     const gradoSeccion = useSelector(state => state.boleta.gradoSeccion);
 
-    backgroundColorPage('#012c66');
+    backgroundColorPage('#4169e1');
     document.title = 'Crear Boleta';
     const { id } = JSON.parse(localStorage.getItem('userActive'));
     const { path } = useRouteMatch();
@@ -64,9 +64,9 @@ const CrearBoleta = () => {
 
             <Switch>
                 <Route exact path={`${path}`} component={Cabecera} />
-                <Route exact path={`${path}/indicadores-boleta`} component={CuerpoBoleta} />
+                {/* <Route exact path={`${path}/indicadores-boleta`} component={CuerpoBoleta} /> */}
             </Switch>
-
+            {/* <CuerpoBoleta /> */}
             {
                 indicadoresByPersonal.allIndicadores.length > 0 &&
                 <>
