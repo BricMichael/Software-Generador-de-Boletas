@@ -93,6 +93,8 @@ const modelFinalPagePdf = (req, res) => {
 const creacionBoleta = async (req, res) => {
      let check_especialista_boleta = null;
      let check_docente_boleta = null;
+     let check_observacion = null;
+
      try {
           const {
                anio_escolar,
@@ -105,19 +107,21 @@ const creacionBoleta = async (req, res) => {
                mes_momento_inicio,
                mes_momento_fin,
                rolPersonal,
-               indicadores
+               indicadores,
+               observacion
           } = req.body;
                     
           if ( rolPersonal === 'docente') {
                check_docente_boleta = { indicadores };
+               check_observacion = observacion;
           } else {
                check_especialista_boleta = { indicadores };
           }
 
           await pool.query(`
-               INSERT INTO boleta ( anio_escolar, grado, seccion, cedula_estudiante, docente_boleta, momento, especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin ) 
-               VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 )`, 
-               [ anio_escolar, grado, seccion, cedula_estudiante, check_docente_boleta, momento, check_especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin ]
+               INSERT INTO boleta ( anio_escolar, grado, seccion, cedula_estudiante, docente_boleta, momento, especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin, observacion ) 
+               VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )`, 
+               [ anio_escolar, grado, seccion, cedula_estudiante, check_docente_boleta, momento, check_especialista_boleta, especialidad, nombre_estudiante, mes_momento_inicio, mes_momento_fin, check_observacion ]
           );
           res.json({mensaje: 'La boleta ha sido registrada', exito: true});
      } catch (err) {

@@ -53,7 +53,8 @@ CREATE TABLE boleta (
     nombre_estudiante VARCHAR NULL,
     mes_momento_inicio VARCHAR NOT NULL,
     mes_momento_fin  VARCHAR NOT NULL,
-    fecha_de_creacion TIMESTAMPTZ DEFAULT Now()
+    fecha_de_creacion TIMESTAMPTZ DEFAULT Now(),
+    observacion TEXT NULL
 );
 
 CREATE TABLE materias (
