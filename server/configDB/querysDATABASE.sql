@@ -60,6 +60,7 @@ CREATE TABLE boleta (
 CREATE TABLE materias (
     id SERIAL NOT NULL PRIMARY KEY,
     materia VARCHAR(100) NOT NULL,
-    tipo VARCHAR(30) NOT NULL
+    tipo VARCHAR(30) NOT NULL,
+    estado boolean
 );
 

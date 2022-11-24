@@ -3,14 +3,15 @@ const pool = require('../configDB/poolConfig');
 
 const guardarNuevaMateria = async (req, res) => {
     const { materia, tipo } = req.body;
+    const estado = true;
 
-    await pool.query('INSERT INTO materias(materia, tipo) VALUES( $1,$2 )', [materia, tipo]);
+    await pool.query('INSERT INTO materias(materia, tipo, estado) VALUES( $1, $2, $3 )', [materia, tipo, estado]);
     res.send('Registro exitoso');
 }
 
 const obtenerMaterias = async (req, res) => {
     try {
-        const resp = await pool.query('SELECT materia, tipo, id FROM materias');
+        const resp = await pool.query('SELECT * FROM materias');
         res.json(resp.rows);
 
     } catch (err) {
@@ -18,6 +19,16 @@ const obtenerMaterias = async (req, res) => {
     }
 }
 
+const cambiarEstadoMateria = async (req, res) => {
+    try {
+        const { estado, idMateria } = req.body;
+        await pool.query('UPDATE materias SET estado = $1 WHERE id = $2', [estado, idMateria]);
+
+        res.json({msg: 'Proceso exitoso'});
+    } catch (err) {
+        console.log(err.message);
+    }
+}
 
 const consultaTotalStudents = async (req, res) => {
     try {
@@ -81,4 +92,5 @@ module.exports = {
     obtenerMaterias,
     deleteStudentsByGrado,
     deleteAllStudents,
+    cambiarEstadoMateria
 }
