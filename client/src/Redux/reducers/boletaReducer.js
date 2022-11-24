@@ -5,7 +5,7 @@ import types from "../types";
 const initialState = {
     listFiveStudents: [],
     studentSelected: { nombres: '', grado: '', seccion: '', docente: '', cedula_estudiante: '' },
-    descripAndDate: { inicioMomento: '', finMomento: '', anioEscolar: '', momento: 'momento 1' },
+    descripAndDate: { inicioMomento: '', finMomento: '', anioEscolar: '', momento: 'momento 1', observacion: '' },
     gradoSeccion: { grado: '', seccion: '' },
     momento: '',
     anioIndicadores: '',
@@ -42,7 +42,8 @@ const boletaReducer = (state = initialState, action) => {
         case types.studentSelected:
             return {
                 ...state,
-                studentSelected: { ...action.payload }
+                studentSelected: { ...action.payload },
+                descripAndDate:  { ...state.descripAndDate, observacion: '' }
             }
         case types.textAreaAndDate:
             return {

@@ -3,6 +3,7 @@ const types = {
     checkUser: '[LOGIN] checkUser',
 
     materiasTypes: '[INDICADOR] MateriasIndicadorByUser',
+    materiaEstado: '[INDICADOR] cambiarEstadoMateria',
     momentoAndYear: '[INDICADOR] BusquedaMomentoAño',
     indicadoresByUser: '[INDICADOR] ShowIndicadorByUser',
     indicadorActive: '[INDICADOR] IndicadorActivo',

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { alertDeleteItems, alertSuccess } from '../../helpers/alerts';
 import { apiDeleteRegister } from '../../api/api';
-import { materiasExistentes } from '../../Redux/actions/boletaActions';
+import { handleEstadoMateriaAction, materiasExistentes } from '../../Redux/actions/boletaActions';
 import ModalMaterias from '../Modal/ModalMaterias';
 
 
@@ -27,6 +27,15 @@ const TablaMaterias = () => {
         }
     }
 
+    const handleEstadoMateria = async( materia ) => {
+        const isConfirmed = await alertDeleteItems(`${!materia.estado ? 'Habilitar materia: ' : 'Deshabilitar materia: '} ${materia.materia}`, '¿Estás seguro?');
+
+        if (isConfirmed) {
+            dispatch(handleEstadoMateriaAction(materia));
+            alertSuccess('La acción ha sido completada', 'center');
+        }
+    }
+
     return (
         <div className={style.contentMaterias}>
             {modalOpen && <ModalMaterias closeModal={setModalOpen} />}
@@ -36,11 +45,11 @@ const TablaMaterias = () => {
                 </button>
             </div>
             <table className={style.tableMaterias}>
-                <thead className={style.tableMateriasThead} >
+                <thead className={style.tableMateriasThead}>
                     <tr className={style.tableMateriasTr}>
-                        <th className={style.tableMateriasTh} >Materias</th>
-                        <th className={style.tableMateriasTh} >Tipo</th>
-                        <th className={style.tableMateriasTh} >Acción</th>
+                        <th className={style.tableMateriasTh}>Materias</th>
+                        <th className={style.tableMateriasTh}>Tipo</th>
+                        <th className={style.tableMateriasTh}>Acción</th>
                     </tr>
                 </thead>
                 <tbody className={style.tableMateriasTbody}>
@@ -54,6 +63,15 @@ const TablaMaterias = () => {
                                         onClick={() => deleteMateria(value.id, value.materia)} type='button' >
                                         Eliminar
                                     </button>
+                                    {  value.tipo === 'Especialista' &&
+                                        <button 
+                                            className={style.btnEstadoMateria}
+                                            style={{background: value.estado ? '#be2342' : '#28b779'}}
+                                            onClick={() => handleEstadoMateria(value)} type='button'
+                                        >
+                                        {value.estado ? 'Deshabilitar' : 'Habilitar'}
+                                    </button>
+                                    }
                                 </td>
                             </tr>
                         ))

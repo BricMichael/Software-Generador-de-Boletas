@@ -45,6 +45,7 @@ export const apiDeleteRegister = (id, nameTable) => axios.delete(`${urlRegistro}
 
 /* Peticiones configuración del sistema */
 export const apiMateriasExistentes = () => axios.get(`${urlConfiguracion}allMaterias`);  //Materias en la Bd.
+export const apiEstadoMateria = (materia) => axios.put(`${urlConfiguracion}estadoMateria`, materia);  //Materias en la Bd.
 export const apiTotalUsersByRol = () => axios.get(`${urlConfiguracion}totalUserByRol`);
 export const apiAllStudents = () => axios.get(`${urlConfiguracion}allStudents`);
 export const apiRegistrarMaterias = (datos) => axios.post(`${urlConfiguracion}savedMateria`, datos);

@@ -33,6 +33,24 @@ const indicadorReducer = (state = initialState, action) => {
                 }
             }
 
+        case types.materiaEstado:
+            let estadoMateriaCambiado = {};
+            if (action.payload.tipo === 'Docente') {
+                estadoMateriaCambiado = {
+                    materiasDocente: state.materias.materiasDocente.map(m => m.id === action.payload.id ? ({...m, estado: !action.payload.estado }) : m),
+                    materiasEspecialista: [...state.materias.materiasEspecialista],
+                }
+            } else {
+                estadoMateriaCambiado = {
+                    materiasDocente: [...state.materias.materiasDocente],
+                    materiasEspecialista: state.materias.materiasEspecialista.map(m => m.id === action.payload.id ? ({...m, estado: !action.payload.estado }) : m),
+                }
+            }
+            return {
+                ...state,
+                materias: estadoMateriaCambiado
+            }    
+
         case types.indicadoresByUser:
             return {
                 ...state,

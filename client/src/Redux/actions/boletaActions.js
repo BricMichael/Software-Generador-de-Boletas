@@ -99,6 +99,15 @@ export const materiasExistentes = () => async (dispatch) => {
     }
 }
 
+export const handleEstadoMateriaAction = (materia) => async (dispatch) => {
+    try {
+        await api.apiEstadoMateria({ estado: !materia.estado, idMateria: materia.id});
+        dispatch({ type: types.materiaEstado, payload: materia });
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 
 export const indicadorEspecialistaByArea = (grado, area, setLiteralIndicadorByArea) => async (dispatch, getState) => {
     const { momento, anioIndicadores } = getState().boleta;
@@ -146,7 +155,8 @@ export const guardarBoletaAction = (indicadoresBoleta) => async (dispatch, getSt
         mes_momento_inicio: date.inicioMomento,
         mes_momento_fin: date.finMomento,
         rolPersonal: userLogeado.rol,
-        indicadores: indicadoresBoleta
+        indicadores: indicadoresBoleta,
+        observacion: date.observacion
     });
     boletaGeneradaAlert(data.mensaje);
     console.log(data);

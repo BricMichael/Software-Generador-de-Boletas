@@ -9,12 +9,13 @@ import { alertAvisos } from '../../../helpers/alerts';
 
 const StudentSelected = () => {
     const dispatch = useDispatch();
+    const { rol } = JSON.parse(localStorage.getItem('userActive'));
 
     const studentSelected = useSelector(state => state.boleta.studentSelected);
     const date = useSelector(state => state.boleta.descripAndDate);
 
     const [values, handleInputChange, reset] = useForm({ ...studentSelected, ...date })
-    const { nombres, grado, seccion, docente, inicioMomento, finMomento, anioEscolar, momento } = values;
+    const { nombres, grado, seccion, docente, inicioMomento, finMomento, anioEscolar, momento, observacion } = values;
 
     const nombreUser = useRef(studentSelected.nombres);
 
@@ -25,7 +26,8 @@ const StudentSelected = () => {
                 momento,            
                 inicioMomento,
                 finMomento,
-                anioEscolar
+                anioEscolar,
+                observacion
             }));
         }
     }
@@ -72,6 +74,20 @@ const StudentSelected = () => {
                         onChange={handleInputChange} autoComplete='off'
                     />
                 </div>
+                {
+                    rol === 'docente' &&
+                    <div className={style.group}>
+                        <label>Observación</label>
+                        <textarea  
+                            className={`${style.Cboleta_input} ${style.font_size}`}
+                            value={observacion} 
+                            name='observacion' 
+                            placeholder={`Observación del estudiante: ${nombres}`}
+                            onChange={handleInputChange}
+                        >                        
+                        </textarea>
+                    </div>
+                }
                 <div className={style.group}>
                     <label htmlFor='anio'>Año escolar</label>
                     <input
