@@ -70,11 +70,11 @@ const indicadorEspecialistaByArea = async (req, res) => {
 
 const personalFirmas = async (req, res) => {
      try {
-          const respDB = await pool.query('SELECT nombre, rol FROM personal WHERE rol = $1 OR rol = $2', ['Coordinador', 'Director']);
+          const respDB = await pool.query('SELECT nombre, rol FROM personal WHERE rol = $1 OR rol = $2', ['coordinador', 'director']);
 
           let sendNamesFirmas = {};
           respDB.rows.forEach(value => {
-               value.rol === 'Director' ? sendNamesFirmas.directora = value.nombre : sendNamesFirmas.coordinadora = value.nombre
+               value.rol === 'director' ? sendNamesFirmas.directora = value.nombre : sendNamesFirmas.coordinadora = value.nombre
           });
 
           res.json(sendNamesFirmas);

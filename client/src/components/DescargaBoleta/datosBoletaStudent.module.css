@@ -5,7 +5,7 @@
     width: 490px;
     color: #012c66;
     margin-left: 1rem;
-    border-radius: 2px;
+    border-radius: 6px;
     margin-top: 1.6rem;
     padding: 6px;
 }
@@ -30,7 +30,7 @@
     color: #fff;
     padding: 7px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
     width: 140px;

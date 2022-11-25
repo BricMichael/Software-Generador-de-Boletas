@@ -5,16 +5,15 @@ import types from "../types";
 
 export const getDataBoletaByStudent = (datos, resetState, setLoading) => async (dispatch) => {
     try {
-        const { anioEscolar, ...rest } = datos;
-        rest.anio_escolar = `${anioEscolar}-${+anioEscolar + 1}`; //si escriben 2021 concatenar el año siguiente, 2021/2022
-        const { data } = await apiGetBoletaByCedulaAndMomento(rest);
-
-        dispatch({
-            type: types.dataBoletaByStudent, payload: data
-        })
+        const { data } = await apiGetBoletaByCedulaAndMomento(datos);
         setLoading(false);
 
-        if (data.length >= 1) resetState()
+        dispatch({
+            type: types.dataBoletaByStudent, 
+            payload: data.datos
+        })
+        
+        if (data.datos.length) resetState();
         else {
             resetState(datos); // si no hay data, dejar los campos del formulario igual.
             alertAvisos('No se han encontrado resultados');

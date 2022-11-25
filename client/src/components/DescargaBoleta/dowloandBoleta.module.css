@@ -1,15 +1,15 @@
 .searchBoleta {
     background: #fff;
     padding: 4px;
-    width: 740px;
+    width: 400px;
     margin-left: 1rem;
-    border-radius: 2px;
-    padding-bottom: 7px;
+    border-radius: 6px;
+    padding: 7px;
 }
-.formSearchBoleta {
+.formSearchBoleta > div {
    display: flex;
-   align-items: center;
-   justify-content: space-between;
+   align-items: flex-start;
+   flex-direction: column;
 }
 
 .formSearchBoleta__title {
@@ -22,12 +22,11 @@
 .formSearchBoleta__inputs {
     padding: 4px 1px;
     border: none;
-    width: 190px;
+    width: 250px;
     font-size: 14.5px;
+    margin: 5px 0;
     border-bottom: 2px solid rgb(231, 229, 229);
 }
-
-.separation { margin: 0 18px; }
 
 .formSearchBoleta__inputs:focus{
     outline: none;
@@ -36,18 +35,17 @@
 
 .contentBtnSubmit {
     justify-self: flex-end;
-    margin-left: 1rem;
 }
 
 .contentBtnSubmit__input {
     padding: 6px 7px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-right: 6px;
     background: #012c66;
     color: #fff;
     font-size: 15px;
     transition: background .3s ease;
+    margin-top: .5rem;
 }
 .contentBtnSubmit__input:hover { background: #0e4a99; }

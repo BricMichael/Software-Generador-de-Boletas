@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute';
 import CrearBoleta from '../views/Sistema/Boletas/CrearBoleta';
 import Usuarios from '../views/Sistema/Usuarios/Usuarios';
 import DescargarBoleta from '../views/Sistema/Descarga/DescargarBoleta';
+import CuerpoBoleta from '../components/Crear Boleta/CuerpoBoleta'
 
 
 
@@ -26,6 +27,8 @@ const Routes = () => {
                 <PrivateRoute path="/menu-principal/creacion-de-boletas" isAuthenticated={isAuthenticated} component={CrearBoleta} />
 
                 <PrivateRoute path="/menu-principal/descargar-boleta" isAuthenticated={isAuthenticated} component={DescargarBoleta} />
+
+                <PrivateRoute path="/menu-principal/generar-boleta" isAuthenticated={isAuthenticated} component={CuerpoBoleta} />
 
                 <PrivateRoute exact path="/menu-principal" isAuthenticated={isAuthenticated}
                     component={Dashboard} />
