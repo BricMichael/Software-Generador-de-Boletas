@@ -11,7 +11,7 @@ const BuscarEstudiantes = () => {
     const dispatch = useDispatch()
 
     const [loadindData, setLoadindData] = useState(false);
-    const [busqueda, setBusqueda] = useState({ grado: '', seccion: '' })
+    const [busqueda, setBusqueda] = useState({ grado: '', seccion: 'U' })
     const { grado, seccion } = busqueda;
 
     const handleOptions = ({ target }) => {

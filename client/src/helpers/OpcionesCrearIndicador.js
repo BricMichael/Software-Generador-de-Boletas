@@ -15,12 +15,12 @@ export const enviarData = (values, resetForm, tipoDescription) => async (dispatc
         const { literal, grado, proposito_general, ...rest } = values;
         respErrors = validarCampos(rest)
     } else { 
-        const {indicador, proposito_general,...rest } = values;
-        respErrors = validarCampos(rest);
+        const {indicador, proposito_general, literal,...rest } = values;
+        respErrors = validarCampos(tipoDescription === 'proposito_general' ? rest : {literal, ...rest});
     }
 
     if (respErrors === 'error') return Swal.fire('¡Vaya!', 'Asegurate de haber llenado todos los campos', 'warning');
-    if (tipoDescription === 'indicador' && indicador.length < 35) return Swal.fire('¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning');
+    if (tipoDescription === 'indicador' && indicador.length < 16) return Swal.fire('¡Vaya!', 'El indicador no debe contener menos de 35 caracteres', 'warning');
     if (tipoDescription === 'proposito_general' && values.proposito_general.length < 35) return Swal.fire('¡Vaya!', 'El propósito general no debe contener menos de 35 caracteres', 'warning');
 
     values.id_creador = id;

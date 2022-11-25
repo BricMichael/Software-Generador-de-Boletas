@@ -146,21 +146,17 @@ const getBoletaByStudentAndId = async (req, res) => {
 }
 
 
-const generarBoletaExistente = async (req, res) => { // Generar boleta existente, creada hace semanas, meses o años atrás.
+const obtenerBoletasPorEstudiante = async (req, res) => { // trabajando aqui
      try {
-          const data = req.body;
-          dataToBuildPDF = transformarDataClient(data);
-          await generarPdfWithPuppeter(data.studentSelected.nombres);
-          dataToBuildPDF = {}; // reiniciar la data de la variable al generar la boleta.
+          const { cedulaEscolar, momento, grado, anio_escolar } = req.body;
 
-          res.sendFile(path.join(__dirname, `../pdf/${data.studentSelected.nombres}boleta.pdf`));
-
-          setTimeout(() => {
-               fs.unlink(path.join(__dirname, `../pdf/${data.studentSelected.nombres}boleta.pdf`))
-          }, 2000);
+          const respDB = await pool.query(`SELECT * FROM boleta WHERE cedula_estudiante = $1 AND momento = $2 AND grado = $3 AND anio_escolar = $4`, [cedulaEscolar, momento, grado, anio_escolar]);
+          res.json({
+               exito: true,
+               datos: respDB.rows
+          })
      } catch (err) {
           console.log(err.message);
-          dataToBuildPDF = {}; // reiniciar la variable en caso de error.
      }
 }
 
@@ -202,7 +198,7 @@ module.exports = {
      creacionBoleta,
      modelFinalPagePdf,
      getBoletaByStudentAndId,
-     generarBoletaExistente,
+     obtenerBoletasPorEstudiante,
      eliminarBoleta,
      eliminarAllBoletas
 }
