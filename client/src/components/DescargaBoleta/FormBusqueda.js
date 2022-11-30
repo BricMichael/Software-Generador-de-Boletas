@@ -15,7 +15,17 @@ const FormBusqueda = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        dispatch(getDataBoletaByStudent(values, reset, setLoading));
+
+        const {anio_escolar, ...rest} = values;
+        const character = anio_escolar.indexOf('-');
+        let convertAnioEscolar = '';
+
+        if (character === -1) { // asegurarme de que el año escolar fue escrito con guión (-) y no con barra (/).
+            convertAnioEscolar = `${anio_escolar.slice(0, 4)}-${anio_escolar.slice(5, 9)}`; // convert to 2022-2023
+        }
+
+        const valuesBusqueda = { ...rest, anio_escolar: convertAnioEscolar ? convertAnioEscolar : anio_escolar};
+        dispatch(getDataBoletaByStudent(valuesBusqueda, reset, setLoading));
     }
 
     return (

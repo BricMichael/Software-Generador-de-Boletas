@@ -5,7 +5,14 @@ import style from './datosBoletaStudent.module.css';
 
 const DatosBoletaStudent = () => {
     let history = useHistory();
+    const { materiasEspecialista } = useSelector(state => state.indicador.materias);
     const datos = useSelector(state => state.descarga.dataBoleta);
+
+    const longitudMateriasHabilitadasEspecialista = materiasEspecialista.filter( materia => materia.estado )?.length;
+    const existeBoletaDeDocente = datos.find( boleta => boleta.docente_boleta );
+    const totalBoletasEspecialista = datos.filter( boleta => boleta.especialista_boleta )?.length;
+
+    const msgFaltanBoletas = !existeBoletaDeDocente ? 'Falta boleta de docente.' : totalBoletasEspecialista !== longitudMateriasHabilitadasEspecialista ? 'Faltan boletas de especialista.' : '';
 
     const generarBoleta = () => {
         history.push("/menu-principal/generar-boleta");
@@ -24,9 +31,13 @@ const DatosBoletaStudent = () => {
                         <p className={style.datosBoleta__dato}><strong>Cedula escolar: </strong> &nbsp;{datos[0].cedula_estudiante}</p>
                     </div>
                     <div className={style.btnGenerarBoleata}>
-                        <button type='submit' className={style.btnGenerarBoleata__button} onClick={generarBoleta} >
-                            Generar Boleta
-                        </button>
+                        {
+                            !existeBoletaDeDocente || totalBoletasEspecialista !== longitudMateriasHabilitadasEspecialista
+                                ? <p style={{color: '#be2342'}}>{msgFaltanBoletas}</p>
+                                : <button type='submit' className={style.btnGenerarBoleata__button} onClick={generarBoleta} >
+                                    Generar Boleta
+                                  </button> 
+                        }
                     </div>
                 </div>
             }

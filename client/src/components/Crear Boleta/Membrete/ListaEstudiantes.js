@@ -32,7 +32,7 @@ const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
                                 <th className={style.th} >Nombre</th>
                                 <th className={style.th} >Grado</th>
                                 <th className={style.th} >Secci&oacute;n</th>
-                                <th className={style.th} >Boleta</th>
+                                {/* <th className={style.th} >Boleta</th> */}
                             </tr>
                         </thead>
                         <tbody className={style.tbody}>
@@ -43,7 +43,7 @@ const ListaEstudiantes = ({ loadindData, setLoadindData }) => {
                                         <td className={style.borderRadius}>{alumno.nombres}</td>
                                         <td className={style.borderRadius}>{alumno.grado === 'nivel1' ? 'Nivel 1' : alumno.grado === 'nivel2' ? 'Nivel 2' : 'Nivel 3'}</td>
                                         <td className={style.borderRadius}>{alumno.seccion}</td>
-                                        <td className={style.borderRadius}><strong>{alumno.boleta_generada}</strong></td>
+                                        {/* <td className={style.borderRadius}><strong>{alumno.boleta_generada}</strong></td> */}
                                     </tr>
                                 ))
                             }

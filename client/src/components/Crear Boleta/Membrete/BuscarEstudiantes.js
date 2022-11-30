@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { listFiveStudents } from '../../../Redux/actions/boletaActions';
 import style from './membrete.module.css';
 import ListaEstudiantes from './ListaEstudiantes';
+import { alertErrors } from '../../../helpers/alerts'
 
 
 
@@ -22,6 +23,7 @@ const BuscarEstudiantes = () => {
     }
     const subtmiForm = async (e) => {
         e.preventDefault();
+        if( !busqueda.grado ) return alertErrors('Uno o más campos sin seleccionar.', '#032a69', 'Error');
         setLoadindData(true);
         await dispatch(listFiveStudents(busqueda));
         setLoadindData(false);
