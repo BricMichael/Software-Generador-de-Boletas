@@ -4,9 +4,8 @@ import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import BotonHome from '../../../components/BotonVolverYSubir/BotonHome';
 import { backgroundColorPage } from '../../../helpers/coloresBG';
-// import NavbarBoleta from '../../../components/Crear Boleta/NavbarBoleta';
+import { alertErrors } from '../../../helpers/alerts';
 import Cabecera from '../../../components/Crear Boleta/Cabecera';
-import CuerpoBoleta from '../../../components/Crear Boleta/CuerpoBoleta';
 import { botonCleanData, guardarBoletaAction } from '../../../Redux/actions/boletaActions';
 import IndicadoresAreas from '../../../components/Crear Boleta/IndicadoresBoleta/IndicadoresAreas'
 import { filtroBusqueda } from '../../../Redux/actions/indicadoresActions'
@@ -19,7 +18,7 @@ const CrearBoleta = () => {
 
     backgroundColorPage('#4169e1');
     document.title = 'Crear Boleta';
-    const { id } = JSON.parse(localStorage.getItem('userActive'));
+    const { id, rol } = JSON.parse(localStorage.getItem('userActive'));
     const { path } = useRouteMatch();
 
     const [indicadoresByPersonal, setIndicadoresByPersonal] = useState({ allIndicadores: [], selectedIndicadores: [] });
@@ -51,6 +50,12 @@ const CrearBoleta = () => {
     }, [date.finMomento, date.momento])
 
     const registrarBoleta = () => {
+        const longitudDeIndicadoresSeleccionados = indicadoresByPersonal.selectedIndicadores.length;
+        const msgAlertError = rol === 'docente' ? 'Faltan indicadores por seleccionar.' : longitudDeIndicadoresSeleccionados === 1 ? 'Debe seleccionar un indicador.' : 'Sólo debe seleccionar un indicador.';
+        if( 
+            ( rol === 'docente' && longitudDeIndicadoresSeleccionados <= 10 ) || 
+            ( rol === 'especialista' && longitudDeIndicadoresSeleccionados !== 2 ) 
+        ) return alertErrors(msgAlertError, '', 'Operación denegada');
         dispatch( guardarBoletaAction(indicadoresByPersonal.selectedIndicadores) );
         setIndicadoresByPersonal({ ...indicadoresByPersonal, selectedIndicadores: indicadoresByPersonal.allIndicadores });
         setBoletasGeneradas(boletasGeneradas + 1);
@@ -60,13 +65,10 @@ const CrearBoleta = () => {
         <>
             <BotonHome resetState={resetDataBoletaReducer} />
             <Header title="Creación de Boleta" marginTop='-4.4rem' />
-            {/* <NavbarBoleta /> */}
 
             <Switch>
-                <Route exact path={`${path}`} component={Cabecera} />
-                {/* <Route exact path={`${path}/indicadores-boleta`} component={CuerpoBoleta} /> */}
+                <Route exact path={`${path}`} component={Cabecera} />         
             </Switch>
-            {/* <CuerpoBoleta /> */}
             {
                 indicadoresByPersonal.allIndicadores.length > 0 &&
                 <>
