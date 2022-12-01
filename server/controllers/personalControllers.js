@@ -5,10 +5,35 @@ const pool = require('../configDB/poolConfig');
 const validarUsuario = async (req, res) => {
     try {
         const { password, email } = req.body;
-        const resDB = await pool.query('SELECT id, nombre, email, rol, especialidad FROM personal WHERE (email = $1) and (claveuser = $2)', [email.toLowerCase(), password]);
+        const resDB = await pool.query('SELECT id, nombre, email, cedula, rol, claveuser, especialidad FROM personal WHERE (email = $1)', [email.toLowerCase()]);
+        const {claveuser, ...rest} = resDB.rows[0] || {};
 
-        if (resDB.rowCount === 0) return res.json('undefined');
-        if (resDB.rowCount === 1) return res.json(resDB.rows[0]);
+        if ( resDB.rows[0]?.rol === 'admin' && password !== resDB.rows[0]?.claveuser ) {
+            return res.json({
+                autorizacion: false,
+                isAdmin: true,
+                cedula: resDB.rows[0]?.cedula
+            })
+        }
+
+        if (resDB.rows[0]?.claveuser !== password) return res.json({autorizacion: false, isAdmin: false});
+        if (resDB.rowCount === 1) {
+            return res.json({
+                datos: rest,
+                autorizacion: true, 
+                isAdmin: false
+            })
+        };
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+const cambiarClaveAdmin = async (req, res) => {
+    try {
+        const { nuevaClave, email } = req.body;
+        await pool.query('UPDATE personal SET claveuser = $1 WHERE email = $2', [nuevaClave, email]);
+        res.json({msg: 'La clave ha sido cambiada exitosamente.'})
     } catch (err) {
         console.log(err.message);
     }
@@ -66,5 +91,6 @@ module.exports = {
     validarUsuario,
     updatePersonal,
     updatePassword,
+    cambiarClaveAdmin,
     getUsers
 }

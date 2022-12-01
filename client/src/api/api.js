@@ -12,6 +12,7 @@ export const apiGetUsers = (component) => axios.get(`${urlPersonal}/${component}
 export const validarLogin = (datos) => axios.post(`${urlPersonal}Validar`, datos);
 export const updateRegisterPersonal = (id, newData) => axios.put(`${urlPersonal}/${id}`, newData);
 export const updatePasswordPersonal = (id, newPassword) => axios.put(`${urlPersonal}Password/${id}`, newPassword);
+export const cambiarClaveAdmin = (datos) => axios.put(`${urlPersonal}/claveAdmin`, datos);
 
 /*Peticiones a la Api indicadores*/
 export const guardarIndicador = (indicador) => axios.post(urlIndicador, indicador);
